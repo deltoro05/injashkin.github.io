@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://injashkin.github.io/sitemap.xml 
