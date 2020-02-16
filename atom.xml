@@ -4,7 +4,7 @@
   <title><![CDATA[Мой персональный блог]]></title>
   <link href="http://injashkin.github.io/atom.xml" rel="self"/>
   <link href="http://injashkin.github.io/"/>
-  <updated>2020-02-17T00:16:43+03:00</updated>
+  <updated>2020-02-17T00:36:37+03:00</updated>
   <id>http://injashkin.github.io/</id>
   <author>
     <name><![CDATA[injashkin]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Мой первый пост]]></title>
+    <link href="http://injashkin.github.io/blog/2020/02/17/moi-piervyi-post/"/>
+    <updated>2020-02-17T00:24:31+03:00</updated>
+    <id>http://injashkin.github.io/blog/2020/02/17/moi-piervyi-post</id>
+    <content type="html"><![CDATA[<p>Статья, которая помогла мне создать этот блог на фремворке Octopress, находится <a href="https://retifrav.github.io/blog/2014/07/30/first-post/">здесь</a>.</p>
+]]></content>
+  </entry>
   
 </feed>
