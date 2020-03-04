@@ -1,0 +1,829 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/styles.491a16106869c73de5f8.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.19.7"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="icon" href="/icons/icon-48x48.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=edf3d310d67f8284a562bc3a58c3e761"/><title data-react-helmet="true">Руководство по Gatsby | jinv.ru</title><meta data-react-helmet="true" name="description" content="Настройка среды разработки для фреймворка Gatsby Прежде чем приступить к созданию вашего первого сайта Gatsby, вам необходимо ознакомиться с некоторыми…"/><meta data-react-helmet="true" property="og:title" content="Руководство по Gatsby"/><meta data-react-helmet="true" property="og:description" content="Настройка среды разработки для фреймворка Gatsby Прежде чем приступить к созданию вашего первого сайта Gatsby, вам необходимо ознакомиться с некоторыми…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="injashkin"/><meta data-react-helmet="true" name="twitter:title" content="Руководство по Gatsby"/><meta data-react-helmet="true" name="twitter:description" content="Настройка среды разработки для фреймворка Gatsby Прежде чем приступить к созданию вашего первого сайта Gatsby, вам необходимо ознакомиться с некоторыми…"/><link as="script" rel="preload" href="/webpack-runtime-01e7facd91d441c705f6.js"/><link as="script" rel="preload" href="/styles-47121d392bbea5e6e153.js"/><link as="script" rel="preload" href="/app-f9df1844dbc4b84ba770.js"/><link as="script" rel="preload" href="/commons-201d144dfce648ec0bcc.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-524464d7451d9eb17cd3.js"/><link as="fetch" rel="preload" href="/page-data/gatsby/tutorial-gatsby/page-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">jinv.ru</a></h3></header><main><article><header><h1 style="margin-top:1.75rem;margin-bottom:0">Руководство по Gatsby</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem">06 February 2020</p></header><section><p><a name="part0"></a></p>
+<h2>Настройка среды разработки для фреймворка Gatsby</h2>
+<p>Прежде чем приступить к созданию вашего первого сайта Gatsby, вам необходимо ознакомиться с некоторыми основными веб-технологиями и убедиться, что у вас установлены все необходимые программные средства.</p>
+<ol>
+<li><a href="https://www.gatsbyjs.org/tutorial/part-zero/#install-nodejs-for-your-appropriate-operating-system">Установите Node.js</a> для вашей операционной системы. Node.js - это среда, которая может запускать код JavaScript вне веб-браузера. Gatsby построен с помощью Node.js. Чтобы начать работу с Gatsby, вам потребуется установить на компьютер его последнюю версию. В комплекте с Node.js поставляется npm таким образом, если у вас нет npm, скорее всего, у вас неустановлен Node.js. Прочитайте, <a href="https://docs.npmjs.com/getting-started/what-is-npm">что такое npm</a>.</li>
+<li><a href="https://www.gatsbyjs.org/tutorial/part-zero/#install-git">Установите Git</a>. Git - это бесплатная распределенная система управления версиями с открытым исходным кодом. Когда вы устанавливаете сайт “стартера ” Gatsby, Gatsby использует git за кулисами, чтобы загрузить и установить необходимые файлы для вашего стартера. Вам нужно будет установить Git, чтобы настроить свой первый сайт на Gatsby. Ознакомьтесь с <a href="https://guides.github.com/introduction/git-handbook/">руководством Git</a> на GitHub.</li>
+<li>Установите интерфейс командной строки (CLI) Gatsby. Инструмент Gatsby CLI позволяет быстро создавать новые сайты с поддержкой Gatsby и запускать команды для разработки сайтов на Gatsby. Чтобы установить CLI Gatsby глобально выполните в терминале </li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install -g gatsby-cli</code></pre></div>
+<h3>Создание сайта на Gatsby</h3>
+<p>Чтобы ускорить процесс создания определенного типа сайтов вы можете скачать “starters” (частично сделанные сайты с некоторой конфигурацией по умолчанию). Здесь вы будете использовать стартер ”Hello World”, в котором есть самые необходимые элементы для создания сайта на Gatsby.</p>
+<ol>
+<li>Откройте ваш терминал.</li>
+<li>Выполните </li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">gatsby new hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world</code></pre></div>
+<p>где,</p>
+<ul>
+<li><code class="language-text">new</code> - это команда Gatsby для создания нового проекта.</li>
+<li><code class="language-text">hello-world</code> - это произвольное название, вы можете выбрать что угодно. Инструмент CLI поместит код для вашего нового сайта в новую папку под названием “hello-world”.</li>
+<li>указанный URL - это адрес, указывющий на хранилище исходного кода на GitHub, который вы хотите использовать.</li>
+<li>Выполните <code class="language-text">cd hello-world</code>.</li>
+</ul>
+<p>Команда <code class="language-text">cd</code> (change directories), означает изменить рабочий каталог на “hello-world”.</p>
+<ol start="4">
+<li>Выполните <code class="language-text">gatsby develop</code>.</li>
+</ol>
+<p>Эта команда запускает сервер разработки. Вы сможете видеть и взаимодействовать с вашим сайтом в локальной среде разработки, т. е. не в интернете, а на вашем компьютере.</p>
+<h3>Просмотр вашего сайта локально</h3>
+<p>Откройте новую вкладку в браузере и перейдите на страницу <a href="http://localhost:8000/">http://localhost:8000/</a>. Вы сможете посещать этот сайт до тех пор, пока работает ваш сервер разработки. Чтобы остановить этот процесс (другими словами “остановить запущенный сервер разработки”), вернитесь в окно терминала, удерживайте клавишу “control”, а затем нажмите “c” (ctrl-c). Чтобы начать все сначала, запустите приложение <code class="language-text">gatsby develop</code> еще раз!</p>
+<p>Примечание: Если вы используете установленный VM, например <code class="language-text">vagrant</code>, и/или хотите прослушать локальный IP-адрес, запустите <code class="language-text">gatsby develop --host=0.0.0.0</code>. Теперь сервер разработки слушает <a href="http://localhost">http://localhost</a> и ваш локальный IP</p>
+<h3>Настройка редактора кода</h3>
+<p>Редактор кода - это программа, разработанная специально для редактирования компьютерного кода.</p>
+<p>Если вы решили использовать VS Code, посетите сайт <a href="https://code.visualstudio.com/#alt-downloads">VS Code</a> и загрузите версию, соответствующую вашей платформе.</p>
+<h4>Установка плагина Prettier</h4>
+<p>Мы также рекомендуем использовать <a href="https://github.com/prettier/prettier">Prettier</a>, инструмент, который помогает форматировать код, во избежании многочисленно появляющихся при редактировании ошибок.</p>
+<p>Вы можете использовать Prettier непосредственно в редакторе VS Code, используя плагин <a href="https://github.com/prettier/prettier-vscode">Prettier VS Code</a>:</p>
+<ol>
+<li>Откройте меню View => Extensions в редакторе VS Code.</li>
+<li>Найдите “Prettier - Code formatter”.</li>
+<li>Нажмите кнопку “Install”. (После установки вам будет предложено перезапустить VS Code, чтобы включить расширение. Новые версии VS Code будут автоматически активировать расширение после скачивания.)</li>
+</ol>
+<p>Если вы не используете VS Code, ознакомьтесь с <a href="https://prettier.io/docs/en/install.html">инструкцией по установке Prettier</a> или <a href="https://prettier.io/docs/en/editors.html">интеграцией Prettier в другие редакторы</a>.</p>
+<p><a name="part1"></a></p>
+<h2>1. Знакомство со строительными блоками Gatsby</h2>
+<p>В предыдущем разделе вы подготовили локальную среду разработки, установив необходимое программное обеспечение и создав свой первый сайт Gatsby с помощью <a href="https://github.com/gatsbyjs/gatsby-starter-hello-world">стартера “hello world”</a>. Теперь погрузитесь глубже в код, сгенерированный этим стартером.</p>
+<h3>Использование стартеров Gatsby</h3>
+<p>В <a href="#part0">нулевой части</a> учебника вы создали новый сайт на основе стартера “hello world”, используя следующую команду:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">gatsby new hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world</code></pre></div>
+<p>При создании нового сайта на Gatsby можно использовать следующую структуру команд для создания нового сайта на основе любого существующего стартера Gatsby:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">gatsby new [SITE_DIRECTORY_NAME] [URL_OF_STARTER_GITHUB_REPO]</code></pre></div>
+<p>Если вы опустите URL-адрес в конце, Gatsby автоматически создаст сайт для вас на основе стартера по умолчанию. Для этого раздела учебника придерживайтесь сайта ”Hello World”, который вы уже создали в нулевой части учебника. Вы можете узнать больше об <a href="https://www.gatsbyjs.org/docs/modifying-a-starter">изменении стартеров</a> в документации.</p>
+<h3>Знакомство со страницами Gatsby</h3>
+<p>Откройте каталог <code class="language-text">/src</code> в редакторе кода. Внутри находится один каталог: <code class="language-text">/pages</code>.</p>
+<p>Откройте файл по адресу <code class="language-text">src/pages/index.js</code>. Код в этом файле создает компонент, который содержит один div и некоторый текст - соответственно, “Hello world!”</p>
+<p>Gatsby использует горячую перезагрузку, чтобы ускорить процесс разработки. По сути, при запущенном сервере разработки Gatsby, каждый раз, когда вы сохраняете файл, файлы сайта Gatsby “просматриваются” в фоновом режиме и ваши изменения немедленно отображаются в браузере. Вам не нужно вручную обновлять страницу или перезапускать сервер разработки.</p>
+<h2>Данные в Gatsby</h2>
+<p>В следующих четырех частях учебника (включая эту) вы погрузитесь в слой данных Gatsby, который является мощной функцией Gatsby, которая позволяет легко создавать сайты из Markdown, WordPress, headless CMSs и других источников данных всех вкусов.</p>
+<p>Слой данных Gatsby работает на GraphQL. О GraphQL можно прочитать статью <a href="https://www.howtographql.com/">Как использовать GraphQL</a>.</p>
+<p>Веб-сайт состоит из четырех частей: HTML, CSS, JS и данных. Давайте узнаем, как использовать данные на сайтах Гэтсби.</p>
+<p>Что такое данные?</p>
+<p>Очень компьютерный ответ был бы: данные - это такие вещи, как “строки”, целые числа (42), объекты ({ pizza: true}) и т. д.</p>
+<p>Для целей работы в Гэтсби, однако, более полезным ответом является “все, что живет вне компонента React”.</p>
+<p>До сих пор вы писали текст и добавляли изображения непосредственно в компоненты. Что является отличным способом для создания многих веб-сайтов. Но часто требуется хранить данные вне компонентов, а затем вносить их в компонент по мере необходимости.</p>
+<p>Если вы создаете сайт с помощью WordPress (так что у других участников есть хороший интерфейс для добавления и поддержания контента) и Gatsby, данные для сайта (страницы и сообщения) находятся в WordPress, и вы по мере необходимости извлекаете эти данные в свои компоненты.</p>
+<p>Данные также могут находиться в таких типах файлов, как Markdown, CSV и т. д. а также базы данных и API всех видов.</p>
+<p>Слой данных Гэтсби позволяет извлекать данные из этих (и любых других источников) непосредственно в ваши компоненты — в нужной вам форме.</p>
+<h3>Использование неструктурированных данных или GraphQL</h3>
+<p>Обязатеьно ли использовать GraphQL и плагины source для извлечения данных на сайты Gatsby?</p>
+<p>Необязательно! Вы можете использовать API <code class="language-text">createPages</code> для извлечения неструктурированных данных на страницы Gatsby напрямую, а не через слой данных GraphQL. Это отличный выбор для небольших сайтов, в то время как GraphQL и исходные плагины могут помочь сэкономить время на более сложных сайтах.</p>
+<p>Смотрите руководство <a href="https://www.gatsbyjs.org/docs/using-gatsby-without-graphql/">Using Gatsby without GraphQL</a>, чтобы узнать, как получить данные на ваш Gatsby сайт с помощью API node <code class="language-text">createPages</code> и посмотреть пример сайта!</p>
+<p>Когда использовать неструктурированные данные, а когда GraphQL?</p>
+<p>Если вы создаете небольшой сайт, одним из эффективных способов его создания является извлечение неструктурированных данных, как описано в этом руководстве, с помощью API <code class="language-text">createPages</code>, а затем, если сайт становится более сложным, вы переходите к созданию более сложных сайтов, или вы хотите преобразовать свои данные, выполните следующие действия:</p>
+<ol>
+<li>Проверьте <a href="https://www.gatsbyjs.org/plugins/">Библиотеку плагинов</a>, чтобы узнать, существуют ли исходники плагинов и/или преобразованные плагины, которые вы хотите использовать</li>
+<li>Если их нет, прочитайте руководство по разработке плагинов и подумайте о создании собственного!</li>
+</ol>
+<h3>Как слой данных Gatsby использует GraphQL для извлечения данных в компоненты</h3>
+<p>Существует множество вариантов загрузки данных в компоненты React. Одной из самых популярных и мощных из них является технология <a href="http://graphql.org/">GraphQL</a>.</p>
+<p>GraphQL был изобретен в Facebook, чтобы помочь инженерам продукта собрать необходимые данные в компоненты.</p>
+<p>GraphQL - это язык запросов (QL-query language). Если вы знакомы с SQL, он работает очень похожим образом. Используя специальный синтаксис, вы описываете нужные данные в компоненте, а затем эти данные передаются вам.</p>
+<p>Gatsby использует GraphQL, чтобы позволить компонентам объявлять необходимые им данные.</p>
+<h3>Создание нового примера сайта</h3>
+<p>Создайте еще один новый сайт для этой части руководства. Вы собираетесь создать блог Markdown под названием “Панды едят много”. Он посвящен демонстрации лучших фотографий и видео панд, поедающих много пищи. По пути вы будете погружать пальцы ног в GraphQL и поддержку Markdown от Gatsby.</p>
+<p>Откройте новое окно терминала и выполните следующие команды, чтобы создать новый сайт Гэтсби в каталоге под названием <code class="language-text">tutorial-part-four</code>. Затем перейдите в новый каталог:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">gatsby new tutorial-part-four https://github.com/gatsbyjs/gatsby-starter-hello-world
+
+cd tutorial-part-four</code></pre></div>
+<p>Затем установите некоторые другие необходимые зависимости в корне проекта. Вы будете использовать тему Typography “Kirkham”, и вы попробуете библиотеку CSS-in-JS, <a href="https://emotion.sh/">“Emotion”</a>:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install --save gatsby-plugin-typography typography react-typography typography-theme-kirkham gatsby-plugin-emotion @emotion/core</code></pre></div>
+<p>Создайте сайт, подобный тому, что вы закончили в третьей части. Этот сайт будет иметь компонент макета и два компонента страницы:</p>
+<p>src/components/layout.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@emotion/core"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> rhythm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../utils/typography"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> children <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>
+    <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+      margin: 0 auto;
+      max-width: 700px;
+      padding: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+      padding-top: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+  <span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">to</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span>
+        <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+          margin-bottom: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+          display: inline-block;
+          font-style: normal;
+        </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+      <span class="token punctuation">></span></span><span class="token plain-text">
+        Pandas Eating Lots
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span>
+      <span class="token attr-name">to</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/about/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+      <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+        float: right;
+      </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+    <span class="token punctuation">></span></span><span class="token plain-text">
+      About
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span></code></pre></div>
+<p>src/pages/index.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Amazing Pandas Eating Things</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+        <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg<span class="token punctuation">"</span></span>
+        <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Group of pandas eating bamboo<span class="token punctuation">"</span></span>
+      <span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span></code></pre></div>
+<p>src/pages/about.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">About Pandas Eating Lots</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+      We're the only site running on your computer dedicated to showing the best
+      photos and videos of pandas eating lots of food.
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span></code></pre></div>
+<p>src/utils/typography.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> Typography <span class="token keyword">from</span> <span class="token string">"typography"</span>
+<span class="token keyword">import</span> kirkhamTheme <span class="token keyword">from</span> <span class="token string">"typography-theme-kirkham"</span>
+
+<span class="token keyword">const</span> typography <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Typography</span><span class="token punctuation">(</span>kirkhamTheme<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> typography
+<span class="token keyword">export</span> <span class="token keyword">const</span> rhythm <span class="token operator">=</span> typography<span class="token punctuation">.</span>rhythm</code></pre></div>
+<p>gatsby-config.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-emotion</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        pathToConfigModule<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src/utils/typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Добавьте вышеуказанные файлы, а затем запустите команду <code class="language-text">gatsby develop</code>, как обычно, и вы увидите следующее:</p>
+<p><img src="images/pandas.png" alt="Сайт о пандах"></p>
+<h3>Ваш первый запрос GraphQL</h3>
+<p>При создании сайтов вы, вероятно, захотите повторно использовать общие части данных — например, название сайта. Посмотрите на страницу <code class="language-text">/about/</code>. Вы заметите, что у вас есть название сайта (Панды много едят) как в компоненте макета (заголовок сайта), так и в тэге <code class="language-text">&lt;h1 /&gt;</code> страницы <code class="language-text">about.js</code> (заголовок страницы).</p>
+<p>Но что делать, если вы захотите изменить название сайта? Вам придется искать заголовок во всех ваших компонентах и редактировать каждый экземпляр. Это одновременно громоздко и подвержено ошибкам, особенно для больших и более сложных сайтов. Вместо этого вы можете хранить заголовок в одном месте и ссылаться на него из других файлов; измените заголовок в одном месте, и Gatsby извлечет ваш обновленный заголовок в файлы, которые ссылаются на него.</p>
+<p>Местом для этих общих частей данных является объект <code class="language-text">siteMetadata</code> в файле <code class="language-text">gatsby-config.js</code>. Добавьте название вашего сайта в файл <code class="language-text">gatsby-config.js</code>:</p>
+<p>gatsby-config.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  siteMetadata<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Title from siteMetadata</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-emotion</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        pathToConfigModule<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src/utils/typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Перезагрузите сервер разработки.</p>
+<h3>Использование запроса страницы</h3>
+<p>Теперь название сайта доступно для запроса. Добавьте его в файл <code class="language-text">about.js</code> используя <a href="https://www.gatsbyjs.org/docs/page-query">запрос страницы</a>:</p>
+<p>src/pages/about.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">About </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>site<span class="token punctuation">.</span>siteMetadata<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+      We're the only site running on your computer dedicated to showing the best
+      photos and videos of pandas eating lots of food.
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>Сохраните файл и вы увидите следующее:</p>
+<p><img src="images/about.png" alt="Извлечение заголовка страницы из siteMetadata"> </p>
+<h3>Использование StaticQuery</h3>
+<p><a href="https://www.gatsbyjs.org/docs/static-query/">StaticQuery</a> - это новый API, добавленный в Gatsby v2, который позволяет безстраничным (non-page) компонентам (подобно компоненту layout.js) извлекать данные с помощью запросов GraphQL. Давайте использовать эту недавно введенную версию хука — <a href="https://www.gatsbyjs.org/docs/use-static-query/">useStaticQuery</a>.</p>
+<p>Внесите некоторые изменения в файл src/components/layout.js для использования хука <code class="language-text">useStaticQuery</code> и ссылки {data.site.siteMetadata.title}, которая использует эти данные. Когда вы закончите, ваш файл будет выглядеть следующим образом:</p>
+<p>src/components/layout.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@emotion/core"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useStaticQuery<span class="token punctuation">,</span> Link<span class="token punctuation">,</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> rhythm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../utils/typography"</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> children <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token function">useStaticQuery</span><span class="token punctuation">(</span>
+    graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    </span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>
+      <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+        margin: 0 auto;
+        max-width: 700px;
+        padding: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+        padding-top: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+      </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+    <span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">to</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span>
+          <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+            margin-bottom: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+            display: inline-block;
+            font-style: normal;
+          </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+        <span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>site<span class="token punctuation">.</span>siteMetadata<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span>
+        <span class="token attr-name">to</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/about/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+        <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+          float: right;
+        </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+      <span class="token punctuation">></span></span><span class="token plain-text">
+        О сайте
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Зачем использовать здесь два разных запроса? Эти примеры были кратким введением в типы запросов, как они форматируются и где их можно использовать. А пока имейте в виду, что запросы к страницам могут делать только страницы. Нестраничные компоненты, такие как Layout, могут использовать StaticQuery. Часть 7 учебника объясняет их более подробно.</p>
+<p>Один из основных принципов Gatsby заключается в том, что <em>создатели нуждаются в непосредственной связи с тем, что они создают</em> (<a href="http://blog.ezyang.com/2012/02/transcript-of-inventing-on-principle/">hat tip to Bret Victor</a>). Другими словами, когда вы вносите какие-либо изменения в код, вы должны немедленно увидеть эффект этого изменения. Вы манипулируете входными данными Gatsby и видите на экране новый вывод.</p>
+<h2>Плагины Source</h2>
+<p>Из этого туториала вы узнаете, как использовать GraphQL и плагины source для загрузки данных на сайт Gatsby. Однако прежде чем вы узнаете об этих плагинах, вы должны знать, как использовать инструмент GraphiQL, который поможет вам правильно структурировать ваши запросы.</p>
+<h3>Введение в GraphiQL</h3>
+<p>GraphiQL - это интегрированная среда разработки (IDE) GraphQL. Это мощный инструмент, который вы будете часто использовать при создании веб-сайтов Гэтсби.</p>
+<p>Вы можете получить к нему доступ, когда сервер разработки вашего сайта работает - обычно на <a href="http://localhost:8000/___graphql">http://localhost:8000/___graphql</a>.</p>
+<p>Просмотрите встроенный сайт “тип” и посмотрите, какие поля доступны на нем — включая объект siteMetadata, который вы запрашивали ранее. Попробуйте открыть GraphiQL и поиграть с вашими данными! Нажмите Ctrl + Space (или используйте Shift + Space в качестве альтернативного сочетания клавиш), чтобы открыть окно автозаполнения, и Ctrl + Enter, чтобы запустить запрос GraphQL. В оставшейся части урока вы будете использовать GraphiQL намного больше.</p>
+<h4>Использование обозревателя GraphiQL</h4>
+<p>Обозреватель GraphiQL позволяет интерактивно создавать полные запросы, щелкая по доступным полям и входным данным без повторяющегося процесса ввода этих запросов вручную.</p>
+<p>Данные на сайты Gatsby могут поступать из любого места: API, баз данных, CMS, локальных файлов и т. д.</p>
+<p>Плагины Source извлекают данные из своего источника. Например, source плагин filesystem знает, как извлечь данные из файловой системы. Плагин WordPress знает, как получить данные из API WordPress.</p>
+<p>Добавьте <code class="language-text">gatsby-source-filesystem</code> и изучите, как он работает.</p>
+<p>Во-первых, установите плагин в корень проекта:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install --save gatsby-source-filesystem</code></pre></div>
+<p>Затем добавьте его в файл <code class="language-text">gatsby-config.js</code>:</p>
+<p>gatsby-config.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  siteMetadata<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Pandas Eating Lots</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>__dirname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/src/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-emotion</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        pathToConfigModule<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src/utils/typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Сохраните это и перезагрузите сервер разработки gatsby. Затем снова откройте GraphiQL.</p>
+<p>В области проводника вы увидите <code class="language-text">allFile</code> и <code class="language-text">file</code>, доступные как выбранные.</p>
+<p>Щелкните раскрывающийся список allFile. Поместите курсор после allFile в область запроса, а затем введите Ctrl + Enter. Это позволит предварительно заполнить запрос на идентификатор каждого файла. Нажмите кнопку “Play”, чтобы выполнить запрос.</p>
+<p>На панели проводника поле id было выбрано автоматически. Сделайте выбор для большего количества полей, установив соответствующий флажок поля. Нажмите кнопку “Play”, чтобы снова запустить запрос с новыми полями.</p>
+<p>Кроме того, можно добавить поля с помощью сочетания клавиш автозаполнения (Ctrl + пробел). </p>
+<p>Попробуйте добавить несколько полей в запрос, нажимайте Ctrl + Enter каждый раз, чтобы повторно выполнить запрос. Вы увидите обновленные результаты запроса:</p>
+<h3>Создание страницы с помощью запросов GraphQL</h3>
+<p>Создание новых страниц с помощью Gatsby часто начинается в GraphiQL. Сначала вы набрасываете запрос данных, играя в GraphiQL, а затем копируете его в страницу компонента React, чтобы начать построение пользовательского интерфейса.</p>
+<p>Создайте новый файл в <code class="language-text">src/pages/my-files.js</code> с запросом GraphQL <code class="language-text">allFile</code>, который вы только что создали:</p>
+<p>src/pages/my-files.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">Hello world</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query {
+    allFile {
+      edges {
+        node {
+          relativePath
+          prettySize
+          extension
+          birthTime(fromNow: true)
+        }
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>Строка <code class="language-text">console.log(data)</code> часто полезна при создании нового компонента для вывода данных, которые вы получаете из запроса GraphQL, чтобы вы могли исследовать данные в консоли браузера во время построения пользовательского интерфейса.</p>
+<p>Если вы зайдете на новую страницу в <code class="language-text">/my-files/</code> и откроете консоль браузера, вы увидите что-то вроде:</p>
+<p>Форма данных совпадает с формой запроса GraphQL.</p>
+<p>Добавьте некоторый код к компоненту, чтобы распечатать данные файла.</p>
+<p>src/pages/my-files.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">My Site's Files</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">relativePath</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">prettySize</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">extension</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">birthTime</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allFile<span class="token punctuation">.</span>edges<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span><span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>index<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>relativePath<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>prettySize<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>extension<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>birthTime<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+            <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query {
+    allFile {
+      edges {
+        node {
+          relativePath
+          prettySize
+          extension
+          birthTime(fromNow: true)
+        }
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>А теперь посетите <code class="language-text">http://localhost:8000/my-files</code> …</p>
+<p>Теперь вы узнали, как плагины source приносят данные в систему данных Gatsby. В следующем уроке вы узнаете, как плагины transformer преобразуют необработанный контент, который приносят Плагины source. Комбинация плагинов source и плагинов transformer может обрабатывать все источники данных и преобразования данных, которые могут потребоваться при создании сайта Gatsby. Узнайте о плагинах transformer в шестой части этого руководства.</p>
+<h2>Плагины Transformer</h2>
+<p>В предыдущем уроке было показано, как плагины source доставляют данные в систему данных Gatsby. В этом уроке вы узнаете, как плагины transformer преобразуют исходное содержимое, полученное с помощью плагинов source. Комбинация плагинов source и плагинов transformer может обрабатывать все источники данных и преобразовывать данные, которые могут потребоваться при создании сайта на Gatsby.</p>
+<p>Часто формат данных, которые вы получаете от source плагинов, не является тем, что вы хотите использовать для создания своего веб-сайта. Source плагин filesystem позволяет запрашивать данные о файлах, но что делать, если вы хотите запросить данные внутри файлов?</p>
+<p>Чтобы сделать это возможным, Gatsby поддерживает плагины transformer, которые берут сырой контент из source плагинов и преобразуют его в нечто более полезное.</p>
+<p>Возьмем, например, файлы markdown. В markdown удобно писать статьи, но когда вы создаете страницу с ним, вам нужно, чтобы markdown был преобразован в HTML.</p>
+<p>Добавьте файл markdown на свой сайт по адресу src/pages/sweet-pandas-eating-sweets.md (это станет вашим первым markdown постом в блоге) и узнайте, как преобразовать его в HTML с помощью плагинов transformer и GraphQL.</p>
+<p>src/pages/sweet-pandas-eating-sweets.md</p>
+<div class="gatsby-highlight" data-language="md"><pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
+title: "Sweet Pandas Eating Sweets"
+<span class="token title important">date: "2017-08-10"
+<span class="token punctuation">---</span></span>
+
+Pandas are really sweet.
+
+Here's a video of a panda eating sweets.
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>560<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>315<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://www.youtube.com/embed/4n0xNbfJLR8<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">allowfullscreen</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span></code></pre></div>
+<p>Как только вы сохраните файл, посмотрите на <code class="language-text">/my-files/</code> еще раз - новый файл markdown находится в таблице. Это очень сильная функция Gatsby. Как и в предыдущем примере <code class="language-text">siteMetadata</code>, плагины source могут выполнять оперативную перезагрузку данных. <code class="language-text">gatsby-source-filesystem</code> всегда ищет новые файлы, которые будут добавлены, и когда они появляются, повторно выполняет ваши запросы.</p>
+<p>Добавьте плагин transformer, который может преобразовывать файлы markdown:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install --save gatsby-transformer-remark</code></pre></div>
+<p>Затем добавьте его в <code class="language-text">gatsby-config.js</code>:</p>
+<p>gatsby-config.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  siteMetadata<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Pandas Eating Lots</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>__dirname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/src/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-transformer-remark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-emotion</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      resolve<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-plugin-typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        pathToConfigModule<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">src/utils/typography</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Перезагрузите сервер разработки, затем обновите (или откройте снова) GraphiQL и посмотрите на автозаполнение.</p>
+<p>Снова выберите <code class="language-text">allMarkdownRemark</code> и запустите его так же, как и для <code class="language-text">allFile</code>. Вы увидите там файл markdown, который вы недавно добавили. Исследуйте поля, доступные на узле <code class="language-text">MarkdownRemark</code>.</p>
+<h3>Создание списка файлов markdown вашего сайта в src/pages/index.js</h3>
+<p>Теперь вам нужно будет создать список ваших файлов markdown на первой странице. Как и во многих блогах, вы хотите, чтобы в конечном итоге список ссылок на первой странице указывал на каждый пост в блоге. С помощью GraphQL вы можете запросить текущий список записей блога markdown, так что вам не нужно будет поддерживать список вручную.</p>
+<p>Подобно странице <code class="language-text">src/pages/my-files.js</code>, заменить <code class="language-text">src/pages/index.js</code> со следующим, чтобы добавить запрос GraphQL с некоторым начальным HTML и стилем.</p>
+<p>src/pages/index.js</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@emotion/core"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> rhythm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../utils/typography"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span>
+          <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+            display: inline-block;
+            border-bottom: 1px solid;
+          </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+        <span class="token punctuation">></span></span><span class="token plain-text">
+          Amazing Pandas Eating Things
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>totalCount<span class="token punctuation">}</span><span class="token plain-text"> Posts</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>edges<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span>
+              <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                margin-bottom: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+              </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+            <span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>frontmatter<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token string">" "</span><span class="token punctuation">}</span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span>
+                <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                  color: #bbb;
+                </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+              <span class="token punctuation">></span></span><span class="token plain-text">
+                — </span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>frontmatter<span class="token punctuation">.</span>date<span class="token punctuation">}</span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>excerpt<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query {
+    allMarkdownRemark {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          excerpt
+        }
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>Теперь первая страница должна выглядеть так:</p>
+<p><img src="images/home.png" alt="home"></p>
+<p>Но ваш единственный пост в блоге выглядит немного одиноким. Поэтому давайте добавим еще один в <code class="language-text">src/pages/pandas-and-bananas.md</code>.</p>
+<p>src/pages/pandas-and-bananas.md</p>
+<div class="gatsby-highlight" data-language="md"><pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
+title: "Pandas and Bananas"
+<span class="token title important">date: "2017-08-21"
+<span class="token punctuation">---</span></span>
+
+Do Pandas eat bananas? Check out this short video that shows that yes! pandas do
+seem to really enjoy bananas!
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>560<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>315<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://www.youtube.com/embed/4SZl1r2O_bY<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">allowfullscreen</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span></code></pre></div>
+<p><img src="images/two-page.png" alt="two-page"></p>
+<p>Выглядит великолепно! Вот только … порядок постов неправильный.</p>
+<p>Но это легко исправить. При запросе соединения определенного типа вы можете передать в запрос GraphQL множество аргументов. Вы можете сортировать и фильтровать узлы, задавать количество узлов, которые нужно пропустить, и выбирать предел количества узлов, которые нужно извлечь. С помощью этого мощного набора операторов вы можете выбрать любые данные, которые вы хотите — в нужном вам формате.</p>
+<p>В запросе GraphQL страницы индекса измените <code class="language-text">allMarkdownRemark</code> на <code class="language-text">allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC })</code>. Примечание: между frontmatter и date есть 3 подчеркивания. Сохраните это, и порядок сортировки должен быть установлен.</p>
+<p>Попробуйте открыть GraphiQL и поиграть с различными вариантами сортировки. Вы можете сортировать соединение <code class="language-text">allFile</code> вместе с другими соединениями.</p>
+<p>Для получения дополнительной документации по наши операторы запросов, исследовать наш <a href="https://www.gatsbyjs.org/docs/graphql-reference/">справочник GraphQL</a>.</p>
+<p>Это здорово! Вы только что создали красивую index страницу, где вы запрашиваете свои файлы markdown и создаете список заголовков и выдержек из записей в блоге. Но вы не хотите просто видеть выдержки, вам нужны реальные страницы для ваших файлов markdown.</p>
+<p>Вы можете продолжать создавать страницы, помещая компоненты React в <code class="language-text">src/pages</code>. Однако далее вы узнаете, как программно создавать страницы из данных. Gatsby не ограничивается созданием страниц из файлов, как многие статические генераторы сайтов. Gatsby позволяет использовать GraphQL для запроса данных и отображения результатов запроса на страницы — все во время сборки. Это действительно мощная идея. Вы изучите его последствия и способы использования в следующем учебнике, где вы узнаете, как <a href="https://www.gatsbyjs.org/tutorial/part-seven/">программно создавать страницы из данных</a>.</p>
+<h2>Программное создание страниц из данных</h2>
+<p>В предыдущем руководстве вы создали красивую index страницу, которая запрашивает файлы markdown и создает список заголовков и выдержек из записей блога. Но вам нужны не  просто выдержки, а реальные страницы для ваших файлов markdown.</p>
+<p>Вы можете продолжать создавать страницы, помещая компоненты React в <code class="language-text">src/pages</code>. Однако теперь вы узнаете, как программно создавать страницы из данных. Gatsby не ограничивается созданием страниц из файлов, как многие статические генераторы сайтов. Gatsby позволяет использовать GraphQL для запроса данных и отображения результатов запроса на страницах — все во время сборки.</p>
+<h3>Создание слагов для страниц</h3>
+<p>Чтобы создать новую страницу нужно выполнить два шага:</p>
+<ol>
+<li>Создать “путь” или “слаг” для страницы.</li>
+<li>Создать страницу.</li>
+</ol>
+<p>слаг (slug) - понятный человеку фрагмент текста из URL в отличии от, например, ID, который может быть непонятным набором символом.</p>
+<p>Примечание: часто источники данных напрямую предоставляют слаг или путь для содержимого - при работе с одной из этих систем (например, CMS), вам не нужно создавать слаги самостоятельно, как вы делаете с файлами markdown.</p>
+<p>Для создания страниц markdown вы научитесь использовать два API-интерфейса Gatsby: <code class="language-text">onCreateNode</code> и <code class="language-text">createPages</code>. Это две рабочие лошадки API, которые вы увидите на многих сайтах и плагинах.</p>
+<p>Мы делаем все возможное, чтобы сделать API Gatsby простыми в реализации. Для реализации API необходимо экспортировать функцию с именем API из <code class="language-text">gatsby-node.js</code>.</p>
+<p>В корне вашего сайта создайте файл с именем <code class="language-text">gatsby-node.js</code>. Затем в него добавьте следующее.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Эта функция <code class="language-text">onCreateNode</code> будет вызываться Gatsby всякий раз, когда создается (или обновляется) новый узел.</p>
+<p>Остановите и перезапустите сервер разработки. Как только вы это сделаете, вы увидите, что довольно много вновь созданных узлов войдут в консоль терминала.</p>
+<p>В следующем разделе вы будете использовать этот API, чтобы добавлять слаги для ваших Markdown страниц <code class="language-text">MarkdownRemark</code> узлов.</p>
+<p>gatsby-node.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Вы хотите использовать каждое имя файла markdown для создания слага страницы. Так <code class="language-text">pandas-and-bananas.md</code> станет <code class="language-text">/pandas-and-bananas/</code>. Но как получить имя файла из узла <code class="language-text">MarkdownRemark</code>? Чтобы получить его, вам нужно пересечь “узловой граф ” к его родительскому узлу <code class="language-text">File</code>, так как узлы <code class="language-text">File</code> содержат необходимые вам данные о файлах на диске. Для этого снова измените свою функцию:</p>
+<p>gatsby-node.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> fileNode <span class="token operator">=</span> <span class="token function">getNode</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>parent<span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> fileNode<span class="token punctuation">.</span>relativePath<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>После перезагрузки сервера разработки вы должны увидеть относительные пути для двух файлов markdown, напечатанных на экране терминала.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> pages/sweet-pandas-eating-sweets.md
+
+ pages/pandas-and-bananas.md</code></pre></div>
+<p>Теперь вам придется создавать слаги. Поскольку логика создания слагов из имен файлов может быть сложной, плагин <code class="language-text">gatsby-source-filesystem</code> поставляется с функцией для создания слагов. Давайте воспользуемся этим.</p>
+<p>gatsby-node.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> createFilePath <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">createFilePath</span><span class="token punctuation">(</span><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> basePath<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Функция обрабатывает поиск родительского узла <code class="language-text">File</code> вместе с созданием слага. Запустите сервер разработки еще раз, и вы увидите, что в терминал вошли два слага, по одному для каждого файла markdown.</p>
+<p>Теперь вы можете добавлять новые слаги непосредственно на узлы <code class="language-text">MarkdownRemark</code>. Это очень важно, так как любые данные, которые вы добавляете в узлы, доступны для последующего запроса с помощью GraphQL. Так что, когда придет время создавать страницы, будет легко получить слаг.</p>
+<p>Для этого вы будете использовать функцию, переданную в вашу реализацию API под названием <code class="language-text">createNodeField</code>. Эта функция позволяет создавать дополнительные поля в узлах, созданных другими плагинами. Только первоначальный создатель узла может непосредственно модифицировать узел - все остальные плагины (включая ваш <code class="language-text">gatsby-node.js</code>) должны использовать эту функцию для создания дополнительных полей.</p>
+<p>gatsby-node.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> createFilePath <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> createNodeField <span class="token punctuation">}</span> <span class="token operator">=</span> actions
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> slug <span class="token operator">=</span> <span class="token function">createFilePath</span><span class="token punctuation">(</span><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> basePath<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">createNodeField</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      node<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">slug</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      value<span class="token operator">:</span> slug<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Перезагрузите сервер разработки и откройте или обновите GraphiQL. Затем запустите этот запрос GraphQL, чтобы увидеть ваши новые слаги.</p>
+<div class="gatsby-highlight" data-language="graphql"><pre class="language-graphql"><code class="language-graphql"><span class="token punctuation">{</span>
+  allMarkdownRemark <span class="token punctuation">{</span>
+    edges <span class="token punctuation">{</span>
+      node <span class="token punctuation">{</span>
+        fields <span class="token punctuation">{</span>
+          slug
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Теперь, когда слаги созданы, вы можете создавать страницы.</p>
+<h3>Создание страниц</h3>
+<p>В том же файле <code class="language-text">gatsby-node.js</code>, добавьте следующее.</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> createFilePath <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> createNodeField <span class="token punctuation">}</span> <span class="token operator">=</span> actions
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> slug <span class="token operator">=</span> <span class="token function">createFilePath</span><span class="token punctuation">(</span><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> basePath<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">createNodeField</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      node<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">slug</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      value<span class="token operator">:</span> slug<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">createPages</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> graphql<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// **Note:** The graphql function call returns a Promise</span>
+  <span class="token comment">// see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info</span>
+  <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">graphql</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Вы добавили реализацию API <code class="language-text">createPages</code>, который вызывает Gatsby, чтобы плагины могли добавлять страницы.</p>
+<p>Как уже упоминалось во введении к этой части руководства, шагами по программному созданию страниц являются:</p>
+<ol>
+<li>Запрос данных с помощью GraphQL</li>
+<li>Отображение результатов запроса на страницах</li>
+</ol>
+<p>Приведенный выше код является первым шагом для создания страниц из вашего markdown, поскольку вы используете предоставленную функцию <code class="language-text">graphql</code> для запроса созданных вами слагов markdown. Затем вы выводите результат запроса, который должен выглядеть подобным образом:</p>
+<p><img src="images/query-markdown-slugs.png" alt="query-markdown-slugs"></p>
+<p>Для создания страниц вам понадобится еще одна вещь помимо слага: компонент шаблона страницы. Как и все в Gatsby, программные страницы питаются компонентами React. При создании страницы необходимо указать, какой компонент использовать.</p>
+<p>Создайте каталог в <code class="language-text">src/templates</code>, а затем добавьте следующее в файл с именем <code class="language-text">src/templates/blog-post.js</code>.</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">Hello blog post</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Затем измените gatsby-node.js</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">path</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> createFilePath <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">gatsby-source-filesystem</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">onCreateNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> createNodeField <span class="token punctuation">}</span> <span class="token operator">=</span> actions
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">MarkdownRemark</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> slug <span class="token operator">=</span> <span class="token function">createFilePath</span><span class="token punctuation">(</span><span class="token punctuation">{</span> node<span class="token punctuation">,</span> getNode<span class="token punctuation">,</span> basePath<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">pages</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">createNodeField</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      node<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">slug</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      value<span class="token operator">:</span> slug<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+exports<span class="token punctuation">.</span><span class="token function-variable function">createPages</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> graphql<span class="token punctuation">,</span> actions <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> createPage <span class="token punctuation">}</span> <span class="token operator">=</span> actions
+  <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">graphql</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+
+  result<span class="token punctuation">.</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>edges<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">createPage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      path<span class="token operator">:</span> node<span class="token punctuation">.</span>fields<span class="token punctuation">.</span>slug<span class="token punctuation">,</span>
+      component<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">./src/templates/blog-post.js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      context<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Data passed to context is available</span>
+        <span class="token comment">// in page queries as GraphQL variables.</span>
+        slug<span class="token operator">:</span> node<span class="token punctuation">.</span>fields<span class="token punctuation">.</span>slug<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Перезагрузите сервер разработки, и ваши страницы будут созданы! Простой способ найти новые страницы, которые вы создаете во время разработки, - это перейти на случайный путь, где Gatsby с удовольствием покажет вам список страниц на сайте. Если вы идете в <a href="http://localhost:8000/sdf">http://localhost:8000/sdf</a>, вы увидите новые страницы, которые вы создали.</p>
+<p>Это немного скучно и не то, что вы хотите. Теперь вы можете получить данные из вашего поста markdown. Измените <code class="language-text">src/templates/blog-post.js</code> следующим образом:</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> post <span class="token operator">=</span> data<span class="token punctuation">.</span>markdownRemark
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>post<span class="token punctuation">.</span>frontmatter<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">dangerouslySetInnerHTML</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> __html<span class="token operator">:</span> post<span class="token punctuation">.</span>html <span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        title
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>Последний шаг - это ссылка на ваши новые страницы с индексной страницы.</p>
+<p>Вернитесь к <code class="language-text">src/pages/index.js</code>, запросите ваши слаги markdown и создайте ссылки.</p>
+<div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@emotion/core"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link<span class="token punctuation">,</span> graphql <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> rhythm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../utils/typography"</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> data <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span>
+          <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+            display: inline-block;
+            border-bottom: 1px solid;
+          </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+        <span class="token punctuation">></span></span><span class="token plain-text">
+          Amazing Pandas Eating Things
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>totalCount<span class="token punctuation">}</span><span class="token plain-text"> Posts</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token punctuation">{</span>data<span class="token punctuation">.</span>allMarkdownRemark<span class="token punctuation">.</span>edges<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> node <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span>
+              <span class="token attr-name">to</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>fields<span class="token punctuation">.</span>slug<span class="token punctuation">}</span></span>
+              <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                text-decoration: none;
+                color: inherit;
+              </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+            <span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span>
+                <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                  margin-bottom: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">rhythm</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;
+                </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+              <span class="token punctuation">></span></span><span class="token plain-text">
+                </span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>frontmatter<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token string">" "</span><span class="token punctuation">}</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span>
+                  <span class="token attr-name">css</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+                    color: #555;
+                  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+                <span class="token punctuation">></span></span><span class="token plain-text">
+                  — </span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>frontmatter<span class="token punctuation">.</span>date<span class="token punctuation">}</span><span class="token plain-text">
+                </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span><span class="token plain-text">
+              </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>node<span class="token punctuation">.</span>excerpt<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+            </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> query <span class="token operator">=</span> graphql<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  query {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+</span><span class="token template-punctuation string">`</span></span></code></pre></div>
+<p>В этой части урока вы изучили основы построения с помощью слоя данных Gatsby. Вы узнали, как создавать и преобразовывать данные с помощью плагинов, как использовать GraphQL для отображения данных на страницы, а затем как создавать компоненты шаблонов страниц, в которых запрашиваются данные для каждой страницы.</p>
+<ul>
+<li>Вы можете взглянуть на некоторые <a href="https://github.com/gatsbyjs/gatsby/tree/master/examples#gatsby-example-websites">примеры сайтов</a></li>
+<li>Узнать больше <a href="https://www.gatsbyjs.org/docs/plugins/">о плагинах</a></li>
+<li>Посмотрите, что <a href="https://www.gatsbyjs.org/showcase/">другие люди строят создают с помощью Гэтсби</a></li>
+<li>Ознакомьтесь с документацией по <a href="https://www.gatsbyjs.org/docs/api-specification/">Gatsby’s APIs</a>, <a href="https://www.gatsbyjs.org/docs/node-interface/">nodes</a>, или <a href="https://www.gatsbyjs.org/docs/graphql-reference/">GraphQL</a></li>
+</ul></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAAsSAAALEgHS3X78AAACq0lEQVQ4y32U60/TUBjG+/ep6AAB43VeiGD8oP4DJiYwxkUYFwUS+aoJUWARo8m8EhTFwNqu5bJug7VdS9fTy1m3oZ98aHECDpqTJefN+5z3vM/7O2Nsx6Eu3aVlrCotu47rHP9VqRdkllwKIVNy6BYpJLTVD1rys8bt2MW6egRNmyzo/HttFclpU4aQ2XXL2IfYnmau90oqtmnmy27JduyDSmyRKlt6u/CkiY02sJEZ5esvWtkTo2YzF23l+64JsfSJ4tvi0xauN8T1zAbiqlv+onFXU7HrwsgdcUIyZe8YsWLp99enwqmRy6mhefUHOmfQjGGbElEyRMkSldjWcW5Ztp0jKtIkIuu+NYxvhkMdN1jOiV8tLchjglDF9bDQ7cliJASZQRkGe9aQBjKzg9n4WG4+TzS091/PewV0qzi59e5xdq4/M7OkizjCH1VhtYHtbuR6LvGDtVEdWaBCJvpNYTTERk6zXa/kxf1RfdSSLVzfBX4AhtdGhd8Apoq/DdzuFCfauH4QMad8+yc+z/W28f1hYRhijApOJg0poa0App/GBm4ezLlDHG/l+pq46CFxrfKmuY32PJfCBfRylo08TD+n7p69eUurU/kAYcOSqZQdD+QMZeMhLgIjHqVfIOI5JdXa6fAJa6xLWKc4njTSKtkpWEYsGwdJoL1LmlaIjrVW3Lq39iws1CFMBj18MfNgfeqWOIaDpuUFNImrvlGXbwij7eLY3bVJ9L9tFdKHCXPRVYV6KNjxF/24svSbVnG3TxobNBVODYNNFPQtcPcJAwOWYyGUJwUUOcdGTrFdL+XFqs9corByhu3GcRf5wQ1zG14iOaCIOfjcizZ5qy7DDDAgFnMYD5zHO8Prhb2v1e+aZSBSo485Qi+QQEEsKGuPIYiAxyN/Mn8AmMD1fwuu+DUAAAAASUVORK5CYII=" alt="injashkin" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/cb23ce1de38c1dfe145457342e9c0ebb/8ba1e/profile-pic.png 1x,
+/static/cb23ce1de38c1dfe145457342e9c0ebb/f937a/profile-pic.png 1.5x,
+/static/cb23ce1de38c1dfe145457342e9c0ebb/71eb7/profile-pic.png 2x" /><img loading="lazy" width="50" height="50" srcset="/static/cb23ce1de38c1dfe145457342e9c0ebb/8ba1e/profile-pic.png 1x,
+/static/cb23ce1de38c1dfe145457342e9c0ebb/f937a/profile-pic.png 1.5x,
+/static/cb23ce1de38c1dfe145457342e9c0ebb/71eb7/profile-pic.png 2x" src="/static/cb23ce1de38c1dfe145457342e9c0ebb/8ba1e/profile-pic.png" alt="injashkin" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Автор <strong>injashkin</strong>.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/gatsby/quick-start-gatsby/">← <!-- -->Быстрый запуск сайта с фреймворком Gatsby</a></li><li><a rel="next" href="/gatsby/podgotovka-gatsby-sayta-k-prodakshenu/">Подготовка сайта на фреймворке Gatsby к публикации<!-- --> →</a></li></ul></nav></main><footer>© <!-- -->2020<!-- --> <a href="http://jinv.ru">jinv</a></footer></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/gatsby/tutorial-gatsby/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-f9df1844dbc4b84ba770.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-ceef87afc058962c4db9.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-524464d7451d9eb17cd3.js"],"component---src-pages-404-js":["/component---src-pages-404-js-7669542ecbd6e4ed306c.js"],"component---src-pages-index-js":["/component---src-pages-index-js-3a3604b169c5b781f7d8.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-524464d7451d9eb17cd3.js" async=""></script><script src="/commons-201d144dfce648ec0bcc.js" async=""></script><script src="/app-f9df1844dbc4b84ba770.js" async=""></script><script src="/styles-47121d392bbea5e6e153.js" async=""></script><script src="/webpack-runtime-01e7facd91d441c705f6.js" async=""></script></body></html>
