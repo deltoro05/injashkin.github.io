@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jinv.ru]]></title><description><![CDATA[Блог о веб программировании]]></description><link>http://jinv.ru</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 04 Mar 2020 18:13:07 GMT</lastBuildDate><item><title><![CDATA[Сокращатель URL на JavaScript]]></title><description><![CDATA[Данная статья является моим учебным заданием на FreeCodeCamp. Задание Нужно создать JavaScript приложение полного цикла, которое…]]></description><link>http://jinv.ru/MongoDB-and-Mongoose/url-shortener-microservice/</link><guid isPermaLink="false">http://jinv.ru/MongoDB-and-Mongoose/url-shortener-microservice/</guid><pubDate>Sun, 01 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Данная статья является моим учебным заданием на &lt;a href=&quot;https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/url-shortener-microservice&quot;&gt;FreeCodeCamp&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jinv.ru]]></title><description><![CDATA[Блог о веб программировании]]></description><link>http://jinv.ru</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2020 13:02:44 GMT</lastBuildDate><item><title><![CDATA[Сокращатель URL на JavaScript]]></title><description><![CDATA[Данная статья является моим учебным заданием на FreeCodeCamp. Задание Нужно создать JavaScript приложение полного цикла, которое…]]></description><link>http://jinv.ru/MongoDB-and-Mongoose/url-shortener-microservice/</link><guid isPermaLink="false">http://jinv.ru/MongoDB-and-Mongoose/url-shortener-microservice/</guid><pubDate>Sun, 01 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Данная статья является моим учебным заданием на &lt;a href=&quot;https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/url-shortener-microservice&quot;&gt;FreeCodeCamp&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Задание&lt;/h2&gt;
 &lt;p&gt;Нужно создать JavaScript приложение полного цикла, которое функционально похоже на это: &lt;a href=&quot;https://thread-paper.glitch.me/&quot;&gt;https://thread-paper.glitch.me/&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Работа над этим проектом будет включать в себя написание кода на Glitch. После завершения этого проекта нужно скопировать свой публичный url Glitch (главную страницу вашего приложения) на &lt;a href=&quot;https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/url-shortener-microservice&quot;&gt;эту страницу&lt;/a&gt;. По желанию можно написать свой проект на другой платформе, но он должен быть публично виден для тестирования.&lt;/p&gt;
@@ -343,8 +343,8 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/why-gatsby-uses-graphql/&quot;&gt;Почему Gatsby использует GraphQL&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;ИСТОЧНИКИ:&lt;/p&gt;
-&lt;p&gt;Перевод статьи (примерный!) &lt;a href=&quot;https://www.gatsbyjs.org/docs/using-gatsby-without-graphql/&quot;&gt;Gatsby without GraphQL&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Подготовка сайта на фреймворке Gatsby к публикации]]></title><description><![CDATA[Это последняя статья из серии “Учебник Gatsby для начинающих” В предыдущих частях вы изучили следующее: создание сайтов Gatsby создание…]]></description><link>http://jinv.ru/gatsby/podgotovka-gatsby-sayta-k-prodakshenu/</link><guid isPermaLink="false">http://jinv.ru/gatsby/podgotovka-gatsby-sayta-k-prodakshenu/</guid><pubDate>Sun, 09 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Это последняя статья из серии “Учебник Gatsby для начинающих”&lt;/p&gt;
-&lt;p&gt;В предыдущих частях вы изучили следующее:&lt;/p&gt;
+&lt;p&gt;Перевод статьи (примерный!) &lt;a href=&quot;https://www.gatsbyjs.org/docs/using-gatsby-without-graphql/&quot;&gt;Gatsby without GraphQL&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Подготовка сайта на фреймворке Gatsby к публикации]]></title><description><![CDATA[Это последняя статья из серии “Учебник Gatsby для начинающих” В предыдущих частях изучалось следующее: создание сайтов Gatsby создание…]]></description><link>http://jinv.ru/gatsby/podgotovka-gatsby-sayta-k-prodakshenu/</link><guid isPermaLink="false">http://jinv.ru/gatsby/podgotovka-gatsby-sayta-k-prodakshenu/</guid><pubDate>Sun, 09 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Это последняя статья из серии “Учебник Gatsby для начинающих”&lt;/p&gt;
+&lt;p&gt;В предыдущих частях изучалось следующее:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;создание сайтов Gatsby&lt;/li&gt;
 &lt;li&gt;создание страниц и компонентов&lt;/li&gt;
@@ -352,32 +352,27 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
 &lt;li&gt;добавление плагинов на сайт&lt;/li&gt;
 &lt;li&gt;данные source и transform&lt;/li&gt;
 &lt;li&gt;использование GraphQL для запроса данных&lt;/li&gt;
-&lt;li&gt;программное создание страниц из ваших данных&lt;/li&gt;
+&lt;li&gt;программное создание страниц из данных&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;В этом заключительном разделе вы пройдете через некоторые общие шаги по подготовке сайта к работе, изучите мощный инструмент диагностики сайта под названием &lt;a href=&quot;https://developers.google.com/web/tools/lighthouse/&quot;&gt;Lighthouse&lt;/a&gt;. Попутно мы представим еще несколько плагинов, которые вы часто будете использовать на своих сайтах Gatsby.&lt;/p&gt;
-&lt;h2&gt;Выполнение теста с помощью Lighthouse&lt;/h2&gt;
-&lt;p&gt;Цитата с &lt;a href=&quot;https://developers.google.com/web/tools/lighthouse/&quot;&gt;сайта Lighthouse&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Lighthouse - это автоматизированный инструмент с открытым исходным кодом для улучшения качества веб-страниц. Вы можете запустить его на любой веб-странице, общедоступной или требующей аутентификации. Lighthouse может проверять производительность, доступность, PWA, и многое другое.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Lighthouse включен в инструменты разработчика Chrome. Проведение аудита, а затем устранение обнаруженных ошибок и внедрение предложенных улучшений — отличный способ подготовить ваш сайт к работе. Это даст вам уверенность, что ваш сайт будет максимально быстрым и доступным.&lt;/p&gt;
-&lt;p&gt;Во-первых, вам нужно создать продакшен сборку вашего Gatsby сайта. Сервер разработки Gatsby оптимизирован для ускорения разработки, но сайт, который он создает, хотя и очень похож на рабочую версию сайта, не совсем оптимизирован.&lt;/p&gt;
-&lt;h3&gt;Создание продакшен сборки&lt;/h3&gt;
+&lt;p&gt;В этом заключительном разделе показываются общие шаги по подготовке сайта к работе, инструмент диагностики &lt;a href=&quot;https://developers.google.com/web/tools/lighthouse/&quot;&gt;Lighthouse&lt;/a&gt; и плагины, которые часто используются на Gatsby-сайтах.&lt;/p&gt;
+&lt;h2&gt;Как выполнить тест с помощью Lighthouse&lt;/h2&gt;
+&lt;p&gt;Lighthouse - автоматизированный инструмент с открытым исходным кодом для улучшения качества веб-страниц. Lighthouse проверяет на веб-страницах производительность, доступность, PWA и др. Lighthouse входит в инструменты разработчика Chrome и позволяет проводить тесты и  обнаруживать ошибки. Скорость и доступность сайта увеличатся если устранить эти ошибки и внедрить улучшения, которые предлагает Lighthouse.&lt;/p&gt;
+&lt;p&gt;Сначала, создайте рабочую сборку Gatsby сайта. Сервер Gatsby оптимизирован для ускорения разработки, но сайт, который создает сервер, хотя и похож на рабочую версию, не оптимизирован как надо.&lt;/p&gt;
+&lt;h3&gt;Создание рабочей сборки&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Остановите сервер разработки (если он все еще работает) и выполните следующую команду:&lt;/li&gt;
+&lt;li&gt;Остановите сервер разработки если он еще работает и выполните следующую команду:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;gatsby build&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Эта команда делает продакшен сборку вашего сайта и выводит статические файлы в каталог &lt;code class=&quot;language-text&quot;&gt;public&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Эта команда делает рабочую сборку и выводит статические файлы в каталог &lt;code class=&quot;language-text&quot;&gt;public&lt;/code&gt;.&lt;/p&gt;
 &lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;Чтобы просмотреть продакшен сайт локально, выполните:&lt;/li&gt;
+&lt;li&gt;Чтобы просмотреть рабочий сайт локально, выполните:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;gatsby serve&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;После ввода этой команды, вы можете просмотреть свой сайт по адресу &lt;a href=&quot;http://localhost:9000&quot;&gt;http://localhost:9000&lt;/a&gt;.&lt;/p&gt;
-&lt;h3&gt;Выполнение теста с помощью Lighthouse&lt;/h3&gt;
-&lt;p&gt;Теперь вы можете выполнить тест с помощью Lighthouse.&lt;/p&gt;
+&lt;p&gt;После ввода этой команды, перейдите по адресу &lt;a href=&quot;http://localhost:9000&quot;&gt;http://localhost:9000&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Выполнение теста в Lighthouse&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Откройте сайт с помощью браузера Chrome в режиме Инкогнито, чтобы никакие расширения не мешали тесту. Затем, откройте в Хроме инструменты разработчика (DevTools).&lt;/li&gt;
-&lt;li&gt;Нажмите на вкладку “Audits”, где вы увидите экран, который выглядит следующим образом:&lt;/li&gt;
+&lt;li&gt;Откройте сайт с помощью браузера Chrome в режиме Инкогнито, чтобы никакие расширения не мешали тесту. Затем, откройте в Хроме инструменты разработчика DevTools.&lt;/li&gt;
+&lt;li&gt;Нажмите на вкладку “Audits”, где появится экран, который выглядит следующим образом:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -409,27 +404,29 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;Нажмите кнопку “Generate report” (по умолчанию должны быть выбраны все доступные типы теста). Затем потребуется минута или около того, чтобы выполнить тест. После завершения теста вы должны увидеть результаты, которые выглядят следующим образом:&lt;/li&gt;
+&lt;li&gt;Чтобы выполнить тест нажмите кнопку “Generate report” (по умолчанию выбраны все доступные типы теста). После завершения теста появятся результаты, которые выглядят следующим образом:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&quot;lighthouse-audit-results.png&quot; alt=&quot;Результаты теста Lighthouse&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Как видите, производительность Gatsby из коробки превосходная, но вам не хватает некоторых вещей для PWA, Accessibility, Best Practices и SEO, которые улучшат ваши результаты (и в дальнейшем сделают ваш сайт намного более дружелюбным для посетителей и поисковых систем).&lt;/p&gt;
+&lt;p&gt;Из тестов видно, что производительность Gatsby превосходная из коробки, но не хватает некоторых вещей для PWA, Accessibility, Best Practices и SEO, которые улучшат результаты и сделают сайт намного дружелюбнее для посетителей и поисковиков.&lt;/p&gt;
+&lt;p&gt;Оценка в категории “Progressive Web App” довольно скромная, поэтому, попробуем разобраться с этим.&lt;/p&gt;
+&lt;p&gt;Progressive Web App или PWA - это веб-сайты, которые похожи на приложения благодаря использованию функционала в современных браузерах. В &lt;a href=&quot;https://developers.google.com/web/progressive-web-apps/&quot;&gt;обзоре Google&lt;/a&gt; освещается, что определяет работу PWA.&lt;/p&gt;
+&lt;p&gt;Ниже приводятся три &lt;a href=&quot;https://alistapart.com/article/yes-that-web-project-should-be-a-pwa#section1&quot;&gt;базовых требований для PWA&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Включение манифеста веб-приложения
+Использование Service Worker
+Добавление метаданных страницы&lt;/p&gt;
 &lt;h2&gt;Добавление файла манифеста&lt;/h2&gt;
-&lt;p&gt;Похоже, у вас довольно скромная оценка в категории “Progressive Web App”. Давайте разберемся с этим.&lt;/p&gt;
-&lt;p&gt;Но для начала, что такое PWA?&lt;/p&gt;
-&lt;p&gt;Это обычные веб-сайты, которые используют функциональность современных браузеров, чтобы улучшить работу веб с помощью особенностей и эффектов, которые присущи обычным приложениям. Ознакомьтесь с &lt;a href=&quot;https://developers.google.com/web/progressive-web-apps/&quot;&gt;обзором в Google&lt;/a&gt; о том, что определяет работу PWA.&lt;/p&gt;
-&lt;p&gt;Включение манифеста веб-приложения является одним из трех общепринятых &lt;a href=&quot;https://alistapart.com/article/yes-that-web-project-should-be-a-pwa#section1&quot;&gt;базовых требований для PWA&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Цитата от &lt;a href=&quot;https://developers.google.com/web/fundamentals/web-app-manifest/&quot;&gt;Google&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Манифест веб-приложения - это простой JSON-файл, который сообщает браузеру о вашем веб-приложении и о том, как оно должно вести себя при “установке” на пользовательском мобильном устройстве или компьютере.&lt;/p&gt;
+&lt;p&gt;Манифест веб-приложения - JSON-файл, который сообщает браузеру о веб-приложении и о поведении этого приложения при “установке” на пользовательском мобильном устройстве или компьютере.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/&quot;&gt;Плагин манифеста Gatsby&lt;/a&gt; настраивает Gatsby для создания файла &lt;code class=&quot;language-text&quot;&gt;manifest.webmanifest&lt;/code&gt; для каждой сборки сайта.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/&quot;&gt;Плагин манифеста&lt;/a&gt; настраивает Gatsby для создания файла manifest.webmanifest для каждой сборки сайта.&lt;/p&gt;
 &lt;h3&gt;Использование gatsby-plugin-manifest&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Установите плагин:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --save gatsby-plugin-manifest&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;Добавьте фавиконку для вашего приложения в &lt;code class=&quot;language-text&quot;&gt;src/images/icon.png&lt;/code&gt;. Еси у вас нет своей иконки, то для данного урока вы можете воспользоваться &lt;a href=&quot;https://raw.githubusercontent.com/gatsbyjs/gatsby/master/docs/tutorial/part-eight/icon.png&quot;&gt;этой иконкой&lt;/a&gt;. Икона необходима для построения всех изображений для манифеста. Для получения дополнительной информации обратитесь к документации по &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-manifest/README.md&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;gatsby-plugin-manifest&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Добавьте значок приложения в &lt;code class=&quot;language-text&quot;&gt;src/images/icon.png&lt;/code&gt;. Если у вас нет значка, то для этого урока воспользуйтесь &lt;a href=&quot;https://raw.githubusercontent.com/gatsbyjs/gatsby/master/docs/tutorial/part-eight/icon.png&quot;&gt;этим&lt;/a&gt;. Значок необходим для построения изображений манифеста. Для получения дополнительной информации обратитесь к документации по &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-manifest/README.md&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;gatsby-plugin-manifest&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Добавьте плагин в массив &lt;code class=&quot;language-text&quot;&gt;plugins&lt;/code&gt; файла &lt;code class=&quot;language-text&quot;&gt;gatsby-config.js&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript:title=gatsby-config.js&quot;&gt;&lt;pre class=&quot;language-javascript:title=gatsby-config.js&quot;&gt;&lt;code class=&quot;language-javascript:title=gatsby-config.js&quot;&gt;{
@@ -450,10 +447,10 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
     },
   ]
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Это все, что вам необходимо, чтобы начать работу с добавлением веб-манифеста на Gatsby сайт. Приведенный пример отражает лишь базовую конфигурацию.  Про дополнительные возможности читайте &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/?=gatsby-plugin-manifest#automatic-mode&quot;&gt;справку о плагине&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Это все, что вам необходимо, чтобы начать работу с добавлением веб-манифеста на Gatsby сайт. Дополнительно о плагине читайте &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/?=gatsby-plugin-manifest#automatic-mode&quot;&gt;справку&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Добавление офлайн поддержки&lt;/h2&gt;
-&lt;p&gt;Еще одно требование к веб-сайту, чтобы квалифицироваться как PWA, - это использование &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API&quot;&gt;Service Worker&lt;/a&gt;. Service Worker работает в фоновом режиме и, в зависимости от подключения к сети, решает, обслуживать сетевое или кэшированное содержимое, что обеспечивает бесперебойную управляемую автономную работу.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-offline/&quot;&gt;Gatsby плагин офлайн&lt;/a&gt; делает Gatsby сайт автономным и более устойчивым к плохим сетевым условиям, создавая Service Worker для вашего сайта.&lt;/p&gt;
+&lt;p&gt;Использование &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API&quot;&gt;Service Worker&lt;/a&gt; является еще одним требованием к веб-сайту, чтобы квалифицироваться как PWA. Service Worker работает в фоновом режиме и, в зависимости от подключения к сети, решает, обслуживать сетевое либо кэшированное содержимое, что обеспечивает бесперебойную управляемую автономную работу.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-offline/&quot;&gt;gatsby-plugin-offline&lt;/a&gt; делает сайт автономным и более устойчивым к плохим сетевым условиям, создавая Service Worker для сайта.&lt;/p&gt;
 &lt;h3&gt;Использование gatsby-plugin-offline&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Установите плагин:&lt;/li&gt;
@@ -482,13 +479,13 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
     `gatsby-plugin-offline`,
   ]
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Это все, что вам нужно, для работы с Service Worker с помощью Gatsby.&lt;/p&gt;
-&lt;p&gt;Офлайн плагин должен быть указан после плагина манифеста, чтобы офлайн плагин мог кэшировать созданный &lt;code class=&quot;language-text&quot;&gt;manifest.webmanifest&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Это все, что нужно, для работы с Service Worker в Gatsby.&lt;/p&gt;
+&lt;p&gt;Чтобы офлайн плагин кэшировал созданный &lt;code class=&quot;language-text&quot;&gt;manifest.webmanifest&lt;/code&gt; нужно, чтобы офлайн плагин указывался после плагина манифеста, .&lt;/p&gt;
 &lt;h2&gt;Добавление метаданных страницы&lt;/h2&gt;
-&lt;p&gt;Добавление метаданных на страницы (таких как заголовок или описание) является ключевым фактором, помогающим поисковым системам, таким как Google, понять ваш контент и решить, когда его следует отображать в результатах поиска.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/nfl/react-helmet&quot;&gt;React Helmet&lt;/a&gt; - это пакет, который содержит интерфейс React компонента, чтобы управлять &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head&quot;&gt;заголовком документа&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Gatsby обеспечивает поддержку &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-react-helmet/&quot;&gt;плагина react helmet&lt;/a&gt; для отображения данных сервера, добавленных с помощью React Helmet. С помощью плагина атрибуты, которые вы добавляете в React Helmet, будут добавлены к статическим HTML-страницам, которые создает Gatsby.&lt;/p&gt;
-&lt;h3&gt;Использование &lt;code class=&quot;language-text&quot;&gt;React Helmet&lt;/code&gt; и &lt;code class=&quot;language-text&quot;&gt;gatsby-plugin-react-helmet&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Метаданные, такие как заголовок или описание, помогают поисковикам Google, Yandex и др. понять контент и решить, когда этот контент отображать в результатах поиска.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/nfl/react-helmet&quot;&gt;React Helmet&lt;/a&gt; - пакет, который содержит интерфейс React компонента, чтобы управлять &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head&quot;&gt;заголовком документа&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Gatsby поддерживает &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-plugin-react-helmet/&quot;&gt;плагин react helmet&lt;/a&gt; для отображения данных сервера, добавленных с помощью React Helmet. С помощью плагина атрибуты, добавленные в React Helmet, добавляются к статическим HTML-страницам, которые создает Gatsby.&lt;/p&gt;
+&lt;h3&gt;Использование React Helmet и gatsby-plugin-react-helmet&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Установите оба пакета:&lt;/li&gt;
 &lt;/ol&gt;
@@ -518,7 +515,7 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
   ]
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;Используйте &lt;code class=&quot;language-text&quot;&gt;React Helmet&lt;/code&gt; на стрранице:&lt;/li&gt;
+&lt;li&gt;Используйте &lt;code class=&quot;language-text&quot;&gt;React Helmet&lt;/code&gt; на странице:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react&quot;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Helmet &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react-helmet&quot;&lt;/span&gt;
@@ -535,7 +532,14 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
 &lt;h2&gt;Дальнейшие действия&lt;/h2&gt;
 &lt;h3&gt;Официальная документация&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/&quot;&gt;Официальная документация&lt;/a&gt;: просмотрите нашу официальную документацию по &lt;em&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/quick-start/&quot;&gt;Быстрый старт&lt;/a&gt;&lt;/em&gt;, &lt;em&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/preparing-your-environment/&quot;&gt;Подробные руководства&lt;/a&gt;&lt;/em&gt;, &lt;em&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/gatsby-link/&quot;&gt;ссылки на API&lt;/a&gt;&lt;/em&gt;, и многое другое.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/&quot;&gt;Официальная документация&lt;/a&gt;: просмотрите официальную документацию &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/quick-start/&quot;&gt;Быстрый старт&lt;/a&gt;, &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/preparing-your-environment/&quot;&gt;Подробные руководства&lt;/a&gt;, &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/gatsby-link/&quot;&gt;ссылки на API&lt;/a&gt; и другое.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Официальные Плагины&lt;/h3&gt;
 &lt;ul&gt;
@@ -543,17 +547,15 @@ export default ({ pageContext: { pokemon } }) =&amp;gt; (
 &lt;/ul&gt;
 &lt;h3&gt;Официальные Стартеры&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby-starter-default&quot;&gt;Gatsby Стартер по умолчанию&lt;/a&gt;: Начните свой проект с этого стандартного шаблона. Этот скелетный стартер поставляется с основными конфигурационными файлами Gatsby, которые вам могут понадобиться. &lt;em&gt;&lt;a href=&quot;https://gatsbyjs.github.io/gatsby-starter-default/&quot;&gt;рабочий пример&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby-starter-default&quot;&gt;Gatsby Стартер по умолчанию&lt;/a&gt;: Начните проект с этого стандартного шаблона. Этот скелетный стартер поставляется с конфигурационными файлами Gatsby, которые вам могут понадобиться. &lt;em&gt;&lt;a href=&quot;https://gatsbyjs.github.io/gatsby-starter-default/&quot;&gt;рабочий пример&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby-starter-blog&quot;&gt;Gatsby Стартер блога&lt;/a&gt;: Gatsby стартер для создания классного и быстрого блога. &lt;em&gt;&lt;a href=&quot;https://gatsbyjs.github.io/gatsby-starter-blog/&quot;&gt;рабочий пример&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby-starter-hello-world&quot;&gt;Gatsby Стартер “Hello-World”&lt;/a&gt;: Gatsby стартер с голыми предметами первой необходимости, необходимыми для сайта Gatsby. &lt;em&gt;&lt;a href=&quot;https://gatsby-starter-hello-world-demo.netlify.com/&quot;&gt;рабочий пример&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;[Дополнительные руководства] (/tutorial/ additional-tutorials/)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ты построил что-нибудь классное? Поделитесь им в Twitter, тег &lt;a href=&quot;https://twitter.com/search?q=%23buildwithgatsby&quot;&gt;#buildwithgatsby&lt;/a&gt;, и &lt;a href=&quot;https://twitter.com/gatsbyjs&quot;&gt;@упомянуть нас&lt;/a&gt;!&lt;/li&gt;
-&lt;li&gt;Внести свой вклад! Прогуляйтесь по &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22&quot;&gt;открытым вопросам&lt;/a&gt; на репо Гэтсби и [стать вкладчиком] (/contributing/how-to-contribute/).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Проверьте [“как внести свой вклад”] (/contributing/how-to-contribute/) документы для еще большего количества идей.&lt;/p&gt;
-&lt;p&gt;Для написания данной статьи использованы следующие материалы:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.gatsbyjs.org/tutorial/additional-tutorials/&quot;&gt;Дополнительные руководства&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Поделитесь в &lt;a href=&quot;https://twitter.com/search?q=%23buildwithgatsby&quot;&gt;Твитере&lt;/a&gt; тем, что вы создали и &lt;a href=&quot;https://twitter.com/gatsbyjs&quot;&gt;@упомяните нас&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Внесите вклад! Прогуляйтесь по &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22&quot;&gt;открытым вопросам&lt;/a&gt; репозитория Gatsby и &lt;a href=&quot;https://www.gatsbyjs.org/contributing/how-to-contribute/&quot;&gt;станьте вкладчиком&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Узнайте, &lt;a href=&quot;https://www.gatsbyjs.org/contributing/how-to-contribute/&quot;&gt;“как внести вклад”&lt;/a&gt; в документы для еще большего количества идей.&lt;/p&gt;
+&lt;p&gt;Для написания этой статьи использованы следующие материалы:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/tutorial/part-eight/&quot;&gt;https://www.gatsbyjs.org/tutorial/part-eight/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Руководство по Gatsby]]></title><description><![CDATA[Настройка среды разработки для фреймворка Gatsby Прежде чем приступить к созданию вашего первого сайта Gatsby, вам необходимо ознакомиться с…]]></description><link>http://jinv.ru/gatsby/tutorial-gatsby/</link><guid isPermaLink="false">http://jinv.ru/gatsby/tutorial-gatsby/</guid><pubDate>Thu, 06 Feb 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a name=&quot;part0&quot;&gt;&lt;/a&gt;&lt;/p&gt;
