@@ -1,4 +1,304 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jinv.ru]]></title><description><![CDATA[Блог о веб программировании]]></description><link>https://jinv.ru</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 04 Apr 2020 16:21:45 GMT</lastBuildDate><item><title><![CDATA[Руководство по Gatsby. Настройка среды разработки. Создание сайта]]></title><description><![CDATA[Это первый урок из серии “Руководство по Gatsby” и является вольным переводом официального источника: https://www.gatsbyjs.org/tutorial/part…]]></description><link>https://jinv.ru/gatsby/nastrojka-sredy-razrabotki-dlya-frejmvorka-gatsby/</link><guid isPermaLink="false">https://jinv.ru/gatsby/nastrojka-sredy-razrabotki-dlya-frejmvorka-gatsby/</guid><pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Это первый урок из серии “Руководство по Gatsby” и является вольным переводом официального источника: &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/part-zero/&quot;&gt;https://www.gatsbyjs.org/tutorial/part-zero/&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[jinv.ru]]></title><description><![CDATA[Блог о веб программировании]]></description><link>https://jinv.ru</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2020 20:39:30 GMT</lastBuildDate><item><title><![CDATA[Руководство по плагину WordPress Source]]></title><description><![CDATA[Как создать сайт с данными, полученными из WordPress Перевод статьи WordPress Source Plugin Tutorial. Что охватывает это руководство: В этом…]]></description><link>https://jinv.ru/gatsby/wordpress-source-plugin-tutorial/</link><guid isPermaLink="false">https://jinv.ru/gatsby/wordpress-source-plugin-tutorial/</guid><pubDate>Fri, 10 Apr 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Как создать сайт с данными, полученными из WordPress&lt;/h2&gt;
+&lt;p&gt;Перевод статьи &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/wordpress-source-plugin-tutorial/#how-to-create-a-site-with-data-pulled-from-wordpress&quot;&gt;WordPress Source Plugin Tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Что охватывает это руководство:&lt;/h3&gt;
+&lt;p&gt;В этом руководстве вы установите плагин &lt;code class=&quot;language-text&quot;&gt;gatsby-source-wordpress&lt;/code&gt;, который извлечет данные и изображения из установленного WordPress на Gatsby сайт и визуализирует эти данные. Этот &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/tree/master/examples/using-wordpress&quot;&gt;демо-сайт на WordPress + Gatsby &lt;/a&gt; содержит исходный код сайта, похожего на тот, что вы построите в этом руководстве, хотя в нем отсутствуют изображения. Их вы добавите изучив руководство &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/wordpress-image-tutorial/&quot;&gt;Добавление изображений на сайт WordPress&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Для тех, кто предпочитает GraphQL&lt;/h4&gt;
+&lt;p&gt;Если вы предпочитаете использовать GraphQL, то существует плагин &lt;a href=&quot;https://github.com/wp-graphql/wp-graphql&quot;&gt;wp-graphql&lt;/a&gt;, который легко отображает как стандартные, так и пользовательские данные в WordPress. &lt;/p&gt;
+&lt;p&gt;В плагине wp-graphql поддерживаются те же схемы аутентификации, что и в WP-API. Плагин wp-graphql можно использовать совместно с плагином &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-source-graphql/&quot;&gt;gatsby-source-graphql&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Зачем это руководство?&lt;/h2&gt;
+&lt;p&gt;В этом руководстве вы освоите азы по подключению сайта Gatsby к CMS, извлечению данных и использованию React для визуализации этих данных на сайте изящными способами.&lt;/p&gt;
+&lt;p&gt;Если вы хотите посмотреть на растущее число доступных source плагинов, то в &lt;a href=&quot;https://www.gatsbyjs.org/plugins/?=source&quot;&gt;Библиотеке плагинов Gatsby&lt;/a&gt; в строке поиска введите “source”.&lt;/p&gt;
+&lt;h3&gt;Создание сайта с помощью плагина &lt;code class=&quot;language-text&quot;&gt;gatsby-source-wordpress&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Создайте новый проект Gatsby и перейдите в каталог этого проекта:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;gatsby new wordpress-tutorial-site
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; wordpress-tutorial-site&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Установите плагин &lt;code class=&quot;language-text&quot;&gt;gatsby-source-wordpress&lt;/code&gt;. Дополнительные сведения о функциях плагина и примерах запросов GraphQL, не включенных в этот учебник, см. &lt;a href=&quot;https://www.gatsbyjs.org/packages/gatsby-source-wordpress/?=wordpress&quot;&gt;В файле README плагина &lt;code class=&quot;language-text&quot;&gt;gatsby-source-wordpress&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; gatsby-source-wordpress&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Добавьте плагин &lt;code class=&quot;language-text&quot;&gt;gatsby-source-wordpress&lt;/code&gt; в файл &lt;code class=&quot;language-text&quot;&gt;gatsby-config.js&lt;/code&gt; используя следующий код, который вы также найдете в &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/blob/master/examples/using-wordpress/gatsby-config.js&quot;&gt;исходном коде демо-сайта&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js:title=gatsby-config.js&quot;&gt;&lt;pre class=&quot;language-js:title=gatsby-config.js&quot;&gt;&lt;code class=&quot;language-js:title=gatsby-config.js&quot;&gt;module.exports = {
+  siteMetadata: {
+    title: `Учебник Gatsby WordPress`,
+    description: `Пример, позволяющий понять, как получить исходные данные из WordPress.`,
+    author: `@gatsbyjs`,
+  },
+  plugins: [
+    // https://public-api.wordpress.com/wp/v2/sites/gatsbyjsexamplewordpress.wordpress.com/pages/
+    /*
+     * Уровень обработки данных Gatsby начинается с плагинов &amp;quot;source&amp;quot;
+     * Здесь сайт берет данные из WordPress.
+     */
+    // highlight-start
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        /*
+         * Базовый URL-адрес сайта WordPress без протокола и слеша в конце. Это обязательно.
+         * Например : &amp;#39;demo.wp-api.org&amp;#39; или &amp;#39;www.example-site.com&amp;#39;
+         */
+        baseUrl: `live-gatbsyjswp.pantheonsite.io`,
+        // Протокол. Может быть http или https.
+        protocol: `https`,
+        // Указывает, будет ли сайт размещен на wordpress.com.
+        // Если false, то подразумевается, что сайт размещен на отдельном хостинге.
+        // Если true, то source плагин будет содержаться на wordpress.com используя JSON REST API V2.
+        // Если сайт размещен на wordpress.org, то установите это значение в false.
+        hostingWPCOM: false,
+        // Если useACF - true, то source плагин попытается импортировать содержимое WordPress ACF Plugin.
+        // Эта функция непроверена для сайтов, размещенных на WordPress.com
+        useACF: true,
+      },
+    },
+    // highlight-end
+    /**
+     * Следующие плагины не требуются для gatsby-source-wordpress,
+     * но они нам нужны, чтобы стартер по умолчанию, который мы установили выше, продолжал работать.
+     **/
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // Этот путь находится относительно корня сайта.
+      },
+    },
+  ],
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Создание GraphQL запросов, которые извлекают данные из WordPress&lt;/h3&gt;
+&lt;p&gt;Теперь вы можете создать запрос GraphQL, чтобы получить некоторые данные с сайта WordPress. Вы создадите запрос, который извлечет из блога заголовки постов, дату их публикации и содержимое.&lt;/p&gt;
+&lt;p&gt;Выполните:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;gatsby develop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Перейдите в браузере по ссылке &lt;code class=&quot;language-text&quot;&gt;http://localhost:8000&lt;/code&gt;, где увидите сайт. Перейдите на &lt;code class=&quot;language-text&quot;&gt;http://localhost:8000/___graphql&lt;/code&gt;, где сможете создавать запросы GraphQL.&lt;/p&gt;
+&lt;p&gt;В качестве упражнения попробуйте повторно создать следующие запросы в эксплорере GraphiQL. Этот запрос будет извлекать содержимое поста из блога WordPress:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;graphql&quot;&gt;&lt;pre class=&quot;language-graphql&quot;&gt;&lt;code class=&quot;language-graphql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  allWordpressPage &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    edges &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      node &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        id
+        title
+        excerpt
+        slug
+        date&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token attr-name&quot;&gt;formatString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;MMMM DD, YYYY&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Следующий запрос приведет к получению отсортированного списка записей в блоге:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;graphql&quot;&gt;&lt;pre class=&quot;language-graphql&quot;&gt;&lt;code class=&quot;language-graphql&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  allWordpressPost&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token attr-name&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;date&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    edges &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      node &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        title
+        excerpt
+        slug
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Рендеринг записей блога в &lt;code class=&quot;language-text&quot;&gt;index.js&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Теперь, когда вы создали запросы GraphQL, которые извлекают нужные данные, вы будете использовать второй запрос для создания списка отсортированных заголовков постов на главной странице сайта. Вот компонент главной страницы &lt;code class=&quot;language-text&quot;&gt;src/pages/index.js&lt;/code&gt;, который должен выглядеть так:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx:title=src/pages/index.js&quot;&gt;&lt;pre class=&quot;language-jsx:title=src/pages/index.js&quot;&gt;&lt;code class=&quot;language-jsx:title=src/pages/index.js&quot;&gt;import React from &amp;quot;react&amp;quot;
+import { graphql } from &amp;quot;gatsby&amp;quot;
+import Layout from &amp;quot;../components/layout&amp;quot;
+import SEO from &amp;quot;../components/seo&amp;quot;
+
+export default ({ data }) =&amp;gt; {
+  //highlight-line
+  return (
+    &amp;lt;Layout&amp;gt;
+      &amp;lt;SEO title=&amp;quot;home&amp;quot; /&amp;gt;
+      //highlight-start
+      &amp;lt;h1&amp;gt;My WordPress Blog&amp;lt;/h1&amp;gt;
+      &amp;lt;h4&amp;gt;Posts&amp;lt;/h4&amp;gt;
+      {data.allWordpressPost.edges.map(({ node }) =&amp;gt; (
+        &amp;lt;div&amp;gt;
+          &amp;lt;p&amp;gt;{node.title}&amp;lt;/p&amp;gt;
+          &amp;lt;div dangerouslySetInnerHTML={{ __html: node.excerpt }} /&amp;gt;
+        &amp;lt;/div&amp;gt;
+      ))}
+      //highlight-end
+    &amp;lt;/Layout&amp;gt;
+  )
+}
+
+//highlight-start
+export const pageQuery = graphql`
+  query {
+    allWordpressPost(sort: { fields: [date] }) {
+      edges {
+        node {
+          title
+          excerpt
+          slug
+        }
+      }
+    }
+  }
+`
+//highlight-end&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Сохраните эти изменения и перейдите на &lt;code class=&quot;language-text&quot;&gt;http://localhost:8000&lt;/code&gt; чтобы увидеть вашу новую домашнюю страницу со списком отсортированных постов в блоге!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.gatsbyjs.org/static/3ae34e1e5b9f3fbdea14040a88136814/1deb5/wordpress-source-plugin-home.jpg&quot; alt=&quot;Главная страница WordPress после запроса&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;Создание страниц для каждого поста блога и ссылки на них&lt;/h2&gt;
+&lt;p&gt;Индексная страница с заголовком поста и отрывком - это здорово, но вы также должны создать страницы для любого поста в блоге и ссылаться на них из файла &lt;code class=&quot;language-text&quot;&gt;index.js&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Для этого необходимо:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Создать страницы для каждой поста в блоге&lt;/li&gt;
+&lt;li&gt;Связать заголовок на странице index со страницей поста.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Если вы еще этого не сделали, прочтите &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/part-seven/&quot;&gt;Часть 7&lt;/a&gt; основного руководства, поскольку оно проходит через концепцию и примеры этого процесса используя Markdown вместо WordPress.&lt;/p&gt;
+&lt;h3&gt;Создание страниц для каждого поста в блоге.&lt;/h3&gt;
+&lt;p&gt;В части 7 руководства первым шагом в создании страниц является создание слагов для файлов markdown. Поскольку вы используете WordPress, а не файлы Markdown, вы можете захватить слаги, которые возвращаются из вызова API к источнику WordPress. Вы можете пропустить создание слагов, так как они у вас уже есть.&lt;/p&gt;
+&lt;p&gt;Откройте файл &lt;code class=&quot;language-text&quot;&gt;gatsby-node.js&lt;/code&gt; в корне проекта (он должен быть пустым, за исключением некоторых комментариев) и добавьте следующее:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js:title=gatsby-node.js&quot;&gt;&lt;pre class=&quot;language-js:title=gatsby-node.js&quot;&gt;&lt;code class=&quot;language-js:title=gatsby-node.js&quot;&gt;const path = require(`path`)
+
+exports.createPages = ({ graphql, actions }) =&amp;gt; {
+  const { createPage } = actions
+  return graphql(`
+    {
+      allWordpressPost(sort: { fields: [date] }) {
+        edges {
+          node {
+            title
+            excerpt
+            content
+            slug
+          }
+        }
+      }
+    }
+  `).then(result =&amp;gt; {
+    console.log(JSON.stringify(result, null, 4))
+  })
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Затем &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/part-zero/#view-your-site-locally&quot;&gt;остановите и перезагрузите&lt;/a&gt; среду разработки &lt;code class=&quot;language-text&quot;&gt;gatsby develop&lt;/code&gt;. В терминале, вы должны увидеть два поста, выведенных как объекты:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.gatsbyjs.org/static/3293912ec15e382170fa7e07a8c112c7/28be2/wordpress-source-plugin-log.jpg&quot; alt=&quot;Два поста выведенные в терминал&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Как объяснено в части 7 руководства, этот экспорт &lt;code class=&quot;language-text&quot;&gt;createPages&lt;/code&gt; является одной из “рабочих лошадок” Gatsby и позволяет нам создавать посты в блоге (или страницы, или пользовательские типы записей и т. д.) из установки WordPress.&lt;/p&gt;
+&lt;p&gt;Однако перед созданием постов в блоге необходимо указать шаблон для построения страниц.&lt;/p&gt;
+&lt;p&gt;В каталоге &lt;code class=&quot;language-text&quot;&gt;src&lt;/code&gt; создайте каталог с именем &lt;code class=&quot;language-text&quot;&gt;templates&lt;/code&gt;, а в нем создайте файл &lt;code class=&quot;language-text&quot;&gt;blog-post.js&lt;/code&gt;. В этот файл вставьте следующее:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx:title=src/templates/blog-post.js&quot;&gt;&lt;pre class=&quot;language-jsx:title=src/templates/blog-post.js&quot;&gt;&lt;code class=&quot;language-jsx:title=src/templates/blog-post.js&quot;&gt;import React from &amp;quot;react&amp;quot;
+import Layout from &amp;quot;../components/layout&amp;quot;
+import { graphql } from &amp;quot;gatsby&amp;quot;
+
+export default ({ data }) =&amp;gt; {
+  const post = data.allWordpressPost.edges[0].node
+  console.log(post)
+  return (
+    &amp;lt;Layout&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;h1&amp;gt;{post.title}&amp;lt;/h1&amp;gt;
+        &amp;lt;div dangerouslySetInnerHTML={{ __html: post.content }} /&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/Layout&amp;gt;
+  )
+}
+export const query = graphql`
+  query($slug: String!) {
+    allWordpressPost(filter: { slug: { eq: $slug } }) {
+      edges {
+        node {
+          title
+          content
+        }
+      }
+    }
+  }
+`&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Что делает этот файл? После импорта зависимостей он создает макет поста с помощью JSX. Он оборачивает все в компоненте &lt;code class=&quot;language-text&quot;&gt;Layout&lt;/code&gt;, поэтому стиль одинаков по всему сайту. Затем он добавляет заголовок сообщения и содержимое сообщения. Вы можете добавить все, что хотите, и можете запросить здесь, например, изображение объекта, мета-запись, пользовательские поля и т. д.&lt;/p&gt;
+&lt;p&gt;Ниже вы можете увидеть запрос GraphQL, вызывающий конкретную запись на основе &lt;code class=&quot;language-text&quot;&gt;$slug&lt;/code&gt;. Эта переменная передается в шаблон &lt;code class=&quot;language-text&quot;&gt;blog-post.js&lt;/code&gt;, когда страница создается в &lt;code class=&quot;language-text&quot;&gt;gatsby-node.js&lt;/code&gt;. Для этого добавьте следующий код в файл &lt;code class=&quot;language-text&quot;&gt;gatsby-node.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js:title=gatsby-node.js&quot;&gt;&lt;pre class=&quot;language-js:title=gatsby-node.js&quot;&gt;&lt;code class=&quot;language-js:title=gatsby-node.js&quot;&gt;const path = require(`path`)
+
+exports.createPages = ({ graphql, actions }) =&amp;gt; {
+  const { createPage } = actions
+  return graphql(`
+    {
+      allWordpressPost(sort: { fields: [date] }) {
+        edges {
+          node {
+            title
+            excerpt
+            content
+            slug
+          }
+        }
+      }
+    }
+  `).then(result =&amp;gt; {
+    //highlight-start
+    result.data.allWordpressPost.edges.forEach(({ node }) =&amp;gt; {
+      createPage({
+        path: node.slug,
+        component: path.resolve(`./src/templates/blog-post.js`),
+        context: {
+          // This is the $slug variable
+          // passed to blog-post.js
+          slug: node.slug,
+        },
+      })
+    })
+    //highlight-end
+  })
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Остановите и запустите среду разработки снова, используя &lt;code class=&quot;language-text&quot;&gt;gatsby develop&lt;/code&gt;. Когда вы это сделаете, то не увидите изменений на индексной странице сайта, но если перейдете на страницу 404, например &lt;code class=&quot;language-text&quot;&gt;http://localhost:8000/asdf&lt;/code&gt;, увидите два созданных поста и возможность нажать на них, чтобы перейти к примеру поста:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.gatsbyjs.org/4293822ecf92f5dfc62eef6c01870224/wordpress-source-plugin-sample-post-links.gif&quot; alt=&quot;Пример ссылок на посты&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Но никому не нравится заходить на страницу 404, чтобы найти пост в блоге! Итак, давайте свяжем их с домашней страницей.&lt;/p&gt;
+&lt;h3&gt;Связывание поста с главной страницей.&lt;/h3&gt;
+&lt;p&gt;Поскольку вы уже имеете структуру и запрос для страницы &lt;code class=&quot;language-text&quot;&gt;index.js&lt;/code&gt;, то используйте компонент &lt;code class=&quot;language-text&quot;&gt;Link&lt;/code&gt; для обертывания заголовков.&lt;/p&gt;
+&lt;p&gt;Откройте &lt;code class=&quot;language-text&quot;&gt;src/pages/index.js&lt;/code&gt; еще раз и добавьте следующее:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx:title=src/pages/index.js&quot;&gt;&lt;pre class=&quot;language-jsx:title=src/pages/index.js&quot;&gt;&lt;code class=&quot;language-jsx:title=src/pages/index.js&quot;&gt;import React from &amp;quot;react&amp;quot;
+import { Link, graphql } from &amp;quot;gatsby&amp;quot; //highlight-line
+import Layout from &amp;quot;../components/layout&amp;quot;
+import SEO from &amp;quot;../components/seo&amp;quot;
+
+export default ({ data }) =&amp;gt; {
+  return (
+    &amp;lt;Layout&amp;gt;
+      &amp;lt;SEO title=&amp;quot;home&amp;quot; /&amp;gt;
+      &amp;lt;h1&amp;gt;My WordPress Blog&amp;lt;/h1&amp;gt;
+      &amp;lt;h4&amp;gt;Posts&amp;lt;/h4&amp;gt;
+      {data.allWordpressPost.edges.map(({ node }) =&amp;gt; (
+        &amp;lt;div key={node.slug}&amp;gt;
+          //highlight-start
+          &amp;lt;Link to={node.slug}&amp;gt;
+            &amp;lt;p&amp;gt;{node.title}&amp;lt;/p&amp;gt;
+          &amp;lt;/Link&amp;gt;
+          //highlight-end
+          &amp;lt;div dangerouslySetInnerHTML={{ __html: node.excerpt }} /&amp;gt;
+        &amp;lt;/div&amp;gt;
+      ))}
+    &amp;lt;/Layout&amp;gt;
+  )
+}
+
+export const pageQuery = graphql`
+  query {
+    allWordpressPost(sort: { fields: [date] }) {
+      edges {
+        node {
+          title
+          excerpt
+          slug
+        }
+      }
+    }
+  }
+`&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Когда вы обернете заголовок в компоненте &lt;code class=&quot;language-text&quot;&gt;Link&lt;/code&gt; и сошлетесь на слаг поста, Gatsby добавит немного магии в ссылку, предварительно загрузит ее и сделает переход между страницами невероятно быстрым:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.gatsbyjs.org/0b343004a523df5633da47bed95eecab/wordpress-source-plugin-home-to-post-links.gif&quot; alt=&quot;Конечный продукт со ссылками с главной страницы на посты в блоге&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Заканчиваю работу.&lt;/h3&gt;
+&lt;p&gt;Вы можете применить ту же процедуру вызывая и создавая страницы, пользовательские типы записей, пользовательские поля, таксономии и прочий интересный и гибкий контент, которым славится WordPress.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Руководство по Gatsby. Настройка среды разработки. Создание сайта]]></title><description><![CDATA[Это первый урок из серии “Руководство по Gatsby” и является вольным переводом официального источника: https://www.gatsbyjs.org/tutorial/part…]]></description><link>https://jinv.ru/gatsby/nastrojka-sredy-razrabotki-dlya-frejmvorka-gatsby/</link><guid isPermaLink="false">https://jinv.ru/gatsby/nastrojka-sredy-razrabotki-dlya-frejmvorka-gatsby/</guid><pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Это первый урок из серии “Руководство по Gatsby” и является вольным переводом официального источника: &lt;a href=&quot;https://www.gatsbyjs.org/tutorial/part-zero/&quot;&gt;https://www.gatsbyjs.org/tutorial/part-zero/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Прежде чем приступить к созданию первого сайта на фреймворке Gatsby, ознакомьтесь с веб-технологиями и установите все необходимые программные инструменты.&lt;/p&gt;
 &lt;h2&gt;Командная строка&lt;/h2&gt;
 &lt;p&gt;Командная строка—это интерфейс для ввода и выполнения текстовых команд на компьютере. Командную строку также называют терминалом. Интерфейс командной строки на английском пишется как command line interface, сокращенно — CLI.&lt;/p&gt;
