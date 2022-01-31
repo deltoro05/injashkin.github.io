@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://jinv.ru/sitemap.xml
+Sitemap: https://jinv.ru/sitemap/sitemap-index.xml
 Host: https://jinv.ru

@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-404-js","path":"/404.html","result":{"data":{"site":{"siteMetadata":{"title":"jinv.ru"}}},"pageContext":{}}}
+{
+    "componentChunkName": "component---src-pages-404-js",
+    "path": "/404.html",
+    "result": {"data":{"site":{"siteMetadata":{"title":"jinv.ru"}}},"pageContext":{}},
+    "staticQueryHashes": ["63159454"]}
