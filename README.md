@@ -26,7 +26,7 @@ git clone https://github.com/injashkin/injashkin.github.io.git
 
 2.  **Запускаем сайт на компьютере**
 
-В терминале переходим в каталог /injashkin.github.io
+В терминале переходим в каталог `/injashkin.github.io`
 
 ```shell
 cd injashkin.github.io
@@ -38,54 +38,24 @@ cd injashkin.github.io
 npm install
 ```
 
-Запускаем сайт
+Ждем, пока закончится установка. Затем, запускаем сайт
 
 ```shell
 npm run develop
 ```
 
-Открываем браузер и переходим по ссылке `http://localhost:8000`. Должен появиться сайт.
+Ждем какое-то время (дожидаться завершения процессов в терминале не нужно), затем открываем браузер и переходим по ссылке `http://localhost:8000`. Должен появиться сайт. Если этого не произошло, то нужно подождать некоторое время и снова перейти по ссылке.
 
 3.  **Делаем правки**
 
-Запускаем редактор кода, например [VS Code](https://code.visualstudio.com/#alt-downloads) и открываем каталог `injashkin.github.io`. В этом каталоге можно редактировать содержимое файлов и наблюдать через браузер, как изменяется сайт по адресу `http://localhost:8000`. Содержимое статей находится в файлах с расширением `.md`. Эти файлы расположены в каталоге `/content/blog/`. Структура и описание каталогов и файлов сайта находится [здесь](https://github.com/injashkin/injashkin.github.io/repository-structure.md)
+Запускаем редактор кода, например [VS Code](https://code.visualstudio.com/#alt-downloads) и открываем каталог `injashkin.github.io`. В этом каталоге можно редактировать содержимое файлов и после сохранения правок наблюдать через браузер, как изменяется сайт по адресу `http://localhost:8000`.
 
-1.  **Open the source code and start editing!**
+Содержимое статей находится в файлах с расширением `.md`. Эти файлы расположены в подкаталогах каталога `/content/blog/`. Структура и описание каталогов и файлов сайта находится [здесь](https://github.com/injashkin/injashkin.github.io/repository-structure.md).
 
-    Your site is now running at `http://localhost:8000`!
+4. **Делаем рабочую сборку сайта**
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+Рабочая сборка находится в каталоге `/docs`. Это та самая сборка, которую мы видим на сайте [jinv.ru](https://jinv.ru/). Чтобы сделать такую сборку нужно в открытом терминале завершить этап разработки (если он был запущен) сочетанием клавиш `Ctrl+C` и из каталога проекта выполнить в терминале
 
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
-
-## 🧐 What's inside?
-
-A quick look at the top-level files and directories you'll see in a Gatsby project.
-
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-blog)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+```shell
+npm run build
+```
