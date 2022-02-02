@@ -3,6 +3,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const fs = require("fs")
 
+// exports.onPreInit и exports.onPostBuild выполняют переброс файлов
+// из каталога /public в /docs. Данный код взят здесь:
+// https://github.com/gatsbyjs/gatsby/issues/18975#issuecomment-591403950
 exports.onPreInit = () => {
   if (process.argv[2] === "build") {
     fs.rmdirSync(path.join(__dirname, "docs"), { recursive: true })
