@@ -7,6 +7,7 @@ module.exports = {
     social: {
       twitter: `i_jashkin`,
       vkontakte: `i.jashkin`,
+      github: `injashkin`,
     },
   },
   plugins: [
@@ -96,18 +97,5 @@ module.exports = {
         defer: false,
       },
     },
-    //{
-    //  resolve: `gatsby-plugin-yandex-metrica`,
-    //  options: {
-    //    trackingId: "60672532",
-    //    clickmap: true,
-    //    trackLinks: true,
-    //    accurateTrackBounce: true,
-    //    trackHash: true,
-
-    //Detailed recordings of user activity on the site: mouse movement, scrolling, and clicks.
-    //    webvisor: false,
-    //  },
-    //},
   ],
 }
