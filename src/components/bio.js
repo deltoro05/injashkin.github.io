@@ -25,7 +25,7 @@ const Bio = () => {
         siteMetadata {
           author
           social {
-            twitter,
+            twitter
             vkontakte
           }
         }
@@ -38,6 +38,7 @@ const Bio = () => {
     <div
       style={{
         display: `flex`,
+        justifyContent: `space-between`,
         marginBottom: rhythm(2.5),
       }}
     >
@@ -55,16 +56,18 @@ const Bio = () => {
         }}
       />
       <p>
-        Автор <strong>{author}</strong>.        
-        {` `}  
+        Автор <strong>{author}</strong>
+      </p>
+      <p>
         {/*      
         <a href={`https://twitter.com/${social.twitter}`}>
           You should follow him on Twitter
         </a>      
         */}
-        <a href={`https://vk.com/${social.vkontakte}`}>
-          VKontakte
-        </a>  
+        <a href={`https://github.com/injashkin/injashkin.github.io`}>Github</a>
+      </p>
+      <p>
+        <a href={`https://vk.com/${social.vkontakte}`}>VKontakte</a>
       </p>
     </div>
   )
