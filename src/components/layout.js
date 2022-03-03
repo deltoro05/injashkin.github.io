@@ -61,7 +61,7 @@ const Layout = ({ location, title, children }) => {
       <header>{header}</header>
       <main>{children}</main>
       <footer>
-        © {new Date().getFullYear()}
+        2019-{new Date().getFullYear()}
         {` `}
         <a href="https://jinv.ru">jinv</a>
       </footer>
