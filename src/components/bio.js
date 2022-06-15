@@ -56,7 +56,7 @@ const Bio = () => {
         }}
       />
       <p>
-        Автор <strong>{author}</strong>
+        Автор: <strong>{author}</strong>
       </p>
       <p>Telegram: @jashkin</p>
       <p>

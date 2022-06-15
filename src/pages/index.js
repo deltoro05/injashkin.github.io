@@ -16,6 +16,14 @@ const BlogIndex = ({ data, location }) => {
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
+        let date
+
+        if (node.frontmatter.update) {
+          date = node.frontmatter.update
+        } else {
+          date = node.frontmatter.date
+        }
+
         return (
           <article key={node.fields.slug}>
             <header>
@@ -28,7 +36,7 @@ const BlogIndex = ({ data, location }) => {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>{date}</small>
             </header>
             <section>
               <p
@@ -62,6 +70,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             date(formatString: "DD MMMM YYYY")
+            update(formatString: "DD MMMM YYYY")
             title
             description
           }
