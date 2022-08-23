@@ -34,6 +34,10 @@ cd my-project</code></pre></div>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D pug-cli</code></pre></div>
 <p>Вместо опции <code class="language-text">i</code> можно написать <code class="language-text">install</code>. Опция <code class="language-text">-D</code> указывает, что устанавливаемый пакет нужен только для разработки и не будет использоваться в производственной сборке. Поэтому, устанавливаемый пакет будет прописан в секции <code class="language-text">"devDependencies": {...}</code> файла <code class="language-text">package.json</code>.</p>
 <p>В результате будет создан каталог <code class="language-text">node_modules</code> и файл <code class="language-text">package-lock.json</code>. Каталог <code class="language-text">node_modules</code> содержит все установленные зависимости проекта. Обычно этот каталог не рекомендуется включать в репозитории, что мы и сделали, проигнорировав его в файле <code class="language-text">.gitignore</code>. Файл <code class="language-text">package-lock.json</code> хранит записи о точных версиях установленных зависимостей.</p>
+<p>Создадим в корне проекта каталог <code class="language-text">src</code>, в котором создадим каталог <code class="language-text">pages</code>, в нем создадим каталог <code class="language-text">home</code>, а уже в нем создадим файл <code class="language-text">index.pug</code> со следующим содержимым:</p>
+<p><strong>src/pages/home/index.pug</strong></p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан с помощью разметки Pug!'</span></span></code></pre></div>
+<p>Создание каталогов здесь и далее может быть произвольным, но исходя из опыта лучше сразу придерживаться определенной структуры, чтобы потом мучительно не переделывать проект.</p>
 <p>Добавим в секцию <code class="language-text">"scripts"</code> файла <code class="language-text">package.json</code> скрипт с именем <code class="language-text">"pug"</code> (знак плюс <code class="language-text">+</code> дальше по тексту будет лишь указывать на добавленные строки кода):</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"my-project"</span><span class="token punctuation">,</span>
@@ -41,7 +45,7 @@ cd my-project</code></pre></div>
   <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
   <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
   <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-+   <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/index.pug -o dist"</span><span class="token punctuation">,</span>
++   <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
     <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token property">"keywords"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -54,95 +58,138 @@ cd my-project</code></pre></div>
 <ul>
 <li>Опция <code class="language-text">--pretty</code> (или <code class="language-text">-P</code>) отключает минификацию, что дает на выходе красиво оформленную разметку HTML. По умолчанию, pug переводит код в минимизированный HTML, из которого вырезаны пробелы между тегами, табуляция и перевод строк.</li>
 <li>Ключ <code class="language-text">-w</code> (или <code class="language-text">--watch</code>) заставляет Pug следить за изменениями в файлах с расширениями <code class="language-text">.pug</code> и как только мы сохраняем измененный файл, то Pug сразу перекомпилирует исходники.</li>
-<li>Путь <code class="language-text">src/index.pug</code> указывает на входной файл. Этот файл после компиляции будет на выходе с расширением <code class="language-text">.html</code>. Если мы укажем каталог, то все файлы с расширением <code class="language-text">.pug</code> этого каталога появятся на выходе с расширением <code class="language-text">.html</code>, что не всегда бывает нужно.</li>
+<li>Путь <code class="language-text">/src/pages/home/index.pug</code> указывает на входной файл. Этот файл после компиляции будет на выходе с расширением <code class="language-text">.html</code>. Если мы укажем каталог, то все файлы с расширением <code class="language-text">.pug</code> этого каталога появятся на выходе с расширением <code class="language-text">.html</code>, что не всегда бывает нужно.</li>
 <li>Ключ <code class="language-text">-o</code> (или <code class="language-text">--out</code>) указывает, что откомпилированные файлы будут выводится в другой каталог. Этот каталог нужно указать сразу после ключа, в нашем случае это каталог <code class="language-text">./dist</code>. Если такого каталога не существует, он будет создан.</li>
 <li><code class="language-text">dist</code> - это каталог, в который будут компилироваться файлы. Можно указать имя конкретного файла, который должен получится на выходе, например, <code class="language-text">dist/index.html</code>. Тогда ключ <code class="language-text">-o</code> следует опустить, иначе имя файла будет воспринято как имя каталога. К тому же, все каталоги, указанные в пути должны существовать, так как без ключа <code class="language-text">-o</code> каталоги не создаются.</li>
 </ul>
 <p>Более подробно об опциях командной строки можно узнать в <a href="https://github.com/pugjs/pug-cli">репозитории pug-cli</a></p>
-<p>После установки и конфигурации Pug шаблонизатора проверим его в работе. Для этого создадим в корне проекта каталог <code class="language-text">src</code>, а в нем создадим файл <code class="language-text">index.pug</code> со следующим содержимым:</p>
-<p><strong>./src/index.pug</strong></p>
-<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token doctype">doctype html</span>
-<span class="token tag">html</span>
+<p>После установки и конфигурации шаблонизатора Pug проверим его в работе. Из корневого каталога проекта запустим в терминале команду:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run pug</code></pre></div>
+<p>Будет создан каталог <code class="language-text">./dist</code>, а в нем файл <code class="language-text">index.html</code>. Если мы откроем этот файл в браузере, то увидим следующее:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Код написан с помощью разметки Pug</code></pre></div>
+<p>Если мы откроем файл <code class="language-text">dist/index.html</code> в редакторе кода то увидим откомпилированную HTML разметку:</p>
+<div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Код написан с помощью разметки Pug<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span></code></pre></div>
+<p>Чтобы данный файл был полноценной HTML страницей и без ошибок проходил <a href="https://validator.w3.org/#validate_by_upload">валидатор</a> в файл нужно добавить теги <!DOCTYPE html>, <html>, <head>, <body> и некоторые теги <meta>. Данные теги должны присутствовать на каждой HTML странице.</p>
+<p>Чтобы не повторять во всех шаблонах Pug одинаковый код, создадим общий шаблон, который будет применятся ко всем страницам нашего сайта. Для этого в каталоге <code class="language-text">src</code> создадим каталог <code class="language-text">layouts</code>, внутри которого создадим каталог <code class="language-text">base</code>, а в нем файл <code class="language-text">index.pug</code> со следующим содержимым:</p>
+<p><strong>src/layouts/base/index.pug</strong></p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token punctuation">-</span>
+  <span class="token tag">let</span> <span class="token plain-text">data = {</span>
+    <span class="token tag">default_description<span class="token punctuation">:</span></span> "Показан пример общего шаблона Pug для всех страниц",
+    <span class="token tag">default_title<span class="token punctuation">:</span></span> "Общий шаблон Pug"
+  }
+
+<span class="token punctuation">-</span><span class="token code"> <span class="token keyword">const</span> <span class="token punctuation">{</span>default_title<span class="token punctuation">,</span> default_description<span class="token punctuation">}</span> <span class="token operator">=</span> data</span>
+
+<span class="token doctype">doctype html</span>
+<span class="token tag">html<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">lang</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'ru'</span></span><span class="token punctuation">)</span></span></span>
   <span class="token tag">head</span>
     <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">charset</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'utf-8'</span></span><span class="token punctuation">)</span></span></span>
     <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'viewport'</span> content<span class="token operator">=</span>'width<span class="token operator">=</span>device<span class="token operator">-</span>width</span><span class="token punctuation">,</span> <span class="token attr-name">initial-scale</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token number">1.0</span>'</span><span class="token punctuation">)</span></span></span>
-    <span class="token tag">title</span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Быстрый запуск Pug'</span></span>
+
+    <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">=</span> <span class="token attr-value"><span class="token string">'description'</span> content<span class="token operator">=</span> description <span class="token operator">?</span> description <span class="token operator">:</span> default_description</span><span class="token punctuation">)</span></span></span>
+    <span class="token tag">title</span><span class="token punctuation">=</span><span class="token code"> title <span class="token operator">?</span> title <span class="token operator">:</span> default_title</span>
+
   <span class="token tag">body</span>
-    <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан в шаблонизаторе Pug!'</span></span></code></pre></div>
-<p>Запустим в терминале команду:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run pug</code></pre></div>
-<p>Будет создан каталог <code class="language-text">./dist</code>, а в нем файл <code class="language-text">index.html</code>, который будет содержать откомпилированный HTML:</p>
+    <span class="token keyword">block main</span></code></pre></div>
+<p>Содержимое файла <code class="language-text">src/pages/home/index.pug</code> изменим на следующее:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">extends ../../layouts/base/index</span>
+
+<span class="token keyword">block main</span>
+  <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан с помощью разметки Pug'</span></span></code></pre></div>
+<p>Теперь, если мы откроем файл <code class="language-text">dist/index.html</code> в редакторе кода, мы увидим следующую разметку:</p>
 <div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ru<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Быстрый запуск Pug<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span>
+      <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>description<span class="token punctuation">"</span></span>
+      <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Показан пример общего шаблона Pug для всех страниц<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Общий шаблон Pug<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Код написан в шаблонизаторе Pug!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Код написан с помощью разметки Pug<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre></div>
-<p>Теперь мы можем открыть в браузере файл <code class="language-text">./dist/index.html</code> и увидим следующее:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Код написан в шаблонизаторе Pug!</code></pre></div>
-<p>Добавим в шаблон миксин. Для этого создадим в каталоге <code class="language-text">src</code> каталог <code class="language-text">components</code>, а в нем файл <code class="language-text">button.pug</code> со следующим содержимым:</p>
+<p>Проверка данного файла в <a href="https://validator.w3.org/#validate_by_upload">валидаторе</a> не выявит никаких ошибок.</p>
+<p>Далее, мы создадим простую кнопку и добавим ее на страницу сайта. Реализуем кнопку с помощью миксина. Для этого создадим в каталоге <code class="language-text">src</code> каталог <code class="language-text">components</code>, в котором создадим каталог <code class="language-text">button</code>, а в нем файл <code class="language-text">button.pug</code> со следующим содержимым:</p>
 <div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token mixin"><span class="token keyword">mixin</span> <span class="token function">button</span></span>
   <span class="token tag">button<span class="token attr-class">.button</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Кнопка добавлена с помощью миксина'</span></span></code></pre></div>
-<p>Не забываем сохранить.</p>
-<p>В файл <code class="language-text">src/index.pug</code> подключим файл <code class="language-text">button.pug</code> с помощью <code class="language-text">include</code> и вызовем в нужном месте как миксин <code class="language-text">+button()</code>:</p>
-<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">include components/button.pug</span>
+<p>Не забываем сохранить файл.</p>
+<p>В файл <code class="language-text">src/pages/home/index.pug</code> подключим файл <code class="language-text">button.pug</code> с помощью <code class="language-text">include</code> и вызовем в нужном месте как миксин <code class="language-text">+button()</code>:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">extends ../../layouts/base/index</span>
+<span class="token keyword">include ../../components/button/button.pug</span>
 
-<span class="token doctype">doctype html</span>
-<span class="token tag">html</span>
-  <span class="token tag">head</span>
-    <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">charset</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'utf-8'</span></span><span class="token punctuation">)</span></span></span>
-    <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'viewport'</span> content<span class="token operator">=</span>'width<span class="token operator">=</span>device<span class="token operator">-</span>width</span><span class="token punctuation">,</span> <span class="token attr-name">initial-scale</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token number">1.0</span>'</span><span class="token punctuation">)</span></span></span>
-
-    <span class="token tag">title</span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Быстрый запуск Pug'</span></span>
-  <span class="token tag">body</span>
-    <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан в шаблонизаторе Pug!'</span></span>
-    <span class="token mixin"><span class="token name function">+button</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span></code></pre></div>
+<span class="token keyword">block main</span>
+  <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан с помощью разметки Pug'</span></span>
+  <span class="token mixin"><span class="token name function">+button</span></span></code></pre></div>
 <p>После сохранения файла перезагрузим страницу браузера и мы увидим заголовок, а под ним кнопку:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> _____________
-|             |
-| Изображение |
-|_____________|
-</code></pre></div>
-<p>Ура!. Мы настроили Pug.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 568px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/18c6b33a2946c1442e56b4c9b297bfa6/10e91/added-button.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 17.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyUlEQVQY042Oy66CQBBE+f8v8hGHYV4+Fhg3eqMbFsgIDDMgLHQBdUMb93ZS6arT3UlHzjXo+x5N06Cua4QQ4L3HMAzEnXPE5nkbAtq2I951Le09nx28/9xkWYZIa4O/yxmMxWCMwWgNzhPcrlcSj2MIIbBcLMA2G0ghiGmlsFqucTqmYIxjt93hmKaIivsdtihgrUVZlqiqiry1D9jiw16vN36tSEkFoxUSnsAYg8N+T18YbehbKSXyPKflcRwxTRP5uX/zV3P+B9GZJFAhJ910AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Добавлена кнопка с помощью миксина"
+        title="Добавлена кнопка с помощью миксина"
+        src="/static/18c6b33a2946c1442e56b4c9b297bfa6/10e91/added-button.png"
+        srcset="/static/18c6b33a2946c1442e56b4c9b297bfa6/12f09/added-button.png 148w,
+/static/18c6b33a2946c1442e56b4c9b297bfa6/e4a3f/added-button.png 295w,
+/static/18c6b33a2946c1442e56b4c9b297bfa6/10e91/added-button.png 568w"
+        sizes="(max-width: 568px) 100vw, 568px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <h2>Настройка локального сервера BrowserSync</h2>
-<p>После очередного изменения кода, чтобы увидеть откомпилированный результат, нужно каждый раз вручную обновлять страницу браузера. Это очень быстро надоедает. Для того, чтобы после сохранения редактируемого файла браузер автоматически обновлял страницу можно использовать локальный сервер, такой как <a href="https://browsersync.io/docs/command-line">BrowserSync</a> или <a href="https://github.com/ctrlaltdev/pug-server">Pug Server</a>. Мы будем использовать сервер BrowserSync, установим его:</p>
+<p>После очередного изменения кода, чтобы увидеть откомпилированный результат, нужно каждый раз вручную обновлять страницу браузера. Это очень быстро надоедает. Для того, чтобы после сохранения редактируемого файла браузер автоматически обновлял страницу можно использовать локальный сервер, такой как <a href="https://browsersync.io/docs/command-line">BrowserSync</a> или <a href="https://github.com/ctrlaltdev/pug-server">Pug Server</a>. Мы будем использовать сервер BrowserSync, установим его. Для этого откроем новое окно терминала, так как в первом окне у нас запущен Pug, который работает в режиме наблюдения за файлами, и, сделав рабочим корневой каталог проекта, введем следующую команду:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D browser-sync</code></pre></div>
 <p>Добавим в файл <code class="language-text">package.json</code> настройку, отмеченную знаком <code class="language-text">+</code>:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
 +   <span class="token property">"serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync dist -w"</span><span class="token punctuation">,</span>
     <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre></div>
-<p>Данный скрипт будет запускать сервер, а сервер будет наблюдать за всеми файлами в каталоге <code class="language-text">./dist</code>. Скрипт работает в browser-sync версии 2.23.0 и выше. Аналог данного скрипта, который будет работать в browser-sync любой версии приведен ниже:</p>
+<p>Данный скрипт будет запускать сервер, а сервер будет наблюдать за всеми файлами в каталоге <code class="language-text">dist</code>. Скрипт работает в browser-sync версии 2.23.0 и выше. Аналог данного скрипта, который будет работать в browser-sync любой версии приведен ниже:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     ...
     <span class="token property">"serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync start -s dist -f dist"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre></div>
-<p>Откроем еще одно окно терминала, так как в первом окне у нас запущен Pug, который работает в режиме наблюдения за файлами. Выполним во втором окне терминала команду:</p>
+<p>Теперь в окне терминала выполним команду:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run serve</code></pre></div>
 <p>В результате, откроется браузер, в котором мы увидим нашу страницу.</p>
 <p>Теперь, каждый раз, когда в каталоге <code class="language-text">dist</code> происходят какие-либо изменения сервер будет автоматически обновлять браузер.</p>
 <h2>Последовательный и параллельный запуск скриптов с помощью npm-run-all</h2>
-<p>Мы видим один неприятный момент. Для того, чтобы запустить сервер и шаблонизатор Pug в режиме наблюдения мы должны каждый раз открывать сначала одно окно терминала и выполнять команду <code class="language-text">npm run pug</code>, затем открывать другое окно и выполнять <code class="language-text">npm run serve</code>. В дальнейшем, нам понадобится запускать в режиме наблюдения препроцессор Sass, постпроцессор Postcss, компилятор Babel и др. Если на каждую такую задачу открывать окно терминала и запускать команду типа <code class="language-text">npm run *</code>, то это будет рутина.</p>
-<p>Чтобы упростить процесс одновременного запуска нескольких npm-скриптов можно воспользоваться пакетами <a href="https://www.npmjs.com/package/concurrently">concurrently</a> или <a href="https://github.com/mysticatea/npm-run-all">npm-run-all</a>. Здесь мы воспользуемся инструментом <code class="language-text">npm-run-all</code>. Сначала установим его:</p>
+<p>Мы видим один неприятный момент. Для того, чтобы запустить шаблонизатор Pug в режиме наблюдения мы должны открыть окно терминала и выполнить команду <code class="language-text">npm run pug</code>, затем, чтобы запустить сервер, нужно открыть другое окно терминала и выполнить <code class="language-text">npm run serve</code>. И так нужно поступать каждый раз, когда начинаете процесс разработки. В дальнейшем, нам понадобится запускать в режиме наблюдения препроцессор Sass, постпроцессор Postcss, компилятор Babel и др. Если на каждую такую задачу открывать окно терминала и запускать команду типа <code class="language-text">npm run *</code>, то это будет рутина.</p>
+<p>Чтобы упростить процесс одновременного запуска нескольких npm-скриптов можно воспользоваться пакетами <a href="https://www.npmjs.com/package/concurrently">concurrently</a> или <a href="https://github.com/mysticatea/npm-run-all">npm-run-all</a>. Здесь мы воспользуемся инструментом <code class="language-text">npm-run-all</code>. Сначала установим его. Для этого откроем третье окно терминала и сделав рабочим корневой каталог проекта выполним следующую команду:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D npm-run-all</code></pre></div>
 <p>Затем отредактируем файл <code class="language-text">package.json</code>:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-+   <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/index.pug -o dist"</span><span class="token punctuation">,</span>
++   <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
 +   <span class="token property">"watch:serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync dist -w"</span><span class="token punctuation">,</span>
 +   <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"npm-run-all -p watch:*"</span><span class="token punctuation">,</span>
     <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre></div>
+<p>Сохраним файл <code class="language-text">package.json</code>.</p>
 <p>Мы добавили скрипт <code class="language-text">"dev": "npm-run-all -p watch:*"</code>, в котором опция <code class="language-text">-p</code> (или <code class="language-text">--parallel</code>) указывает на параллельное выполнение скриптов, следующих за этой опцией. У нас за этой опцией следует шаблон <code class="language-text">watch:*</code>. Это значит, что параллельно будут выполнятся все скрипты, у которых в названии есть <code class="language-text">watch:</code>. Поэтому, мы изменили имена скриптов: имя <code class="language-text">"pug"</code> заменили на <code class="language-text">"watch:pug"</code>; имя <code class="language-text">"serve"</code> заменили на <code class="language-text">"watch:serve"</code>.</p>
 <p>Более подробно об опциях командной строки можно узнать из <a href="https://github.com/mysticatea/npm-run-all/blob/master/docs/npm-run-all.md">документации инструмента npm-run-all</a></p>
-<p>Теперь, закроем все окна терминала кроме одного, остановим выполнение предыдущей команды в терминале сочетанием клавиш <code class="language-text">Ctrl+C</code> и запустим следующую команду:</p>
+<p>Теперь, закроем все окна терминала кроме одного последнего и запустим следующую команду:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
-<p>Мы увидим, что компилятор Pug и сервер работают. И для этого нам понадобилось одно окно терминала и всего одна команда.</p>
+<p>Мы увидим, что откроется браузер со страницей нашего сайта. И для этого нам понадобилось одно окно терминала и всего одна команда.</p>
 <p>Возможно, кто-то скажет, что в NPM есть операторы <code class="language-text">&amp;</code> и <code class="language-text">&amp;&amp;</code>, с помощью которых можно выполнить все тоже самое. Но оператор <code class="language-text">&amp;</code> не работает в Windows <code class="language-text">cmd.exe</code>, а <code class="language-text">npm-run-all -p</code> там отлично работает.</p>
 <h2>Установка и настройка rimraf для очистки каталогов</h2>
 <p>Перед началом компиляции полезно будет очищать каталог <code class="language-text">dist</code> от предыдущих файлов. Для этого будем использовать пакет <code class="language-text">rimraf</code>, который является аналогом UNIX команды <code class="language-text">rm -rf</code>, но работает в любой системе, которая поддерживает NPM. Установим этот пакет:</p>
@@ -150,8 +197,8 @@ cd my-project</code></pre></div>
 <p>В файл <code class="language-text">package.json</code> внесем правки:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 +   <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist"</span><span class="token punctuation">,</span>
-+   <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/index.pug -o dist"</span><span class="token punctuation">,</span>
++   <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync dist -w"</span><span class="token punctuation">,</span>
 +   <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"npm-run-all clean pug -p watch:*"</span><span class="token punctuation">,</span>
     <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
@@ -162,14 +209,26 @@ cd my-project</code></pre></div>
 <p><code class="language-text">npm-run-all</code> выполнил сначала скрипт <code class="language-text">"clean"</code>, потом скрипт <code class="language-text">"pug'</code>, а после параллельно запустил два скрипта: <code class="language-text">"watch:pug"</code> и <code class="language-text">"watch:serve"</code>.</p>
 <h2>Установка и настройка препроцессора node-sass и постпроцессора PostCSS</h2>
 <p>Для написания стилей мы будем использовать препроцессор <a href="https://github.com/sass/node-sass#command-line-interface">Sass</a>. Он позволяет нам использовать переменные, вложенности, миксины, наследование, математические операторы и др.</p>
-<p>При написании стилей мы не хотим задумываться о префиксах, которые необходимы для корректной работы некоторых браузеров, а также, мы уже сегодня хотим использовать современный CSS не думая о его поддержке всеми браузерами. В этом нам поможет PostCSS с плагином <a href="https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env">PostCSS Preset Env</a>. Этот плагин преобразовывает современный CSS в тот CSS, который понятен большинству браузеров, а также расставляет префиксы при необходимости.</p>
+<p>При написании стилей мы не хотим задумываться о префиксах, которые необходимы для корректной работы некоторых браузеров, а также, мы уже сегодня хотим использовать современный CSS не думая о его поддержке всеми браузерами. В этом нам поможет PostCSS с плагином <a href="https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env">PostCSS Preset Env</a>. Этот плагин преобразует современный CSS в тот CSS, который понятен большинству браузеров, а также расставляет префиксы при необходимости.</p>
 <p>Нам еще понадобится <a href="https://github.com/postcss/postcss-cli">postcss-cli</a>, чтобы запускать PostCSS из командной строки. Для начала установим все необходимые пакеты:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D node-sass postcss postcss-cli postcss-preset-env</code></pre></div>
+<p>Теперь приступим к написанию стилей. Создадим файл <code class="language-text">./src/index.scss</code> и скопируем в него следующее:</p>
+<div class="gatsby-highlight" data-language="scss"><pre class="language-scss"><code class="language-scss"><span class="token property"><span class="token variable">$font-size</span></span><span class="token punctuation">:</span> 1rem<span class="token punctuation">;</span>
+<span class="token property"><span class="token variable">$font-color</span></span><span class="token punctuation">:</span> <span class="token function">lch</span><span class="token punctuation">(</span>28 99 35<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token selector">html </span><span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token variable">$font-size</span><span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> <span class="token variable">$font-color</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.example </span><span class="token punctuation">{</span>
+  <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>Добавим в файл <code class="language-text">package.json</code> следующий код:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 +   <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist tmp"</span><span class="token punctuation">,</span>
-    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
 +   <span class="token property">"sass"</span><span class="token operator">:</span> <span class="token string">"node-sass src/index.scss -o tmp"</span><span class="token punctuation">,</span>
 +   <span class="token property">"watch:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass -w src/index.scss -o tmp"</span><span class="token punctuation">,</span>
 +   <span class="token property">"watch:post"</span><span class="token operator">:</span> <span class="token string">"postcss -w tmp -d dist -u postcss-preset-env"</span><span class="token punctuation">,</span>
@@ -201,20 +260,8 @@ cd my-project</code></pre></div>
 <li><code class="language-text">"dev": "npm-run-all clean sass -p watch:*"</code></li>
 </ul>
 <p><code class="language-text">npm-run-all</code> запускает последовательно скрипт <code class="language-text">clean</code> потом <code class="language-text">sass</code>, затем запускает параллельно (<code class="language-text">-p</code>) скрипты, у которых имя начинается на <code class="language-text">watch:</code></p>
-<p>Теперь приступим к написанию стилей. Создадим файл <code class="language-text">./src/index.scss</code> и скопируем в него следующее:</p>
-<div class="gatsby-highlight" data-language="scss"><pre class="language-scss"><code class="language-scss"><span class="token property"><span class="token variable">$font-size</span></span><span class="token punctuation">:</span> 1rem<span class="token punctuation">;</span>
-<span class="token property"><span class="token variable">$font-color</span></span><span class="token punctuation">:</span> <span class="token function">lch</span><span class="token punctuation">(</span>28 99 35<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token selector">html </span><span class="token punctuation">{</span>
-  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token variable">$font-size</span><span class="token punctuation">;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> <span class="token variable">$font-color</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token selector">.example </span><span class="token punctuation">{</span>
-  <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre></div>
 <p>Теперь, в терминале запустим команду:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run watch</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
 <p>В результате, исходники из каталога <code class="language-text">src</code> будут откомпилированы и помещены в каталог <code class="language-text">dist</code>. Файл <code class="language-text">src/index.scss</code> будет откомпилирован в <code class="language-text">dist/index.css</code>, у которого внутри будет следующее:</p>
 <div class="gatsby-highlight" data-language="css"><pre class="language-css"><code class="language-css"><span class="token selector">html</span> <span class="token punctuation">{</span>
   <span class="token property">font-size</span><span class="token punctuation">:</span> 1rem<span class="token punctuation">;</span>
@@ -228,43 +275,156 @@ cd my-project</code></pre></div>
   <span class="token property">-ms-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
   <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>Теперь, добавим в шаблон ссылку на откомпилированный <code class="language-text">dist/index.css</code></p>
-<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">include components/button.pug</span>
+<p>Для того, чтобы наши стили отобразились на странице, добавим в основной шаблон <code class="language-text">src/layouts/base/index.pug</code> ссылку на откомпилированный <code class="language-text">dist/index.css</code></p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token punctuation">-</span>
+  <span class="token tag">let</span> <span class="token plain-text">data = {</span>
+    <span class="token tag">default_description<span class="token punctuation">:</span></span> "Показан пример общего шаблона Pug для всех страниц",
+    <span class="token tag">default_title<span class="token punctuation">:</span></span> "Общий шаблон Pug"
+  }
+
+<span class="token punctuation">-</span><span class="token code"> <span class="token keyword">const</span> <span class="token punctuation">{</span>default_title<span class="token punctuation">,</span> default_description<span class="token punctuation">}</span> <span class="token operator">=</span> data</span>
 
 <span class="token doctype">doctype html</span>
-<span class="token tag">html</span>
+<span class="token tag">html<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">lang</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'ru'</span></span><span class="token punctuation">)</span></span></span>
   <span class="token tag">head</span>
     <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">charset</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'utf-8'</span></span><span class="token punctuation">)</span></span></span>
     <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'viewport'</span> content<span class="token operator">=</span>'width<span class="token operator">=</span>device<span class="token operator">-</span>width</span><span class="token punctuation">,</span> <span class="token attr-name">initial-scale</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token number">1.0</span>'</span><span class="token punctuation">)</span></span></span>
 <span class="token mixin"><span class="token operator">+</span>   <span class="token function">link</span><span class="token punctuation">(</span>rel<span class="token operator">=</span><span class="token string">'stylesheet'</span> href<span class="token operator">=</span><span class="token string">'index.css'</span><span class="token punctuation">)</span></span>
-    <span class="token tag">title</span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Быстрый запуск Pug'</span></span>
+
+    <span class="token tag">meta<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">=</span> <span class="token attr-value"><span class="token string">'description'</span> content<span class="token operator">=</span> description <span class="token operator">?</span> description <span class="token operator">:</span> default_description</span><span class="token punctuation">)</span></span></span>
+    <span class="token tag">title</span><span class="token punctuation">=</span><span class="token code"> title <span class="token operator">?</span> title <span class="token operator">:</span> default_title</span>
+
   <span class="token tag">body</span>
-    <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан в шаблонизаторе Pug!'</span></span>
-    <span class="token mixin"><span class="token name function">+button</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span></code></pre></div>
-<p>Сохраним изменения и мы увидим, что страница браузера обновилась со стилевым оформлением:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> _____________
-|             |
-| Изображение |
-|_____________|
-</code></pre></div>
+    <span class="token keyword">block main</span></code></pre></div>
+<p>Сохраним изменения и мы увидим, что страница браузера обновилась со стилевым оформлением заголовка:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 569px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4eddd4f82780cc7b6d7a65a696356cf6/854dc/title-styling.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 16.216216216216214%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAqklEQVQI142I3W6CMABGef9XcosOhjgnW4LxAtoboDKjRYs/VIrmmPQJdpIvOd8JttEX+5+MfbqmfgtpPpeoWUK7yf2a+JvqPaKcfLCdr2iSFSpMqMMFTZKiogV/y1+qacwuzQiuXYfRGqNbzEFzPp7odMvFdJxPxn9nLWNvGe0dd+tx1xuPwfEYBt+ebvRuj4ZAqZpCCAohyfOcsqyQUiKEQAjpfXCO//ICCUPeY8MrV1AAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Стилизация заголовка"
+        title="Стилизация заголовка"
+        src="/static/4eddd4f82780cc7b6d7a65a696356cf6/854dc/title-styling.png"
+        srcset="/static/4eddd4f82780cc7b6d7a65a696356cf6/12f09/title-styling.png 148w,
+/static/4eddd4f82780cc7b6d7a65a696356cf6/e4a3f/title-styling.png 295w,
+/static/4eddd4f82780cc7b6d7a65a696356cf6/854dc/title-styling.png 569w"
+        sizes="(max-width: 569px) 100vw, 569px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <h2>Установка и настройка инструмента md-pug-to-html</h2>
-<p>Все более распространенным способом написания статей является язык разметки <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. Статья пишется на Markdown и сохраняется в файле с расширением <code class="language-text">.md</code>. Если же в статье нужно поместить рисунки, то удобнее всего создать каталог и поместить в него статью и рисунки. Для каждой статьи свой создается свой каталог, а каталоги статей объединяются в каталоги по темам.</p>
-<p>Теперь, нам нужен инструмент, который сможет просканировать эти каталоги, найти все файлы Markdown, преобразовать их в Html страницы и поместить в каталог сайта с сохранением исходной структуры каталогов. Также нужно, чтобы картинки были перемещены в нужные места. При этом, Html страницы должны конвертироваться согласно шаблону, созданному на Pug, для статей.</p>
-<p>Для вышеописанной задачи я применил три инструмента: gray-matter, markdown-to-pug и md-pug-to-html. Рассмотрим, что они делают.</p>
-<p><a href="https://www.npmjs.com/package/md-pug-to-html">MdPugToHtml</a> просматривает каталоги и ищет Markdown файлы. Как только файл найден MdPugToHtml преобразует этот файл с помощью gray-matter в объект, а объект передается в markdown-to-pug, где из основного контента формируется Pug разметка статьи, а данные Frontmatter подставляются в переменные Pug шаблона. И наконец, используя Pug, инструмент MdPugToHtml преобразует сформированную Pug разметку в Html страницу.</p>
-<p>По названию <a href="https://www.npmjs.com/package/markdown-to-pug">markdown-to-pug</a> легко понять его назначение. markdown-to-pug конвертирует разметку Markdown в разметку Pug.</p>
-<p>Инструмент <a href="https://www.npmjs.com/package/gray-matter">gray-matter</a> получив на вход содержимое всего файла на выходе возвращает то же содержимое, но уже в виде объекта.</p>
-<p>Удобным способом указать некие данные для статьи является блок данных, указанный в начале статьи Markdown. Он называется Frontmatter, имеет формат YAML/TOML/JSON и отделяется от основного контента тремя дефисами ---.</p>
+<p>Все более распространенным способом написания статей является язык разметки <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. Статья пишется на Markdown и сохраняется в файле с расширением <code class="language-text">.md</code>. Если же в статье нужно поместить рисунки, то удобнее всего создать каталог и поместить в него статью и рисунки. Для каждой статьи создается свой каталог, а каталоги статей объединяются в каталоги по темам.</p>
+<p>Теперь, нам нужен инструмент, который сможет просканировать эти каталоги, найти все файлы Markdown, преобразовать их в Html страницы и поместить в каталог сайта с сохранением исходной структуры каталогов. Также нужно, чтобы картинки были перемещены в нужные места. При этом, Html страницы должны конвертироваться согласно заданному шаблону Pug.</p>
+<p>Для вышеописанной задачи мне не удалось найти ничего подходящего в репозитории NPM. Наверное, плохо искал. Поэтому, я создал свой инструмент MdPugToHtml.</p>
+<p><a href="https://www.npmjs.com/package/md-pug-to-html">MdPugToHtml</a> просматривает каталоги и ищет Markdown файлы и массово преобразует эти файлы в Html страницы.</p>
+<p>Теперь установим этот пакет в нашем проекте</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D md-pug-to-html</code></pre></div>
+<p>Затем в корневом каталоге проекта создадим каталог <code class="language-text">content</code>, а в нем еще пару каталогов <code class="language-text">article1</code> и <code class="language-text">article2</code>. Каждому такому каталогу нужно давать имена, отражающие название статьи. Они потом будут отображаться в ЧПУ. В каждом таком каталоге будет хранится одна статья и сопутствующие ей файлы изображений если они присутствуют. Сам файл статьи лучше называть везде одинаково - <code class="language-text">index.md</code>.</p>
+<p>Создадим файл <code class="language-text">content/article1/index.md</code> для первой статьи и запишем в него следующее:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">---
-title: Краткий справочник по командам Git
-description: В сжатой форме приведены самые часто применяемые команды Git
-create: 2019-05-20
-update: 2020-02-17
+title: Статья первая
+description: Краткое описание первой статьи
+create: 2022-08-10
 ---
 
-## Полезные команды по работе с Git и Github</code></pre></div>
-<p>Frontmatter не является стандартом для Markdown и не распознается многими конверторами. Однако есть инструменты, которые могут анализировать Frontmatter. Одним из таких инструментов является <a href="https://www.npmjs.com/package/gray-matter">gray-matter</a>, который получив на вход содержимое всего файла на выходе возвращает то же содержимое, но уже в виде объекта.</p>
-<p>Было бы замечательно, если бы файлы Markdown, которые хранятся в отдельном каталоге, можно было сразу преобразовывать в страницы Html. Причем структура каталогов сохранялась бы в точности.</p>
+## Заголовок h2 в первой статье</code></pre></div>
+<p>Создадим файл <code class="language-text">content/article2/index.md</code> для второй статьи и запишем в него следующее:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">---
+title: Статья вторая
+description: Краткое описание второй статьи
+create: 2022-08-11
+---
+
+## Заголовок h2 во второй статье</code></pre></div>
+<p>Блок данных, указанный в начале каждого файла называется Frontmatter, имеет формат YAML/TOML/JSON и отделяется с двух сторон тремя дефисами ---.</p>
+<p>Frontmatter не является стандартом для Markdown и не распознается многими конверторами. Однако пакет MdPugToHtml умеет распознавать и обрабатывать Frontmatter благодаря пакету <a href="https://www.npmjs.com/package/gray-matter">gray-matter</a>, который встроен в пакет MdPugToHtml в качестве зависимости.</p>
+<p>В файле package.json настроим MdPugToHtml</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist tmp"</span><span class="token punctuation">,</span>
++   <span class="token property">"md-pug-to-html"</span><span class="token operator">:</span> <span class="token string">"md-pug-to-html -i=content -o=dist -t=src/pages/article"</span><span class="token punctuation">,</span>
+    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"sass"</span><span class="token operator">:</span> <span class="token string">"node-sass src/index.scss -o tmp"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass -w src/index.scss -o tmp"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:post"</span><span class="token operator">:</span> <span class="token string">"postcss -w tmp -d dist -u postcss-preset-env"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync dist -w"</span><span class="token punctuation">,</span>
++   <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"npm-run-all clean md-pug-to-html pug sass -p watch:*"</span><span class="token punctuation">,</span>
+    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre></div>
+<p>Здесь мы указали с помощью ключа <code class="language-text">-i</code> каталог, где расположены файлы Markdown, а с помощью ключа <code class="language-text">-t</code> каталог, где расположен шаблон Pug для этих страниц. Так как у нас еще нет такого шаблона, то мы его создадим.</p>
+<p>Для этого, в каталоге <code class="language-text">src/pages</code> создадим каталог <code class="language-text">article</code>, в котором создайте файл <code class="language-text">index.pug</code> со следующим содержимым:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">extends ../../layouts/base/index</span>
+
+<span class="token keyword">block main</span>
+  <span class="token tag"><span class="token attr-class">.content</span></span>
+    <span class="token tag"><span class="token attr-class">.article</span></span>
+      <span class="token tag"><span class="token attr-class">.creationDate</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Создано: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>create<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span></span>
+      <span class="token keyword">include from-md.pug</span></code></pre></div>
+<p>Теперь выполним команду:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
+<p>Закроем открывшееся окно браузера и перейдем в каталог <code class="language-text">dist</code>. Здесь мы увидим три новых каталога <code class="language-text">article1</code>, <code class="language-text">article2</code> и <code class="language-text">images</code>. В первых двух расположены страницы HTML, а каталог <code class="language-text">images</code> пуст, в него будут копироваться файлы изображений.</p>
+<p>Если мы перейдем в каталог <code class="language-text">src</code>, то увидим новый каталог <code class="language-text">data</code>, в котором находится файл <code class="language-text">link-list.pug</code>. Этот файл содержит массив объектов с URL адресами, заголовками и кратким описанием для каждой созданной статьи:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token punctuation">-</span><span class="token code"> <span class="token keyword">const</span> points <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string-property property">"pathFile"</span><span class="token operator">:</span><span class="token string">"article1/index.html"</span><span class="token punctuation">,</span><span class="token string-property property">"title"</span><span class="token operator">:</span><span class="token string">"Статья первая"</span><span class="token punctuation">,</span><span class="token string-property property">"description"</span><span class="token operator">:</span><span class="token string">"Краткое описание первой статьи"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string-property property">"pathFile"</span><span class="token operator">:</span><span class="token string">"article2/index.html"</span><span class="token punctuation">,</span><span class="token string-property property">"title"</span><span class="token operator">:</span><span class="token string">"Статья вторая"</span><span class="token punctuation">,</span><span class="token string-property property">"description"</span><span class="token operator">:</span><span class="token string">"Краткое описание второй статьи"</span><span class="token punctuation">}</span><span class="token punctuation">]</span></span></code></pre></div>
+<p>Используем этот файл для создания страницы, которая будет отображать список всех статей в формате похожем на страницу блога. Для этого в каталоге <code class="language-text">src/pages</code> создадим каталог <code class="language-text">blog</code>, а в нем создадим файл <code class="language-text">index.pug</code>, в который скопируем следующее:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">include ../../data/link-list.pug</span>
+
+<span class="token keyword">block main</span>
+  <span class="token tag"><span class="token attr-class">.content</span></span>
+    <span class="token tag"><span class="token attr-class">.creationDate</span></span><span class="token punctuation">=</span><span class="token code"> pageCreated</span>
+    <span class="token tag">ul<span class="token attr-class">.list__box</span></span>
+      <span class="token flow-control"><span class="token each"><span class="token keyword">each</span> point <span class="token keyword">in</span></span> points</span>
+        <span class="token tag">li</span>
+          <span class="token tag">a<span class="token attr-class">.list__item</span><span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">href</span><span class="token punctuation">=</span><span class="token attr-value">point<span class="token punctuation">.</span>pathFile</span><span class="token punctuation">)</span></span></span><span class="token punctuation">=</span><span class="token code"> point<span class="token punctuation">.</span>title</span>
+          <span class="token tag">p</span><span class="token punctuation">=</span><span class="token code"> point<span class="token punctuation">.</span>description</span></code></pre></div>
+<p>Перейдем в терминал, остановим предыдущий процесс клавишами <code class="language-text">Ctrl+C</code> и выполним следующую команду:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
+<p>Откроется браузер с нашей страницей, в которой ниже кнопки будет выведен список ссылок на статьи с кратким описанием:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 564px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/386660bb6fac89aa928018f867bfe632/ba4d9/list-articles.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 39.189189189189186%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABJklEQVQoz42QDUvDMBRF+///kShsE50whSmOpRO2bus+um5p2qRZW7f2SCuKA9EGkpcbzrvcF2d+1WH/KgieXphf9/C7fdb3A8LhiOhtit97aPTi5pZlt0/4PGr06m7AstNv+raPw4arGeeoYo5SYaUiDQ/YvWx0Fmtyk2JlRFYz9fshokg0NgjJY00WxRTakMcJ56LArDY409kMd+IiXIGYCGZzD+G6jIXAFYKxcDE2pe1yytMJoyxyZ5GBQe5Syh9A9VWrqtV2avgoY6LFlngVohYBWT2yVJ+jS8W7zS5M/0xYH1lyRO80VlnSg/n+lzzRzf2UF+0Nq/JEvC/wvZKVd8b3zvzW85/RRcJcKexmTX7YY4MAs9mh/Q1pEGLWWwqdtk74AUdIZQR7pyxVAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Список статей"
+        title="Список статей"
+        src="/static/386660bb6fac89aa928018f867bfe632/ba4d9/list-articles.png"
+        srcset="/static/386660bb6fac89aa928018f867bfe632/12f09/list-articles.png 148w,
+/static/386660bb6fac89aa928018f867bfe632/e4a3f/list-articles.png 295w,
+/static/386660bb6fac89aa928018f867bfe632/ba4d9/list-articles.png 564w"
+        sizes="(max-width: 564px) 100vw, 564px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>При нажатии на любую из ссылок мы перейдем на соответствующую страницу со статьей.</p>
 <h2>Установка и настройка сборщика Rollup</h2>
 <p>Для сборки JavaScript файлов будем применять сборщик <a href="https://www.npmjs.com/package/rollup">Rollup</a>. Он будет объединять JavaScript модули в один файл <code class="language-text">index.js</code></p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D rollup</code></pre></div>
@@ -278,7 +438,7 @@ update: 2020-02-17
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> button <span class="token keyword">from</span> <span class="token string">"./components/button.js"</span>
 
 <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
-<p>Теперь в главном шаблоне проекта <code class="language-text">src/index.pug</code> укажем, где будет расположен собранный сборщиком Rollup скрипт <code class="language-text">index.js</code>. Он будет находится в каталоге <code class="language-text">dist</code>. Так как это каталог сборки проекта, и, следовательно он будет корневым каталогом будущего сайта, то мы указываем, просто, имя файла <code class="language-text">src='index.js'</code>.</p>
+<p>Теперь в главном шаблоне проекта <code class="language-text">src/pages/home/index.pug</code> укажем, где будет расположен собранный сборщиком Rollup скрипт <code class="language-text">index.js</code>. Он будет находится в каталоге <code class="language-text">dist</code>. Так как это каталог сборки проекта, и, следовательно он будет корневым каталогом будущего сайта, то мы указываем, просто, имя файла <code class="language-text">src='index.js'</code>.</p>
 <div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">include components/button.pug</span>
 
 <span class="token doctype">doctype html</span>
@@ -295,8 +455,8 @@ update: 2020-02-17
 <p>Добавим в файл <code class="language-text">package.json</code> скрипт запуска для Rollup:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist tmp"</span><span class="token punctuation">,</span>
-    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
     <span class="token property">"sass"</span><span class="token operator">:</span> <span class="token string">"node-sass src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass -w src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:post"</span><span class="token operator">:</span> <span class="token string">"postcss -w tmp -d dist -u postcss-preset-env"</span><span class="token punctuation">,</span>
@@ -343,8 +503,8 @@ update: 2020-02-17
 <p>Добавим в файл <code class="language-text">package.json</code> следующий код:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist tmp"</span><span class="token punctuation">,</span>
-    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
     <span class="token property">"sass"</span><span class="token operator">:</span> <span class="token string">"node-sass src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass -w src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:post"</span><span class="token operator">:</span> <span class="token string">"postcss -w tmp -d dist -u postcss-preset-env"</span><span class="token punctuation">,</span>
@@ -372,7 +532,7 @@ update: 2020-02-17
 <p>Чтобы значок гибко подстраивался под размер шрифта заменим значения атрибутов <code class="language-text">height</code> и <code class="language-text">width</code> с <code class="language-text">24px</code> на <code class="language-text">1em</code>:</p>
 <div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1em<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0 0 24 24<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1em<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&lt;path ....</code></pre></div>
 <p>и сохраним этот файл. То же самое проделаем с другими файлами.</p>
-<p>Затем в файл <code class="language-text">src/index.pug</code> добавим следующее:</p>
+<p>Затем в файл <code class="language-text">src/pages/home/index.pug</code> добавим следующее:</p>
 <div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug">  <span class="token tag">body</span>
     <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан в шаблонизаторе Pug!'</span></span>
     <span class="token mixin"><span class="token name function">+button</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
