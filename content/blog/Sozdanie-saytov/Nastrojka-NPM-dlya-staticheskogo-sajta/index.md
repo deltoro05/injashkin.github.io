@@ -678,9 +678,7 @@ npm run dev
 
 ### Установка и настройка модуля imagemin
 
-Imagemin — популярный модуль сжатия изображений. Имеет расширения:
-
-- [imagemin-webp](https://github.com/imagemin/imagemin-webp) для преобразования в WebP
+Imagemin — популярный модуль сжатия изображений.
 
 Установим `imagemin-cli`:
 
@@ -693,21 +691,22 @@ npm i -D imagemin-cli
 ```json
 "scripts": {
     "clean": "rimraf dist tmp",
+    "md-pug-to-html": "md-pug-to-html -i=content -o=dist -t=src/pages/article",
     "pug": "pug --pretty src/pages/home/index.pug -o dist",
-    "watch:pug": "pug --pretty src/pages/home/index.pug -o dist",
+    "watch:pug": "pug --pretty -w src/pages/home/index.pug -o dist",
     "sass": "node-sass src/index.scss -o tmp",
     "watch:sass": "node-sass -w src/index.scss -o tmp",
     "watch:post": "postcss -w tmp -d dist -u postcss-preset-env",
-+   "img": "imagemin src/pages/**/images/* src/images/* -o dist/images",
++   "img": "imagemin src/pages/**/images src/images -o dist/images",
     "watch:serve": "browser-sync dist -w",
-    "watch:rollup": "rollup --watch -c rollup.config.js",
+    "watch:rollup": "rollup -w -c rollup.config.js",
 +   "dev": "npm-run-all clean pug sass img -p watch:*",
     "build": "echo \"There's nothing yet, but you can contribute\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
 
-Скрипт `"img"` указывает `imagemin` найти и сжать все изображения в каталогах `src/pages/**/images/*` и `src/images/*` и поместить их в `dist/images`. Более подробные настройки можно посмотреть в [документации](https://github.com/imagemin/imagemin-cli#usage).
+Скрипт `"img"` указывает `imagemin` найти и сжать все изображения в каталогах `src/pages/**/images` и `src/images` и поместить их в `dist/images`. Более подробные настройки можно посмотреть в [документации](https://github.com/imagemin/imagemin-cli#usage).
 
 ### Установка и настройка модуля SVGO
 
@@ -727,7 +726,7 @@ npm i -D svgo
 }
 ```
 
-Это значит, что все файлы с расширением `.svg` будут взяты из каталога `src/assets/svg`, оптимизированы и помещены в каталог `dist/svg`, который будет создан при его отсутствии.
+Флаг `-f` (или `--folder`) указывает, что будут обрабатываться не отдельные файлы, а каталог, что все файлы с расширением `.svg` будут взяты из каталога `src/assets/svg`, оптимизированы и помещены в каталог `dist/svg`, который будет создан при его отсутствии.
 
 Создадим каталог `src/assets/svg` и поместим туда несколько файлов `.svg`, взять их можно [здесь](https://fonts.google.com/icons?selected=Material+Icons&icon.set=Material+Symbols&icon.query=wh). Если мы скачаем значок `email_black_24dp` в виде файла SVG и откроем этот файл в любом текстовом редакторе, то мы увидим следующее:
 
@@ -746,17 +745,23 @@ npm i -D svgo
 Затем в файл `src/pages/home/index.pug` добавим следующее:
 
 ```pug
-  body
-    h1.name= 'Код написан в шаблонизаторе Pug!'
-    +button()
-    p.text= 'Нажми кнопку'
-+   p.text= 'Если что-то не так звони по телефону:'
-+   a.phone-link(href='tel:+79189999999')
-+     img.icon-phone(src='svg/phone_black_24dp.svg')
-+     .phone-number='+79189999999'
+extends ../../layouts/base/index
+include ../../components/button/button
+include ../../components/list-articles/index
+
+block main
+  h1.name= 'Код написан с помощью разметки Pug!'
+  +button
+  p.text= 'Нажми кнопку'
+  +list-articles
+  img(src='images/built-with.png')
++ p.text= 'Если что-то не так, звони по телефону:'
++ a.phone-link(href='tel:+79189999999')
++   img.icon-phone(src='svg/phone_black_24dp.svg')
++   .phone-number='+79189999999'
 ```
 
-В уже существующий файл `src/index.scss` добавим:
+В конец уже существующего файла `src/index.scss` добавим следующие стили:
 
 ```scss
 .phone-link {
@@ -781,15 +786,9 @@ npm i -D svgo
 npm run dev
 ```
 
-В окне браузера мы увидим следующее:
+В окне браузера в самом низу мы увидим следующее:
 
-```
- _____________
-|             |
-| Изображение |
-|_____________|
-
-```
+![SVG значок телефона](phone-svg-image.png)
 
 ## Установка и настройка генератора спрайтов svg-sprite-generator
 
@@ -846,14 +845,14 @@ npm run dev
 </svg>
 ```
 
-Здесь в один спрайт упаковано три файла SVG. Код каждого отдельного файла SVG заключен между тегами <symbol>, а это значит, что значки не будут отображаться если мы попробуем вызвать отдельный элемент спрайта вот так: `<img src="svg/sprite.svg#email_black_24dp"/>`. Отобразить нужный значок можно, если его вызвать с помощью команды <use> по уникальному идентификатору. Соответственно, тэг <use> должен быть обернут тегом <svg>:
+Здесь в один спрайт упаковано три файла SVG. Код каждого отдельного файла SVG заключен между тегами <symbol>, а это значит, что значки не будут отображаться если мы попробуем вызвать отдельный элемент спрайта вот так: `<img src="svg/sprite.svg#email_black_24dp"/>`. Отобразить нужный значок можно, если его вызвать с помощью команды <use> по уникальному идентификатору. Соответственно, тэг <use> должен быть обернут тегом <svg>. Отобразим какой-нибудь значок из спрайта, для этого добавим в конец файла `src/pages/home/index.pug` следующий код:
 
 ```pug
-    p.text= 'или скинь на мыло:'
-    a.email-link(href='mailto:info@jinv.ru' title='Написать письмо')
-      svg.icon(role='img')
-        use(href='svg/sprite.svg#email_black_24dp')
-      .email-address='info@jinv.ru'
+  p.text= 'или пиши на почту:'
+  a.email-link(href='mailto:info@jinv.ru' title='Написать письмо')
+    svg.icon(role='img')
+      use(href='svg/sprite.svg#email_black_24dp')
+    .email-address='info@jinv.ru'
 ```
 
 Стилизуем данный код в файле `src/index.scss`:
@@ -875,10 +874,6 @@ npm run dev
   height: 2.5 * $font-size;
 }
 
-.icon > use {
-  transform: scale(1.6);
-}
-
 .email-address {
   font-size: 2 * $font-size;
 }
@@ -890,12 +885,6 @@ npm run dev
 npm run dev
 ```
 
-В окне браузера мы увидим следующее:
+В окне браузера в самом низу мы увидим следующее:
 
-```
- _____________
-|             |
-| Изображение |
-|_____________|
-
-```
+![SVG значок email](phone-svg-image.png)
