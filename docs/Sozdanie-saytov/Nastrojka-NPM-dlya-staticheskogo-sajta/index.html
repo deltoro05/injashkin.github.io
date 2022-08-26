@@ -509,28 +509,26 @@ create: 2022-08-11
 <h2>Оптимизация изображений</h2>
 <p>Одной из главных причин медленной загрузки сайта является большой объем контента с изображениями. Для того, чтобы сайт загружался быстрее нужно максимально оптимизировать эти изображения. Оптимизация изображений подразумевает, как минимум, уменьшение размера файлов при сохранении визуального качества. Чтобы не заниматься этим вручную мы автоматизируем этот процесс. Для автоматического сжатия можно использовать такие инструменты как ImageMagick, <a href="https://github.com/jcupitt/libvips">libvips</a> или <a href="https://github.com/imagemin/imagemin-cli">imagemin</a>. Мы воспользуемся последним.</p>
 <h3>Установка и настройка модуля imagemin</h3>
-<p>Imagemin — популярный модуль сжатия изображений. Имеет расширения:</p>
-<ul>
-<li><a href="https://github.com/imagemin/imagemin-webp">imagemin-webp</a> для преобразования в WebP</li>
-</ul>
+<p>Imagemin — популярный модуль сжатия изображений.</p>
 <p>Установим <code class="language-text">imagemin-cli</code>:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm i -D imagemin-cli</code></pre></div>
 <p>Добавим в файл <code class="language-text">package.json</code> следующий код:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist tmp"</span><span class="token punctuation">,</span>
+    <span class="token property">"md-pug-to-html"</span><span class="token operator">:</span> <span class="token string">"md-pug-to-html -i=content -o=dist -t=src/pages/article"</span><span class="token punctuation">,</span>
     <span class="token property">"pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:pug"</span><span class="token operator">:</span> <span class="token string">"pug --pretty -w src/pages/home/index.pug -o dist"</span><span class="token punctuation">,</span>
     <span class="token property">"sass"</span><span class="token operator">:</span> <span class="token string">"node-sass src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:sass"</span><span class="token operator">:</span> <span class="token string">"node-sass -w src/index.scss -o tmp"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:post"</span><span class="token operator">:</span> <span class="token string">"postcss -w tmp -d dist -u postcss-preset-env"</span><span class="token punctuation">,</span>
-+   <span class="token property">"img"</span><span class="token operator">:</span> <span class="token string">"imagemin src/pages/**/images/* src/images/* -o dist/images"</span><span class="token punctuation">,</span>
++   <span class="token property">"img"</span><span class="token operator">:</span> <span class="token string">"imagemin src/pages/**/images src/images -o dist/images"</span><span class="token punctuation">,</span>
     <span class="token property">"watch:serve"</span><span class="token operator">:</span> <span class="token string">"browser-sync dist -w"</span><span class="token punctuation">,</span>
-    <span class="token property">"watch:rollup"</span><span class="token operator">:</span> <span class="token string">"rollup --watch -c rollup.config.js"</span><span class="token punctuation">,</span>
+    <span class="token property">"watch:rollup"</span><span class="token operator">:</span> <span class="token string">"rollup -w -c rollup.config.js"</span><span class="token punctuation">,</span>
 +   <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"npm-run-all clean pug sass img -p watch:*"</span><span class="token punctuation">,</span>
     <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"echo \"There's nothing yet, but you can contribute\" &amp;&amp; exit 1"</span><span class="token punctuation">,</span>
     <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre></div>
-<p>Скрипт <code class="language-text">"img"</code> указывает <code class="language-text">imagemin</code> найти и сжать все изображения в каталогах <code class="language-text">src/pages/**/images/*</code> и <code class="language-text">src/images/*</code> и поместить их в <code class="language-text">dist/images</code>. Более подробные настройки можно посмотреть в <a href="https://github.com/imagemin/imagemin-cli#usage">документации</a>.</p>
+<p>Скрипт <code class="language-text">"img"</code> указывает <code class="language-text">imagemin</code> найти и сжать все изображения в каталогах <code class="language-text">src/pages/**/images</code> и <code class="language-text">src/images</code> и поместить их в <code class="language-text">dist/images</code>. Более подробные настройки можно посмотреть в <a href="https://github.com/imagemin/imagemin-cli#usage">документации</a>.</p>
 <h3>Установка и настройка модуля SVGO</h3>
 <p>Обычно, SVG изображения содержат избыточный код, который любят оставлять редакторы графики. <a href="https://github.com/svg/svgo">SVGO</a> минимизирует файлы SVG удаляя тот самый ненужный код. Существует онлайн инструмент по оптимизации SVG файлов и кода - <a href="https://jakearchibald.github.io/svgomg/">SVGOMG</a>. Также, существуют плагины: для PostCSS - <a href="https://www.npmjs.com/package/postcss-svgo">postcss-svgo</a>; для Rollup - <a href="https://github.com/porsager/rollup-plugin-svgo">rollup-plugin-svgo</a>.</p>
 <p>Мы будем использовать SVGO, который можно <a href="https://www.npmjs.com/package/svgo">установить как CLI</a>:</p>
@@ -541,22 +539,28 @@ create: 2022-08-11
   <span class="token property">"watch:svg"</span><span class="token operator">:</span> <span class="token string">"svgo -f src/assets/svg -o dist/svg"</span><span class="token punctuation">,</span>
   ...
 <span class="token punctuation">}</span></code></pre></div>
-<p>Это значит, что все файлы с расширением <code class="language-text">.svg</code> будут взяты из каталога <code class="language-text">src/assets/svg</code>, оптимизированы и помещены в каталог <code class="language-text">dist/svg</code>, который будет создан при его отсутствии.</p>
+<p>Флаг <code class="language-text">-f</code> (или <code class="language-text">--folder</code>) указывает, что будут обрабатываться не отдельные файлы, а каталог, что все файлы с расширением <code class="language-text">.svg</code> будут взяты из каталога <code class="language-text">src/assets/svg</code>, оптимизированы и помещены в каталог <code class="language-text">dist/svg</code>, который будет создан при его отсутствии.</p>
 <p>Создадим каталог <code class="language-text">src/assets/svg</code> и поместим туда несколько файлов <code class="language-text">.svg</code>, взять их можно <a href="https://fonts.google.com/icons?selected=Material+Icons&#x26;icon.set=Material+Symbols&#x26;icon.query=wh">здесь</a>. Если мы скачаем значок <code class="language-text">email_black_24dp</code> в виде файла SVG и откроем этот файл в любом текстовом редакторе, то мы увидим следующее:</p>
 <div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24px<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0 0 24 24<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24px<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M0 0h24v24H0V0z<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span></code></pre></div>
 <p>Чтобы значок гибко подстраивался под размер шрифта заменим значения атрибутов <code class="language-text">height</code> и <code class="language-text">width</code> с <code class="language-text">24px</code> на <code class="language-text">1em</code>:</p>
 <div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1em<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0 0 24 24<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1em<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#000000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&lt;path ....</code></pre></div>
 <p>и сохраним этот файл. То же самое проделаем с другими файлами.</p>
 <p>Затем в файл <code class="language-text">src/pages/home/index.pug</code> добавим следующее:</p>
-<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug">  <span class="token tag">body</span>
-    <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан в шаблонизаторе Pug!'</span></span>
-    <span class="token mixin"><span class="token name function">+button</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
-    <span class="token tag">p<span class="token attr-class">.text</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Нажми кнопку'</span></span>
-<span class="token mixin"><span class="token operator">+</span>   p<span class="token punctuation">.</span>text<span class="token operator">=</span> <span class="token string">'Если что-то не так звони по телефону:'</span></span>
-<span class="token mixin"><span class="token operator">+</span>   a<span class="token punctuation">.</span>phone<span class="token operator">-</span><span class="token function">link</span><span class="token punctuation">(</span>href<span class="token operator">=</span><span class="token string">'tel:+79189999999'</span><span class="token punctuation">)</span></span>
-<span class="token mixin"><span class="token operator">+</span>     img<span class="token punctuation">.</span>icon<span class="token operator">-</span><span class="token function">phone</span><span class="token punctuation">(</span>src<span class="token operator">=</span><span class="token string">'svg/phone_black_24dp.svg'</span><span class="token punctuation">)</span></span>
-<span class="token mixin"><span class="token operator">+</span>     <span class="token punctuation">.</span>phone<span class="token operator">-</span>number<span class="token operator">=</span><span class="token string">'+79189999999'</span></span></code></pre></div>
-<p>В уже существующий файл <code class="language-text">src/index.scss</code> добавим:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug"><span class="token keyword">extends ../../layouts/base/index</span>
+<span class="token keyword">include ../../components/button/button</span>
+<span class="token keyword">include ../../components/list-articles/index</span>
+
+<span class="token keyword">block main</span>
+  <span class="token tag">h1<span class="token attr-class">.name</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Код написан с помощью разметки Pug!'</span></span>
+  <span class="token mixin"><span class="token name function">+button</span></span>
+  <span class="token tag">p<span class="token attr-class">.text</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'Нажми кнопку'</span></span>
+  <span class="token mixin"><span class="token name function">+list</span><span class="token operator">-</span>articles</span>
+  <span class="token tag">img<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">src</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'images/built-with.png'</span></span><span class="token punctuation">)</span></span></span>
+<span class="token mixin"><span class="token operator">+</span> p<span class="token punctuation">.</span>text<span class="token operator">=</span> <span class="token string">'Если что-то не так, звони по телефону:'</span></span>
+<span class="token mixin"><span class="token operator">+</span> a<span class="token punctuation">.</span>phone<span class="token operator">-</span><span class="token function">link</span><span class="token punctuation">(</span>href<span class="token operator">=</span><span class="token string">'tel:+79189999999'</span><span class="token punctuation">)</span></span>
+<span class="token mixin"><span class="token operator">+</span>   img<span class="token punctuation">.</span>icon<span class="token operator">-</span><span class="token function">phone</span><span class="token punctuation">(</span>src<span class="token operator">=</span><span class="token string">'svg/phone_black_24dp.svg'</span><span class="token punctuation">)</span></span>
+<span class="token mixin"><span class="token operator">+</span>   <span class="token punctuation">.</span>phone<span class="token operator">-</span>number<span class="token operator">=</span><span class="token string">'+79189999999'</span></span></code></pre></div>
+<p>В конец уже существующего файла <code class="language-text">src/index.scss</code> добавим следующие стили:</p>
 <div class="gatsby-highlight" data-language="scss"><pre class="language-scss"><code class="language-scss"><span class="token selector">.phone-link </span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
   <span class="token property">text-decoration</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
@@ -573,12 +577,36 @@ create: 2022-08-11
 <span class="token punctuation">}</span></code></pre></div>
 <p>Запустим сборку:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
-<p>В окне браузера мы увидим следующее:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> _____________
-|             |
-| Изображение |
-|_____________|
-</code></pre></div>
+<p>В окне браузера в самом низу мы увидим следующее:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 282px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 29.054054054054056%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNUlEQVQY06WQ2U7CYBCF+/T6BPoCXiGauIQYE7UuuEQiRIhCEStt2aHt34UulPoZfmLw3pOczHZmMjPK9K2N+OwivgycjonfGyB0A1e3EJ8GQjcJ+kMm9SazZkdqPaOP6FrYzQ9G1QbTRgvPHLCCkswcoqlN4grmE5vE82UczVxi2yUcT4kdF783JBiMZS12BLErCIcTvK6Fb/ZlrxwYL1K+2eA7z/kPlO2tLelkUbQ+rdZAL10wemngfHwxrr7SKz9jqg+Yl3dY6j3W7RPWzYqPGJdljKsy3fNr+QpFVVV2dncxtDZC0wkHIynsHJ0xrNRpH5ZoFU6k1QrHaMW1/0tt/xSteMr73gGj2htKnudUKhXC+VxuuphH5FlGliSkQUjiBaR+QJakLNMFy5X9y3STz5c5P/D5unBtoopAAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="SVG значок телефона"
+        title="SVG значок телефона"
+        src="/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png"
+        srcset="/static/8314b1b727e2492c2db6b59fd76b8ef1/12f09/phone-svg-image.png 148w,
+/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png 282w"
+        sizes="(max-width: 282px) 100vw, 282px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <h2>Установка и настройка генератора спрайтов svg-sprite-generator</h2>
 <p><a href="https://www.npmjs.com/package/svg-sprite-generator">svg-sprite-generator</a> - генератор SVG-спрайтов, который из отдельных файлов SVG создает один файл-спрайт.</p>
 <p>Установим пакет:</p>
@@ -615,12 +643,12 @@ create: 2022-08-11
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M0 0h24v24H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M0 0h24v24H0z<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9...<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>symbol</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span></code></pre></div>
-<p>Здесь в один спрайт упаковано три файла SVG. Код каждого отдельного файла SVG заключен между тегами <symbol>, а это значит, что значки не будут отображаться если мы попробуем вызвать отдельный элемент спрайта вот так: <code class="language-text">&lt;img src="svg/sprite.svg#email_black_24dp"/></code>. Отобразить нужный значок можно, если его вызвать с помощью команды <use> по уникальному идентификатору. Соответственно, тэг <use> должен быть обернут тегом <svg>:</p>
-<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug">    <span class="token tag">p<span class="token attr-class">.text</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'или скинь на мыло:'</span></span>
-    <span class="token tag">a<span class="token attr-class">.email-link</span><span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">href</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'mailto:info@jinv.ru'</span> title<span class="token operator">=</span><span class="token string">'Написать письмо'</span></span><span class="token punctuation">)</span></span></span>
-      <span class="token tag">svg<span class="token attr-class">.icon</span><span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">role</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'img'</span></span><span class="token punctuation">)</span></span></span>
-        <span class="token tag">use<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">href</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'svg/sprite.svg#email_black_24dp'</span></span><span class="token punctuation">)</span></span></span>
-      <span class="token tag"><span class="token attr-class">.email-address</span></span><span class="token punctuation">=</span><span class="token code"><span class="token string">'info@jinv.ru'</span></span></code></pre></div>
+<p>Здесь в один спрайт упаковано три файла SVG. Код каждого отдельного файла SVG заключен между тегами <symbol>, а это значит, что значки не будут отображаться если мы попробуем вызвать отдельный элемент спрайта вот так: <code class="language-text">&lt;img src="svg/sprite.svg#email_black_24dp"/></code>. Отобразить нужный значок можно, если его вызвать с помощью команды <use> по уникальному идентификатору. Соответственно, тэг <use> должен быть обернут тегом <svg>. Отобразим какой-нибудь значок из спрайта, для этого добавим в конец файла <code class="language-text">src/pages/home/index.pug</code> следующий код:</p>
+<div class="gatsby-highlight" data-language="pug"><pre class="language-pug"><code class="language-pug">  <span class="token tag">p<span class="token attr-class">.text</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token string">'или пиши на почту:'</span></span>
+  <span class="token tag">a<span class="token attr-class">.email-link</span><span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">href</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'mailto:info@jinv.ru'</span> title<span class="token operator">=</span><span class="token string">'Написать письмо'</span></span><span class="token punctuation">)</span></span></span>
+    <span class="token tag">svg<span class="token attr-class">.icon</span><span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">role</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'img'</span></span><span class="token punctuation">)</span></span></span>
+      <span class="token tag">use<span class="token attributes"><span class="token punctuation">(</span><span class="token attr-name">href</span><span class="token punctuation">=</span><span class="token attr-value"><span class="token string">'svg/sprite.svg#email_black_24dp'</span></span><span class="token punctuation">)</span></span></span>
+    <span class="token tag"><span class="token attr-class">.email-address</span></span><span class="token punctuation">=</span><span class="token code"><span class="token string">'info@jinv.ru'</span></span></code></pre></div>
 <p>Стилизуем данный код в файле <code class="language-text">src/index.scss</code>:</p>
 <div class="gatsby-highlight" data-language="scss"><pre class="language-scss"><code class="language-scss"><span class="token selector">.email-link </span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
@@ -638,21 +666,41 @@ create: 2022-08-11
   <span class="token property">height</span><span class="token punctuation">:</span> 2.5 <span class="token operator">*</span> <span class="token variable">$font-size</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token selector">.icon > use </span><span class="token punctuation">{</span>
-  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span>1.6<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
 <span class="token selector">.email-address </span><span class="token punctuation">{</span>
   <span class="token property">font-size</span><span class="token punctuation">:</span> 2 <span class="token operator">*</span> <span class="token variable">$font-size</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Запустим сборку:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
-<p>В окне браузера мы увидим следующее:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> _____________
-|             |
-| Изображение |
-|_____________|
-</code></pre></div></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;justify-content:space-between;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAADiUlEQVQ4y6VVW2gTWxSdKvjtpx/+iNdHr03pzUtQ9OP6wB9/roLvPmKSGbFUjFzx9VP90oLYRyaZsUpjpfgErQFptVKrlVasGhEp11QLmrZWbFV6pc2cOVvWyZmqUFFx4JDNzD7r7LXX2StK2GMocuWVuXQnnq35zYOa3+wIe4zhgEu3A4W6FXLHM5rfbNH8ZnnIHZ8ZcsfFvtwSsaLIYFrwr7hSsfy0onqNfarP/FhaEKWt82ooWBSjvWsa6d81jaT6TNo6v4bKXDppPnMg7DFKVJ+pBAp1B1gRAcCK8+tmqF4jGXLHadvCWqrccDF76/xTluro5/WH2nh8bytvqGy3k/U91v61Tda2BbUU9hikeo3oziX1isNOBBXLRGXJ7UUxJE3cOJuybZsTEfG3mQ88UKjzzXOreVWoGS/5xLhFl6q7WJlLtAGg1apXtGqaQAVNfADYo/aXAsm2udj8Ov0OG6jkzzo6Frw6+R45t84/5aUFUYZKwx5jHXoqBEDPQBOVIdHKMm4zEVKmb0RQK86vo6rgVZKHEbNyFM5VdTLQ1/xm7/ai2AwFakIA9IxzTjz3kKQ8JaD4njuQj30Ypz2rzrBAoQ7Q9QDsgHKtZ1MMCc7JPwLEkrm86ehdIdKOxScblLDXGMY1SKeGxEec/DMVfl3lw7YXDu1uJVgUs8uXnqKh/tEcoM1/GbAvNcQDLh15nwBoAXDwNwDTjwc5WIa9xntcmQxE+a9nwJ6a8rsvgKGpAe+3pB3KdyBKC0S5Zj6wvhFFXpuBFyPfBXRESVS2O6LEAFiOcg+sbbKy4xY5tJ0nnRok9AcX+/iOZA7Q/lLd6JsxXrH8NMOUaX5ztQLXwKDjhMs1XUxWwEeHx+hZ9yt+NHCFh9xxvuWParpw/J44KTvBACri+kNtFoZC85tdkZUJRZEWVAJamM2bTU9EYmvjY/7PrCoqXlhLm+acoN1/N2CuSY6dyLmi37fRCoxm2GMsc0YvDxYE18A8F+fXsWbjAUue7KHIigQ/vPEiO3PkNn//9v9JMNBEZQCTcxyRPjpdAMLPYEFwDUeA8qWnWO2u69nO5t5spm+E9z8b5t3Xn7PE4XYLPQNNWVlEFjTph5NuLS1oneYze2GsZQVRIUbpoqhY6DOWFKALNKVb5TnOr3z1FyD8TP7CbNerXqNB9YmNn3BpMfe4GlAzsiLh9H869oTcOcDP+nIdOVh2k38AAAAASUVORK5CYII=" alt="injashkin" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/c5c08e73a5c1e90c38835ea642cde354/8ba1e/icon.png 1x,
+<p>В окне браузера в самом низу мы увидим следующее:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 282px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 29.054054054054056%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNUlEQVQY06WQ2U7CYBCF+/T6BPoCXiGauIQYE7UuuEQiRIhCEStt2aHt34UulPoZfmLw3pOczHZmMjPK9K2N+OwivgycjonfGyB0A1e3EJ8GQjcJ+kMm9SazZkdqPaOP6FrYzQ9G1QbTRgvPHLCCkswcoqlN4grmE5vE82UczVxi2yUcT4kdF783JBiMZS12BLErCIcTvK6Fb/ZlrxwYL1K+2eA7z/kPlO2tLelkUbQ+rdZAL10wemngfHwxrr7SKz9jqg+Yl3dY6j3W7RPWzYqPGJdljKsy3fNr+QpFVVV2dncxtDZC0wkHIynsHJ0xrNRpH5ZoFU6k1QrHaMW1/0tt/xSteMr73gGj2htKnudUKhXC+VxuuphH5FlGliSkQUjiBaR+QJakLNMFy5X9y3STz5c5P/D5unBtoopAAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="SVG значок email"
+        title="SVG значок email"
+        src="/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png"
+        srcset="/static/8314b1b727e2492c2db6b59fd76b8ef1/12f09/phone-svg-image.png 148w,
+/static/8314b1b727e2492c2db6b59fd76b8ef1/cd13f/phone-svg-image.png 282w"
+        sizes="(max-width: 282px) 100vw, 282px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;justify-content:space-between;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAADiUlEQVQ4y6VVW2gTWxSdKvjtpx/+iNdHr03pzUtQ9OP6wB9/roLvPmKSGbFUjFzx9VP90oLYRyaZsUpjpfgErQFptVKrlVasGhEp11QLmrZWbFV6pc2cOVvWyZmqUFFx4JDNzD7r7LXX2StK2GMocuWVuXQnnq35zYOa3+wIe4zhgEu3A4W6FXLHM5rfbNH8ZnnIHZ8ZcsfFvtwSsaLIYFrwr7hSsfy0onqNfarP/FhaEKWt82ooWBSjvWsa6d81jaT6TNo6v4bKXDppPnMg7DFKVJ+pBAp1B1gRAcCK8+tmqF4jGXLHadvCWqrccDF76/xTluro5/WH2nh8bytvqGy3k/U91v61Tda2BbUU9hikeo3oziX1isNOBBXLRGXJ7UUxJE3cOJuybZsTEfG3mQ88UKjzzXOreVWoGS/5xLhFl6q7WJlLtAGg1apXtGqaQAVNfADYo/aXAsm2udj8Ov0OG6jkzzo6Frw6+R45t84/5aUFUYZKwx5jHXoqBEDPQBOVIdHKMm4zEVKmb0RQK86vo6rgVZKHEbNyFM5VdTLQ1/xm7/ai2AwFakIA9IxzTjz3kKQ8JaD4njuQj30Ypz2rzrBAoQ7Q9QDsgHKtZ1MMCc7JPwLEkrm86ehdIdKOxScblLDXGMY1SKeGxEec/DMVfl3lw7YXDu1uJVgUs8uXnqKh/tEcoM1/GbAvNcQDLh15nwBoAXDwNwDTjwc5WIa9xntcmQxE+a9nwJ6a8rsvgKGpAe+3pB3KdyBKC0S5Zj6wvhFFXpuBFyPfBXRESVS2O6LEAFiOcg+sbbKy4xY5tJ0nnRok9AcX+/iOZA7Q/lLd6JsxXrH8NMOUaX5ztQLXwKDjhMs1XUxWwEeHx+hZ9yt+NHCFh9xxvuWParpw/J44KTvBACri+kNtFoZC85tdkZUJRZEWVAJamM2bTU9EYmvjY/7PrCoqXlhLm+acoN1/N2CuSY6dyLmi37fRCoxm2GMsc0YvDxYE18A8F+fXsWbjAUue7KHIigQ/vPEiO3PkNn//9v9JMNBEZQCTcxyRPjpdAMLPYEFwDUeA8qWnWO2u69nO5t5spm+E9z8b5t3Xn7PE4XYLPQNNWVlEFjTph5NuLS1oneYze2GsZQVRIUbpoqhY6DOWFKALNKVb5TnOr3z1FyD8TP7CbNerXqNB9YmNn3BpMfe4GlAzsiLh9H869oTcOcDP+nIdOVh2k38AAAAASUVORK5CYII=" alt="injashkin" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/c5c08e73a5c1e90c38835ea642cde354/8ba1e/icon.png 1x,
 /static/c5c08e73a5c1e90c38835ea642cde354/f937a/icon.png 1.5x,
 /static/c5c08e73a5c1e90c38835ea642cde354/71eb7/icon.png 2x" /><img loading="lazy" width="50" height="50" srcset="/static/c5c08e73a5c1e90c38835ea642cde354/8ba1e/icon.png 1x,
 /static/c5c08e73a5c1e90c38835ea642cde354/f937a/icon.png 1.5x,
