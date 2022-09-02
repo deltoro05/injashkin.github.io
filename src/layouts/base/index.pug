@@ -17,7 +17,6 @@ html(lang='ru')
     script(defer src=scriptSrc)
     meta(name= 'description' content= description ? description : default_description)
     title= title ? title : default_title
-    include ../../components/yandex-metrica/yandex-metrica.html
 
   body
     block header
@@ -27,3 +26,5 @@ html(lang='ru')
 
     block footer
       +footer()
+    
+    include ../../components/yandex-metrica/yandex-metrica.html

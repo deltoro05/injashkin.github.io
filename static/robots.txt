@@ -1,3 +1,6 @@
 User-agent: *
 Disallow:
 Disallow: /404.html
+Allow: /
+Sitemap: https://jinv.ru/sitemap/sitemap-index.xml
+Host: https://jinv.ru
