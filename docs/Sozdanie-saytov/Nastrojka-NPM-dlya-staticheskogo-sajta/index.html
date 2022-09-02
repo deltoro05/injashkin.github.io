@@ -340,7 +340,7 @@ cd my-project</code></pre></div>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">---
 title: Статья первая
 description: Краткое описание первой статьи
-create: 2022-08-10
+create: 10-08-2022
 ---
 
 ## Заголовок h2 в первой статье</code></pre></div>
@@ -348,7 +348,7 @@ create: 2022-08-10
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">---
 title: Статья вторая
 description: Краткое описание второй статьи
-create: 2022-08-11
+create: 11-08-2022
 ---
 
 ## Заголовок h2 во второй статье</code></pre></div>
@@ -374,8 +374,9 @@ create: 2022-08-11
 <span class="token keyword">block main</span>
   <span class="token tag"><span class="token attr-class">.content</span></span>
     <span class="token tag"><span class="token attr-class">.article</span></span>
+      <span class="token tag">h1</span><span class="token punctuation">=</span><span class="token code"> title</span>
       <span class="token tag"><span class="token attr-class">.creationDate</span></span><span class="token punctuation">=</span><span class="token code"> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Создано: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>create<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span></span>
-      <span class="token keyword">include from-md.pug</span></code></pre></div>
+      <span class="token keyword">include from-md.html</span></code></pre></div>
 <p>Теперь выполним команду:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
 <p>Закроем открывшееся окно браузера и перейдем в каталог <code class="language-text">dist</code>. Здесь мы увидим три новых каталога <code class="language-text">article1</code>, <code class="language-text">article2</code> и <code class="language-text">images</code>. В первых двух расположены страницы HTML, а каталог <code class="language-text">images</code> пуст, в него будут копироваться файлы изображений.</p>
