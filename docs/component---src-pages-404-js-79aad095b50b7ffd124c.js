@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_blog=self.webpackChunkgatsby_starter_blog||[]).push([[883],{429:function(t,e,a){a.r(e);var l=a(7294),n=a(8678),r=a(262);e.default=function(t){var e=t.data,a=t.location,c=e.site.siteMetadata.title;return l.createElement(n.Z,{location:a,title:c},l.createElement(r.Z,{title:"404: Not Found"}),l.createElement("h1",null,"Страница не найдена"),l.createElement("h2",null,"404"),l.createElement("a",{href:"https://jinv.ru"},"На главную"))}}}]);
-//# sourceMappingURL=component---src-pages-404-js-79aad095b50b7ffd124c.js.map

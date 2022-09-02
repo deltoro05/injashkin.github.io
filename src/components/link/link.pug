@@ -1,0 +1,12 @@
+include ../icon/icon
+
+mixin link(options = {})
+
+  - const {prefix, type = 'https', href, title = '', icon = ''} = options
+  - const popupText = (type==='tel') ? `Позвонить на номер: ${href}` : title
+  - const link = (type==='https'||type==='http') ? `${href}` : `${type}:${href}`
+
+  a(class=`${prefix}-link link`, href = link, title=popupText)
+    if(icon !== '')
+      +icon({name: icon})    
+    div(class=`${prefix}`)=(type === 'tel') ? href : title

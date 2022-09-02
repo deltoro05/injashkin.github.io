@@ -1,0 +1,9 @@
+extends ../../layouts/base/index
+include ../../components/toc/toc
+
+block append variables
+  - title = 'Содержание | jinv.ru'  
+
+block main
+  .content
+    +toc

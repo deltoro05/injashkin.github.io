@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <script defer src="/index.js"></script>
+    <meta name="description" content="Микросервис анализирует заголовки запросов и возвращает IP-адрес, предпочитаемые языки и информацию о системе устройства клиента.">
+    <title>Парсер заголовков запросов, написанный на JavaScript</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content content">           
+        <div class="header__logo">
+          <div class="logo">        <a href="/" title="jinv.ru"> 
+              <svg class="icon icon__logo" role="img" width="4em" height="4em">
+                <use class="asd" href="/sprite.svg#logo"></use>
+              </svg></a></div>
+          <div class="logo-text"> <a href="/" title="jinv.ru">
+              <svg class="icon icon__logo-text" role="img" width="186px" height="66px">
+                <use class="asd" href="/sprite.svg#logo-text"></use>
+              </svg></a></div>
+          <div class="logo_mobile"><a href="/" title="jinv.ru"><img src="/images/icon-72x72.png" alt="Логотип сайта jinv.ru"/></a></div>
+        </div>
+        <nav class="menu" aria-label="Главное меню">   
+          <div class="content"> 
+            <input id="menu__toggle" type="checkbox"/>
+            <label class="menu__btn" for="menu__toggle"><span>   </span></label>
+            <ul class="menu__box">
+              <li><a class="menu__item" href="/">Главная</a></li>
+              <li><a class="menu__item" href="/toc.html">Статьи</a></li>
+              <li><a class="menu__item" href="/author.html">Об авторе</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="header__contacts">
+          <div class="send-mes">
+            <div class="soc"><a class="mes-em" href="injashkin@gmail.com" title="Email" target="_blank" rel="nofollow">
+                <svg class="icon icon__email" role="img" width="24px" height="24px">
+                  <use class="asd" href="/sprite.svg#email"></use>
+                </svg></a><a class="mes-tg" href="https://t.me/jashkin" title="Telegram" target="_blank" rel="nofollow">
+                <svg class="icon icon__telegram" role="img" width="24px" height="24px">
+                  <use class="asd" href="/sprite.svg#telegram"></use>
+                </svg></a><a class="mes-wa" href="https://api.whatsapp.com/send?phone=79183549497" title="WhatsApp" target="_blank" rel="nofollow">
+                <svg class="icon icon__whatsapp" role="img" width="24px" height="24px">
+                  <use class="asd" href="/sprite.svg#whatsapp"></use>
+                </svg></a>
+            </div>
+          </div>
+          <div class="contacts">         
+            <p> <a href="https://github.com/injashkin/injashkin.github.io">Github</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="article">
+        <h1>Парсер заголовков запросов, написанный на JavaScript</h1>
+        <div class="creationDate">Создано: 03-02-2020</div><p>анализирующий заголовки запросов</p>
+<p>Данная статья является моим учебным заданием, которое я выполнил обучаясь на <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/request-header-parser-microservice">FreeCodeCamp</a>.</p>
+<p>Задание:</p>
+<p>Нужно создать JavaScript приложение полного цикла, которое функционально похоже на это: https://dandelion-roar.glitch.me/. Микросервис позволяет получить IP-адрес, предпочитаемые языки (из заголовка Accept-Language) и системную информацию (из заголовка User-Agent) для моего устройства.</p>
+<p>Пример Использования:</p>
+<pre><code>[base url]/api/whoami
+</code></pre>
+<p>Пример Вывода:</p>
+<pre><code>{&quot;ipaddress&quot;:&quot;159.20.14.100&quot;,&quot;language&quot;:&quot;en-US,en;q=0.5&quot;,
+&quot;software&quot;:&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0&quot;}
+</code></pre>
+<p>Работа над этим проектом будет включать в себя написание кода на Glitch. По желанию можно написать проект на другой платформе, но он должен быть публично виден для тестирования.</p>
+<p>Запустите этот проект на Glitch по этой ссылке или клонируйте этот репозиторий на GitHub! Если вы используете Glitch, не забудьте сохранить ссылку на ваш проект в безопасном месте!</p>
+
+      </div>
+    </div>
+    <footer class="footer"> 
+      <div class="footer__content content">
+        <div class="footer__contacts" id="contacts"> <a class="footer__email-link" href="mailto:injashkin@gmail.com" title="Написать письмо">
+            <svg class="icon icon__undefined" role="img" width="24px" height="24px">
+              <use class="asd" href="/sprite.svg#undefined"></use>
+            </svg>
+            <div class="footer__email">injashkin@gmail.com</div></a></div>
+        <div class="footer__developer"> <a href="http://jinv.ru" target="_blank">Разработка сайта jinv.ru</a></div>
+        <div class="footer__copyright-wrap">
+          <div class="footer__copyright">jinv.ru © 2019 - 2022</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

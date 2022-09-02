@@ -1,0 +1,54 @@
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  /*
+    добавление к телефонным номерам иконки телефона
+    справочник по символам Юникода https://unicode-table.com/ru/  
+    */
+  /*
+    &[href^='tel:']:before {
+      content: '\2706';
+      margin-right: 0.5em;
+    }
+  
+    &[href^='mailto:']:before {
+      content: '\1f4e7';
+      margin-right: 0.5em;
+    }
+  
+    &[href^='mailto:'] {
+      text-decoration: none;
+      font-size: 1.5em;
+      margin-top: 0.5em;
+    }
+    */
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+
+  & .icon {
+    padding-right: 0.5em;
+  }
+
+  & svg {
+    fill: rgb(0, 0, 0);
+  }
+}
+
+@media (max-width: 1250px) {
+  /*
+    a[href^='tel:'] {
+      font-size: 1.2em;
+    }
+  
+    a[href^='mailto:'] {
+      font-size: 1.1em;
+    }
+    */
+}

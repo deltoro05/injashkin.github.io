@@ -1,0 +1,27 @@
+$dark50: rgba(31, 32, 65, 0.5);
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  .logo__text {
+    margin-left: 0.8rem;
+    margin-top: 0.8rem;
+  }
+}
+
+.group {
+  display: flex;
+  list-style: none;
+  margin: 0 auto;
+  font: 14px Montserrat, normal, normal;
+
+  .item {
+    margin: 1em;
+  }
+
+  .link {
+    text-decoration: none;
+    color: $dark50;
+  }
+}

@@ -1,0 +1,75 @@
+@import '../../layouts/variables';
+
+.footer {
+  height: 8em;
+  background-color: $background;
+  color: $text-inverse;
+  text-align: center;
+
+  & a {
+    color: $text-inverse;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1em;
+    padding-top: 1em;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__phone-link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+
+  &__location {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__address {
+    padding: 0 1.5em;
+  }
+
+  &__email-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  &__email {
+    font-size: 1.2em;
+  }
+
+  &__developer {
+    margin-top: 1em;
+  }
+
+  @media (max-width: $md) {
+    height: 13em;
+
+    &__content {
+      flex-direction: column;
+    }
+
+    &__phone-link {
+      justify-content: center;
+    }
+
+    &__email-link {
+      margin-bottom: 1em;
+    }
+
+    &__copyright {
+      margin-top: 1em;
+    }
+  }
+}

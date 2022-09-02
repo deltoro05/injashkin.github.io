@@ -1,0 +1,18 @@
+include ../icon/icon
+
+mixin footer(options = {})
+  - const {email, logo_title} = data   
+
+  footer.footer 
+    .footer__content.content
+      #contacts.footer__contacts  
+        a.footer__email-link(href=`mailto:${data.email}` title='Написать письмо')
+          +icon('email')
+          .footer__email=email
+
+      .footer__developer 
+        a(href='http://jinv.ru' target='_blank')='Разработка сайта jinv.ru' 
+
+      .footer__copyright-wrap
+        .footer__copyright=`${logo_title} © 2019 - ${new Date().getFullYear()}`
+         

@@ -1,0 +1,31 @@
+@import 'layouts/base/base';
+@import 'components/list-articles/index';
+@import 'components/link/link';
+@import 'pages/home/index';
+@import 'pages/article/index';
+@import 'pages/404/404';
+@import 'components/sendMessage/sendMessage';
+
+$font-size: 1.125rem;
+$font-color: #000000;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: sans-serif;
+  font-size: $font-size;
+  color: $font-color;
+}
+
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.example {
+  user-select: none;
+}

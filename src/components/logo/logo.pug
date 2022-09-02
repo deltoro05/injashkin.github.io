@@ -1,0 +1,12 @@
+//-
+    options.link - ссылка, обычно, на главную страницу
+
+mixin logo(options = {})    
+
+    - let {link = 'landing.html'} = options
+
+    a.logo(href=link)
+        .logo__img 
+            include ./img/logo.svg
+        .logo__text 
+            include ./img/logo-text.svg

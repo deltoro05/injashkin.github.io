@@ -1,0 +1,160 @@
+@import '../../layouts/variables';
+
+.menu {
+  // overflow: hidden;
+  // background-color: $background;
+  // z-index: 10000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.js-sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.js-empty {
+  padding-top: 2em;
+}
+
+.menu__box {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  & li {
+    border-right: 1px solid $border-inverse;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
+
+.menu__item {
+  display: block;
+  white-space: nowrap;
+  padding: 0 0.5em;
+
+  // color: $text-inverse;
+  text-decoration: none;
+  font-size: 1.2em;
+
+  //&:hover {
+  //  color: $text-inverse;
+  //  background-color: $background-hover;
+  //}
+}
+
+#menu__toggle {
+  display: none;
+}
+
+@media (max-width: $xxl) {
+  .menu__item {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: $xl) {
+  .content {
+    width: 95%;
+  }
+}
+
+@media (max-width: $md) {
+  .js-off-scroll {
+    overflow: hidden;
+  }
+
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 1.25em;
+    left: 1.25em;
+
+    width: 1.625em;
+    height: 1.625em;
+
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: $background;
+
+    transition-duration: 0.25s;
+  }
+
+  .menu__btn > span::before {
+    content: '';
+    top: -0.5em;
+  }
+
+  .menu__btn > span::after {
+    content: '';
+    top: 0.5em;
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+
+  .menu__box {
+    flex-direction: column;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+
+    width: 20em;
+    margin: 0;
+    padding: 3em 0;
+
+    text-align: center;
+
+    background-color: $background-main;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+
+    transition-duration: 0.25s;
+
+    & li {
+      border-right: 0;
+    }
+  }
+
+  .menu__item {
+    padding: 0.75em 1em;
+    color: $text;
+
+    transition-duration: 0.25s;
+
+    text-decoration: none;
+    font-size: 1.25em;
+  }
+}

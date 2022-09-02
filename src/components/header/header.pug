@@ -1,0 +1,27 @@
+include ../menu/menu
+include ../sendMessage/sendMessage
+
+mixin header(options = {})  
+
+  
+  - const {logo_title, logo_file, logo_file_mobile, logo_img_alt, email, telegram} = data
+
+  header.header
+    .header__content.content            
+      .header__logo
+        .logo         
+          a(href='/' title= logo_title)  
+            +icon({name: 'logo', width: '4em', height: '4em'})
+        .logo-text 
+          a(href='/' title= logo_title)
+            +icon({name: 'logo-text', width: '186px', height: '66px'})
+        .logo_mobile
+          a(href='/' title=logo_title)
+            img(src=`/images/${logo_file_mobile}` alt=logo_img_alt)
+      +menu()
+      .header__contacts
+        +sendMessage({showText: false})
+        .contacts          
+          p 
+            a(href='https://github.com/injashkin/injashkin.github.io') Github
+    

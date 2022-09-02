@@ -1,0 +1,28 @@
+include ../../components/header/header
+include ../../components/footer/footer
+include ../../data/data
+
+- const {default_title, default_description} = data
+
+block variables
+  - stylesheetHref = '/index.css'
+  - scriptSrc = '/index.js'
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href=stylesheetHref)
+    script(defer src=scriptSrc)
+    meta(name= 'description' content= description ? description : default_description)
+    title= title ? title : default_title
+
+  body
+    block header
+      +header()
+
+    block main
+
+    block footer
+      +footer()

@@ -1,62 +1,59 @@
 {
-  "name": "gatsby-starter-blog",
-  "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "name": "jinv",
+  "private": false,
+  "description": "Блог о веб-разработке",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "main": "index.js",
+  "author": {
+    "name": "Igor Yashkin",
+    "email": "injashkin@gmail.com",
+    "url": "https://jinv.ru"
   },
-  "dependencies": {
-    "gatsby": "^4.6.0",
-    "gatsby-image": "^3.11.0",
-    "gatsby-plugin-google-analytics": "^4.6.0",
-    "gatsby-plugin-manifest": "^4.6.0",
-    "gatsby-plugin-offline": "^5.6.0",
-    "gatsby-plugin-react-helmet": "^5.6.0",
-    "gatsby-plugin-robots-txt": "^1.7.0",
-    "gatsby-plugin-sharp": "^4.6.0",
-    "gatsby-plugin-sitemap": "^5.6.0",
-    "gatsby-plugin-typography": "^4.6.0",
-    "gatsby-plugin-yandex-metrika": "^2.5.0",
-    "gatsby-remark-copy-linked-files": "^5.6.0",
-    "gatsby-remark-images": "^6.6.0",
-    "gatsby-remark-prismjs": "^6.6.0",
-    "gatsby-remark-responsive-iframe": "^5.6.0",
-    "gatsby-remark-smartypants": "^5.6.0",
-    "gatsby-source-filesystem": "^4.6.0",
-    "gatsby-transformer-remark": "^5.6.0",
-    "gatsby-transformer-sharp": "^4.6.0",
-    "prismjs": "^1.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-typography": "^0.16.20",
-    "typeface-merriweather": "^1.1.13",
-    "typeface-montserrat": "^1.1.13",
-    "typography": "^0.16.21",
-    "typography-theme-wordpress-2016": "^0.16.19"
+  "bugs": {
+    "url": "https://github.com/injashkin/jinv/issues"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "@atao60/fse-cli": "^0.1.7",
+    "browser-sync": "^2.27.10",
+    "imagemin-cli": "^7.0.0",
+    "md-pug-to-html": "^1.2.8",
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "postcss-preset-env": "^7.8.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.78.1",
+    "svg-sprite-generator": "^0.0.7",
+    "svgo": "^2.8.0"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
+  "homepage": "https://github.com/injashkin/jinv#readme",
+  "keywords": [],
   "license": "MIT",
-  "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/injashkin/jinv.git"
   },
   "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "rimraf docs tmp",
+    "md-pug-to-html": "md-pug-to-html -i=content -o=docs -t=src/pages/article",
+    "pug": "pug --pretty src/pages/*/*.pug -o docs",
+    "watch:pug": "pug --pretty -w src/pages/*/*.pug -o docs",
+    "build:pug": "pug src/pages/*/*.pug -o docs",
+    "sass": "node-sass src/index.scss -o tmp",
+    "watch:sass": "node-sass -w src/index.scss -o tmp",
+    "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
+    "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
+    "watch:post": "postcss -w tmp/index.css -d docs -u postcss-preset-env",
+    "build:post": "postcss tmp/index.css -d docs -u postcss-preset-env",
+    "img": "imagemin src/pages/**/images src/images -o docs/images",
+    "watch:serve": "browser-sync docs -w",
+    "watch:rollup": "rollup -w -c rollup.config.js",
+    "build:rollup": "rollup -c rollup.config.js",
+    "copy": "fse copy static docs",
+    "dev": "npm-run-all clean md-pug-to-html pug sass img copy -p watch:*",
+    "build": "npm-run-all clean md-pug-to-html build:pug sass build:svg build:post img build:rollup copy",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

@@ -1,0 +1,17 @@
+include ../icon/icon
+include ../../data/sendMessage
+
+mixin sendMessage(options = {})  
+  - const {showText = true, border = 'round'} = options
+  - const classes = showText ? 'soc-col' : ''
+  - const borderClass = border === 'round' ? '' : ` ${border}`
+
+  .send-mes
+    if header
+      h5= header
+    .soc(class=classes)
+      each soc in socs
+        a(class=`${soc.class}${borderClass}`, href=soc.href, title=soc.text, target='_blank', rel='nofollow')
+          +icon({name: soc.icon})
+          if (showText)
+            =soc.text

@@ -1,0 +1,9 @@
+extends ../../layouts/base/index
+include ../../components/list-articles/index
+
+block append variables
+  - title = 'Главная | jinv.ru'  
+
+block main
+  .content
+    +list-articles
