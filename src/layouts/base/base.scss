@@ -42,6 +42,10 @@ pre code {
   background-color: #dadada;
 }
 
+code[class*='language-'] {
+  overflow: auto;
+}
+
 p code {
   //display: block;
   background-color: #e7e7e7;
