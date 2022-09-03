@@ -323,16 +323,18 @@ npm run dev
 
 `npm-run-all` выполнил сначала скрипт `"clean"`, потом скрипт `"pug'`, а после параллельно запустил два скрипта: `"watch:pug"` и `"watch:serve"`.
 
-## Установка и настройка препроцессора node-sass и постпроцессора PostCSS
+## Установка и настройка препроцессора node-sass и постпроцессора PostCSS с плагинами PostCSS Preset Env и cssnano
 
 Для написания стилей мы будем использовать препроцессор [Sass](https://github.com/sass/node-sass#command-line-interface). Он позволяет нам использовать переменные, вложенности, миксины, наследование, математические операторы и др.
 
 При написании стилей мы не хотим задумываться о префиксах, которые необходимы для корректной работы некоторых браузеров, а также, мы уже сегодня хотим использовать современный CSS не думая о его поддержке всеми браузерами. В этом нам поможет PostCSS с плагином [PostCSS Preset Env](https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env). Этот плагин преобразует современный CSS в тот CSS, который понятен большинству браузеров, а также расставляет префиксы при необходимости.
 
+Для производственной сборки важно минимизировать и сжать CSS, для более быстрой загрузки стилей. Поэтому, мы будем использовать плагин [cssnano](http://cssnano.co/), который сохраняя семантику удаляет ненужные пробелы и повторяющиеся правила, сжимает идентификаторы, убирает комментарии, удаляет устаревшие вендорные префиксы и выполняет много других оптимизаций.
+
 Нам еще понадобится [postcss-cli](https://github.com/postcss/postcss-cli), чтобы запускать PostCSS из командной строки. Для начала установим все необходимые пакеты:
 
 ```
-npm i -D node-sass postcss postcss-cli postcss-preset-env
+npm i -D node-sass postcss postcss-cli postcss-preset-env cssnano
 ```
 
 Теперь приступим к написанию стилей. Создадим файл `./src/index.scss` и скопируем в него следующее:
@@ -577,23 +579,23 @@ npm i -D rollup
 
 ```js
 export function button() {
-  let button = document.querySelector(".button")
-  let text = button.textContent
-  const message = "Этот текст изменен JavaScript'ом"
+  let button = document.querySelector('.button');
+  let text = button.textContent;
+  const message = "Этот текст изменен JavaScript'ом";
 
-  button.addEventListener("click", () => {
-    text === message ? (text = "Жми еще!") : (text = message)
-    button.textContent = text
-  })
+  button.addEventListener('click', () => {
+    text === message ? (text = 'Жми еще!') : (text = message);
+    button.textContent = text;
+  });
 }
 ```
 
 Затем, создадим главный файл скрипта `src/index.js`, в который сделаем импорт вышеуказанного модуля и вызов функции:
 
 ```js
-import { button } from "./components/button/button.js"
+import { button } from './components/button/button.js';
 
-button()
+button();
 ```
 
 Теперь в главном шаблоне нашего проекта `src/layouts/base/index.pug` укажем, где будет расположен собранный сборщиком Rollup скрипт `index.js`. Он будет находится в каталоге `dist`. Так как это каталог сборки проекта, и, следовательно он будет корневым каталогом будущего сайта, то мы указываем, просто, имя файла `script(defer src='index.js')`. `defer` мы указали, чтобы скрипт запустился после построения дерева DOM.
@@ -647,18 +649,18 @@ html(lang='ru')
 
 ```js
 export default {
-  input: "src/index.js",
+  input: 'src/index.js',
 
   watch: {
-    include: "./src/**",
+    include: './src/**',
     clearScreen: false,
   },
 
   output: {
-    file: "dist/index.js",
-    format: "iife",
+    file: 'dist/index.js',
+    format: 'iife',
   },
-}
+};
 ```
 
 Свойство `input` указывает путь к главному скрипту проекта, с которого Rollup начнет собирать все скрипты в один конечный файл-бандл. Адрес этого бандла указан в свойстве `file` объекта `output`. В этом же объекте свойство `format` указывает на формат вывода файла. Здесь указан формат `'iife'`, что превращает код выходного файла в [немедленно вызываемую функцию](https://benalman.com/news/2010/11/immediately-invoked-function-expression/) (IIFE). Более подробно о параметре `format` [см. документацию](https://rollupjs.org/guide/en/#outputformat).
@@ -889,3 +891,51 @@ npm run dev
 В окне браузера в самом низу мы увидим следующее:
 
 ![SVG значок email](phone-svg-image.png)
+
+## Копирование файлов и каталогов
+
+Часто возникает необходимость скопировать некоторые файлы или даже каталоги в сборку проекта без их преобразования. Для примера возьмем файл `robots.txt`, который используется для ограничения доступа поисковым роботам к определенным ресурсам сайта.
+
+Создадим в корне проекта каталог `static`, в котором создадим файл `robots.txt` со следующим содержимым:
+
+```txt
+User-agent: *
+Disallow:
+Disallow: /404.html
+Allow: /
+Sitemap: https://jinv.ru/sitemap/sitemap-index.xml
+Host: https://jinv.ru
+```
+
+Данный файл должен без изменений попасть в корень сайта, а так как корневым каталогом будущего сайта является каталог `dist`, то файл `robots.txt` должен копироваться в этот каталог при каждой сборке проекта.
+
+Установим fse-cli:
+
+```
+npm i -D @atao60/fse-cli
+```
+
+Пакет `fse-cli` является интерфейсом командной строки для `fs-extra`, который, в свою очередь, расширяет стандартный модуль `fs` дополнительными методами для работы с файловой системой.
+
+Обычно файл `robots.txt` и другие подобные ему ресурсы не используются на этапе разработки, а нужны только в готовой сборке. Поэтому, мы настроим `package.json` для `fse-cli` следующим образом:
+
+```json
+  "scripts": {
+    ...
+    "watch:serve": "browser-sync dist -w",
+    "watch:rollup": "rollup -w -c rollup.config.js",
+    "build:rollup": "rollup -c rollup.config.js",
++   "copy": "fse copy static dist",
+    "dev": "npm-run-all clean md-pug-to-html pug sass img -p watch:*",
++   "build": "npm-run-all clean md-pug-to-html build:pug sass build:svg build:post img build:rollup copy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+```
+
+После того, как мы выполним команду сборки проекта:
+
+```
+npm run build
+```
+
+Содержимое каталога `static` будет скопировано в каталог `dist`. Обратите внимание, сам каталог `static` не копируется.
