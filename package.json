@@ -15,6 +15,7 @@
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
     "browser-sync": "^2.27.10",
+    "cssnano": "^5.1.13",
     "imagemin-cli": "^7.0.0",
     "md-pug-to-html": "^1.2.9",
     "node-sass": "^7.0.1",
@@ -45,8 +46,8 @@
     "watch:sass": "node-sass -w src/index.scss -o tmp",
     "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
     "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
-    "watch:post": "postcss -w tmp/index.css -d docs -u postcss-preset-env",
-    "build:post": "postcss tmp/index.css -d docs -u postcss-preset-env",
+    "watch:post": "postcss -w tmp/index.css -d docs -u postcss-preset-env -u cssnano",
+    "build:post": "postcss tmp/index.css -d docs -u postcss-preset-env -u cssnano",
     "img": "imagemin src/pages/**/images src/images -o docs/images",
     "watch:serve": "browser-sync docs -w",
     "watch:rollup": "rollup -w -c rollup.config.js",
