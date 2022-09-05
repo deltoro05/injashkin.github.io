@@ -366,10 +366,11 @@ html(lang='ru')
 <p>Все более распространенным способом написания статей является язык разметки <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. Статья пишется на Markdown и сохраняется в файле с расширением <code>.md</code>. Если же в статье нужно поместить рисунки, то удобнее всего создать каталог и поместить в него статью и рисунки. Для каждой статьи создается свой каталог, а каталоги статей объединяются в каталоги по темам.</p>
 <p>Теперь, нам нужен пакетный конвертер, который сможет сканировать эти каталоги, искать файлы Markdown, преобразовать их в Html страницы и помещать в каталог сайта с сохранением исходной структуры каталогов. Также нужно, чтобы изображения к статьям были перемещены в нужные места. При этом, Html страницы должны конвертироваться согласно заданному шаблону Pug.</p>
 <p>Для вышеописанной задачи мне не удалось найти ничего подходящего в репозитории NPM. Наверное, плохо искал. Поэтому, я создал свой пакетный конвертер <a href="https://www.npmjs.com/package/md-pug-to-html">MdPugToHtml</a>.</p>
-<p>Теперь установим этот пакет в нашем проекте</p>
+<p>Установим этот пакет в нашем проекте</p>
 <pre><code>npm i -D md-pug-to-html
 </code></pre>
-<p>Теперь рассмотрим, как пользоваться этим пакетом. Для начала создадим каталог с файлами Markdown. В корневом каталоге проекта создадим каталог <code>content</code>, а в нем еще пару каталогов <code>article1</code> и <code>article2</code>. Каждому такому каталогу нужно давать имена, отражающие название статьи. Они потом будут отображаться в ЧПУ. В каждом таком каталоге будет хранится одна статья и сопутствующие ей файлы изображений если они присутствуют. Сам файл статьи лучше называть везде одинаково - <code>index.md</code>.</p>
+<p>Для конвертера MdPugToHtml написана подробная справка как на <a href="https://github.com/injashkin/md-pug-to-html/blob/main/README.ru.md">русском</a>, так и на <a href="https://github.com/injashkin/md-pug-to-html/blob/main/README.md">английском</a> языках. Здесь мы рассмотрим, как пользоваться этим пакетом в нашем конкретном случае.</p>
+<p>Для начала создадим каталог с файлами Markdown. В корневом каталоге проекта создадим каталог <code>content</code>, а в нем еще пару каталогов <code>article1</code> и <code>article2</code>. Каждому такому каталогу нужно давать имена, отражающие название статьи. Они потом будут отображаться в ЧПУ. В каждом таком каталоге будет хранится одна статья и сопутствующие ей файлы изображений если они присутствуют. Сам файл статьи лучше называть везде одинаково - <code>index.md</code>.</p>
 <p>Создадим файл <code>content/article1/index.md</code> для первой статьи и запишем в него следующее:</p>
 <pre><code>---
 title: Статья первая
@@ -389,11 +390,11 @@ create: 11-08-2022
 ## Заголовок h2 во второй статье
 </code></pre>
 <p>Блок данных, указанный в начале каждого файла называется Frontmatter, имеет формат YAML/TOML/JSON и отделяется с двух сторон тремя дефисами ---.</p>
-<p>Frontmatter не является стандартом для Markdown и не распознается многими конвертерами. Однако пакет MdPugToHtml умеет распознавать и обрабатывать Frontmatter благодаря пакету <a href="https://www.npmjs.com/package/gray-matter">gray-matter</a>, который встроен в пакет MdPugToHtml в качестве зависимости.</p>
+<p>Frontmatter не является стандартом для Markdown и не распознается многими конвертерами. Однако конвертер MdPugToHtml умеет распознавать и обрабатывать Frontmatter благодаря пакету <a href="https://www.npmjs.com/package/gray-matter">gray-matter</a>, который встроен в пакет MdPugToHtml в качестве зависимости.</p>
 <p>В файле package.json настроим MdPugToHtml</p>
 <pre><code class="language-json">  &quot;scripts&quot;: {
     &quot;clean&quot;: &quot;rimraf dist tmp&quot;,
-+   &quot;md-pug-to-html&quot;: &quot;md-pug-to-html -i=content -o=dist -t=src/pages/article&quot;,
++   &quot;md-pug-to-html&quot;: &quot;md-pug-to-html content -o dist -t src/pages/article&quot;,
     &quot;pug&quot;: &quot;pug --pretty src/pages/home/index.pug -o dist&quot;,
     &quot;watch:pug&quot;: &quot;pug --pretty -w src/pages/home/index.pug -o dist&quot;,
     &quot;sass&quot;: &quot;node-sass src/index.scss -o tmp&quot;,
@@ -404,33 +405,33 @@ create: 11-08-2022
     &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
   },
 </code></pre>
-<p>Здесь мы указали с помощью ключа <code>-i</code> каталог, где расположены файлы Markdown, с помощью ключ <code>-o</code> каталог сборки проекта, а с помощью ключа <code>-t</code> каталог, где расположен шаблон Pug для этих страниц. Так как у нас еще нет такого шаблона, то мы его создадим.</p>
-<p>Для этого, в каталоге <code>src/pages</code> создадим каталог <code>article</code>, в котором создадим файл <code>index.pug</code> со следующим содержимым:</p>
+<p>Здесь мы указали в качестве аргумента каталог <code>content</code>, где расположены файлы Markdown, с помощью опции <code>-o</code> указываем каталог сборки проекта <code>dist</code>, а с помощью опции <code>-t</code> - каталог <code>src/pages/article</code>, где расположен шаблон Pug для этих страниц. Так как у нас еще нет такого шаблона, то мы его можем создать самостоятельно. При этом имя файла шаблона должно быть <code>mpth-template.pug</code>.</p>
+<p>Для этого, в каталоге <code>src/pages</code> создадим каталог <code>article</code>, в котором создадим файл <code>mpth-template.pug</code> со следующим содержимым:</p>
 <pre><code class="language-pug">extends ../../layouts/base/index
 
 block main
   .content
     .article
-      h1= title
-      .creationDate= `Создано: ${create}`
-      include from-md.html
+      h1= data.title
+      .creationDate= `Создано: ${data.create}`
+      != contentHtml
 </code></pre>
 <p>Теперь выполним команду:</p>
 <pre><code>npm run dev
 </code></pre>
 <p>Закроем открывшееся окно браузера и перейдем в каталог <code>dist</code>. Здесь мы увидим три новых каталога <code>article1</code>, <code>article2</code> и <code>images</code>. В первых двух расположены страницы HTML, а каталог <code>images</code> пуст, в него будут копироваться файлы изображений.</p>
-<p>Если мы перейдем в каталог <code>src</code>, то увидим новый каталог <code>data</code>, в котором находится файл <code>link-list.pug</code>. Этот файл содержит массив объектов с URL адресами, заголовками и кратким описанием для каждой созданной статьи:</p>
-<pre><code class="language-pug">- const points = [{&quot;pathFile&quot;:&quot;article1/index.html&quot;,&quot;title&quot;:&quot;Статья первая&quot;,&quot;description&quot;:&quot;Краткое описание первой статьи&quot;},{&quot;pathFile&quot;:&quot;article2/index.html&quot;,&quot;title&quot;:&quot;Статья вторая&quot;,&quot;description&quot;:&quot;Краткое описание второй статьи&quot;}]
+<p>Если мы перейдем в каталог <code>src</code>, то увидим новый каталог <code>data</code>, в котором находится файл <code>mpth-data.pug</code>. Этот файл содержит массив объектов с URL адресами, заголовками и кратким описанием для каждой созданной статьи:</p>
+<pre><code class="language-pug">- const dataListItems = [{&quot;pathFile&quot;:&quot;article1/&quot;,&quot;title&quot;:&quot;Статья первая&quot;,&quot;description&quot;:&quot;Краткое описание первой статьи&quot;},{&quot;pathFile&quot;:&quot;article2/&quot;,&quot;title&quot;:&quot;Статья вторая&quot;,&quot;description&quot;:&quot;Краткое описание второй статьи&quot;}]
 </code></pre>
 <p>Этот файл мы будем использовать в компоненте, который будет отображать список ссылок на статьи. Для этого в каталоге <code>src/components</code> создадим каталог <code>list-articles</code>, а в нем создадим файл <code>index.pug</code>, в который скопируем код миксина:</p>
 <pre><code class="language-pug">mixin list-articles
 
-  include ../../data/link-list.pug
+  include ../../data/mpth-data.pug
   ul.list__box
-    each point in points
+    each item in dataListItems
       li
-        a.list__item(href=point.pathFile)= point.title
-        p= point.description
+        a.list__item(href=item.pathFile)= item.title
+        p= item.description
 </code></pre>
 <p>Теперь откроем файл <code>src/pages/home/index.pug</code> и подключим в него созданный выше миксин с помощью <code>include ../../components/list-articles/index</code>, а затем пропишем его вызов <code>+list-articles</code>:</p>
 <pre><code class="language-pug">extends ../../layouts/base/index
