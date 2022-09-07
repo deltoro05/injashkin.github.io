@@ -1,5 +1,4 @@
 ---
-description: Node.js - это среда выполнения JavaScript, которая позволяет разработчикам писать бэкэнд (серверные) программы на JavaScript.
 title: Основы Node и Express
 date: 19-12-2019
 ---

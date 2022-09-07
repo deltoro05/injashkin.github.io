@@ -28,6 +28,15 @@ header {
     flex-direction: row;
   }
 
+  &__logo .logo-text {
+    font-weight: bold;
+    font-size: 3em;
+
+    & a {
+      color: #639;
+    }
+  }
+
   &__logo .logo_mobile {
     display: none;
   }

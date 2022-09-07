@@ -17,7 +17,7 @@
     "browser-sync": "^2.27.10",
     "cssnano": "^5.1.13",
     "imagemin-cli": "^7.0.0",
-    "md-pug-to-html": "^1.2.9",
+    "md-pug-to-html": "^2.1.1",
     "node-sass": "^7.0.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
@@ -38,7 +38,7 @@
   },
   "scripts": {
     "clean": "rimraf docs tmp",
-    "md-pug-to-html": "md-pug-to-html -i=content -o=docs -t=src/pages/article",
+    "md-pug-to-html": "md-pug-to-html content -I -o docs -d src/data -t src/pages/article",
     "pug": "pug --pretty src/pages/*/*.pug -o docs",
     "watch:pug": "pug --pretty -w src/pages/*/*.pug -o docs",
     "build:pug": "pug src/pages/*/*.pug -o docs",

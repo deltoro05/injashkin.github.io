@@ -1,7 +1,7 @@
 mixin toc
 
-  include ../../data/link-list.pug
+  include ../../data/mpth-data.pug
   ul
-    each point in points    
+    each point in dataListItems    
       li
         a.list__item(href=point.pathFile)= point.title

@@ -1,7 +1,7 @@
 mixin list-articles
 
-  include ../../data/link-list.pug
-  each point in points
+  include ../../data/mpth-data.pug
+  each point in dataListItems
     article
       h3
           a.list__item(href=point.pathFile)= point.title

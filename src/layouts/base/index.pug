@@ -2,7 +2,7 @@ include ../../components/header/header
 include ../../components/footer/footer
 include ../../data/data
 
-- const {default_title, default_description} = data
+- const {default_title, default_description, site} = data
 
 block variables
   - stylesheetHref = '/index.css'
@@ -16,7 +16,7 @@ html(lang='ru')
     link(rel='stylesheet' href=stylesheetHref)
     script(defer src=scriptSrc)
     meta(name= 'description' content= description ? description : default_description)
-    title= title ? title : default_title
+    title= `${title ? title : default_title} | ${site}`
 
   body
     block header
