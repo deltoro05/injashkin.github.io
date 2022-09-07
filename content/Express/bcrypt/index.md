@@ -1,7 +1,7 @@
 ---
 title: BCrypt хэширование
 description: Модуль bcrypt позволяет хэшировать и шифровать конфиденциальные данные, такие как пароли пользователей, перед их сохранением в базу данных.
-date: 20-04-2020
+create: 20-04-2020
 ---
 
 Для написания статьи использованы источники: [bcrypt](https://www.npmjs.com/package/bcrypt) и [freecodecamp](https://www.freecodecamp.org/learn/information-security-and-quality-assurance/information-security-with-helmetjs/).
@@ -22,7 +22,7 @@ npm install bcrypt
 const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const myPlaintextPassword = 's0//P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 ```
 
@@ -35,18 +35,18 @@ const someOtherPlaintextPassword = 'not_bacon';
 Метод 1 (генерация соли и хэша при отдельных вызовах функций):
 
 ```js
-bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
-        // Храните хэш в своей базе данных паролей.
-    });
+bcrypt.genSalt(saltRounds, function (err, salt) {
+  bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
+    // Храните хэш в своей базе данных паролей.
+  });
 });
 ```
 
 Метод 2 (автогенерация соли и хэша)
 
 ```js
-bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-    // Храните хэш в своей базе данных паролей.
+bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+  // Храните хэш в своей базе данных паролей.
 });
 ```
 
@@ -56,11 +56,11 @@ bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
 
 ```js
 // Загрузите хэш из вашей базы данных паролей.
-bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
-    // result == true
+bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
+  // result == true
 });
-bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
-    // result == false
+bcrypt.compare(someOtherPlaintextPassword, hash, function (err, result) {
+  // result == false
 });
 ```
 
@@ -72,7 +72,7 @@ bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
 ```js
 bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
   /* Храните хэш в базе данных */
-  console.log(hash)
+  console.log(hash);
 });
 ```
 
@@ -111,4 +111,3 @@ var result = bcrypt.compareSync(myPlaintextPassword, hash);
 ```
 
 в результате получается логическое значение true или false.
-

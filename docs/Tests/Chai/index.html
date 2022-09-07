@@ -55,7 +55,7 @@
         <h1>Тестирование кода с помощью библиотеки Chai</h1>
         <div class="creationDate">Создано: 22-04-2020</div><p>Мне попалась переведенная с английского статья, в которой описываются <a href="https://techrocks.ru/2019/07/12/11-react-testing-tools/">11 инструментов и библиотек для тестирования React-компонентов</a>. Не лишнем будет прочитать ее прежде, чем продолжать читать далее.</p>
 <p>Источниками для данной статьи послужили: <a href="https://www.chaijs.com/guide/">chaijs</a>, <a href="https://www.freecodecamp.org/learn/information-security-and-quality-assurance/quality-assurance-and-testing-with-chai/">freecodecamp</a> и <a href="https://ru.nodejs.org/api/assert.html">nodejs</a>.</p>
-<p>Chai – это библиотека, предоставляющая различные функции для проверки утверждений. Chai - это библиотека утверждений <a href="https://medium.com/@lucyhackwrench/%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-tdd-%D0%B8-bdd-%D0%BD%D0%B0-%D0%BF%D0%B0%D0%BB%D1%8C%D1%86%D0%B0%D1%85-%D0%B8-%D1%87%D1%82%D0%BE-%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD-%D0%B7%D0%BD%D0%B0%D1%82%D1%8C-%D0%BE-%D0%BD%D0%B8%D1%85-%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-701a10e06bb9">BDD/TDD</a> для node и браузера, которая может прекрасно сочетаться с любым тестовым фреймворком JavaScript, например, таким как,  <a href="https://mochajs.org">Mocha</a> или <a href="https://jestjs.io/">Jest</a>.</p>
+<p>Chai – это библиотека, предоставляющая различные функции для проверки утверждений. Chai - это библиотека утверждений <a href="https://medium.com/@lucyhackwrench/%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-tdd-%D0%B8-bdd-%D0%BD%D0%B0-%D0%BF%D0%B0%D0%BB%D1%8C%D1%86%D0%B0%D1%85-%D0%B8-%D1%87%D1%82%D0%BE-%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD-%D0%B7%D0%BD%D0%B0%D1%82%D1%8C-%D0%BE-%D0%BD%D0%B8%D1%85-%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4%D0%B5%D1%80-701a10e06bb9">BDD/TDD</a> для node и браузера, которая может прекрасно сочетаться с любым тестовым фреймворком JavaScript, например, таким как, <a href="https://mochajs.org">Mocha</a> или <a href="https://jestjs.io/">Jest</a>.</p>
 <p>Chai имеет несколько интерфейсов, которые позволяют разработчику выбрать наиболее удобный. Цепочечные стили <a href="https://ru.wikipedia.org/wiki/BDD_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)">BDD</a> обеспечивают выразительный язык и читаемый стиль, в то время как стиль <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0_%D1%87%D0%B5%D1%80%D0%B5%D0%B7_%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">TDD</a> assert обеспечивает более классическое ощущение.</p>
 <p>Пакет Chai устанавливается из npm:</p>
 <pre><code>npm install chai
@@ -69,7 +69,7 @@
 <pre><code class="language-js">var tea = 'вкусный чай';
 assert.isNotNull(tea, 'отлично, пора пить чай!');
 </code></pre>
-<p>Во все инструкции assert можно добавить второе необязательное сообщение. Оно будет включено в сообщения об ошибках, если  assert не пройдет. Пример:</p>
+<p>Во все инструкции assert можно добавить второе необязательное сообщение. Оно будет включено в сообщения об ошибках, если assert не пройдет. Пример:</p>
 <pre><code class="language-js">var tea = 'вкусный чай';
 assert.isNotNull(tea, 'отлично, пора пить чай!', 'что-то пошло не так');
 </code></pre>
@@ -126,21 +126,29 @@ assert.isNotTrue(tea, 'отлично, пора пить чай!');
 <p><code>assert.notDeepEqual(actual, expected, [message])</code> утверждает, что объекты actual и expected полностью неравны.</p>
 <pre><code class="language-js">assert.notDeepEqual({ tea: 'green' }, { tea: 'jasmine' });
 </code></pre>
-<pre><code class="language-js">assert.deepEqual( { a: '1', b: 5 } , { b: 5, a: '1' }, &quot;порядок ключей не имеет значения&quot; );
-assert.notDeepEqual( { a: [5, 6] }, { a: [6, 5] }, &quot;положение элементов массива имеет значение !!&quot; );
+<pre><code class="language-js">assert.deepEqual(
+  { a: '1', b: 5 },
+  { b: 5, a: '1' },
+  'порядок ключей не имеет значения'
+);
+assert.notDeepEqual(
+  { a: [5, 6] },
+  { a: [6, 5] },
+  'положение элементов массива имеет значение !!'
+);
 </code></pre>
 <h2>Сравнение свойств двух элементов</h2>
 <p><code>assert.isAbove(valueToCheck, valueToBeAbove, [message])</code> утверждает, что <code>valueToCheck</code> больше (<code>&gt;</code>), чем <code>valueToBeAbove</code>.</p>
 <pre><code class="language-js">assert.isAbove(5, 2, '5 строго больше чем 2');
 assert.isAbove(Math.PI, 3, число ПИ больше чем 3);
 </code></pre>
-<p><code>assert.isBelow(valueToCheck, valueToBeBelow, [message])</code> утверждает, что <code>valueToCheck</code> меньше (<code>&lt;</code>), чем  <code>valueToBeBelow</code>.</p>
+<p><code>assert.isBelow(valueToCheck, valueToBeBelow, [message])</code> утверждает, что <code>valueToCheck</code> меньше (<code>&lt;</code>), чем <code>valueToBeBelow</code>.</p>
 <pre><code class="language-js">assert.isBelow(3, 6, '3 меньше, чем 6');
 </code></pre>
 <p><code>assert.isAtMost(valueToCheck, valueToBeAtMost, [message])</code> утверждает, что <code>valueToCheck</code> меньше или равен (<code>&lt;=</code>) <code>valueToBeAtMost</code>.</p>
 <pre><code class="language-js">assert.isAtMost(3, 6, '3 меньше или равно 6');
 assert.isAtMost(4, 4, '4 меньше или равно 4');
-assert.isAtMost('hello'.length , 5);
+assert.isAtMost('hello'.length, 5);
 assert.isAtMost(1 - Math.random(), 1);
 </code></pre>
 <p><code>assert.isAtLeast(valueToCheck, valueToBeAtLeast, [message])</code> утверждает, что <code>valueToCheck</code> больше или равен (<code>&gt;=</code>) <code>valueToBeAtLeast</code>.</p>
@@ -152,42 +160,53 @@ assert.isAtLeast(3, 3, '3 больше или равно 3');
 <pre><code class="language-js">assert.approximately(1.5, 1, 0.5, 'числа в диапазоне');
 </code></pre>
 <pre><code class="language-js">function weirdNumbers(delta) {
-    return (1 + delta - Math.random());
+  return 1 + delta - Math.random();
 }
 
-assert.approximately(weirdNumbers(0.5) , 1, 0.5 );
-assert.approximately(weirdNumbers(0.2) , 1, 0.8 );
+assert.approximately(weirdNumbers(0.5), 1, 0.5);
+assert.approximately(weirdNumbers(0.2), 1, 0.8);
 </code></pre>
 <h2>Проверка значения на массив</h2>
 <p><code>assert.isArray(value, [message])</code> утверждает, что value является массивом.</p>
-<pre><code class="language-js">var menu = [ 'зеленый', 'чай', 'длинный' ];
+<pre><code class="language-js">var menu = ['зеленый', 'чай', 'длинный'];
 assert.isArray(menu, 'какой чай нам нужен?');
 
-assert.isArray('isThisAnArray?'.split(''), 'String.prototype.split() возвращает массив');
+assert.isArray(
+  'isThisAnArray?'.split(''),
+  'String.prototype.split() возвращает массив'
+);
 </code></pre>
 <p><code>assert.isNotArray(value, [message])</code> утверждает, что value не является массивом.</p>
 <pre><code class="language-js">var menu = 'зеленый|чай|длинный';
 assert.isNotArray(menu, 'какой чай нам нужен?');
 
-assert.isNotArray([1,2,3].indexOf(2), 'indexOf возвращает число.');
+assert.isNotArray([1, 2, 3].indexOf(2), 'indexOf возвращает число.');
 </code></pre>
 <h2>Нахождение значения в массиве, строке или объекте</h2>
 <p><code>assert.include(haystack, needle, [message])</code> утверждает, что <code>haystack</code> включает в себя <code>needle</code>. Может использоваться для утверждения, что значение содержится в массиве, подстрока содержится в строке или подмножество свойств содержится в объекте.</p>
-<pre><code class="language-js">assert.include([1,2,3], 2, 'массив содержит значение');
+<pre><code class="language-js">assert.include([1, 2, 3], 2, 'массив содержит значение');
 assert.include('лесной', 'лес', 'строка содержит подстроку');
-assert.include({ foo: 'bar', hello: 'universe' }, { foo: 'bar' }, 'объект содержит свойство');
+assert.include(
+  { foo: 'bar', hello: 'universe' },
+  { foo: 'bar' },
+  'объект содержит свойство'
+);
 </code></pre>
 <p>Используется строгое равенство (<code>===</code>). Если утверждается, что значение включено в массив, выполняется поиск элемента, строго равного данному значению. Если утверждается подмножество свойств в объекте производится поиск объекта по заданным ключам свойств, проверяя, что каждый из них присутствует и строго равен заданному значению свойства. Например:</p>
-<pre><code class="language-js">var obj1 = {a: 1}
-  , obj2 = {b: 2};
+<pre><code class="language-js">var obj1 = { a: 1 },
+  obj2 = { b: 2 };
 assert.include([obj1, obj2], obj1);
-assert.include({foo: obj1, bar: obj2}, {foo: obj1});
-assert.include({foo: obj1, bar: obj2}, {foo: obj1, bar: obj2});
+assert.include({ foo: obj1, bar: obj2 }, { foo: obj1 });
+assert.include({ foo: obj1, bar: obj2 }, { foo: obj1, bar: obj2 });
 </code></pre>
 <p><code>assert.notInclude(haystack, needle, [message])</code> утверждает, что <code>haystack</code> не включает в себя <code>needle</code>. Может использоваться для утверждения отсутствия значения в массиве, подстроки в строке или подмножества свойств в объекте.</p>
-<pre><code class="language-js">assert.notInclude([1,2,3], 4, &quot;массив не содержит значение&quot;);
-assert.notInclude('foobar', 'baz', &quot;строка не содержит подстроку&quot;);
-assert.notInclude({ foo: 'bar', hello: 'universe' }, { foo: 'baz' }, 'объект не содержит свойство');
+<pre><code class="language-js">assert.notInclude([1, 2, 3], 4, 'массив не содержит значение');
+assert.notInclude('foobar', 'baz', 'строка не содержит подстроку');
+assert.notInclude(
+  { foo: 'bar', hello: 'universe' },
+  { foo: 'baz' },
+  'объект не содержит свойство'
+);
 </code></pre>
 <h2>Проверка значения на строку</h2>
 <p><code>assert.isString(value, [message])</code> утверждает, что <code>value</code> является строкой.</p>
@@ -205,21 +224,21 @@ assert.isNotString(teaOrder, 'размещенный заказ');
 <p><code>assert.notMatch(value, regexp, [message])</code> утверждает, что <code>value</code> не соответствует регулярному выражению <code>regexp</code>.</p>
 <pre><code class="language-js">assert.notMatch('foobar', /^foo/, 'регулярное выражение не совпадает');
 </code></pre>
-<pre><code class="language-js">var formatPeople = function(name, age) {
-    return '# name: ' + name + ', age: ' + age + '\n';
+<pre><code class="language-js">var formatPeople = function (name, age) {
+  return '# name: ' + name + ', age: ' + age + '\n';
 };
 
-var regex =  /^#\sname\:\s[\w\s]+,\sage\:\s\d+\s?$/;
+var regex = /^#\sname\:\s[\w\s]+,\sage\:\s\d+\s?$/;
 assert.match(formatPeople('John Doe', 35), regex);
 assert.notMatch(formatPeople('Paul Smith III', 'twenty-four'), regex);
 </code></pre>
 <h2>Проверка наличия свойств у объекта</h2>
 <p><code>assert.property(object, property, [message])</code> утверждает, что <code>object</code> имеет прямое или наследуемое свойство <code>property</code>.</p>
-<pre><code class="language-js">assert.property({ tea: { green: 'matcha' }}, 'tea');
-assert.property({ tea: { green: 'matcha' }}, 'toString');
+<pre><code class="language-js">assert.property({ tea: { green: 'matcha' } }, 'tea');
+assert.property({ tea: { green: 'matcha' } }, 'toString');
 </code></pre>
 <p><code>assert.notProperty(object, property, [message])</code> утверждает, что <code>object</code> не имеет прямого или наследуемого свойства <code>property</code>.</p>
-<pre><code class="language-js">assert.notProperty({ tea: { green: 'matcha' }}, 'coffee');
+<pre><code class="language-js">assert.notProperty({ tea: { green: 'matcha' } }, 'coffee');
 </code></pre>
 <h2>Проверка значения на соответствие определенному типу структуры данных</h2>
 <p><code>assert.typeOf(value, name, [message])</code> утверждает, что тип <code>value</code> - это <code>name</code>, как определено <code>Object.prototype.toString</code>.</p>
@@ -236,14 +255,18 @@ assert.typeOf(undefined, 'undefined', 'мы имеем undefined');
 </code></pre>
 <h2>Проверка, является ли объект экземпляром конструктора</h2>
 <p><code>assert.instanceOf(object, constructor, [message])</code> утверждает, что <code>object</code> является экземпляром <code>constructor</code>.</p>
-<pre><code class="language-js">var Tea = function (name) { this.name = name; }
-  , chai = new Tea('chai');
+<pre><code class="language-js">var Tea = function (name) {
+    this.name = name;
+  },
+  chai = new Tea('chai');
 
 assert.instanceOf(chai, Tea, 'chai является экземпляром tea');
 </code></pre>
 <p><code>assert.notInstanceOf(object, constructor, [message])</code> утверждает, что <code>object</code> не является экземпляром <code>constructor</code>.</p>
-<pre><code class="language-js">var Tea = function (name) { this.name = name; }
-  , chai = new String('chai');
+<pre><code class="language-js">var Tea = function (name) {
+    this.name = name;
+  },
+  chai = new String('chai');
 
 assert.notInstanceOf(chai, Tea, 'chai не является экземпляром tea');
 </code></pre>

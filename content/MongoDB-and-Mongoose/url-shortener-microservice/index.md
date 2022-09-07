@@ -1,7 +1,7 @@
 ---
 title: Генерация коротких URL адресов
 description: Микросервис сокращает URL адреса, а при вводе коротких URL преобразует обратно в исходные. Написано на JavaScript
-date: 01-03-2020
+create: 01-03-2020
 ---
 
 Данная статья описывает мой учебный проект на [FreeCodeCamp](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/url-shortener-microservice).
@@ -34,4 +34,3 @@ POST [project_url]/api/shorturl/new - body (urlencoded) : url=https://www.google
 ## Решение
 
 Вот ссылки, где можно просмотреть [демонстрацию](https://url-shortener-injashkin.glitch.me) моего проекта и его [исходный код](https://github.com/injashkin/url-shortener.git)
-

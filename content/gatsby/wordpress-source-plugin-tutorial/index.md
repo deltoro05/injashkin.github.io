@@ -1,8 +1,9 @@
 ---
 title: Руководство по плагину WordPress Source
 description: Руководство по установке и работе с плагином `gatsby-source-wordpress`, который позволяет извлекать данные из WordPress и использовать на Gatsby сайте
-date: 10-04-2020
+create: 10-04-2020
 ---
+
 ## Как создать сайт с данными, полученными из WordPress
 
 Перевод статьи [WordPress Source Plugin Tutorial](https://www.gatsbyjs.org/tutorial/wordpress-source-plugin-tutorial/#how-to-create-a-site-with-data-pulled-from-wordpress).
@@ -13,7 +14,7 @@ date: 10-04-2020
 
 #### Для тех, кто предпочитает GraphQL
 
-Если вы предпочитаете использовать GraphQL, то существует плагин [wp-graphql](https://github.com/wp-graphql/wp-graphql), который легко отображает как стандартные, так и пользовательские данные в WordPress. 
+Если вы предпочитаете использовать GraphQL, то существует плагин [wp-graphql](https://github.com/wp-graphql/wp-graphql), который легко отображает как стандартные, так и пользовательские данные в WordPress.
 
 В плагине wp-graphql поддерживаются те же схемы аутентификации, что и в WP-API. Плагин wp-graphql можно использовать совместно с плагином [gatsby-source-graphql](https://www.gatsbyjs.org/packages/gatsby-source-graphql/).
 
@@ -39,7 +40,6 @@ npm install gatsby-source-wordpress
 ```
 
 Добавьте плагин `gatsby-source-wordpress` в файл `gatsby-config.js` используя следующий код, который вы также найдете в [исходном коде демо-сайта](https://github.com/gatsbyjs/gatsby/blob/master/examples/using-wordpress/gatsby-config.js).
-
 
 ```js:title=gatsby-config.js
 module.exports = {

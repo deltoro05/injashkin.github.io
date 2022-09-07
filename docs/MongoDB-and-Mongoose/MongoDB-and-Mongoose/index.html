@@ -109,7 +109,7 @@ cd myapp
 </code></pre>
 <p>В файле <code>package.json</code> будет добавлена зависимость:</p>
 <pre><code class="language-json">  &quot;dependencies&quot;: {
-    &quot;dotenv&quot;: &quot;^8.2.0&quot;, 
+    &quot;dotenv&quot;: &quot;^8.2.0&quot;,
   }
 </code></pre>
 <p>Теперь, если вам необходимо использовать какую-нибудь переменную окружения из файла <code>env</code> в одном из файлов вашего приложения, вы должны в этом файле просто подключить пакет <code>dotenv</code> следующим образом:</p>
@@ -125,12 +125,16 @@ var mongoose = require('mongoose');
 require('dotenv').config();
 
 //Соединение с базой данных
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  //Если при соединении с БД происходит ошибка, то выбрасывается исключение, и все дальнейшее исполнение функции прерывается.
-  if (err) throw err;
-  //Если соединение с БД выполнено успешно выводится сообщение 'БД подключена'
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    //Если при соединении с БД происходит ошибка, то выбрасывается исключение, и все дальнейшее исполнение функции прерывается.
+    if (err) throw err;
+    //Если соединение с БД выполнено успешно выводится сообщение 'БД подключена'
+    console.log('БД подключена');
+  }
+);
 </code></pre>
 <p>В функции <code>connect()</code> первый параметр <code>process.env.MONGO_URI</code> - это URI для подключения приложения к БД (в данном случае значение свойства MONGO_URI хранится в файле <code>.env</code>). Вторым параметром в функции <code>connect()</code> является необязательный объект опций. Третий параметр - это функция обратного вызова, которая будет вызвана после попытки соединения с базой данных.</p>
 <h2>Создание модели</h2>
@@ -143,19 +147,23 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 //Создание схемы
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
-  age: { type: Number, min: 18, index: true }
+  name: { type: String, default: 'Анонимный' },
+  age: { type: Number, min: 18, index: true },
 });
 
 //Создание модели из схемы.
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 </code></pre>
 <p>Каждое поле в <code>mongoose.Schema</code> характеризуется типом и может иметь дополнительные характеристики: <code>default</code>, <code>min</code> и <code>max</code> (для Number), <code>match</code> и <code>enum</code> (для String), <code>index</code> и <code>unique</code> (для индексов). Подробнее о типах можно почитать <a href="https://mongoosejs.com/docs/schematypes.html">тут</a>.</p>
 <p>В функции <code>mongoose.model</code> первый параметр - это имя модели, второй параметр - имя схемы, из которой создается модель.</p>
@@ -165,21 +173,29 @@ const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: &quot;Анонимный&quot; },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Создание объекта модели, т. е. документа
-var ivanPetrov = new UserModel({ name: &quot;Ivan Petrov&quot;, age: 25, favoriteFoods: [&quot;чипсы&quot;, &quot;кока-кола&quot;] });
+var ivanPetrov = new UserModel({
+  name: 'Ivan Petrov',
+  age: 25,
+  favoriteFoods: ['чипсы', 'кока-кола'],
+});
 
 //Сохранение документа в БД
 ivanPetrov.save(function (err, data) {
@@ -195,31 +211,34 @@ ivanPetrov.save(function (err, data) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: &quot;Анонимный&quot; },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Массив, из которого данные будут помещены в БД
 var arrayUsers = [
-  { name: &quot;Светлана&quot;, age: 21, favoriteFoods: [&quot;чипсы&quot;, &quot;кофе&quot;] },
-  { name: &quot;Kamila&quot;, age: 35, favoriteFoods: [&quot;гамбургер&quot;, &quot;кока-кола&quot;] },
-  { name: &quot;Олег&quot;, age: 27, favoriteFoods: [&quot;роллы&quot;, &quot;кофе&quot;] }
+  { name: 'Светлана', age: 21, favoriteFoods: ['чипсы', 'кофе'] },
+  { name: 'Kamila', age: 35, favoriteFoods: ['гамбургер', 'кока-кола'] },
+  { name: 'Олег', age: 27, favoriteFoods: ['роллы', 'кофе'] },
 ];
 
 UserModel.create(arrayUsers, function (err, users) {
   if (err) return console.log(err);
   console.log('В базе данных созданы ' + users.length + ' документа');
 });
-
 </code></pre>
 <p>Таким образом с помощью функции <code>create()</code> из массива <code>arrayUsers</code> были добавлены еще три документа в БД, а на консоль выведена сообщение &quot;В базе данных созданы 3 документа&quot;. Обратите внимание, в базе данных теперь четыре документа.</p>
 <p>Первый аргумент в методе <code>Model.create()</code> - это документы в виде массива или объекта, которые будут вставлены в БД. Второй аргумент - это функция обратного вызова.</p>
@@ -229,24 +248,33 @@ UserModel.create(arrayUsers, function (err, users) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
-  age: { type: Number, min: 18, index: true }
+  name: { type: String, default: 'Анонимный' },
+  age: { type: Number, min: 18, index: true },
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-var userName = &quot;Светлана&quot;;
+var userName = 'Светлана';
 
 //Поиск в БД
 UserModel.find({ name: userName }, function (err, data) {
   if (err) return console.log(err);
-  console.log('Все пользователи с именем ' + userName + ' найдены. Их всего ' + data.length);
+  console.log(
+    'Все пользователи с именем ' +
+      userName +
+      ' найдены. Их всего ' +
+      data.length
+  );
 });
 </code></pre>
 <p>Первый параметр в функции <code>find()</code> - это селектор, являющийся объектом, который указывает, что нужно искать в базе данных. Если селектор не указан, возвращаются все документы из БД. Вторым параметром в функции <code>find()</code> является функция обратного вызова.</p>
@@ -258,20 +286,24 @@ UserModel.find({ name: userName }, function (err, data) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: &quot;Анонимный&quot; },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.findOne({ name: &quot;Светлана&quot; }, function (err, data) {
+UserModel.findOne({ name: 'Светлана' }, function (err, data) {
   if (err) return console.log(err);
   console.log('Пользователь ' + data.name + ' найден');
 });
@@ -283,26 +315,38 @@ UserModel.findOne({ name: &quot;Светлана&quot; }, function (err, data) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: &quot;Анонимный&quot; },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Определенине id для поиска
-var userId = &quot;5e24c27a0d07d02119c39ed7&quot;;
+var userId = '5e24c27a0d07d02119c39ed7';
 
 //Поиск документа по _id
 UserModel.findById(userId, function (err, data) {
   if (err) return console.log(err);
-  console.log('Пользователь c id = ' + data._id + ' найден, его зовут ' + data.name + ', ему ' + data.age + ' лет');
+  console.log(
+    'Пользователь c id = ' +
+      data._id +
+      ' найден, его зовут ' +
+      data.name +
+      ', ему ' +
+      data.age +
+      ' лет'
+  );
 });
 </code></pre>
 <p>Если документ с указанным id найден, то на консоль будет выведено сообщение &quot;Пользователь c id = 5e24c27a0d07d02119c39ed7 найден, его зовут Олег, ему 27 лет&quot;.</p>
@@ -312,27 +356,31 @@ UserModel.findById(userId, function (err, data) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 /*Обновление документа*/
-//Поиск документа по _id 
-UserModel.findById(&quot;5e25a8e88170fb0f8ce90f6f&quot;, function (err, user) {
+//Поиск документа по _id
+UserModel.findById('5e25a8e88170fb0f8ce90f6f', function (err, user) {
   if (err) return console.error(err);
 
-  //Присвоение измененных значений 
+  //Присвоение измененных значений
   user.name = 'Светлана Иванова';
-  user.favoriteFoods.push(&quot;гамбургер&quot;)
+  user.favoriteFoods.push('гамбургер');
 
   //Сохранение документа в БД
   user.save(function (err) {
@@ -347,18 +395,22 @@ UserModel.findById(&quot;5e25a8e88170fb0f8ce90f6f&quot;, function (err, user) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Обновление документа в БД
 UserModel.findOneAndUpdate(
@@ -380,20 +432,24 @@ UserModel.findOneAndUpdate(
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.findByIdAndRemove(&quot;5e25a8e88170fb0f8ce90f71&quot;, function (err, user) {
+UserModel.findByIdAndRemove('5e25a8e88170fb0f8ce90f71', function (err, user) {
   if (err) return console.error(err);
   console.log('Пользователь ' + user.name + ' удален из БД');
 });
@@ -404,23 +460,27 @@ UserModel.findByIdAndRemove(&quot;5e25a8e88170fb0f8ce90f71&quot;, function (err,
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.remove({ name: &quot;Tom&quot; }, function (err, data) {
-  if (err) return console.log(err); 
-    console.log('Удалено ' + data.n + ' документов из БД');    
-})
+UserModel.remove({ name: 'Tom' }, function (err, data) {
+  if (err) return console.log(err);
+  console.log('Удалено ' + data.n + ' документов из БД');
+});
 </code></pre>
 <p>Примечание: Метод <code>remove()</code> возвращает не удаленный документ, а объект JSON, содержащий результат операции и количество удаленных элементов.</p>
 <h2>Цепочка помощников по поисковым запросам для сужения результатов поиска</h2>
@@ -428,18 +488,22 @@ UserModel.remove({ name: &quot;Tom&quot; }, function (err, data) {
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: &quot;Анонимный&quot; },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model(&quot;UserModel&quot;, userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 UserModel.find({ favoriteFoods: 'чипсы' })
   .sort({ name: 'asc' })
@@ -449,7 +513,7 @@ UserModel.find({ favoriteFoods: 'чипсы' })
     if (err) return console.error(err);
     console.log('Найдены пользователи, которые любят чипсы');
     console.log(user);
-  });  
+  });
 </code></pre>
 <p>Вышеприведенный код находит в базе данных людей, которые любят <code>чипсы</code>, сортирует их по имени, ограничивает результаты поиска двумя документами и при выводе результатов скрывает их возраст. Результат выводится в виде массива документов.</p>
 <p><code>sort({ name: 'asc' })</code> - Устанавливает порядок сортировки по полю <code>name</code>. Допустимые значения для сортировки: <code>asc</code>, <code>ascending</code> или <code>1</code> - сортировка по возрастанию; <code>desc</code>, <code>descending</code> или <code>-1</code> - сортировка по убыванию. В качестве параметра сортировки можно задавать не только объект, но и строку. В этом случае должен быть разделенный пробелом список имен полей. Если перед именем поля не стоит знак &quot;минус&quot;, то порядок сортировки будет возрастающим, если знак &quot;минус&quot; стоит, то порядок сортировки будет убывающим.</p>

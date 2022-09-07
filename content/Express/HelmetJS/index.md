@@ -1,7 +1,7 @@
 ---
 title: Информационная безопасность с HelmetJS
 description: Модуль HelmetJS - это набор функций middleware, которые устанавливают определенные HTTP-заголовки для обеспечения безопасности.
-date: 16-04-2020
+create: 16-04-2020
 ---
 
 Для написания статьи использованы источники: [helmetjs](https://helmetjs.github.io/docs) и [freecodecamp](https://www.freecodecamp.org/learn/information-security-and-quality-assurance/information-security-with-helmetjs/).
@@ -25,14 +25,14 @@ app.use(helmet());
 
 ## `helmet.hidePoweredBy()` скрывает потенциально опасную информацию
 
-Хакеры могут использовать известные уязвимости в Express/Node, если они видят, что ваш сайт работает на Express. На каждый клиентский запрос Express отправляет ответ, в котором, по умолчанию, присутствует HTTP заголовок `X-Powered-By: Express`. Промежуточный обработчик `helmet.hidePoweredBy()` удаляет заголовок X-Powered-By. 
+Хакеры могут использовать известные уязвимости в Express/Node, если они видят, что ваш сайт работает на Express. На каждый клиентский запрос Express отправляет ответ, в котором, по умолчанию, присутствует HTTP заголовок `X-Powered-By: Express`. Промежуточный обработчик `helmet.hidePoweredBy()` удаляет заголовок X-Powered-By.
 
 ```js
 var helmet = require('helmet');
 app.use(helmet.hidePoweredBy());
 ```
 
-Вы также можете явно установить заголовок на что-то другое, чтобы сбить людей с толку, например, 
+Вы также можете явно установить заголовок на что-то другое, чтобы сбить людей с толку, например,
 
 ```js
 var helmet = require('helmet');
@@ -41,7 +41,7 @@ app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 
 ## `helmet.frameguard()` уменьшает риск взлома
 
-Ваша страница может быть помещена в `<frame>` или `<iframe>` без вашего согласия. Это может привести, в частности, к кликджекинг атакам. Clickjacking - это метод обмана пользователя, заставляющий его взаимодействовать со страницей, отличной от той, которую он видит. Этого можно добиться, запустив вашу страницу с вредоносным содержимым, с помощью iframing. В этом содержимом хакер может наложить на вашу страницу скрытый слой. Скрытые кнопки могут быть использованы для запуска плохих сценариев. 
+Ваша страница может быть помещена в `<frame>` или `<iframe>` без вашего согласия. Это может привести, в частности, к кликджекинг атакам. Clickjacking - это метод обмана пользователя, заставляющий его взаимодействовать со страницей, отличной от той, которую он видит. Этого можно добиться, запустив вашу страницу с вредоносным содержимым, с помощью iframing. В этом содержимом хакер может наложить на вашу страницу скрытый слой. Скрытые кнопки могут быть использованы для запуска плохих сценариев.
 
 Чтобы браузер не помещал вашу веб-страницу в iframe нужно послать ему заголовок X-Frame-Options. Когда браузеры загружают iframes, они проверяют значение заголовка X-Frame-Options и прерывают загрузку, если это не разрешено.
 
@@ -57,16 +57,16 @@ app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 
 ```js
 var helmet = require('helmet');
-app.use(helmet.frameguard({ action: 'sameorigin' }))
+app.use(helmet.frameguard({ action: 'sameorigin' }));
 ```
 
 Можно, также, использовать его в качестве автономного модуля:
 
 ```js
 //Убедитесь, что вы запустили "npm install frameguard", чтобы получить пакет Frameguard.
-const frameguard = require('frameguard')
+const frameguard = require('frameguard');
 
-app.use(frameguard({ action: 'deny' }))
+app.use(frameguard({ action: 'deny' }));
 ```
 
 ## `helmet.xssFilter()` уменьшает риск межсайтовых скриптовых атак (XSS)
@@ -83,17 +83,17 @@ HTTP-заголовок X-XSS-Protection является базовой защ�
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
 // Устанавливает "X-XSS-Protection: 1; mode=block".
-app.use(helmet.xssFilter())
+app.use(helmet.xssFilter());
 ```
 
 Более подробно о helmet.xssFilter() читайте [здесь](https://helmetjs.github.io/docs/xss-filter/).
 
 ## `helmet.noSniff()` не позволяет клиенту угатывать в ответе MIME-тип
 
-Когда поступает ответ от сервера, браузеры могут использовать MIME-сниффинг для адаптации к различным типам данных. MIME-сниффинг - это способ определения MIME-типов у файлов, которые поступают к клиенту от сервера. Изображения PNG имеют MIME-тип `image/png`; файлы JSON - `application/json`; файлы JavaScript имеют, обычно, MIME-тип `text/javascript`. 
+Когда поступает ответ от сервера, браузеры могут использовать MIME-сниффинг для адаптации к различным типам данных. MIME-сниффинг - это способ определения MIME-типов у файлов, которые поступают к клиенту от сервера. Изображения PNG имеют MIME-тип `image/png`; файлы JSON - `application/json`; файлы JavaScript имеют, обычно, MIME-тип `text/javascript`.
 
 MIME-сниффинг может быть вектором атаки. Пользователь может загрузить файл изображения с расширением `.jpg`, но его содержимое на самом деле будет HTML. И когда вы захотите просмотреть это изображение, браузер "запустит" HTML-страницу, которая может содержать вредоносный JavaScript код. Пожалуй, самая отвратительная атака называется [Rosetta Flash](https://miki.it/blog/2014/7/8/abusing-jsonp-with-rosetta-flash/), которая позволяет кому-то загружать вредоносный Flash-плагин вместо данных!
 
@@ -103,10 +103,10 @@ Helmet имеет промежуточный обработчик noSniff, ко�
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
 // Устанавливает "X-Content-Type-Options: nosniff".
-app.use(helmet.noSniff())
+app.use(helmet.noSniff());
 ```
 
 Более подробно о `helmet.noSniff()` читайте [здесь](https://helmetjs.github.io/docs/dont-sniff-mimetype/).
@@ -121,10 +121,10 @@ app.use(helmet.noSniff())
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
 // Устанавливает "X-Download-Options: noopen".
-app.use(helmet.ieNoOpen())
+app.use(helmet.ieNoOpen());
 ```
 
 Более подробно о `helmet.ieNoOpen()` читайте [здесь](https://helmetjs.github.io/docs/ienoopen/).
@@ -141,14 +141,16 @@ Strict-Transport-Security: max-age=5184000
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
 // Устанавливает "Strict-Transport-Security: max-age=5184000";
 // директива includeSubDomains включена по умолчанию.
-const sixtyDaysInSeconds = 5184000
-app.use(helmet.hsts({
-  maxAge: sixtyDaysInSeconds
-}))
+const sixtyDaysInSeconds = 5184000;
+app.use(
+  helmet.hsts({
+    maxAge: sixtyDaysInSeconds,
+  })
+);
 ```
 
 Обратите внимание, что заголовок не будет указывать пользователям, использующим HTTP переключаться на HTTPS, он просто скажет пользователям HTTPS оставаться на этом протоколе. Вы можете применить HTTPS с помощью модуля [express-enforces-ssl](https://github.com/aredo/express-enforces-ssl).
@@ -157,10 +159,12 @@ app.use(helmet.hsts({
 
 ```js
 const sixtyDaysInSeconds = 5184000;
-app.use(helmet.hsts({
-  maxAge: sixtyDaysInSeconds,
-  includeSubDomains: false
-}))
+app.use(
+  helmet.hsts({
+    maxAge: sixtyDaysInSeconds,
+    includeSubDomains: false,
+  })
+);
 ```
 
 Примечание: настройка HTTPS на веб-сайте требует приобретения домена и сертификата SSL/TSL.
@@ -179,10 +183,10 @@ app.use(helmet.hsts({
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
 // Устанавливает "X-DNS-Prefetch-Control: off".
-app.use(helmet.dnsPrefetchControl())
+app.use(helmet.dnsPrefetchControl());
 ```
 
 Более подробно о `helmet.dnsPrefetchControl()` читайте [здесь](https://helmetjs.github.io/docs/dns-prefetch-control/).
@@ -203,9 +207,9 @@ app.use(helmet.dnsPrefetchControl())
 
 ```js
 // Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const noCache = require('nocache')
+const noCache = require('nocache');
 
-app.use(helmet.noCache())
+app.use(helmet.noCache());
 ```
 
 Более подробно о `helmet.noCache()` читайте [здесь](https://helmetjs.github.io/docs/nocache/).
@@ -251,30 +255,34 @@ CSP работает, определяя белый список источни�
 
 ```js
 //  Убедитесь, что вы установили пакет Helmet с помощью "npm install helmet".
-const helmet = require('helmet')
+const helmet = require('helmet');
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
-  }
-}))
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com'],
+    },
+  })
+);
 ```
 
 Все ваши директивы CSP (например, default-src, style-src) помещаются под параметром directives.
 
 ```js
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'", 'default.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'"],
-    sandbox: ['allow-forms', 'allow-scripts'],
-    reportUri: '/report-violation',
-    objectSrc: ["'none'"],
-    upgradeInsecureRequests: true,
-    workerSrc: false  // Это не установлено.
-  }
-}))
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", 'default.com'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      sandbox: ['allow-forms', 'allow-scripts'],
+      reportUri: '/report-violation',
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: true,
+      workerSrc: false, // Это не установлено.
+    },
+  })
+);
 ```
 
 Директивы можно записывать в виде kebab-cased (например, script-src) или camel-cased (например, scriptSrc); эти записи эквивалентны.
@@ -290,7 +298,7 @@ app.use(helmet.contentSecurityPolicy({
 - form-action or formAction
 - frame-ancestors or frameAncestors
 - frame-src or frameSrc
--img-src or imgSrc
+  -img-src or imgSrc
 - manifest-src or manifestSrc
 - media-src or mediaSrc
 - object-src or objectSrc
@@ -315,19 +323,21 @@ app.use(helmet.contentSecurityPolicy({
 
 ```js
 // Сначала вам нужен парсер JSON.
-app.use(bodyParser.json({
-  type: ['json', 'application/csp-report']
-}))
+app.use(
+  bodyParser.json({
+    type: ['json', 'application/csp-report'],
+  })
+);
 
 app.post('/report-violation', (req, res) => {
   if (req.body) {
-    console.log('CSP Violation: ', req.body)
+    console.log('CSP Violation: ', req.body);
   } else {
-    console.log('CSP Violation: No data received!')
+    console.log('CSP Violation: No data received!');
   }
 
-  res.status(204).end()
-})
+  res.status(204).end();
+});
 ```
 
 Не все браузеры отсылают нарушения CSP одинаково, поэтому это может потребовать небольшой работы.
@@ -398,25 +408,27 @@ app.use(helmet.contentSecurityPolicy({
 Вы можете динамически генерировать `nonces`, чтобы позволить встроенным тегам <script> безопасно анализироваться. Вот простой пример:
 
 ```js
-const uuidv4 = require('uuid/v4')
+const uuidv4 = require('uuid/v4');
 
 app.use(function (req, res, next) {
-  res.locals.nonce = uuidv4()
-  next()
-})
+  res.locals.nonce = uuidv4();
+  next();
+});
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    scriptSrc: [
-      "'self'",
-      (req, res) => `'nonce-${res.locals.nonce}'`  // 'nonce-614d9122-d5b0-4760-aecf-3a5d17cf0ac9'
-    ]
-  }
-}))
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      scriptSrc: [
+        "'self'",
+        (req, res) => `'nonce-${res.locals.nonce}'`, // 'nonce-614d9122-d5b0-4760-aecf-3a5d17cf0ac9'
+      ],
+    },
+  })
+);
 
 app.use(function (req, res) {
-  res.end(`<script nonce="${res.locals.nonce}">alert(1 + 1);</script>`)
-})
+  res.end(`<script nonce="${res.locals.nonce}">alert(1 + 1);</script>`);
+});
 ```
 
 ### Использование CSP с CDN
@@ -432,19 +444,22 @@ app.use(helmet()) автоматически включает все проме�
 Пример:
 
 ```js
-app.use(helmet({
-  frameguard: {         // конфигурирование
-    action: 'deny'
-  },
-  contentSecurityPolicy: {    // включение и конфигурирование
-    directives: {
-      defaultSrc: ["self"],
-      styleSrc: ['style.com'],
-    }
-  },
-  dnsPrefetchControl: false     // отключение
-}))
+app.use(
+  helmet({
+    frameguard: {
+      // конфигурирование
+      action: 'deny',
+    },
+    contentSecurityPolicy: {
+      // включение и конфигурирование
+      directives: {
+        defaultSrc: ['self'],
+        styleSrc: ['style.com'],
+      },
+    },
+    dnsPrefetchControl: false, // отключение
+  })
+);
 ```
 
 В этом руководстве каждый промежуточный обработчик показан отдельно для целей обучения. Использование 'родительского' промежуточного обработчика `helmet()` легко реализовать в реальном проекте.
-

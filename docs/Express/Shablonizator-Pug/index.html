@@ -60,29 +60,29 @@
 <pre><code>$ npm install pug
 </code></pre>
 <p>Создададим файл app.js со следующим кодом:</p>
-<pre><code class="language-js">const express = require(&quot;express&quot;)
+<pre><code class="language-js">const express = require('express');
 
-const app = express()
+const app = express();
 
-app.set(&quot;view engine&quot;, &quot;pug&quot;) // Указывает, что в качестве шаблонизатора используется Pug
+app.set('view engine', 'pug'); // Указывает, что в качестве шаблонизатора используется Pug
 
 /* Нижеприведенную строку кода можно не писать, так как каталог /views устанавливается по умолчанию. */
-app.set(&quot;views&quot;, &quot;./views&quot;) // Указывает на каталог, в котором находятся файлы шаблонов.
+app.set('views', './views'); // Указывает на каталог, в котором находятся файлы шаблонов.
 
-app.use(&quot;/contact&quot;, function(req, res) {
-  res.render(&quot;contact&quot;, {
+app.use('/contact', function (req, res) {
+  res.render('contact', {
     //&quot;contact&quot; - это имя файла шаблона в каталоге views
-    title: &quot;Мои номера телефонов&quot;,
+    title: 'Мои номера телефонов',
     phonesVisible: true,
-    phones: [&quot;+1234567890&quot;, &quot;+9876543210&quot;],
-    email: &quot;tuk@tuk.com&quot;,
-  })
-})
+    phones: ['+1234567890', '+9876543210'],
+    email: 'tuk@tuk.com',
+  });
+});
 
-app.use(&quot;/&quot;, function(req, res) {
-  res.send(&quot;Главная страница&quot;)
-})
-app.listen(3000)
+app.use('/', function (req, res) {
+  res.send('Главная страница');
+});
+app.listen(3000);
 </code></pre>
 <p>Затем добавим в папку <code>views</code> файл <code>contact.pug</code> со следующим кодом:</p>
 <pre><code class="language-pug">&lt;!DOCTYPE html&gt;

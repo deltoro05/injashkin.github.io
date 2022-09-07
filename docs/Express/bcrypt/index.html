@@ -63,32 +63,32 @@
 <pre><code class="language-js">const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const myPlaintextPassword = 's0//P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 </code></pre>
 <p>Более подробно о <code>node.bcrypt.js</code> читайте <a href="https://www.npmjs.com/package/bcrypt">здесь</a>.</p>
 <h2>Хеширование и сравнение паролей асинхронно</h2>
 <p>Чтобы хэшировать пароль:</p>
 <p>Метод 1 (генерация соли и хэша при отдельных вызовах функций):</p>
-<pre><code class="language-js">bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
-        // Храните хэш в своей базе данных паролей.
-    });
+<pre><code class="language-js">bcrypt.genSalt(saltRounds, function (err, salt) {
+  bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
+    // Храните хэш в своей базе данных паролей.
+  });
 });
 </code></pre>
 <p>Метод 2 (автогенерация соли и хэша)</p>
-<pre><code class="language-js">bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-    // Храните хэш в своей базе данных паролей.
+<pre><code class="language-js">bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+  // Храните хэш в своей базе данных паролей.
 });
 </code></pre>
 <p>Обратите внимание, что оба метода дают один и тот же конечный результат.</p>
 <p>Чтобы проверить пароль:</p>
 <pre><code class="language-js">// Загрузите хэш из вашей базы данных паролей.
-bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
-    // result == true
+bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
+  // result == true
 });
-bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
-    // result == false
+bcrypt.compare(someOtherPlaintextPassword, hash, function (err, result) {
+  // result == false
 });
 </code></pre>
 <p>Почему асинхронный режим рекомендуется использовать вместо синхронного режима?
@@ -96,7 +96,7 @@ bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
 <p>Поскольку хэширование предназначено для интенсивных вычислений, рекомендуется делать это асинхронно на вашем сервере, чтобы избежать блокировки входящих соединений во время хэширования. Чтобы хэшировать пароль асинхронно, нужно выполнить</p>
 <pre><code class="language-js">bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) =&gt; {
   /* Храните хэш в базе данных */
-  console.log(hash)
+  console.log(hash);
 });
 </code></pre>
 <p>Теперь, когда вам нужно выяснить, является ли новый ввод теми же данными, что и хэш, вы просто используете функцию сравнения.</p>

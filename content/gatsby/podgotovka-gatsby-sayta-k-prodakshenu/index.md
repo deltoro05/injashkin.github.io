@@ -1,6 +1,6 @@
 ---
 title: Руководство по Gatsby. Тестирование и подготовка сайта к публикации
-date: 09-02-2020
+create: 09-02-2020
 description: Как подготовить Gatsby сайт к работе. Инструмент диагностики сайта - Lighthouse. Добавление на сайт файла манифеста, офлайн поддержки, метаданных для страниц
 ---
 
@@ -20,7 +20,7 @@ description: Как подготовить Gatsby сайт к работе. Ин
 
 ## Как выполнить тест с помощью Lighthouse
 
-Lighthouse - автоматизированный инструмент с открытым исходным кодом для улучшения качества веб-страниц. Lighthouse проверяет на веб-страницах производительность, доступность, PWA и др. Lighthouse входит в инструменты разработчика Chrome и позволяет проводить тесты и  обнаруживать ошибки. Скорость и доступность сайта увеличатся если устранить эти ошибки и внедрить улучшения, которые предлагает Lighthouse.
+Lighthouse - автоматизированный инструмент с открытым исходным кодом для улучшения качества веб-страниц. Lighthouse проверяет на веб-страницах производительность, доступность, PWA и др. Lighthouse входит в инструменты разработчика Chrome и позволяет проводить тесты и обнаруживать ошибки. Скорость и доступность сайта увеличатся если устранить эти ошибки и внедрить улучшения, которые предлагает Lighthouse.
 
 Сначала, создайте рабочую сборку Gatsby сайта. Сервер Gatsby оптимизирован для ускорения разработки, но сайт, который создает сервер, хотя и похож на рабочую версию, не оптимизирован как надо.
 
@@ -197,8 +197,8 @@ npm install --save gatsby-plugin-react-helmet react-helmet
 3. Используйте `React Helmet` на странице:
 
 ```jsx
-import React from "react"
-import { Helmet } from "react-helmet"
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 class Application extends React.Component {
   render() {
@@ -213,21 +213,20 @@ class Application extends React.Component {
         ...
         {/* highlight-end */}
       </div>
-    )
+    );
   }
 }
 ```
 
 Приведенный выше пример взят из [React Helmet docs](https://github.com/nfl/react-helmet#example).
 
-
 ## Дальнейшие действия
 
 ### Официальная документация
 
-- [Официальная документация](https://www.gatsbyjs.org/docs/): просмотрите официальную документацию 
-  - [Быстрый старт](https://www.gatsbyjs.org/docs/quick-start/), 
-  - [Подробные руководства](https://www.gatsbyjs.org/docs/preparing-your-environment/), 
+- [Официальная документация](https://www.gatsbyjs.org/docs/): просмотрите официальную документацию
+  - [Быстрый старт](https://www.gatsbyjs.org/docs/quick-start/),
+  - [Подробные руководства](https://www.gatsbyjs.org/docs/preparing-your-environment/),
   - [ссылки на API](https://www.gatsbyjs.org/docs/gatsby-link/) и другое.
 
 ### Официальные Плагины
@@ -238,8 +237,7 @@ class Application extends React.Component {
 
 1. [Gatsby Стартер по умолчанию](https://github.com/gatsbyjs/gatsby-starter-default): Начните проект с этого стандартного шаблона. Этот скелетный стартер поставляется с конфигурационными файлами Gatsby, которые вам могут понадобиться. _[рабочий пример](https://gatsbyjs.github.io/gatsby-starter-default/)_
 2. [Gatsby Стартер блога](https://github.com/gatsbyjs/gatsby-starter-blog): Gatsby стартер для создания классного и быстрого блога. _[рабочий пример](https://gatsbyjs.github.io/gatsby-starter-blog/)_
-3.  [Gatsby Стартер "Hello-World"](https://github.com/gatsbyjs/gatsby-starter-hello-world): Gatsby стартер с голыми предметами первой необходимости, необходимыми для сайта Gatsby. _[рабочий пример](https://gatsby-starter-hello-world-demo.netlify.com/)_
-
+3. [Gatsby Стартер "Hello-World"](https://github.com/gatsbyjs/gatsby-starter-hello-world): Gatsby стартер с голыми предметами первой необходимости, необходимыми для сайта Gatsby. _[рабочий пример](https://gatsby-starter-hello-world-demo.netlify.com/)_
 
 [Дополнительные руководства](https://www.gatsbyjs.org/tutorial/additional-tutorials/)
 
@@ -247,9 +245,8 @@ class Application extends React.Component {
 
 Внесите вклад! Прогуляйтесь по [открытым вопросам](https://github.com/gatsbyjs/gatsby/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) репозитория Gatsby и [станьте вкладчиком](https://www.gatsbyjs.org/contributing/how-to-contribute/).
 
-
 Узнайте, [“как внести вклад”](https://www.gatsbyjs.org/contributing/how-to-contribute/) в документы для еще большего количества идей.
 
-
 Для написания этой статьи использованы следующие материалы:
+
 - https://www.gatsbyjs.org/tutorial/part-eight/

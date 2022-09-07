@@ -1,8 +1,18 @@
 mixin list-articles
 
   include ../../data/mpth-data.pug
+    - 
+      function revers(date) { 
+        return date.split('-').reverse().join('-');
+      }
+    - 
+      dataListItems.sort(function(a, b) {
+        return (new Date(revers(a.create)).getTime() > new Date(revers(b.create)).getTime()? -1 : 1)
+      })
+  
   each point in dataListItems
     article
-      h3
-          a.list__item(href=point.pathFile)= point.title
+      h2
+        a.list__item(href=point.pathFile)= point.title
+      .creationDate= point.create
       p= point.description

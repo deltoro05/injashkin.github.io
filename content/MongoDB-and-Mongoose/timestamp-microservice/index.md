@@ -1,7 +1,7 @@
 ---
 title: Обработка даты и времени из GET запросов
 description: Как обработать GET запросы. Микросервис возвращает время unix и utc в формате JSON
-date: 18-01-2020
+create: 18-01-2020
 ---
 
 Данная статья является моим учебным заданием, которое я выполнил обучаясь на [FreeCodeCamp](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice)

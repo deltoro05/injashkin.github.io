@@ -1,6 +1,6 @@
 ---
 title: Основы MongoDB и Mongoose
-date: 08-01-2020
+create: 08-01-2020
 description: Краткое руководство по работе с базой данных MongoDB с помощью библиотеки Mongoose
 ---
 
@@ -8,9 +8,9 @@ description: Краткое руководство по работе с базо
 
 **MongoDB**--база данных, которая хранит данные в виде документов для использования приложением. Как правило, документы имеют структуру, подобную JSON (JavaScript Object Notation--текстовый формат обмена данными, основанный на JavaScript). Mongo--нереляционная база данных "NoSQL". Это означает, что Mongo хранит все связанные данные в одной записи, а не хранит их во многих заранее заданных таблицах, как в базе данных SQL. Некоторые преимущества этой модели хранения заключаются в следующем:
 
-* Масштабируемость: по умолчанию нереляционные базы данных распределяются (или "совместно используются") на множество систем, а не только на одну. Это облегчает повышение производительности при меньших затратах.
-* Гибкость: новые наборы данных и свойств могут быть добавлены в документ без необходимости создавать новую таблицу для этих данных.
-* Репликация: копии базы данных выполняются параллельно, поэтому, если одна из них не работает, одна из копий становится новым основным источником данных.
+- Масштабируемость: по умолчанию нереляционные базы данных распределяются (или "совместно используются") на множество систем, а не только на одну. Это облегчает повышение производительности при меньших затратах.
+- Гибкость: новые наборы данных и свойств могут быть добавлены в документ без необходимости создавать новую таблицу для этих данных.
+- Репликация: копии базы данных выполняются параллельно, поэтому, если одна из них не работает, одна из копий становится новым основным источником данных.
 
 Хотя существует много нереляционных баз данных, использование Mongo с JSON в качестве структуры хранения документов делает его логичным выбором при изучении бэкенда JavaScript. Доступ к документам и их свойствам подобен доступу к объектам в JavaScript.
 
@@ -20,9 +20,9 @@ description: Краткое руководство по работе с базо
 
 Запустите этот проект на Glitch по [этой ссылке](https://glitch.com/edit/#!/remix/clone-from-repo?REPO_URL=https://github.com/freeCodeCamp/boilerplate-mongomongoose/) или клонируйте [этот репозиторий](https://github.com/freeCodeCamp/boilerplate-mongomongoose/) на GitHub!
 
-## Размещение бесплатного экземпляра mongodb для проектов в MongoDB Atlas 
+## Размещение бесплатного экземпляра mongodb для проектов в MongoDB Atlas
 
-Для решения задач в этом руководстве нужно будет сохранять кой-какие данные, для этого будет использоваться база данных MongoDB. 
+Для решения задач в этом руководстве нужно будет сохранять кой-какие данные, для этого будет использоваться база данных MongoDB.
 
 Чтобы создавать веб-приложения с помощью базы данных MongoDB можно использовать три пути:
 
@@ -43,7 +43,7 @@ md myapp
 cd myapp
 ```
 
-С помощью команды `npm init` создайте файл `package.json`. 
+С помощью команды `npm init` создайте файл `package.json`.
 
 ```
 npm init
@@ -100,7 +100,7 @@ npm install dotenv
 
 ```json
   "dependencies": {
-    "dotenv": "^8.2.0", 
+    "dotenv": "^8.2.0",
   }
 ```
 
@@ -116,7 +116,7 @@ require('dotenv').config();
 
 В корне проекта создайте файл `index.js`, в который скопируйте следующий код.
 
-```js 
+```js
 //Подключение к файлу модуля mongoose под именем mongoose
 var mongoose = require('mongoose');
 
@@ -124,13 +124,18 @@ var mongoose = require('mongoose');
 require('dotenv').config();
 
 //Соединение с базой данных
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  //Если при соединении с БД происходит ошибка, то выбрасывается исключение, и все дальнейшее исполнение функции прерывается.
-  if (err) throw err;
-  //Если соединение с БД выполнено успешно выводится сообщение 'БД подключена'
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    //Если при соединении с БД происходит ошибка, то выбрасывается исключение, и все дальнейшее исполнение функции прерывается.
+    if (err) throw err;
+    //Если соединение с БД выполнено успешно выводится сообщение 'БД подключена'
+    console.log('БД подключена');
+  }
+);
 ```
+
 В функции `connect()` первый параметр `process.env.MONGO_URI` - это URI для подключения приложения к БД (в данном случае значение свойства MONGO_URI хранится в файле `.env`). Вторым параметром в функции `connect()` является необязательный объект опций. Третий параметр - это функция обратного вызова, которая будет вызвана после попытки соединения с базой данных.
 
 ## Создание модели
@@ -141,7 +146,7 @@ CRUD - это сокращение для операций Create, Read, Update 
 
 В mongoose все завязано на 2х ключевых понятиях Схема(Schema) – описание сущности и Модель – сама сущность.
 
-Прежде всего вам нужна [схема]https://mongoosejs.com/docs/guide.html. 
+Прежде всего вам нужна [схема]https://mongoosejs.com/docs/guide.html.
 
 Создадайте схему и модель из неё.
 
@@ -151,19 +156,23 @@ CRUD - это сокращение для операций Create, Read, Update 
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 //Создание схемы
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
-  age: { type: Number, min: 18, index: true }
+  name: { type: String, default: 'Анонимный' },
+  age: { type: Number, min: 18, index: true },
 });
 
 //Создание модели из схемы.
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 ```
 
 Каждое поле в `mongoose.Schema` характеризуется типом и может иметь дополнительные характеристики: `default`, `min` и `max` (для Number), `match` и `enum` (для String), `index` и `unique` (для индексов). Подробнее о типах можно почитать [тут](https://mongoosejs.com/docs/schematypes.html).
@@ -180,21 +189,29 @@ const UserModel = mongoose.model("UserModel", userSchema);
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: "Анонимный" },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Создание объекта модели, т. е. документа
-var ivanPetrov = new UserModel({ name: "Ivan Petrov", age: 25, favoriteFoods: ["чипсы", "кока-кола"] });
+var ivanPetrov = new UserModel({
+  name: 'Ivan Petrov',
+  age: 25,
+  favoriteFoods: ['чипсы', 'кока-кола'],
+});
 
 //Сохранение документа в БД
 ivanPetrov.save(function (err, data) {
@@ -205,7 +222,7 @@ ivanPetrov.save(function (err, data) {
 
 Метод `save()` должен сохранить документ в базе данных mongodb. Если сохранение прошло успешно, будет выведено на консоль 'Пользователь с именем Ivan Petrov сохранен', если же произошла ошибка, то будет выведено соответствующее сообщение об ошибке.
 
-В вашей базе данных теперь должен быть один документ с именем "Ivan Petrov". 
+В вашей базе данных теперь должен быть один документ с именем "Ivan Petrov".
 
 ## Создание нескольких записей с помощью model.create()
 
@@ -217,31 +234,34 @@ ivanPetrov.save(function (err, data) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: "Анонимный" },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Массив, из которого данные будут помещены в БД
 var arrayUsers = [
-  { name: "Светлана", age: 21, favoriteFoods: ["чипсы", "кофе"] },
-  { name: "Kamila", age: 35, favoriteFoods: ["гамбургер", "кока-кола"] },
-  { name: "Олег", age: 27, favoriteFoods: ["роллы", "кофе"] }
+  { name: 'Светлана', age: 21, favoriteFoods: ['чипсы', 'кофе'] },
+  { name: 'Kamila', age: 35, favoriteFoods: ['гамбургер', 'кока-кола'] },
+  { name: 'Олег', age: 27, favoriteFoods: ['роллы', 'кофе'] },
 ];
 
 UserModel.create(arrayUsers, function (err, users) {
   if (err) return console.log(err);
   console.log('В базе данных созданы ' + users.length + ' документа');
 });
-
 ```
 
 Таким образом с помощью функции `create()` из массива `arrayUsers` были добавлены еще три документа в БД, а на консоль выведена сообщение "В базе данных созданы 3 документа". Обратите внимание, в базе данных теперь четыре документа.
@@ -258,24 +278,33 @@ UserModel.create(arrayUsers, function (err, users) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
-  age: { type: Number, min: 18, index: true }
+  name: { type: String, default: 'Анонимный' },
+  age: { type: Number, min: 18, index: true },
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-var userName = "Светлана";
+var userName = 'Светлана';
 
 //Поиск в БД
 UserModel.find({ name: userName }, function (err, data) {
   if (err) return console.log(err);
-  console.log('Все пользователи с именем ' + userName + ' найдены. Их всего ' + data.length);
+  console.log(
+    'Все пользователи с именем ' +
+      userName +
+      ' найдены. Их всего ' +
+      data.length
+  );
 });
 ```
 
@@ -284,7 +313,6 @@ UserModel.find({ name: userName }, function (err, data) {
 Функция `find()` находит и возвращает все документы, соответствующие селектору. Результатом будет массив документов.
 
 Если в результате будет слишком много документов, чтобы поместиться в памяти, используйте функцию `cursor()`
-
 
 ## Использование model.findOne() для возвращения одного документа из базы данных
 
@@ -296,20 +324,24 @@ UserModel.find({ name: userName }, function (err, data) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: "Анонимный" },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.findOne({ name: "Светлана" }, function (err, data) {
+UserModel.findOne({ name: 'Светлана' }, function (err, data) {
   if (err) return console.log(err);
   console.log('Пользователь ' + data.name + ' найден');
 });
@@ -327,28 +359,41 @@ UserModel.findOne({ name: "Светлана" }, function (err, data) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
-var userSchema = new mongoose.Schema({  
-  name: { type: String, default: "Анонимный" },
+var userSchema = new mongoose.Schema({
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Определенине id для поиска
-var userId = "5e24c27a0d07d02119c39ed7";
+var userId = '5e24c27a0d07d02119c39ed7';
 
 //Поиск документа по _id
 UserModel.findById(userId, function (err, data) {
   if (err) return console.log(err);
-  console.log('Пользователь c id = ' + data._id + ' найден, его зовут ' + data.name + ', ему ' + data.age + ' лет');
+  console.log(
+    'Пользователь c id = ' +
+      data._id +
+      ' найден, его зовут ' +
+      data.name +
+      ', ему ' +
+      data.age +
+      ' лет'
+  );
 });
 ```
+
 Если документ с указанным id найден, то на консоль будет выведено сообщение "Пользователь c id = 5e24c27a0d07d02119c39ed7 найден, его зовут Олег, ему 27 лет".
 
 ## Обновление документов в БД с помощью стандартного поиска, присвоения и сохранения
@@ -361,27 +406,31 @@ UserModel.findById(userId, function (err, data) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 /*Обновление документа*/
-//Поиск документа по _id 
-UserModel.findById("5e25a8e88170fb0f8ce90f6f", function (err, user) {
+//Поиск документа по _id
+UserModel.findById('5e25a8e88170fb0f8ce90f6f', function (err, user) {
   if (err) return console.error(err);
 
-  //Присвоение измененных значений 
+  //Присвоение измененных значений
   user.name = 'Светлана Иванова';
-  user.favoriteFoods.push("гамбургер")
+  user.favoriteFoods.push('гамбургер');
 
   //Сохранение документа в БД
   user.save(function (err) {
@@ -393,7 +442,7 @@ UserModel.findById("5e25a8e88170fb0f8ce90f6f", function (err, user) {
 
 ## Обновление документов в БД с помощью model.findOneAndUpdate()
 
-В последних версиях mongoose есть методы, упрощающие обновление документов. Но некоторые более продвинутые функции (например, хуки pre/post, валидация) ведут себя по-другому при этом подходе, поэтому классический метод все еще полезен во многих ситуациях. 
+В последних версиях mongoose есть методы, упрощающие обновление документов. Но некоторые более продвинутые функции (например, хуки pre/post, валидация) ведут себя по-другому при этом подходе, поэтому классический метод все еще полезен во многих ситуациях.
 
 В файл `index.js` скопируйте следующий код.
 
@@ -401,18 +450,22 @@ UserModel.findById("5e25a8e88170fb0f8ce90f6f", function (err, user) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 //Обновление документа в БД
 UserModel.findOneAndUpdate(
@@ -430,8 +483,8 @@ UserModel.findOneAndUpdate(
 
 ## Удаление документов из MongoDB с помощью Mongoose
 
-Для того, чтобы удалить документы из БД MongoDB в Mongoose существуют методы 
-`remove()`, `deleteMany()`, `deleteOne()`, `findOneAndDelete()`, `findByIdAndRemove()` и `findOneAndRemove()`. 
+Для того, чтобы удалить документы из БД MongoDB в Mongoose существуют методы
+`remove()`, `deleteMany()`, `deleteOne()`, `findOneAndDelete()`, `findByIdAndRemove()` и `findOneAndRemove()`.
 
 ### Удаление одного документа с помощью model.findByIdAndRemove
 
@@ -441,20 +494,24 @@ UserModel.findOneAndUpdate(
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.findByIdAndRemove("5e25a8e88170fb0f8ce90f71", function (err, user) {
+UserModel.findByIdAndRemove('5e25a8e88170fb0f8ce90f71', function (err, user) {
   if (err) return console.error(err);
   console.log('Пользователь ' + user.name + ' удален из БД');
 });
@@ -470,26 +527,30 @@ UserModel.findByIdAndRemove("5e25a8e88170fb0f8ce90f71", function (err, user) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
-UserModel.remove({ name: "Tom" }, function (err, data) {
-  if (err) return console.log(err); 
-    console.log('Удалено ' + data.n + ' документов из БД');    
-})
+UserModel.remove({ name: 'Tom' }, function (err, data) {
+  if (err) return console.log(err);
+  console.log('Удалено ' + data.n + ' документов из БД');
+});
 ```
 
-Примечание: Метод `remove()` возвращает не удаленный документ, а объект JSON, содержащий результат операции и количество удаленных элементов. 
+Примечание: Метод `remove()` возвращает не удаленный документ, а объект JSON, содержащий результат операции и количество удаленных элементов.
 
 ## Цепочка помощников по поисковым запросам для сужения результатов поиска
 
@@ -499,18 +560,22 @@ UserModel.remove({ name: "Tom" }, function (err, data) {
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
-  if (err) throw err;
-  console.log('БД подключена');
-});
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err) {
+    if (err) throw err;
+    console.log('БД подключена');
+  }
+);
 
 var userSchema = new mongoose.Schema({
-  name: { type: String, default: "Анонимный" },
+  name: { type: String, default: 'Анонимный' },
   age: { type: Number, min: 18, index: true },
-  favoriteFoods: [String]
+  favoriteFoods: [String],
 });
 
-const UserModel = mongoose.model("UserModel", userSchema);
+const UserModel = mongoose.model('UserModel', userSchema);
 
 UserModel.find({ favoriteFoods: 'чипсы' })
   .sort({ name: 'asc' })
@@ -520,7 +585,7 @@ UserModel.find({ favoriteFoods: 'чипсы' })
     if (err) return console.error(err);
     console.log('Найдены пользователи, которые любят чипсы');
     console.log(user);
-  });  
+  });
 ```
 
 Вышеприведенный код находит в базе данных людей, которые любят `чипсы`, сортирует их по имени, ограничивает результаты поиска двумя документами и при выводе результатов скрывает их возраст. Результат выводится в виде массива документов.
@@ -529,7 +594,7 @@ UserModel.find({ favoriteFoods: 'чипсы' })
 
 `limit(2)` - Ограничивает максимальное количество документов, возвращаемых в запросе, - двумя.
 
-`select('-age')` - Указывает, что поле `age` (указывающее возраст) должно быть исключено из выводимого результата. На это указывает знак "минус" перед именем поля. 
+`select('-age')` - Указывает, что поле `age` (указывающее возраст) должно быть исключено из выводимого результата. На это указывает знак "минус" перед именем поля.
 
 `exec(callback)` - Выполняет запрос.
 
