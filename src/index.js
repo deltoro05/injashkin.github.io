@@ -1,3 +1,5 @@
-//import { button } from "./components/button/button.js"
+import { theme } from './components/theme/theme.js';
 
-//button()
+document.addEventListener('DOMContentLoaded', () => {
+  theme();
+});

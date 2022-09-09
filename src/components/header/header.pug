@@ -1,5 +1,6 @@
 include ../menu/menu
 include ../sendMessage/sendMessage
+include ../theme/theme
 
 mixin header(options = {})  
 
@@ -19,6 +20,7 @@ mixin header(options = {})
           a(href='/' title=logo_title)
             img(src=`/images/${logo_file_mobile}` alt=logo_img_alt)
       +menu()
+      +theme()
       .header__contacts
         +sendMessage({showText: false})
         .contacts          

@@ -1,19 +1,10 @@
 @import '../../layouts/variables';
 
-header {
-  & a {
-    color: $text;
-
-    &[href^='/']:hover {
-      background-color: $background-header;
-    }
-  }
-}
-
 .header {
+  background-color: var(--header-background-color);
+
   display: flex;
   flex-direction: column;
-  background-color: $background-header;
   padding: 1em 0;
 
   &__content {
@@ -35,6 +26,26 @@ header {
   &__contacts {
     display: flex;
     flex-direction: column;
+  }
+
+  & a {
+    color: var(--header-text-color);
+
+    &[href^='/']:hover {
+      background-color: var(--header-background-color);
+    }
+  }
+
+  &.theme-dark {
+    background-color: var(--dark-header-background-color);
+
+    & a {
+      color: var(dark-header-text-color);
+
+      &[href^='/']:hover {
+        background-color: var(--dark-header-background-color);
+      }
+    }
   }
 }
 
