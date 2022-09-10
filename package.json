@@ -37,7 +37,7 @@
     "url": "git+https://github.com/injashkin/jinv.git"
   },
   "scripts": {
-    "clean": "rimraf docs tmp",
+    "clean": "rimraf docs tmp dev",
     "md-pug-to-html": "md-pug-to-html content -I -o docs -d src/data -t src/pages/article",
     "pug": "pug --pretty src/pages/*/*.pug -o docs",
     "watch:pug": "pug --pretty -w src/pages/*/*.pug -o docs",

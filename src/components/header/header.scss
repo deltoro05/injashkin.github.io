@@ -40,21 +40,21 @@
     background-color: var(--dark-header-background-color);
 
     & a {
-      color: var(dark-header-text-color);
+      color: var(--dark-header-text-color);
 
       &[href^='/']:hover {
         background-color: var(--dark-header-background-color);
       }
     }
   }
-}
 
-.logo-text {
-  font-weight: bold;
-  font-size: 3em;
+  .logo-text {
+    font-weight: bold;
+    font-size: 3em;
 
-  & a {
-    color: #639;
+    a {
+      color: #639;
+    }
   }
 }
 
@@ -79,5 +79,25 @@
 
   .header__phone {
     margin-top: 1em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .header.theme-auto {
+    background-color: var(--dark-header-background-color);
+
+    a {
+      color: var(--dark-header-text-color);
+
+      &[href^='/']:hover {
+        background-color: var(--dark-header-background-color);
+      }
+    }
+
+    .logo-text {
+      & a {
+        color: #639;
+      }
+    }
   }
 }

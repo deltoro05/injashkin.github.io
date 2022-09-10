@@ -2,12 +2,21 @@
 
 .footer {
   height: 8em;
-  background-color: $background;
-  color: $text-inverse;
+  background-color: var(--footer-background-color);
+  color: var(--footer-text-color);
   text-align: center;
 
-  & a {
-    color: $text-inverse;
+  a {
+    color: var(--footer-text-color);
+  }
+
+  &.theme-dark {
+    color: var(--dark-footer-text-color);
+    background-color: var(--dark-footer-background-color);
+
+    a {
+      color: var(--dark-footer-text-color);
+    }
   }
 
   &__content {
@@ -51,6 +60,17 @@
 
   &__developer {
     margin-top: 1em;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &.theme-auto {
+      color: var(--dark-footer-text-color);
+      background-color: var(--dark-footer-background-color);
+
+      a {
+        color: var(--dark-footer-text-color);
+      }
+    }
   }
 
   @media (max-width: $md) {
