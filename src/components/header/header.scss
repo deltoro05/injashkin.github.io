@@ -48,6 +48,11 @@
     }
   }
 
+  .contacts {
+    display: flex;
+    justify-content: right;
+  }
+
   .logo-text {
     font-weight: bold;
     font-size: 3em;
