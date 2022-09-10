@@ -2,13 +2,17 @@ export const theme = function () {
   function applyTheme(theme) {
     const header = document.querySelector('.header');
     const footer = document.querySelector('.footer');
+    const menu = document.querySelector('.menu');
 
     document.body.classList.remove('theme-auto', 'theme-light', 'theme-dark');
     document.body.classList.add(`theme-${theme}`);
+
     header.classList.remove('theme-auto', 'theme-light', 'theme-dark');
     header.classList.add(`theme-${theme}`);
     footer.classList.remove('theme-auto', 'theme-light', 'theme-dark');
     footer.classList.add(`theme-${theme}`);
+    menu.classList.remove('theme-auto', 'theme-light', 'theme-dark');
+    menu.classList.add(`theme-${theme}`);
   }
 
   const savedTheme = localStorage.getItem('theme') || 'auto';

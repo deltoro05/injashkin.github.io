@@ -1,11 +1,24 @@
 @import '../../layouts/variables';
 
 .menu {
-  // overflow: hidden;
-  // background-color: $background;
-  // z-index: 10000;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+
+  @media (max-width: $md) {
+    &.theme-dark {
+      .menu__box {
+        background-color: var(--menu-dark-background-color);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &.theme-auto {
+        .menu__box {
+          background-color: var(--menu-dark-background-color);
+        }
+      }
+    }
+  }
 }
 
 .js-sticky {
@@ -37,7 +50,6 @@
   white-space: nowrap;
   padding: 0 0.5em;
 
-  // color: $text-inverse;
   text-decoration: none;
   font-size: 1.2em;
 
@@ -138,7 +150,7 @@
 
     text-align: center;
 
-    background-color: $background-main;
+    background-color: var(--menu-background-color);
     box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
 
     transition-duration: 0.25s;
