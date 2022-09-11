@@ -4,9 +4,9 @@ include ../../data/data
 
 - const {default_title, default_description, site} = data
 
-block variables
-  - stylesheetHref = '/index.css'
-  - scriptSrc = '/index.js'
+block variables  
+  - if (!scriptSrc) {scriptSrc = '/index.js'}
+  - if (!stylesheetHref) {stylesheetHref = '/index.asd.css'}
 
 doctype html
 html(lang='ru')
@@ -23,6 +23,7 @@ html(lang='ru')
       +header()
 
     block main
+      .qaz "asfsdfs"
 
     block footer
       +footer()
