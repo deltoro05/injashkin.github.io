@@ -1,7 +1,7 @@
 mixin icon(options = {})
-  - const {name, title = '', modifier = '', width = '24px', height = '24px'} = options
+  - const {name, title = '', modifier = '', width = '1em', height = '1em'} = options
 
   if modifier
     modifier = `--${modifier}`
   svg(class=`icon icon__${name}${modifier}` role='img' width=width height=height)
-    use.asd(href=`/sprite.svg#${name}`)
+    use(href=`/sprite.svg#${name}`)

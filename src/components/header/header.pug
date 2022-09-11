@@ -19,8 +19,8 @@ mixin header(options = {})
         .logo_mobile
           a(href='/' title=logo_title)
             img(src=`/images/${logo_file_mobile}` alt=logo_img_alt)
-      +menu()
-      +theme()
+      +menu()  
+      +theme()    
       .header__contacts
         +sendMessage({showText: false})
         .contacts          
