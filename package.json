@@ -50,7 +50,7 @@
     "build:sass": "node-sass src/index.scss -o tmp",
     "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o dev/sprite.svg",
     "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
-    "build:post": "postcss tmp/index.css -o docs/index.css",
+    "build:post": "postcss tmp/index.css -o docs/index.gry.css",
     "dev:img": "imagemin src/pages/**/images src/images -o dev/images",
     "img": "imagemin src/pages/**/images src/images -o docs/images",
     "watch:serve": "browser-sync dev -w",
