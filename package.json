@@ -17,7 +17,7 @@
     "browser-sync": "^2.27.10",
     "cssnano": "^5.1.13",
     "imagemin-cli": "^7.0.0",
-    "md-pug-to-html": "^2.1.1",
+    "md-pug-to-html": "^2.2.2",
     "node-sass": "^7.0.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
@@ -50,7 +50,7 @@
     "build:sass": "node-sass src/index.scss -o tmp",
     "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o dev/sprite.svg",
     "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
-    "build:post": "postcss tmp/index.css -o docs/index.asd.css",
+    "build:post": "postcss tmp/index.css -o docs/index.css",
     "dev:img": "imagemin src/pages/**/images src/images -o dev/images",
     "img": "imagemin src/pages/**/images src/images -o docs/images",
     "watch:serve": "browser-sync dev -w",
@@ -58,7 +58,6 @@
     "build:rollup": "rollup -c rollup.config.js",
     "copy": "fse copy static docs",
     "dev": "npm-run-all dev:clean dev:md-pug-to-html dev:img pug sass -p watch:*",
-    "build": "npm-run-all build:clean md-pug-to-html build:pug build:sass build:svg build:post img build:rollup copy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm-run-all build:clean md-pug-to-html build:pug build:sass build:svg build:post img build:rollup copy"
   }
 }
