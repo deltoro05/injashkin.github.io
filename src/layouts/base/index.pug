@@ -18,6 +18,7 @@ html(lang='ru')
     script(defer src=scriptSrc)
     meta(name= 'description' content= description ? description : default_description)
     title= `${title ? title : default_title} | ${site}`
+    link(rel='sitemap' type='application/xml' href='/sitemap/sitemap-index.xml')
 
     link(rel="apple-touch-icon" sizes="57x57" href="images/icons/apple57.png")
     link(rel="apple-touch-icon" sizes="60x60" href="images/icons/apple60.png")
