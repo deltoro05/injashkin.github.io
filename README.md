@@ -71,10 +71,18 @@ rollup.config.js
 
 ### Значки
 
-Основная часть значков на сайте являются SVG рисунками и упакованы в единый спрайт `dist/svg/sprite.svg`. Этот спрайт собирается из файлов `.svg`, которые расположены в каталоге `src/assets/svg/`.
+Основная часть значков на сайте являются изображениями SVG и упакованы в единый спрайт `dist/svg/sprite.svg`. Этот спрайт собирается с помощью пакета [svg-sprite-generator](https://www.npmjs.com/package/svg-sprite-generator) из файлов `.svg`, которые расположены в каталоге `src/assets/svg/`.
+
+С помощью модуля [SVGO](https://www.npmjs.com/package/svgo) файлы извлекаются из каталога `src/assets/svg`, оптимизируются и помещаются в каталог `dist/svg`. Далее, из оптимизированных файлов с помощью модуля [svg-sprite-generator](https://www.npmjs.com/package/svg-sprite-generator) создается спрайт `dist/svg/sprite.svg`. Данный механизм реализуется скриптом `"watch:svg"` либо `"build:svg"` в файле `package.json`
 
 Файлы значков `.svg` взяты на [Material Symbols and Icons - Google Fonts](https://fonts.google.com/icons?icon.set=Material+Icons).
 
-С помощью NPM модуля `svgo` файлы извлекаются из каталога `src/assets/svg`, оптимизируются и помещаются в каталог `dist/svg`. Далее, из оптимизированных файлов с помощью NPM модуля `svg-sprite-generator` создается спрайт `dist/svg/sprite.svg`. Данный механизм реализуется скриптом `"watch:svg"` в файле `package.json`
+В проекте также возможно использовать [значки Юникода](https://unicode-table.com/ru/).
 
-В проекте также возможно используются значки Юникода. Справочник по символам Юникода: https://unicode-table.com/ru/
+### Цвета
+
+При подборе цветовой схемы руководствовался [рекомендациями по цветовому контрасту](https://dequeuniversity.com/rules/axe/4.4/color-contrast) и использовал оттуда Color Contrast Analyzer.
+
+### Логотип
+
+Логотип был создан в программе [Inkscape](https://inkscape.org/ru/). В результате был создан файл логотипа в формате SVG и PNG размером 512х512. Все остальные размеры PNG файлов получены с помощью [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/). Также, этот сервис генерирует значок `favicon.ico` и генерирует необходимые линки для секции head файла HTML, а также создает файлы `manifest.json` и `browserconfig.xml`.
