@@ -8,6 +8,11 @@
 
   a {
     color: var(--footer-text-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &.theme-dark {
@@ -35,7 +40,6 @@
   &__phone-link {
     display: flex;
     justify-content: space-between;
-    text-decoration: none;
     font-size: 1.2em;
   }
 

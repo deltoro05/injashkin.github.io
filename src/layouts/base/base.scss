@@ -15,18 +15,27 @@ $font-size: 1.125rem;
 
 :root {
   --text-color: #222222;
+  --a-text-color: #0f0fff;
+  --a-hover-color: #bdbdff;
   --background-color: #f8f8f8;
   --code-background-color: #e7e7e7;
 
-  --dark-a-text-color: #55aadd;
-  --dark-text-color: #bcccd4;
-  --dark-background-color: #535353;
+  --dark-a-text-color: #00ffff;
+  --dark-a-hover-color: #0f0fff;
+  --dark-text-color: #e6e6e6;
+  --dark-background-color: #676767;
   --dark-code-background-color: #414141;
+
+  //Logo
+  --logo-a-text-color: #639;
+  --logo-a-hover-color: #639;
 
   // Header
   // --header-text-color: #dadada;
+  --header-a-hover-color: #c0c0c0;
   --header-background-color: #bebebe;
   --dark-header-text-color: #dadada;
+  --dark-header-border-color: #e6e6e6;
   --dark-header-background-color: #4b4b4b;
 
   // Menu
@@ -36,8 +45,16 @@ $font-size: 1.125rem;
   // Footer
   --footer-text-color: #ffffff;
   --footer-background-color: #666666;
-  --dark-footer-text-color: #dadada;
-  --dark-footer-background-color: #353535;
+  --dark-footer-text-color: #c0c0c0;
+  --dark-footer-background-color: #1a1a1a;
+}
+
+a {
+  color: var(--a-text-color);
+
+  &:hover {
+    color: var(--a-hover-color);
+  }
 }
 
 .theme-dark {
@@ -46,6 +63,10 @@ $font-size: 1.125rem;
 
   & a {
     color: var(--dark-a-text-color);
+
+    &:hover {
+      color: var(--dark-a-hover-color);
+    }
   }
 
   & pre code {

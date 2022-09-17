@@ -2,7 +2,6 @@
 
 .header {
   background-color: var(--header-background-color);
-
   display: flex;
   flex-direction: column;
   padding: 1em 0;
@@ -29,21 +28,32 @@
   }
 
   & a {
+    text-decoration: none;
     color: var(--header-text-color);
 
     &[href^='/']:hover {
       background-color: var(--header-background-color);
     }
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--header-a-hover-color);
+    }
   }
 
   &.theme-dark {
     background-color: var(--dark-header-background-color);
+    border-bottom: 1px solid var(--dark-header-border-color);
 
     & a {
       color: var(--dark-header-text-color);
 
       &[href^='/']:hover {
         background-color: var(--dark-header-background-color);
+      }
+
+      &:hover {
+        color: var(--header-a-hover-color);
       }
     }
   }
@@ -58,7 +68,11 @@
     font-size: 3em;
 
     a {
-      color: #639;
+      color: var(--logo-a-text-color);
+
+      &:hover {
+        color: var(--logo-a-hover-color);
+      }
     }
   }
 }
