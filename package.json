@@ -50,7 +50,7 @@
     "build:sass": "node-sass src/index.scss -o tmp",
     "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o dev/sprite.svg",
     "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
-    "build:post": "postcss tmp/index.css -o docs/index.jrg.css",
+    "build:post": "postcss tmp/index.css -o docs/index.tui.css",
     "dev:img": "imagemin src/pages/**/images src/images -o dev/images",
     "img1": "imagemin src/pages/**/images src/images -o docs/images",
     "img2": "imagemin src/assets/icons -o docs/images/icons",
