@@ -307,43 +307,39 @@ class Application extends React.Component {
       </div>
     </footer><!-- Yandex.Metrika counter -->
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(function () {
-      (function (d, w, c) {
-        (w[c] = w[c] || []).push(function () {
-          try {
-            w.yaCounter60672532 = new Ya.Metrika({
-              id: 60672532,
-              clickmap: true,
-              trackLinks: true,
-              accurateTrackBounce: true,
-            });
-          } catch (e) {}
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter60672532 = new Ya.Metrika({
+          id: 60672532,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
         });
+      } catch (e) {}
+    });
 
-        var n = d.getElementsByTagName('script')[0],
-          x = 'https://mc.yandex.ru/metrika/watch.js',
-          s = d.createElement('script'),
-          f = function () {
-            n.parentNode.insertBefore(s, n);
-          };
-        for (var i = 0; i < document.scripts.length; i++) {
-          if (document.scripts[i].src === x) {
-            return;
-          }
-        }
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = x;
+    var n = d.getElementsByTagName('script')[0],
+      x = 'https://mc.yandex.ru/metrika/watch.js',
+      s = d.createElement('script'),
+      f = function () {
+        n.parentNode.insertBefore(s, n);
+      };
+    for (var i = 0; i < document.scripts.length; i++) {
+      if (document.scripts[i].src === x) {
+        return;
+      }
+    }
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = x;
 
-        if (w.opera == '[object Opera]') {
-          d.addEventListener('DOMContentLoaded', f, false);
-        } else {
-          f();
-        }
-      })(document, window, 'yandex_metrika_callbacks');
-    }, 350);
-  });
+    if (w.opera == '[object Opera]') {
+      d.addEventListener('DOMContentLoaded', f, false);
+    } else {
+      f();
+    }
+  })(document, window, 'yandex_metrika_callbacks');
 </script>
 <noscript
   ><div>
