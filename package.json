@@ -52,12 +52,13 @@
     "build:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
     "build:post": "postcss tmp/index.css -o docs/index.jrg.css",
     "dev:img": "imagemin src/pages/**/images src/images -o dev/images",
-    "img": "imagemin src/pages/**/images src/images -o docs/images",
+    "img1": "imagemin src/pages/**/images src/images -o docs/images",
+    "img2": "imagemin src/assets/icons -o docs/images/icons",
     "watch:serve": "browser-sync dev -w",
     "watch:rollup": "rollup -w -c rollup.config.dev.js",
     "build:rollup": "rollup -c rollup.config.js",
     "copy": "fse copy static docs",
     "dev": "npm-run-all dev:clean dev:md-pug-to-html dev:img pug sass -p watch:*",
-    "build": "npm-run-all build:clean md-pug-to-html build:pug build:sass build:svg build:post img build:rollup copy"
+    "build": "npm-run-all build:clean md-pug-to-html build:pug build:sass build:svg build:post img1 img2 build:rollup copy"
   }
 }
