@@ -16,6 +16,9 @@
   &__logo {
     display: flex;
     flex-direction: row;
+    &:hover {
+      opacity: 0.6;
+    }
   }
 
   &__logo .logo_mobile {
@@ -37,7 +40,7 @@
 
     &:hover {
       text-decoration: underline;
-      color: var(--header-a-hover-color);
+      opacity: 0.6;
     }
   }
 
@@ -51,29 +54,12 @@
       &[href^='/']:hover {
         background-color: var(--dark-header-background-color);
       }
-
-      &:hover {
-        color: var(--header-a-hover-color);
-      }
     }
   }
 
   .contacts {
     display: flex;
     justify-content: right;
-  }
-
-  .logo-text {
-    font-weight: bold;
-    font-size: 3em;
-
-    a {
-      color: var(--logo-a-text-color);
-
-      &:hover {
-        color: var(--logo-a-hover-color);
-      }
-    }
   }
 }
 
@@ -115,7 +101,7 @@
 
     .logo-text {
       & a {
-        color: #639;
+        color: var(--logo-a-text-color);
       }
     }
   }
