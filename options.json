@@ -1,1 +1,4 @@
-{ "stylesheetHref": "/index.vgb.css" }
+{
+  "stylesheetHref": "/index.tgb.css",
+  "scriptSrc": "/index.tgb.js"
+}

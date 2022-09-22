@@ -58,34 +58,6 @@ a {
   }
 }
 
-.theme-dark {
-  --text-color: var(--dark-text-color);
-  --background-color: var(--dark-background-color);
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    a {
-      color: var(--dark-text-color);
-    }
-  }
-
-  & a {
-    color: var(--dark-a-text-color);
-  }
-
-  & pre code {
-    background-color: var(--dark-code-background-color);
-  }
-
-  p code {
-    background-color: var(--dark-code-background-color);
-  }
-}
-
 html {
   font-family: sans-serif;
   font-size: $font-size;
@@ -152,6 +124,34 @@ ul {
 
   li {
     padding: 0.25em 0;
+  }
+}
+
+.theme-dark {
+  --text-color: var(--dark-text-color);
+  --background-color: var(--dark-background-color);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a {
+      color: var(--dark-text-color);
+    }
+  }
+
+  & a {
+    color: var(--dark-a-text-color);
+  }
+
+  & pre code {
+    background-color: var(--dark-code-background-color);
+  }
+
+  p code {
+    background-color: var(--dark-code-background-color);
   }
 }
 

@@ -7,7 +7,7 @@ export default {
   },
 
   output: {
-    file: 'docs/index.js',
+    file: 'docs/index.tgb.js',
     format: 'iife',
   },
 };
