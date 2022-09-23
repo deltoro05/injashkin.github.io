@@ -49,8 +49,8 @@
     "watch:sass": "node-sass src/index.scss -w -o tmp",
     "watch:svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o dev/sprite.svg",
     "svg": "svgo -f src/assets/svg -o tmp/svg && svg-sprite-generate -d tmp/svg -o docs/sprite.svg",
-    "watch:post": "postcss tmp/index.css -o dev/index.tgb.css -w",
-    "post": "postcss tmp/index.css -o docs/index.tgb.css",
+    "watch:post": "postcss tmp/index.*.css -d dev -w",
+    "post": "postcss tmp/index.*.css -d docs",
     "dev:img1": "imagemin src/pages/**/images src/images -o dev/images",
     "dev:img2": "imagemin src/assets/icons -o dev/images/icons",
     "img1": "imagemin src/pages/**/images src/images -o docs/images",
@@ -59,7 +59,8 @@
     "watch:rollup": "rollup -w -c rollup.config.dev.js",
     "rollup": "rollup -c rollup.config.js",
     "copy": "fse copy static docs",
-    "dev": "npm-run-all dev:clean dev:md-pug-to-html dev:pug sass dev:img1 dev:img2 -p watch:*",
-    "build": "npm-run-all clean md-pug-to-html pug sass svg post img1 img2 rollup copy"
+    "scripts": "node scripts.js",
+    "dev": "npm-run-all dev:clean sass scripts dev:md-pug-to-html dev:pug dev:img1 dev:img2 -p watch:*",
+    "build": "npm-run-all clean sass scripts md-pug-to-html pug  svg post img1 img2 rollup copy"
   }
 }
