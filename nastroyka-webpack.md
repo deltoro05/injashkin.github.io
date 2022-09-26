@@ -1,6 +1,6 @@
 ---
 title: 'Настройка Webpack 5'
-description: 'Установим и настроим сборку Webpack, которая позволит создавать статические страницы сайта используя шаблонизатор Pug, препроцессор Sass, язык JavaScript и разметку Markdown'
+description: 'Установим и настроим сборку Webpack v.5, которая позволит создавать статические страницы сайта используя шаблонизатор Pug, препроцессор Sass, язык JavaScript и разметку Markdown'
 ---
 
 ## Что мы сделаем
@@ -133,18 +133,33 @@ npm i -D html-webpack-plugin
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: path.join(__dirname, 'src', 'template.html'),
       filename: 'index.html',
     }),
   ],
 };
 ```
 
-Файл настроек `webpack.config.js` нужен вебпаку для того, чтобы он знал, какие плагины и с какими настройками использовать в том или ином случае. Здесь первая строка импортирует модуль `html-webpack-plugin` и определяет его в переменную `HtmlWebpackPlugin`. Остальной код - это объект, который экспортируется как модуль по умолчанию. Для плагина `html-webpack-plugin` создается экземпляр `new HtmlWebpackPlugin`, для которого заданы два свойства: `template` - путь к входному файлу и `filename` - имя выходного файла.
+Файл настроек `webpack.config.js` нужен вебпаку для того, чтобы он знал, какие плагины и с какими настройками использовать в том или ином случае.
+
+Пояснение к содержимому файла `webpack.config.js`:
+
+- Первые две строки импортируют модули `html-webpack-plugin` и `path`, определяя их в переменные `HtmlWebpackPlugin` и `path` соответственно.
+
+- `module.exports = {}` - это объект, который экспортируется как модуль по умолчанию.
+
+- Для плагина `html-webpack-plugin` создается экземпляр `new HtmlWebpackPlugin`, для которого заданы два свойства: `template` - путь к входному файлу и `filename` - имя выходного файла.
+
+Разберем путь, указанный в свойстве `template`, который, на первый взгляд, сложен для понимания.
+
+В Linux и macOS пути выглядят так: `/path/to/template.html`. В Windows пути имеют другой вид: `C:\path\to\template.html`. Для работы с путями в Node.js имеется модуль `path`, который учитывает эти различия. Мы его подключили во второй строке файла `webpack.config.js`, а затем вызвали в свойстве `template`. В модуле `path` есть метод `join`, который объединяет все заданные сегменты пути вместе и использует необходимый разделитель для конкретной системы. Сегменты пути для метода `path.join` мы задали тремя аргументами `__dirname`, `'src'` и `'template.html'`.
+
+- `__dirname` - это глобальная константа, которая указывает абсолютный путь к каталогу файла, код которого запрашивает эту константу, т. е. в нашем случае, этим файлом является `webpack.config.js`, а `__dirname` содержит абсолютный путь к корневому каталогу проекта.
 
 В каталоге `src` создадим входной файл `template.html` с такой разметкой:
 
@@ -167,7 +182,7 @@ module.exports = {
 npm run dev
 ```
 
-Мы увидим, что каталог `dist` снова создан, а внутри него находятся файлы `index.html` и `main.js`. Если мы откроем файл `dist/index.html` в браузере, то увидим:
+Мы увидим, что каталог `dist` снова создан, а внутри него находятся файлы `index.html` и `main.js`. Если мы откроем в браузере файл `dist/index.html`, то увидим:
 
 ```
 Проект собран на Webpack
@@ -211,12 +226,12 @@ npm i -D webpack-dev-server
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html', // входной файл
-      filename: 'index.html', // выходной файл
+      template: path.join(__dirname, 'src', 'template.html'),
+      filename: 'index.html',
     }),
   ],
   devServer: {
-    watchFiles: ['./src', './images'],
+    watchFiles: path.join(__dirname, 'src'),
     port: 9000,
   },
 };
@@ -224,17 +239,17 @@ module.exports = {
 
 Для `devServer` указаны два свойства:
 
-- `watchFiles` указывает список каталогов и файлов, за которыми будет вестись наблюдение и в случае их изменения веб сервер будет автоматически пересобирать проект и перезагружать страницу браузера.
+- `watchFiles` указывает на каталог `src`, за которыми будет вестись наблюдение и в случае, если в нем произойдут изменения, веб сервер будет автоматически пересобирать проект и перезагружать страницу браузера.
 - `port` указывает порт на котором будет работать веб-сервер (по умолчанию - localhost:8080).
 
-Чтобы запускать веб сервер короткой командой напишем скрипт "start":
+Чтобы запускать веб сервер короткой командой напишем скрипт "serve":
 
 **package.json**
 
 ```json
 {
   "scripts": {
-+   "start": "webpack serve --open --mode development",
++   "serve": "webpack serve --open --mode development",
     "dev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
@@ -248,7 +263,7 @@ module.exports = {
 Запустим веб сервер командой:
 
 ```
-npm run start
+npm run serve
 ```
 
 В результате будет открыта страница браузера по адресу http://localhost:9000/ и мы увидим тоже самое, что и в прошлый раз:
@@ -289,7 +304,7 @@ my-project
 
 ```js
 module.exports = {
-  entry: './src/index.js',
+  entry: path.join(__dirname, 'src', 'index.js'),
 };
 ```
 
@@ -305,16 +320,14 @@ module.exports = {
 module.exports = {
   output: {
     filename: '[name].js',
-    path: __dirname + '/dist',
+    path: path.join(__dirname, 'dist'),
   },
 };
 ```
 
 где:
 
-- `[name]` - это шаблонная [подстановка](https://webpack.js.org/configuration/output/#outputfilename) имени. В данном случае она равна имени `index` из имени файла точки входа. Так как точек входа может быть несколько, то для каждого файла `[name]` позволяет сохранить свое уникальное имя.
-
-- `__dirname` - глобальная константа, которая содержит абсолютный путь к каталогу, в котором находится файл с кодом, запрашивающий эту константу, т. е. в нашем случае, этим файлом является `webpack.config.js`, а `__dirname` содержит абсолютный путь к корневому каталогу проекта.
+- `[name]` - это шаблонная [подстановка](https://webpack.js.org/configuration/output/#outputfilename) имени. В данном случае она равна имени `index` из имени файла точки входа. Так как точек входа может быть несколько, то `[name]` позволяет сохранить свое уникальное имя для каждого файла.
 
 Более полная информация о точках выхода приведена в статье [Output](https://webpack.js.org/concepts/output/).
 
@@ -324,31 +337,54 @@ module.exports = {
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     filename: '[name].js',
-    path: __dirname + '/dist',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        loader: 'pug-loader',
-      },
-    ],
+    path: path.join(__dirname, 'dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.pug',
+      template: path.join(__dirname, 'src', 'template.html'),
       filename: 'index.html',
     }),
   ],
   devServer: {
-    watchFiles: ['./src', './images'],
+    watchFiles: path.join(__dirname, 'src'),
     port: 9000,
   },
 };
 ```
+
+Запустим из терминала следующую команду:
+
+```
+npm run dev
+```
+
+В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.js`. Мы видим что, файл `index.js` имеет такое же имя, что и исходный файл в каталоге `src`, указанный как точка входа.
+
+## Настройка режима production и создание производственной сборки
+
+До сих пор мы работали с вебпаком в режиме разработки. Но чтобы получить готовое приложение, которое можно разместить на удаленном сервере, нужно создать производственную сборку.
+
+Откроем файл `package.json` и добавим скрипт `"build"`:
+
+```json
+  "scripts": {
+    "serve": "webpack serve --open --mode development",
+    "dev": "webpack --mode development",
++   "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```
+
+Теперь, прежде чем выполнить нужную команду, откроем файл `dist/index.js` в редакторе кода и посмотрим на него. Мы увидим кучу различных комментариев и код представлен не в сжатом виде, а если мы посмотрим на размер файла, то он составит примерно 1 424 байта. Затем, в терминале запустим вебпак в режиме продакшн:
+
+```
+npm run build
+```
+
+После этого, посмотрим на содержимое файла `dist/index.js`, в котором увидим отсутствие комментариев и сжатый код. Размер самого файла составит 139 байт. Это основное отличие режима продакшн от режима разработки - код конечного бандла сжимается. То же относится и к файлу `index.html`, который в режиме разработки не сжимается и его размер составлял 273 байта, а в продакшн режиме убираются все пробелы и ненужные символы и размер стал равен 250 байт.
 
 ## Подключение шаблонизатора Pug
 
@@ -389,12 +425,12 @@ module.exports = {
 + },
   plugins: [
     new HtmlWebpackPlugin({
-+     template: './src/index.pug', // входной файл
-      filename: 'index.html', // выходной файл
++     template: './src/index.pug',
+      filename: 'index.html',
     }),
   ],
   devServer: {
-    watchFiles: ['./src', './images'],
+    watchFiles: './src',
     port: 9000,
   },
 };
@@ -416,7 +452,7 @@ html
 Запустим в терминале знакомую нам команду:
 
 ```
-npm run start
+npm run serve
 ```
 
 Будет открыта страница браузера по адресу http://localhost:9000/ и мы увидим:
@@ -525,7 +561,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    watchFiles: ['./src', './images'],
+    watchFiles: './src',
     port: 9000,
   },
 };
@@ -534,7 +570,7 @@ module.exports = {
 Запустим в терминале команду:
 
 ```
-npm run start
+npm run serve
 ```
 
 Откроется браузер и мы увидим окрашенный в цвет текст.
@@ -574,7 +610,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    watchFiles: ['./src', './images'],
+    watchFiles: './src',
     port: 9000,
   },
 };
