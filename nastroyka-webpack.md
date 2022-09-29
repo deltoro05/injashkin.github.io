@@ -740,13 +740,7 @@ npm run serve
 
 ![Загрузка изображений с помощью Webpack](add-image.png)
 
-Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого существуют инструменты оптимизации изображений, одним из них является минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - загрузчик и плагин для оптимизации изображений с помощью imagemin.
-
-Сначала, установим плагин `image-minimizer-webpack-plugin` и минификатор `imagemin`:
-
-```
-npm i -D image-minimizer-webpack-plugin imagemin
-```
+## Загрузка SVG изображений
 
 установим svgo
 
@@ -782,16 +776,29 @@ module.exports = {
 };
 ```
 
+## Оптимизация изображений
+
+Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого существуют инструменты оптимизации изображений, одним из них является минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - загрузчик и плагин для оптимизации изображений с помощью imagemin.
+
+Сначала, установим плагин `image-minimizer-webpack-plugin` и минификатор `imagemin`:
+
+```
+npm i -D image-minimizer-webpack-plugin imagemin
+```
+
+Затем, для оптимизации изображений без потерь качества, установим следующие рекомендуемые плагины imagemin:
+
 ```
 npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
 ```
 
-webpack.config.js
+В файл `webpack.config.js` добавим настройки:
 
 ```js
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
+  // Данное правило у нас уже есть, поэтому не добавляем
   module: {
     rules: [
       {
@@ -800,19 +807,20 @@ module.exports = {
       },
     ],
   },
+  // а это добавляем полностью
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
-            // Lossless optimization with custom option
-            // Feel free to experiment with options for better result for you
+            // Оптимизация без потерь с пользовательскими параметрами
+            // Не стесняйтесь экспериментировать с вариантами для достижения лучшего результата
             plugins: [
               ['gifsicle', { interlaced: true }],
               ['jpegtran', { progressive: true }],
               ['optipng', { optimizationLevel: 5 }],
-              // Svgo configuration here https://github.com/svg/svgo#configuration
+              // Конфигурация Svgo здесь https://github.com/svg/svgo#configuration
               [
                 'svgo',
                 {
@@ -841,8 +849,17 @@ module.exports = {
       }),
     ],
   },
+  // до сих пор
 };
 ```
+
+Запустим команду
+
+```
+npm run build
+```
+
+Если мы сравним размеры файлов изображений в каталоге исходников `src` и целевом каталоге `dist`, то увидим заметную разницу.
 
 ## Включение синтаксиса Markdown и файлов .md в Pug
 
