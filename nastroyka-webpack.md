@@ -24,6 +24,8 @@ description: 'Установим и настроим сборку Webpack v.5, �
 
 Чтобы выполнять дальнейшие действия на компьютере должен быть установлен [Node.js](https://nodejs.org/).
 
+Все дальнейшие действия выполнялись в ОС Ubuntu 20.04, NodeJS v16.17.1 и NPM 8.15.0
+
 Откроем терминал и создадим каталог будущего проекта, и сразу перейдем в него:
 
 ```
@@ -343,8 +345,8 @@ module.exports = {
 ```js
 module.exports = {
   output: {
-    filename: 'index.js',
     path: path.join(__dirname, 'dist'),
+    filename: 'index.js',
   },
 };
 ```
@@ -360,8 +362,8 @@ const path = require('path');
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
-    filename: 'index.js',
     path: path.join(__dirname, 'dist'),
+    filename: 'index.[hash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -376,13 +378,17 @@ module.exports = {
 };
 ```
 
+где:
+
+- `[hash]` - это шаблон для подстановки хеша в имя файла, что делает его уникальным после каждой сборки проекта. Данный способ решает проблему версионирования файлов.Если хеш изменился, то браузер берет не старый файл из кеша, а загружает новый с сервера.
+
 Запустим из терминала следующую команду:
 
 ```
 npm run dev
 ```
 
-В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.js`. Мы видим что, файл `main.js` теперь называется `index.js`.
+В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.d0b265b1468ab7c3a3c1.js`. Мы видим что, файл `main.js` теперь называется `index.d0b265b1468ab7c3a3c1.js`. Код в имени файла - это хеш, который будет меняться с каждой сборкой проекта.
 
 ## Настройка режима production и создание производственной сборки
 
@@ -494,7 +500,7 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'index.[hash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -552,15 +558,13 @@ npm run serve
 
 Для написания стилей мы будем использовать препроцессор Sass. А чтобы большинство браузеров понимало самые современные возможности CSS, которые мы будем применять для стилизации, мы будем прогонять CSS через PostCSS.
 
-Установим необходимые загрузчики:
+Установим необходимые модули:
 
 ```
 npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader node-sass
 ```
 
-Настройки для PostCSS можно задать как в файле `webpack.config.js` так и в собственном файле настроек `postcss.config.js`:
-
-**./postcss.config.js**
+Настройки для PostCSS можно задать как в файле `webpack.config.js` так и в собственном файле настроек `postcss.config.js`. Мы воспользуемся вторым способом, создадим файл `postcss.config.js` и запишем в нем следующее:
 
 ```js
 module.exports = {
@@ -572,9 +576,7 @@ module.exports = {
 };
 ```
 
-Создадим файл ./src/main.scss. В файле будут переменные Sass, а также [LCH цвета](https://habr.com/ru/company/ruvds/blog/496966/), которые поддерживаются не всеми браузерами, но используя PostCSS эти цвета будут транспилированы в понятные любому браузеру цвета.
-
-**./src/main.scss**
+Создадим файл `src/main.scss` и внесем в него следующее:
 
 ```scss
 $font-size: 1rem;
@@ -586,9 +588,9 @@ html {
 }
 ```
 
-Импортируем этот файл в ./src/index.js:
+В файле используются переменные Sass, а также [LCH цвета](https://habr.com/ru/company/ruvds/blog/496966/), которые поддерживаются не всеми браузерами, но используя PostCSS эти цвета будут транспилированы в понятные любому браузеру цвета.
 
-**./src/index.js**
+Импортируем этот файл в `src/index.js`:
 
 ```js
 import './main.scss';
@@ -613,8 +615,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  module: {
+  entry: path.join(__dirname, 'src', 'index.js'),
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.[hash].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'index.pug'),
+      filename: 'index.html',
+    }),
+  ],
+  devServer: {
+    watchFiles: path.join(__dirname, 'src'),
+    port: 9000,
+  },
+    module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.pug$/,
         loader: 'pug-loader',
@@ -625,16 +647,6 @@ module.exports = {
 +       use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
 +     },
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.pug', // входной файл
-      filename: 'index.html', // выходной файл
-    }),
-  ],
-  devServer: {
-    watchFiles: './src',
-    port: 9000,
   },
 };
 ```
@@ -647,24 +659,48 @@ npm run serve
 
 Откроется браузер и мы увидим окрашенный в цвет текст.
 
+```
+Проект собран на Webpack
+Данный файл откомпилирован шаблонизатором Pug
+```
+
 ## Загрузка изображений
 
-Начиная с webpack 5, вместо загрузчиков для рисунков, значков, шрифтов и т. д. используется встроенный [Asset Modules](https://webpack.js.org/guides/asset-modules/). Для поддержки рисунков настроим webpack.config.js:
+Начиная с webpack 5, вместо загрузчиков изображений, значков, шрифтов и т. д. используется встроенный [Asset Modules](https://webpack.js.org/guides/asset-modules/). До webpack 5 было принято использовать [raw-loader](https://v4.webpack.js.org/loaders/raw-loader/), [url-loader](https://v4.webpack.js.org/loaders/url-loader/) и [file-loader](https://v4.webpack.js.org/loaders/file-loader/).
 
-**webpack.config.js**
+Для поддержки рисунков настроим `webpack.config.js`:
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  entry: path.join(__dirname, 'src', 'index.js'),
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.[hash].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'index.pug'),
+      filename: 'index.html',
+    }),
+  ],
+  devServer: {
+    watchFiles: path.join(__dirname, 'src'),
+    port: 9000,
+  },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.pug$/,
         loader: 'pug-loader',
       },
-      // CSS, PostCSS, Sass
       {
         test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
@@ -675,24 +711,13 @@ module.exports = {
 +     },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.pug', // входной файл
-      filename: 'index.html', // выходной файл
-    }),
-  ],
-  devServer: {
-    watchFiles: './src',
-    port: 9000,
-  },
 };
+
 ```
 
-Создадим каталог ./src/images и поместим в него файл image.jpg
+Создадим каталог `src/images` и поместим в него любое изображение с именем `image.png`
 
-Откроем ранее созданный файл ./src/index.pug и допишем в нем следующее:
-
-**./src/index.pug**
+Откроем ранее созданный файл `src/index.pug` и допишем в него строку с тегом `img`:
 
 ```pug
 doctype html
@@ -701,33 +726,165 @@ html(lang= 'ru')
     meta(charset='utf-8')
     title= 'Быстрый запуск Webpack'
   body
-+   img(src=require('./images/image.jpg') alt='Загрузка изображений с помощью Webpack')
+    p Данный файл откомпилирован шаблонизатором Pug
+    img(src=require('./images/image.png') alt='Загрузка изображений с помощью Webpack')
+```
+
+Запустим в терминале команду:
+
+```
+npm run serve
+```
+
+В окне браузера мы увидим, что на нашей странице появился рисунок:
+
+![Загрузка изображений с помощью Webpack](add-image.png)
+
+Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого существуют инструменты оптимизации изображений, одним из них является минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - загрузчик и плагин для оптимизации изображений с помощью imagemin.
+
+Сначала, установим плагин `image-minimizer-webpack-plugin` и минификатор `imagemin`:
+
+```
+npm i -D image-minimizer-webpack-plugin imagemin
+```
+
+установим svgo
+
+```
+npm i -D svgo
+```
+
+Создадим и настроим svgo.config.js
+
+```js
+module.exports = {
+  multipass: true, // boolean. false by default
+  datauri: 'enc', // 'base64' (default), 'enc' or 'unenc'.
+  js2svg: {
+    indent: 2, // string with spaces or number of spaces. 4 by default
+    pretty: true, // boolean, false by default
+  },
+  plugins: [
+    // set of built-in plugins enabled by default
+    'preset-default',
+
+    // enable built-in plugins by name
+    'prefixIds',
+
+    // or by expanded notation which allows to configure plugin
+    {
+      name: 'sortAttrs',
+      params: {
+        xmlnsOrder: 'alphabetical',
+      },
+    },
+  ],
+};
+```
+
+```
+npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
+```
+
+webpack.config.js
+
+```js
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        type: 'asset',
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            // Lossless optimization with custom option
+            // Feel free to experiment with options for better result for you
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              // Svgo configuration here https://github.com/svg/svgo#configuration
+              [
+                'svgo',
+                {
+                  plugins: [
+                    {
+                      name: 'preset-default',
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          addAttributesToSVGElement: {
+                            params: {
+                              attributes: [
+                                { xmlns: 'http://www.w3.org/2000/svg' },
+                              ],
+                            },
+                          },
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      }),
+    ],
+  },
+};
 ```
 
 ## Включение синтаксиса Markdown и файлов .md в Pug
 
-Если мы хотим использовать Markdown в шаблонизаторе Pug, то для этого можно применить фильтр `:markdown-it` модуля [jstransformer-markdown-it](https://github.com/jstransformers/jstransformer-markdown-it).
+Чтобы использовать Markdown в шаблонизаторе Pug, можно применить фильтр `:markdown-it` модуля [jstransformer-markdown-it](https://github.com/jstransformers/jstransformer-markdown-it).
 
-[Фильтры](https://pugjs.org/language/filters.html) позволяют использовать в шаблонизаторе Pug многие другие языки, а также написать собственные фильтры. Для начала установим модуль `jstransformer-markdown-it`:
+[Фильтры](https://pugjs.org/language/filters.html) позволяют использовать в шаблонизаторе Pug многие другие языки. Для начала установим модуль `jstransformer-markdown-it`:
 
 ```
-$ npm i -D jstransformer-markdown-it
+npm i -D jstransformer-markdown-it
 ```
 
 Теперь мы можем в Pug файле использовать синтаксис Markdown:
 
 ```pug
-:markdown-it(linkify langPrefix='highlight-')
-  # Markdown
+doctype html
+html(lang= 'ru')
+  head
+    meta(charset='utf-8')
+    title= 'Быстрый запуск Webpack'
+  body
+    p Данный файл откомпилирован шаблонизатором Pug
+    img(src=require('./images/image.png') alt='Загрузка изображений с помощью Webpack')
 
-  Markdown document with http://links.com
+    :markdown-it(linkify langPrefix='highlight-')
+      ## Markdown документ
+
+      - Написано на **Markdown**
 ```
 
-либо включить в шаблон внешний файл `.md`, используя `include`:
+![Использование markdown в pug](add-markdown.png)
+
+либо поместить markdown разметку в файл `.md` и включить этот файл в шаблон, используя `include`:
 
 ```pug
 include:markdown-it article.md
 ```
+
+Вышеприведенные способы хороши, если нам нужно конкретную статью markdown вставить в конкретный шаблон. Однако, часто бывает такая ситуация, что имеются несколько markdown статей и они могут быть расположены в различных каталогах, т. е. разделены по темам. При этом, каждая отдельная статья может находиться в отдельном каталоге, так как в этой статье присутствуют изображения и логично будет держать их в одном каталоге со статьей. Создавать для каждой статьи свой шаблон нерационально. Поэтому, нужен инструмент, который должен автоматически обходить все каталоги, и, найденные файлы `.md`, помещать в указанный шаблон pug и сразу генерировать страницу html.
+
+//=============================
+//
+//=============================
 
 ## Другие плагины
 
