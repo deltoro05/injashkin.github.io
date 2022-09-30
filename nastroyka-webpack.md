@@ -666,9 +666,10 @@ npm run serve
 
 ## Загрузка изображений
 
+Здесь мы настроим webpack для работы с изображениями в формате PNG, JPG, GIF и SVG.
 Начиная с webpack 5, вместо загрузчиков изображений, значков, шрифтов и т. д. используется встроенный [Asset Modules](https://webpack.js.org/guides/asset-modules/). До webpack 5 было принято использовать [raw-loader](https://v4.webpack.js.org/loaders/raw-loader/), [url-loader](https://v4.webpack.js.org/loaders/url-loader/) и [file-loader](https://v4.webpack.js.org/loaders/file-loader/).
 
-Для поддержки рисунков настроим `webpack.config.js`:
+Для поддержки изображений устанавливать ничего не нужно, а лишь требуется настроить `webpack.config.js`:
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -679,6 +680,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.[hash].js',
++   assetModuleFilename: path.join('images', '[name].[hash][ext]'),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -706,14 +708,37 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
 +     {
-+       test: /\.(png|svg|jpg|jpeg|gif)$/i,
++       test: /\.(png|jpg|jpeg|gif)$/i,
 +       type: 'asset/resource',
++     },
++     {
++       test: /\.svg$/,
++       type: 'asset/resource',
++       generator: {
++         filename: path.join('icons', '[name].[hash][ext]'),
++       },
++       // use: 'svgo-loader'
 +     },
     ],
   },
 };
-
 ```
+
+- `assetModuleFilename` - позволяет указать выходной каталог и шаблон имен файлов, для всех модулей, которые соответствуют правилу `type: 'asset/resource'`. Если assetModuleFilename не указан, то, по умолчанию, каталогом будет `dist`, а имя файла будет `[hash][ext]`.
+
+- `[ext]` - шаблон расширения файла.
+
+- `generator.filename` - позволяет переопределить `assetModuleFilename` для конкретного asset-правила. В данном случае, svg-файлы будут выводиться в каталог `dist/icons`
+
+- `type` имеет четыре типа asset:
+
+  - `asset/resource` - работает так же, как и загрузчик [file-loader](https://github.com/webpack-contrib/file-loader), а именно, все модули, которые соответствуют правилу `type: 'asset/resource'` будут выводится в указанный с помощью `assetModuleFilename` каталог.
+
+  - `asset/inline` работает как загрузчик [url-loader](https://v4.webpack.js.org/loaders/url-loader/). Все модули, соответствующие правилу `type: 'asset/inline'`, будут встроены в код бандла как [Data URL](https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/Data_URLs).
+
+  - `asset/source` похож на работу загрузчика [raw-loader](https://github.com/webpack-contrib/raw-loader). Все модули, соответствующие правилу `type: 'asset/source'`, будут встроены без каких-либо преобразований (как есть).
+
+  - `asset` объединяет `asset/resource` и `asset/inline`. Он работает следующим образом: если размер модуля больше 8 КБ, то он работает как `asset/resource`, в противном случае - как `asset/inline`. Размер 8 КБ задан по умолчанию, но его можно изменить с помощью свойства [parser.dataUrlCondition.maxSize](https://webpack.js.org/guides/asset-modules/#general-asset-type).
 
 Создадим каталог `src/images` и поместим в него любое изображение с именем `image.png`
 
@@ -727,7 +752,12 @@ html(lang= 'ru')
     title= 'Быстрый запуск Webpack'
   body
     p Данный файл откомпилирован шаблонизатором Pug
-    img(src=require('./images/image.png') alt='Загрузка изображений с помощью Webpack')
+    .logo__img_png
+      img(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
+    .logo__img_svg
+      img(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
+
+
 ```
 
 Запустим в терминале команду:
@@ -736,19 +766,25 @@ html(lang= 'ru')
 npm run serve
 ```
 
-В окне браузера мы увидим, что на нашей странице появился рисунок:
+В окне браузера мы увидим, что на нашей странице появилось два рисунка:
 
 ![Загрузка изображений с помощью Webpack](add-image.png)
 
-## Загрузка SVG изображений
+## Оптимизация изображений
 
-установим svgo
+Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого придуманы инструменты оптимизации изображений.
+
+### Оптимизация SVG изображений
+
+Векторные изображения, к которым относится формат SVG, можно неограниченно масштабировать без потери качества. SVG - это текстовый язык разметки, а SVG-файлы можно редактировать при помощи обычных текстовых редакторов. Если в SVG изображении не сильно много мелких деталей, то SVG-файлы обычно получаются меньше по размеру, чем сравнимые по качеству изображения в форматах JPEG или GIF, а также SVG-файлы хорошо поддаются сжатию. SVG широко применяется во фронтенде и для него придумано много инструментов. Одним из таких инструментов является минификатор [svgo](https://github.com/svg/svgo), который удаляет лишний код в разметке и тем самым уменьшает размер файла SVG.
+
+Установим svgo:
 
 ```
 npm i -D svgo
 ```
 
-Создадим и настроим svgo.config.js
+Создадим в корне проекта файл `svgo.config.js` и настроим его:
 
 ```js
 module.exports = {
@@ -776,9 +812,11 @@ module.exports = {
 };
 ```
 
-## Оптимизация изображений
+Теперь, чтобы заработало сжатие для SVG файлов, мы настроим совместную работу svgo и imagemin с помощью плагина [imagemin-svgo](https://github.com/imagemin/imagemin-svgo).Перейдем в следующий параграф и настроим imagemin и необходимые плагины для сжатия изображений.
 
-Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого существуют инструменты оптимизации изображений, одним из них является минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - загрузчик и плагин для оптимизации изображений с помощью imagemin.
+### Оптимизация растровых изображений
+
+Для оптимизации растровых изображений широко применяется минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - это загрузчик и плагин для оптимизации изображений с помощью imagemin.
 
 Сначала, установим плагин `image-minimizer-webpack-plugin` и минификатор `imagemin`:
 
@@ -786,7 +824,7 @@ module.exports = {
 npm i -D image-minimizer-webpack-plugin imagemin
 ```
 
-Затем, для оптимизации изображений без потерь качества, установим следующие рекомендуемые плагины imagemin:
+Затем, для оптимизации изображений без потерь качества, установим следующие рекомендуемые плагины:
 
 ```
 npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
