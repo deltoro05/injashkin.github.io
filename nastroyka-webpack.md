@@ -390,6 +390,45 @@ npm run dev
 
 В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.d0b265b1468ab7c3a3c1.js`. Мы видим что, файл `main.js` теперь называется `index.d0b265b1468ab7c3a3c1.js`. Код в имени файла - это хеш, который будет меняться с каждой сборкой проекта.
 
+## Автоматическая очистка каталога dist
+
+Перед каждым запуском вебпака полезно очищать от содержимого каталог dist. Это предотвратит накапливание в нем файлов со старыми версиями. Для этого можно применить [filemanager-webpack-plugin](https://github.com/gregnb/filemanager-webpack-plugin).
+
+Для начала, установим его:
+
+```
+npm i -D filemanager-webpack-plugin
+```
+
+Затем, в файле webpack.config.js настроим:
+
+```js
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const path = require('path');
++ const FileManagerPlugin = require('filemanager-webpack-plugin');
+
+  module.exports = {
+    plugins: [
+      new HtmlWebpackPlugin({
+        ...
+      }),
++     new FileManagerPlugin({
++       events: {
++         onStart: {
++           delete: ['dist'],
++         },
++       },
++     }),
+    ],
+    devServer: {
+      ...
+    },
+  };
+```
+
+Если быть точным, то будет производится не очистка, а полное удаление каталога `dist`.
+Плагин `filemanager-webpack-plugin` может также копировать, создавать, перемещать, архивировать файлы и каталоги не только перед началом сборки `onStart`, но и по окончании `onEnd`. В дальнейшем, мы воспользуемся плагином для копирования файлов.
+
 ## Настройка режима production и создание производственной сборки
 
 До сих пор мы работали с вебпаком в режиме разработки. Но чтобы получить готовое приложение, которое можно разместить на удаленном сервере, нужно создать производственную сборку.
@@ -405,7 +444,7 @@ npm run dev
   },
 ```
 
-Прежде чем выполнить нижеприведенную команду, откроем файл `dist/index.js` в редакторе кода и посмотрим на него. Мы увидим кучу различных комментариев, а код представлен в не сжатом виде. Если мы посмотрим на размер файла, то он составит, примерно, 1424 байта.
+Прежде чем выполнить нижеприведенную команду, откроем файл `dist/index.6ab939774fe4ecf4a2d6.js` в редакторе кода и посмотрим на него. Мы увидим кучу различных комментариев, а код представлен в не сжатом виде. Если мы посмотрим на размер файла, то он составит, примерно, 1424 байта.
 
 Запустим в терминале вебпак в режиме продакшн:
 
@@ -756,8 +795,6 @@ html(lang= 'ru')
       img(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
     .logo__img_svg
       img(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
-
-
 ```
 
 Запустим в терминале команду:
@@ -774,8 +811,6 @@ npm run serve
 
 Многие изображения могут быть сжаты без заметного ухудшения качества, что даст выигрыш в скорости загрузки приложения. Для этого придуманы инструменты оптимизации изображений.
 
-### Оптимизация SVG изображений
-
 Векторные изображения, к которым относится формат SVG, можно неограниченно масштабировать без потери качества. SVG - это текстовый язык разметки, а SVG-файлы можно редактировать при помощи обычных текстовых редакторов. Если в SVG изображении не сильно много мелких деталей, то SVG-файлы обычно получаются меньше по размеру, чем сравнимые по качеству изображения в форматах JPEG или GIF, а также SVG-файлы хорошо поддаются сжатию. SVG широко применяется во фронтенде и для него придумано много инструментов. Одним из таких инструментов является минификатор [svgo](https://github.com/svg/svgo), который удаляет лишний код в разметке и тем самым уменьшает размер файла SVG.
 
 Установим svgo:
@@ -784,37 +819,7 @@ npm run serve
 npm i -D svgo
 ```
 
-Создадим в корне проекта файл `svgo.config.js` и настроим его:
-
-```js
-module.exports = {
-  multipass: true, // boolean. false by default
-  datauri: 'enc', // 'base64' (default), 'enc' or 'unenc'.
-  js2svg: {
-    indent: 2, // string with spaces or number of spaces. 4 by default
-    pretty: true, // boolean, false by default
-  },
-  plugins: [
-    // set of built-in plugins enabled by default
-    'preset-default',
-
-    // enable built-in plugins by name
-    'prefixIds',
-
-    // or by expanded notation which allows to configure plugin
-    {
-      name: 'sortAttrs',
-      params: {
-        xmlnsOrder: 'alphabetical',
-      },
-    },
-  ],
-};
-```
-
-Теперь, чтобы заработало сжатие для SVG файлов, мы настроим совместную работу svgo и imagemin с помощью плагина [imagemin-svgo](https://github.com/imagemin/imagemin-svgo).Перейдем в следующий параграф и настроим imagemin и необходимые плагины для сжатия изображений.
-
-### Оптимизация растровых изображений
+Теперь, чтобы заработало сжатие для SVG файлов, мы настроим совместную работу svgo и imagemin с помощью плагина [imagemin-svgo](https://github.com/imagemin/imagemin-svgo).
 
 Для оптимизации растровых изображений широко применяется минификатор [imagemin](https://github.com/imagemin/imagemin). Для webpack существует [ImageMinimizerWebpackPlugin](https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin) - это загрузчик и плагин для оптимизации изображений с помощью imagemin.
 
@@ -836,60 +841,32 @@ npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
-  // Данное правило у нас уже есть, поэтому не добавляем
   module: {
     rules: [
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
-      },
+      ...
     ],
   },
-  // а это добавляем полностью
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
-            // Оптимизация без потерь с пользовательскими параметрами
-            // Не стесняйтесь экспериментировать с вариантами для достижения лучшего результата
             plugins: [
               ['gifsicle', { interlaced: true }],
               ['jpegtran', { progressive: true }],
               ['optipng', { optimizationLevel: 5 }],
-              // Конфигурация Svgo здесь https://github.com/svg/svgo#configuration
-              [
-                'svgo',
-                {
-                  plugins: [
-                    {
-                      name: 'preset-default',
-                      params: {
-                        overrides: {
-                          removeViewBox: false,
-                          addAttributesToSVGElement: {
-                            params: {
-                              attributes: [
-                                { xmlns: 'http://www.w3.org/2000/svg' },
-                              ],
-                            },
-                          },
-                        },
-                      },
-                    },
-                  ],
-                },
-              ],
+              ['svgo', { name: 'preset-default' }],
             ],
           },
         },
       }),
     ],
   },
-  // до сих пор
 };
 ```
+
+Для `svgo` параметры оптимизации установлены по умолчанию `{ name: 'preset-default' }`. Более подробно о настройках оптимизации `svgo` можно узнать [здесь](https://github.com/svg/svgo).
 
 Запустим команду
 
@@ -897,7 +874,9 @@ module.exports = {
 npm run build
 ```
 
-Если мы сравним размеры файлов изображений в каталоге исходников `src` и целевом каталоге `dist`, то увидим заметную разницу.
+Сравним размеры файлов изображений в каталоге `src` и `dist`. Файл `image.png` был 4,9 КБ, а стал 2,3 КБ, файл `logo.svg` был 11,4 КБ, а стал 2,5 КБ. Налицо, заметное сжатие изображений.
+
+## Создание спрайтов
 
 ## Включение синтаксиса Markdown и файлов .md в Pug
 
@@ -949,3 +928,8 @@ include:markdown-it article.md
 где:
 
 - `[name]` - это шаблонная [подстановка](https://webpack.js.org/configuration/output/#outputfilename) имени. В данном случае она равна имени `index` из имени файла точки входа. Так как точек входа может быть несколько, то `[name]` позволяет сохранить свое уникальное имя для каждого файла.
+
+Используемые источники:
+
+- [Webpack DOCUMENTATION](https://webpack.js.org/concepts/)
+- [Webpack 5 - Asset Modules](https://dev.to/smelukov/webpack-5-asset-modules-2o3h)
