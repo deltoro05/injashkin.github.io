@@ -334,7 +334,7 @@ module.exports = {
 };
 ```
 
-Теперь, если нам нужно будет изменить точку входа мы изменяем значение свойства `entry`. Также, можно задать несколько точек входа. Более подробно о настройках точки входа можно прочитать в статье [Entry Points](https://webpack.js.org/concepts/entry-points/).
+Теперь, если нам нужно будет изменить точку входа мы изменяем значение свойства `entry`. Также, можно задать несколько точек входа. Это бывает нужно при [разделении большого кода](https://webpack.js.org/guides/code-splitting/) на части. Более подробно о настройках точки входа можно прочитать в статьях [Entry Points](https://webpack.js.org/concepts/entry-points/) и [Entry and Context](https://webpack.js.org/configuration/entry-context/).
 
 ### Точка выхода
 
@@ -346,10 +346,14 @@ module.exports = {
 module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'index.[contenthash].js',
   },
 };
 ```
+
+где:
+
+- `[contenthash]` - это шаблон, в который подставляется хеш, сгенерированный на основе контента данного файла. Хеширование делает имя уникальными после каждого изменения содержимого файла. Это решает проблему версионирования. Если хеш изменился, то браузер берет не старый файл из кеша, а загружает новый с сервера. Если вы считаете, что 20 знаков хеша слишком много, то вы можете отрезать от него нужное количество символов следующим образом [contenthash:8]. Хеш будет иметь длину 8 символов. Более подробно о шаблоне хешей можно прочить в статье [Hash vs chunkhash vs ContentHash](https://medium.com/@sahilkkrazy/hash-vs-chunkhash-vs-contenthash-e94d38a32208).
 
 Более полная информация о точках выхода приведена в статьях [concepts/output](https://webpack.js.org/concepts/output/) и [configuration/output](https://webpack.js.org/configuration/output/).
 
@@ -363,7 +367,7 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.[hash].js',
+    filename: 'index.[contenthash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -378,17 +382,13 @@ module.exports = {
 };
 ```
 
-где:
-
-- `[hash]` - это шаблон для подстановки хеша в имя файла, что делает его уникальным после каждой сборки проекта. Данный способ решает проблему версионирования файлов.Если хеш изменился, то браузер берет не старый файл из кеша, а загружает новый с сервера.
-
 Запустим из терминала следующую команду:
 
 ```
 npm run dev
 ```
 
-В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.d0b265b1468ab7c3a3c1.js`. Мы видим что, файл `main.js` теперь называется `index.d0b265b1468ab7c3a3c1.js`. Код в имени файла - это хеш, который будет меняться с каждой сборкой проекта.
+В корне проекта появится каталог `dist`, в котором будут находиться два файла: `index.html` и `index.d0b265b1468ab7c3a3c1.js`. Мы видим что, файл `main.js` теперь называется `index.d0b265b1468ab7c3a3c1.js`. Код в имени файла - это хеш, который будет меняться с изменением содержимого файла.
 
 ## Автоматическая очистка каталога dist
 
@@ -504,6 +504,8 @@ module.exports = {
 };
 ```
 
+Здесь мы видим объект `module`, для которого задано правило `rules`. Для вебпака любой файл является модулем, будь то скрипт, файл стилей, шрифта или изображения.
+
 ## Подключение шаблонизатора Pug
 
 Верстка на чистом HTML не совсем удобна при написания разметки и поддержки больших проектов. Придуманы более удобные инструменты, которые называются шаблонизаторами.
@@ -539,7 +541,7 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.[hash].js',
+    filename: 'index.[contenthash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -595,25 +597,22 @@ npm run serve
 
 ## Загрузка стилей
 
-Для написания стилей мы будем использовать препроцессор Sass. А чтобы большинство браузеров понимало самые современные возможности CSS, которые мы будем применять для стилизации, мы будем прогонять CSS через PostCSS.
+Для написания стилей мы будем использовать препроцессор [Sass](https://sass-lang.com/dart-sass), который расширяет возможности CSS и упрощает создание CSS-кода. В конечном итоге, стили, написанные на SCSS будут преобразованы препроцессором в CSS. А чтобы большинство браузеров понимало самые современные возможности CSS, мы будем прогонять этот CSS через постпроцессор PostCSS.
 
-Установим необходимые модули:
+Установим необходимые пакеты:
 
 ```
-npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader node-sass
+npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader sass
 ```
 
-Настройки для PostCSS можно задать как в файле `webpack.config.js` так и в собственном файле настроек `postcss.config.js`. Мы воспользуемся вторым способом, создадим файл `postcss.config.js` и запишем в нем следующее:
+где:
 
-```js
-module.exports = {
-  plugins: {
-    'postcss-preset-env': {
-      browsers: 'last 2 versions',
-    },
-  },
-};
-```
+- [sass-loader](https://www.npmjs.com/package/sass-loader) - загрузчик файлов Sass/SCSS для вебпака
+- [sass](https://www.npmjs.com/package/sass) компилирует файлы `.scss` в `.css`.
+- [postcss-loader](https://www.npmjs.com/package/postcss-loader) - загрузчик для пост-обработки CSS файлов
+- [postcss-preset-env](https://www.npmjs.com/package/postcss-preset-env) - плагин для PostCSS, который конвертирует современный CSS в код, понятный большинству браузеров, включением необходимых полифилов.
+- [css-loader](https://www.npmjs.com/package/css-loader) используется для загрузки CSS-файлов
+- [style-loader]() для загрузки стилей в DOM
 
 Создадим файл `src/main.scss` и внесем в него следующее:
 
@@ -637,17 +636,7 @@ import './main.scss';
 
 Такой импорт стилей в скрипт возможен только благодаря загрузчикам стилей webpack.
 
-Указываем вебпаку, какие загрузчики стилей применять. Причем, порядок их перечисления в массиве важен, так как загрузчики используются вебпаком от последнего к первому:
-
-1. Так что последним в списке должен быть sass-loader, который загружает файлы SCSS и компилирует его в CSS.
-
-2. Затем идет postcss-loader, который с помощью [PostCSS](https://postcss.org/) транспилирует самые современные фичи CSS (переменные, миксины и многое другое) в то, что понятно большинству браузеров. Также, PostCSS применяет автопрефиксер и линтер к CSS.
-
-3. Следующим в списке будет css-loader, который интерпретирует @import и url() внутри CSS.
-
-4. Последним является style-loader, который внедряет CSS в DOM
-
-**webpack.config.js**
+Настроим пакеты в `webpack.config.js`:
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -657,7 +646,7 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.[hash].js',
+    filename: 'index.[contenthash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -680,12 +669,33 @@ module.exports = {
         test: /\.pug$/,
         loader: 'pug-loader',
       },
-+     // CSS, PostCSS, Sass
 +     {
 +       test: /\.(scss|css)$/,
 +       use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
 +     },
     ],
+  },
+};
+```
+
+Указываем вебпаку, какие загрузчики стилей применять. Причем, порядок их перечисления в массиве важен, так как загрузчики используются вебпаком от последнего к первому:
+
+- Так что последним в списке должен быть sass-loader, который загружает файлы SCSS и компилирует его в CSS.
+
+- Затем идет postcss-loader, который с помощью [PostCSS](https://postcss.org/) транспилирует самые современные фичи CSS (переменные, миксины и многое другое) в то, что понятно большинству браузеров. Также, PostCSS применяет автопрефиксер и линтер к CSS.
+
+- Следующим в списке будет css-loader, который интерпретирует @import и url() внутри CSS.
+
+- Последним является style-loader, который внедряет CSS в DOM
+
+Настройки для PostCSS можно задать как в файле `webpack.config.js` так и в собственном файле настроек `postcss.config.js`. Мы воспользуемся вторым способом, создадим файл `postcss.config.js` и запишем в нем следующее:
+
+```js
+module.exports = {
+  plugins: {
+    'postcss-preset-env': {
+      browsers: 'last 2 versions',
+    },
   },
 };
 ```
@@ -703,6 +713,47 @@ npm run serve
 Данный файл откомпилирован шаблонизатором Pug
 ```
 
+Теперь остановим сервер сочетанием клавиш Ctrl+C и введем в терминале команду:
+
+```
+npm run build
+```
+
+Если мы заглянем в каталог `dist`, то не обнаружим файла с расширением `.css`. Это связано с тем, что стили находятся в бандле `index.[contenthash].js`. Мы можем извлечь стили в отдельный файл, что позволит раздельно кэшировать JS и CSS, для этого применим плагин [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin). Он создает CSS-файл из каждого JS-файла, в котором содержится CSS. Сначала установим `mini-css-extract-plugin`:
+
+```
+npm i -D mini-css-extract-plugin
+```
+
+Затем настроим его в файле `webpack.config.js`:
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};
+```
+
+Вместо `'style-loader'` используем `MiniCssExtractPlugin.loader`.
+
 ## Загрузка изображений
 
 Здесь мы настроим webpack для работы с изображениями в формате PNG, JPG, GIF и SVG.
@@ -718,8 +769,8 @@ module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.[hash].js',
-+   assetModuleFilename: path.join('images', '[name].[hash][ext]'),
+    filename: 'index.[contenthash].js',
++   assetModuleFilename: path.join('images', '[name].[contenthash][ext]'),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -754,7 +805,7 @@ module.exports = {
 +       test: /\.svg$/,
 +       type: 'asset/resource',
 +       generator: {
-+         filename: path.join('icons', '[name].[hash][ext]'),
++         filename: path.join('icons', '[name].[contenthash][ext]'),
 +       },
 +       // use: 'svgo-loader'
 +     },
@@ -763,7 +814,7 @@ module.exports = {
 };
 ```
 
-- `assetModuleFilename` - позволяет указать выходной каталог и шаблон имен файлов, для всех модулей, которые соответствуют правилу `type: 'asset/resource'`. Если assetModuleFilename не указан, то, по умолчанию, каталогом будет `dist`, а имя файла будет `[hash][ext]`.
+- `assetModuleFilename` - позволяет указать выходной каталог и шаблон имен файлов, для всех модулей, которые соответствуют правилу `type: 'asset/resource'`. Если assetModuleFilename не указан, то, по умолчанию, каталогом будет `dist`, а имя файла будет `[contenthash][ext]`.
 
 - `[ext]` - шаблон расширения файла.
 
@@ -791,11 +842,13 @@ html(lang= 'ru')
     title= 'Быстрый запуск Webpack'
   body
     p Данный файл откомпилирован шаблонизатором Pug
-    .logo__img_png
-      img(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
-    .logo__img_svg
-      img(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
+    .logo-png
+      img.logo1(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
+    .logo-svg
+      img.logo2(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
 ```
+
+В атрибуте `src` используется `require`, т. е. мы запрашиваем изображение как модуль.
 
 Запустим в терминале команду:
 
@@ -806,6 +859,20 @@ npm run serve
 В окне браузера мы увидим, что на нашей странице появилось два рисунка:
 
 ![Загрузка изображений с помощью Webpack](add-image.png)
+
+Мы можем изменить размер изображения через стили. Для этого откроем файл `src/main.scss` и зададим размеры для обоих изображений:
+
+```scss
+.logo1 {
+  width: 10em;
+}
+
+.logo2 {
+  width: 10em;
+}
+```
+
+Сохраним изменения и увидим, что размер изображений стал одинаковым. При этом, мы изменили только ширину, а высота изменилась пропорционально.
 
 ## Оптимизация изображений
 
@@ -874,9 +941,7 @@ module.exports = {
 npm run build
 ```
 
-Сравним размеры файлов изображений в каталоге `src` и `dist`. Файл `image.png` был 4,9 КБ, а стал 2,3 КБ, файл `logo.svg` был 11,4 КБ, а стал 2,5 КБ. Налицо, заметное сжатие изображений.
-
-## Создание спрайтов
+Сравним размеры файлов изображений в каталоге `src` и `dist`. Файл `image.png` был 4,9 КБ, а стал 2,3 КБ, файл `logo.svg` был 11,4 КБ, а стал 2,5 КБ. Мы видим, заметное сжатие изображений.
 
 ## Включение синтаксиса Markdown и файлов .md в Pug
 
