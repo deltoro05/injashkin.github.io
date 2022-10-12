@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gdkhid4h.css">
-    <script defer src="/index.1gdkhid4h.js"></script>
-    <meta name="description" content="Микросервис анализирует заголовки запросов и возвращает IP-адрес, предпочитаемые языки и информацию о системе устройства клиента.">
-    <title>Парсер заголовков запросов, написанный на JavaScript | jinv.ru</title>
+    <link rel="stylesheet" href="/index.1gdnjso4d.css">
+    <script defer src="/index.1gdnjso4d.js"></script>
+    <meta name="description" content="Приведены некоторые микросервисы, которые могут быть полезны для использования.">
+    <title>Микросервисы, написанные на JavaScript для NodeJS | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
     <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
@@ -76,20 +76,30 @@
     </header>
     <div class="content">
       <div class="article">
-        <h1>Парсер заголовков запросов, написанный на JavaScript</h1>
-        <div class="creationDate">Создано: 03-02-2020</div><p>анализирующий заголовки запросов</p>
-<p>Данная статья является моим учебным заданием, которое я выполнил обучаясь на <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/request-header-parser-microservice">FreeCodeCamp</a>.</p>
-<p>Задание:</p>
-<p>Нужно создать JavaScript приложение полного цикла, которое функционально похоже на это: https://dandelion-roar.glitch.me/. Микросервис позволяет получить IP-адрес, предпочитаемые языки (из заголовка Accept-Language) и системную информацию (из заголовка User-Agent) для моего устройства.</p>
-<p>Пример Использования:</p>
-<pre><code>[base url]/api/whoami
+        <h1>Микросервисы, написанные на JavaScript для NodeJS</h1>
+        <div class="creationDate">Создано: 03-02-2020</div><p>Данные микросервисы написаны мною при изучении веб разработки. В статье приведены краткие описания микросервисов, а также ссылки на демо и исходные коды.</p>
+<h2>Парсер заголовков запросов, написанный на JavaScript</h2>
+<p>Микросервис анализирует заголовки запросов и возвращает в JSON формате:</p>
+<ul>
+<li>IP-адрес клиента, т. е. ваш ip,</li>
+<li>предпочитаемые клиентом языки (из заголовка Accept-Language),</li>
+<li>информацию о системе устройства клиента (из заголовка User-Agent).</li>
+</ul>
+<p>Чтобы увидеть работу парсера, введите в адресной строке браузера следующий адрес:</p>
+<pre><code>https://request-header-parser-m.glitch.me/whoami/
 </code></pre>
-<p>Пример Вывода:</p>
-<pre><code>{&quot;ipaddress&quot;:&quot;159.20.14.100&quot;,&quot;language&quot;:&quot;en-US,en;q=0.5&quot;,
-&quot;software&quot;:&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0&quot;}
+<p>В окне браузера вы должны увидеть примерно следующее:</p>
+<pre><code>{&quot;ip&quot;:&quot;95.153.170.248,::ffff:10.10.11.161,::ffff:10.10.94.162&quot;,&quot;ipaddress&quot;:&quot;::ffff:127.0.0.1&quot;,&quot;language&quot;:&quot;ru,en;q=0.9&quot;,&quot;software&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.114 YaBrowser/22.9.1.1110 (beta) Yowser/2.5 Safari/537.36&quot;}
 </code></pre>
-<p>Работа над этим проектом будет включать в себя написание кода на Glitch. По желанию можно написать проект на другой платформе, но он должен быть публично виден для тестирования.</p>
-<p>Запустите этот проект на Glitch по этой ссылке или клонируйте этот репозиторий на GitHub! Если вы используете Glitch, не забудьте сохранить ссылку на ваш проект в безопасном месте!</p>
+<p>где</p>
+<ul>
+<li><code>ip</code> представляет собой список IP-адресов, первый - это ip-адрес клиента, а все последующие - это ip-адреса прокси, которые передают по цепочке запрос клиента. В этом примере запрос клиента прошел через proxy1 и proxy2.</li>
+<li><code>ipaddress</code> - это ip-адрес клиента, но если между клиентом и сервером, на котором находится данный микросервис, расположены прокси сервера, то ip-адрес будет 127.0.0.1</li>
+</ul>
+<p>Как реализован данный микросервис, можно посмотреть <a href="https://glitch.com/edit/#!/request-header-parser-m">здесь</a>.</p>
+<h2>Генерация коротких URL адресов</h2>
+<p>Микросервис сокращает URL адреса, а при вводе коротких URL преобразует обратно в исходные. Написано на JavaScript. Демонстрация данного микросервиса приведена в <a href="https://url-shortener-injashkin.glitch.me">этом приложении</a>, а здесь приведен его <a href="https://github.com/injashkin/url-shortener.git">исходный код</a>.</p>
+<p>Чтобы глубже понять, для чего нужен этот микросервис прочтите статью <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D0%BA%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_URL">Сокращение URL</a> на Википедии, а также прочтите <a href="https://www.internet-technologies.ru/articles/rukovodstvo-po-sokrascheniyu-url-adresov-i-otslezhivaniyu-socsetey.html">эту статью</a>.</p>
 
       </div>
     </div>
