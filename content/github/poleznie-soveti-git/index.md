@@ -37,3 +37,19 @@ git subtree add --prefix=new https://github.com/username/repo.git master
 Смотри также:
 
 [Краткий справочник по командам Git](/github/guide-git-i-github/)
+
+## Как создать пустую ветку в Git
+
+```
+git checkout --orphan new
+```
+
+Создает новую ветку `new` без истории коммитов и переключается на нее. У первого коммита, сделанного в этой новой ветви, не будет родителей, и это будет корень новой истории, полностью отключенный от всех других ветвей и коммитов.
+
+```
+git rm -rf .
+```
+
+Очищает ветку new от каталогов и файлов.
+
+Решение найдено в [git-scm](https://git-scm.com/docs/git-checkout#Documentation/git-checkout.txt---orphanltnew-branchgt)
