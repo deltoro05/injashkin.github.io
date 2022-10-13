@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.1gf8aesg9.css">
     <script defer src="/index.1gf8aesg9.js"></script>
-    <meta name="description" content="Как обработать GET запросы. Микросервис возвращает время unix и utc в формате JSON">
-    <title>Обработка даты и времени из GET запросов | jinv.ru</title>
+    <meta name="description" content="Полезные советы по выполнению многокомандных и нестандартных действий в Git">
+    <title>Полезные советы по работе с Git и Github | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
     <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
@@ -76,40 +76,34 @@
     </header>
     <div class="content">
       <div class="article">
-        <h1>Обработка даты и времени из GET запросов</h1>
-        <div class="creationDate">Создано: 18-01-2020</div><p>Данная статья является моим учебным заданием, которое я выполнил обучаясь на <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice">FreeCodeCamp</a></p>
-<h2>Задание</h2>
-<p>Нужно создать JavaScript приложение полного цикла, которое функционально похоже на это: https://curse-arrow.glitch.me/.</p>
-<p>Если ввести в поисковую строку браузера, например, ссылку: <code>https://curse-arrow.glitch.me/api/timestamp/2015-12-25</code>, то будет выведено следующее:</p>
-<p>{&quot;unix&quot;:1451001600000,&quot;utc&quot;:&quot;Fri, 25 Dec 2015 00:00:00 GMT&quot;}</p>
-<p>а если ввести такую ссылку: <code>https://curse-arrow.glitch.me/api/timestamp/1450137600000</code>, то будет выведено следующее:</p>
-<p>{&quot;unix&quot;:1450137600000,&quot;utc&quot;:&quot;Tue, 15 Dec 2015 00:00:00 GMT&quot;}</p>
-<p>Написать код можно на облачном сервисе Glitch. Чтобы данный проект прошел тесты на freecodecamp.org после его завершения нужно скопировать публичный url с Glitch (главной страницы приложения) на <a href="https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice">эту страницу</a>. Можно написать свой проект на другой платформе, но он должен быть публично виден для тестирования.</p>
-<p>Запустите этот проект на Glitch по <a href="https://glitch.com/edit/#!/remix/clone-from-repo?REPO_URL=https://github.com/freeCodeCamp/boilerplate-project-timestamp/">этой ссылке</a> или клонируйте <a href="https://github.com/freeCodeCamp/boilerplate-project-timestamp/">этот репозиторий</a> с GitHub!</p>
+        <h1>Полезные советы по работе с Git и Github</h1>
+        <div class="creationDate">Создано: 13-10-2022</div><h2>Как удалить commit в Github</h2>
+<ul>
+<li>
 <ol>
-<li>
-<p>Конечной точкой API является <code>GET [project_url]/api/timestamp/:строка_даты?</code></p>
-</li>
-<li>
-<p>Строка даты считается допустимой, если может быть успешно проанализирована с помощью <code>new Date(date_string)</code> (JS). Обратите внимание, что метка времени unix должна быть целым числом (не строкой), задающая миллисекунды. В нашем тесте мы будем использовать строки дат, соответствующие стандарту ISO-8601 (например, &quot;2016-11-20&quot;), поскольку это обеспечит временную метку UTC.</p>
-</li>
-<li>
-<p>Если строка даты пуста, она должна быть эквивалентна триггеру <code>new Date()</code>, то есть служба использует текущую метку времени.</p>
-</li>
-<li>
-<p>Если строка даты допустима, api возвращает JSON, имеющий структуру <code>{&quot;unix&quot;: &lt;date.getTime()&gt;, &quot;utc&quot; : &lt;date.toUTCString()&gt; }</code> например, <code>{&quot;unix&quot;: 1479663089000 ,&quot;utc&quot;: &quot;Sun, 20 Nov 2016 17:31:29 GMT&quot;}</code>.</p>
-</li>
-<li>
-<p>Если строка даты недопустима, api возвращает JSON, имеющий структуру <code>{&quot;unix&quot;: null, &quot;utc&quot; : &quot;Invalid Date&quot; }</code>. Это то, что вы получаете от функций манипулирования датой, используемых выше.</p>
-</li>
+<li>Получаем хэш-код коммита, к которому хотим вернуться.</li>
+<li>Заходим в папку репозитория и пишем в консоль:</li>
 </ol>
-<p>Микросервис должен обрабатывать правильную дату и возвращать правильную метку времени unix и правильную строку UTC
-Микросервис должен обрабатывать правильную дату unix и возвращать правильную метку времени unix
-Микросервис должен вернуть сообщение об ошибке для недопустимой даты
-Микросервис должен обрабатывать пустой параметр даты и возвращать текущее время в формате unix и текущее время в формате UTC</p>
-<h2>Решение</h2>
-<p>Исходный код моего микросервиса можно просмотреть на <a href="https://github.com/injashkin/timestamp-microservice">GitHub</a></p>
-<p>Протестировать работу моего микросервиса можно здесь: https://injashkin-timestamp-microservice.glitch.me/api/timestamp/</p>
+</li>
+</ul>
+<pre><code>  git reset --hard 209d0eb765a6760f2a7c65be8d7ff0f8342e1e4f
+  git push --force
+</code></pre>
+<hr>
+<h2>Как объединить репозитории</h2>
+<p>Отдельную ветвь удаленного репозитория можно поместить в подкаталог текущего, сохранив его историю.</p>
+<pre><code>git subtree add --prefix=new https://github.com/username/repo.git master
+</code></pre>
+<ul>
+<li><code>https://github.com/username/repo.git</code> - удаленный репозиторий</li>
+<li><code>master</code> - ветвь удаленного репозитория</li>
+<li><code>new</code> - каталог, который будет создан в корне текущего репозитория, и в который будут помещены файлы из ветки <code>master</code> удаленного репозитория</li>
+</ul>
+<p>Это будет выглядеть как единый коммит, в котором все файлы репозитория <code>repo</code> ветви <code>master</code> будут добавлены в каталог <code>new</code>.</p>
+<p>Решение найдено в <a href="https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories">How do you merge two Git repositories?</a></p>
+<hr>
+<p>Смотри также:</p>
+<p><a href="/github/guide-git-i-github/">Краткий справочник по командам Git</a></p>
 
       </div>
     </div>
