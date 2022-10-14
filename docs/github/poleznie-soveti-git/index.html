@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gf919tc4.css">
-    <script defer src="/index.1gf919tc4.js"></script>
+    <link rel="stylesheet" href="/index.1gfbfkpu2.css">
+    <script defer src="/index.1gfbfkpu2.js"></script>
     <meta name="description" content="Полезные советы по выполнению многокомандных и нестандартных действий в Git">
     <title>Полезные советы по работе с Git и Github | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -101,17 +101,18 @@
 </ul>
 <p>Это будет выглядеть как единый коммит, в котором все файлы репозитория <code>repo</code> ветви <code>master</code> будут добавлены в каталог <code>new</code>.</p>
 <p>Решение найдено в <a href="https://stackoverflow.com/questions/1425892/how-do-you-merge-two-git-repositories">How do you merge two Git repositories?</a></p>
-<hr>
-<p>Смотри также:</p>
-<p><a href="/github/guide-git-i-github/">Краткий справочник по командам Git</a></p>
 <h2>Как создать пустую ветку в Git</h2>
 <pre><code>git checkout --orphan new
 </code></pre>
-<p>Создает новую ветку <code>new</code> без истории коммитов и переключается на нее. У первого коммита, сделанного в этой новой ветви, не будет родителей, и это будет корень новой истории, полностью отключенный от всех других ветвей и коммитов.</p>
+<p>Создает новую ветку <code>new</code> без истории коммитов и переключается на нее. Если проверить существующие ветви репозитория командой <code>git checkout</code>, то ветка <code>new</code> отсутствует в списке, однако файлы в ветке <code>new</code> находятся в индексе. Здесь мы может сделать коммит и зафиксировать имеющиеся каталоги и файлы или их все удалить командой:</p>
 <pre><code>git rm -rf .
 </code></pre>
 <p>Очищает ветку new от каталогов и файлов.</p>
+<p>У первого коммита, сделанного в ветке <code>new</code>, не будет родителей, и это будет корень новой истории, полностью отключенный от всех других ветвей и коммитов.</p>
 <p>Решение найдено в <a href="https://git-scm.com/docs/git-checkout#Documentation/git-checkout.txt---orphanltnew-branchgt">git-scm</a></p>
+<hr>
+<p>Смотри также:</p>
+<p><a href="/github/guide-git-i-github/">Краткий справочник по командам Git</a></p>
 
       </div>
     </div>
