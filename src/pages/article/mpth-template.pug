@@ -1,8 +1,9 @@
 extends ../../layouts/base/index
 
 block main  
+  - const updateDate = update ? ` - Обновлено: ${update}` : ''
   .content
     .article
       h1= title
-      .creationDate= `Создано: ${create || date}`
+      .creationDate= `Создано: ${create || date}${updateDate}`
       != contentHtml
