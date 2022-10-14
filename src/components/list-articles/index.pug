@@ -7,12 +7,12 @@ mixin list-articles
       }
     - 
       dataListItems.sort(function(a, b) {
-        return (new Date(revers(a.create)).getTime() > new Date(revers(b.create)).getTime()? -1 : 1)
+        return (new Date(revers(a.update ? a.update : a.create)).getTime() > new Date(revers(b.update ? b.update : b.create)).getTime()? -1 : 1)
       })
   
   each point in dataListItems
     article
       h2
         a.list__item(href=point.pathFile)= point.title
-      .creationDate= point.create
+      .creationDate= point.update ? point.update : point.create
       p= point.description
