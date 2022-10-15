@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfbfkpu2.css">
-    <script defer src="/index.1gfbfkpu2.js"></script>
+    <link rel="stylesheet" href="/index.1gfel7cg3.css">
+    <script defer src="/index.1gfel7cg3.js"></script>
     <meta name="description" content="Полезные команды по работе с Git и Github. Данный справочник является кратким конспектом из источника git-scm.com">
     <title>Краткий справочник по командам Git | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -177,6 +177,14 @@
 </ul>
 <hr>
 <ul>
+<li>git branch -r
+<ul>
+<li>выводит список имеющихся веток текущего репозитория на удаленном сервере</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
 <li>git branch dev
 <ul>
 <li>создает ветку с именем dev (но не переключает на нее)</li>
@@ -203,7 +211,15 @@
 <ul>
 <li>git checkout -b dev
 <ul>
-<li>создает ветку dev и сразу переключается на нее</li>
+<li>из главной ветки main создает ветку dev и сразу переключается на нее</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>git checkout -b hotfix-2.1.1 main
+<ul>
+<li>из ветки main создает ветку hotfix-2.1.1 и сразу переключается на нее</li>
 </ul>
 </li>
 </ul>
@@ -258,7 +274,7 @@
 </li>
 </ul>
 <hr>
-<h2>Ветви разное</h2>
+<h2>Ветви, разное</h2>
 <hr>
 <ul>
 <li>git checkout main article.md
@@ -285,6 +301,14 @@
 </ul>
 <h2>Удаленные репозитории</h2>
 <p>Каждый удаленный репозиторий имеет URL адрес и сокращенное имя</p>
+<hr>
+<ul>
+<li>git branch -r
+<ul>
+<li>Выводит список имеющихся веток текущего репозитория на удаленном сервере</li>
+</ul>
+</li>
+</ul>
 <hr>
 <ul>
 <li>git remote
@@ -354,6 +378,14 @@
 <li>git fetch og
 <ul>
 <li>Извлекает из удаленного репозитория og все изменения, которых нет в вашем локальном репозитории, но не сливает их с вашими наработками и не модифицирует то, над чем вы работаете в данный момент. Вам необходимо вручную слить эти данные с вашими, когда вы будете готовы с посощью команды merge.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>git pull
+<ul>
+<li>Тоже самое, что git fetch + git merge. Извлекает из удаленного репозитория все изменения, которых нет в вашей текущей локальной ветке репозитория и сливает их с вашими наработками.</li>
 </ul>
 </li>
 </ul>
