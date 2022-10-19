@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfofv00p.css">
-    <script defer src="/index.1gfofv00p.js"></script>
+    <link rel="stylesheet" href="/index.1gfok7flu.css">
+    <script defer src="/index.1gfok7flu.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -146,7 +146,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <pre><code>npm run dev
 </code></pre>
 <p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
-<p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
+<p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри в этой статье <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
 <p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
 <pre><code>touch dist/index.html
 </code></pre>
@@ -185,7 +185,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <p>Из терминала установим плагин:</p>
 <pre><code>npm i -D html-webpack-plugin
 </code></pre>
-<p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>. Для этого в терминале выполним:</p>
+<p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>, выполнив в терминале следующую команду:</p>
 <pre><code>touch webpack.config.js
 </code></pre>
 <p>Откроем файл <code>webpack.config.js</code> в редакторе и вставим следующий код:</p>
@@ -240,10 +240,10 @@ module.exports = {
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Теперь, удалим каталог <code>dist</code> с двумя файлами. В открытом терминале запустим команду:</p>
+<p>Перед тем, как запустить следующую команду, удалим каталог <code>dist</code> с двумя файлами. После этого, в терминале выполним следующее:</p>
 <pre><code>npm run dev
 </code></pre>
-<p>Каталог <code>dist</code> снова создан, а внутри него созданы файлы <code>index.html</code> и <code>main.js</code>. Если откроем в браузере файл <code>dist/index.html</code>, то увидим:</p>
+<p>Каталог <code>dist</code> снова создан, а внутри него созданы файлы <code>index.html</code> и <code>main.js</code>. Если откроем с помощью браузера файл <code>dist/index.html</code>, то увидим:</p>
 <pre><code>Проект собран на Webpack
 Файл создан плагином html-webpack-plugin
 </code></pre>
@@ -306,7 +306,7 @@ module.exports = {
   }
 }
 </code></pre>
-<p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер по умолчанию. <code>--mode development</code> включает режим разработки.</p>
+<p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер. <code>--mode development</code> включает режим разработки.</p>
 <p>Перед тем как запустить веб-сервер удалим каталог <code>dist</code>. Это делать необязательно, а нужно для понимания работы веб-сервера.</p>
 <p>В терминале запустим веб-сервер командой:</p>
 <pre><code>npm run serve
@@ -416,7 +416,7 @@ module.exports = {
   };
 </code></pre>
 <p>Каталог <code>dist</code>, если быть точным, не очищается, а удаляется. Плагин <code>filemanager-webpack-plugin</code> может также копировать, создавать, перемещать, архивировать файлы и каталоги перед началом сборки <code>onStart</code> и по окончании <code>onEnd</code>. В дальнейшем, воспользуемся плагином для копирования файлов.</p>
-<p>Проверим работу пакета <code>filemanager-webpack-plugin</code>, для этого терминале запустим веб-сервер командой:</p>
+<p>Проверим работу пакета <code>filemanager-webpack-plugin</code>, для этого в терминале запустим веб-сервер командой:</p>
 <pre><code>npm run serve
 </code></pre>
 <p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
@@ -492,7 +492,12 @@ module.exports = {
 </code></pre>
 <p>Мы создали объект <code>module</code>, для которого задали правило <code>rules</code>. Для вебпака файл - это модуль, будь то скрипт, стили, шрифт или изображение. Здесь, для всех модулей (читай, файлов) с расширением <code>.js</code> webpack будет применять плагин <code>babel-loader</code>. Правило не действует на каталог <code>node_modules</code>, что указывается в свойстве <code>module.rules.exclude</code>.</p>
 <p>Перед тем, как запустить сборку, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
-<pre><code>document.body.append((function(e){constt=document.createElement('h1');return (t.textContent='Проект собран на Webpack'),t;})());
+<pre><code class="language-js">document.body.append(
+  (function (e) {
+    constt = document.createElement('h1');
+    return (t.textContent = 'Проект собран на Webpack'), t;
+  })()
+);
 </code></pre>
 <p>В терминале запустим команду:</p>
 <pre><code>npm run build
@@ -512,7 +517,7 @@ module.exports = {
 <p>В этой статье рассмотрим <a href="https://pugjs.org/">шаблонизатор Pug</a>, который написан на JavaScript и выполняется в среде Node.js. Шаблонизатор Pug использует синтаксис, основанный на отступах и отличается от синтаксиса HTML отсутствием угловых скобок и закрывающихся тегов. После компиляции синтаксис Pug превращается в HTML код.</p>
 <p>Чтобы шаблонизатор Pug работал с Webpack имеется плагин и загрузчик файлов <a href="https://www.npmjs.com/package/pug-loader">pug-loader</a>.</p>
 <blockquote>
-<p>Загрузчик pug-loader не поддерживает Pug 3-ей версии. Кому это нужно, предлагаю два варианта решения:</p>
+<p>Загрузчик pug-loader не поддерживает Pug 3-ей версии, поэтому придется довольствоваться второй версией. Кому очень нужен Pug 3, предлагаю два варианта решения:</p>
 <ul>
 <li>Сравнительно недавно появился <a href="https://www.npmjs.com/package/pug-plugin">pug-plugin</a>, который работает с Webpack 5 и Pug 3.</li>
 <li>Самостоятельно настроить pug-loader для третьей версии Pug, и дождаться, пока разработчики плагина сами это сделают. Это способ, которым пользуется автор этой статьи, об этом способе читайте в статье <a href="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">XXXXXX</a></li>

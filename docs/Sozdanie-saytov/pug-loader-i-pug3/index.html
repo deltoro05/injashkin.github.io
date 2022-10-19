@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.1gfok7flu.css">
+    <script defer src="/index.1gfok7flu.js"></script>
+    <meta name="description" content="Когда я настраивал webpack 5, мне не удалось запустить пакет Pug 3, так как загрузчик pug-loader может работать только с пакетом Pug 2. По всей видимости, разработчики забросили пакет pug-loader. Последнее обновление пакета было в 2018. Поэтому, если кому очень надо, предлагаю вариант, как подружить pug-loader и Pug 3.">
+    <title>Как заставить работать вместе Pug 3, pug-loader и Webpack 5 | jinv.ru</title>
+    <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/icon72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/icons/icon76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/icon114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/icons/icon120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icons/icon144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon192.png">
+    <link rel="icon" href="images/icons/icon16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="images/icons/icon32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="images/icons/icon96.png" type="image/png" sizes="96x96">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/icons/icon144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content content">           
+        <div class="header__logo">
+          <div class="logo">        <a href="/" title="jinv.ru"> 
+              <svg class="icon icon__logo" role="img" width="14em" height="5em">
+                <use href="/sprite.svg#logo"></use>
+              </svg></a></div>
+          <div class="logo_mobile"><a href="/" title="jinv.ru"><img src="/images/icon-72x72.png" alt="Логотип сайта jinv.ru"/></a></div>
+        </div>
+        <nav class="menu" aria-label="Главное меню">   
+          <div class="content"> 
+            <input id="menu__toggle" type="checkbox"/>
+            <label class="menu__btn" for="menu__toggle"><span>   </span></label>
+            <ul class="menu__box">
+              <li><a class="menu__item" href="/">Главная</a></li>
+              <li><a class="menu__item" href="/toc.html">Статьи</a></li>
+              <li><a class="menu__item" href="/author.html">Об авторе</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="theme">
+          <select id="theme" name="theme">        
+            <option value="auto">Авто      </option>
+            <option value="light">Светлая      </option>
+            <option value="dark">Темная    </option>
+          </select>
+        </div>
+        <div class="header__contacts">
+          <div class="send-mes">
+            <div class="soc"><a class="mes-em" href="injashkin@gmail.com" title="Email" target="_blank" rel="nofollow">
+                <svg class="icon icon__email" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#email"></use>
+                </svg></a><a class="mes-tg" href="https://t.me/jashkin" title="Telegram" target="_blank" rel="nofollow">
+                <svg class="icon icon__telegram" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#telegram"></use>
+                </svg></a><a class="mes-wa" href="https://api.whatsapp.com/send?phone=79183549497" title="WhatsApp" target="_blank" rel="nofollow">
+                <svg class="icon icon__whatsapp" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#whatsapp"></use>
+                </svg></a>
+            </div>
+          </div>
+          <div class="contacts">         
+            <p> <a href="https://github.com/injashkin/injashkin.github.io">Github</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="article">
+        <h1>Как заставить работать вместе Pug 3, pug-loader и Webpack 5</h1>
+        <div class="creationDate">Создано: 12.10.2022</div><p>Когда я настраивал webpack 5, мне не удалось запустить пакет Pug 3, так как загрузчик pug-loader может работать только с пакетом Pug 2. По всей видимости, разработчики забросили пакет pug-loader. Последнее обновление пакета было в 2018. Поэтому, если кому очень надо, предлагаю вариант, как подружить pug-loader и Pug 3.</p>
+<blockquote>
+<ul>
+<li>Сравнительно недавно появился новый пакет <a href="https://www.npmjs.com/package/pug-plugin">pug-plugin</a>, который работает с Webpack 5 и Pug 3.</li>
+</ul>
+</blockquote>
+<p>В терминале введем команду:</p>
+<pre><code>git clone https://github.com/pugjs/pug-loader.git
+</code></pre>
+<p>В <code>Домашней папке</code> будет создан каталог <code>pug-loader</code> в котором будет исходный код загрузчика.</p>
+<p>Откроем файл <code>pug-loader/package.json</code> в редакторе кода и изменим версию пакета в поле &quot;version&quot;:</p>
+<ul>
+<li>&quot;version&quot;: &quot;2.4.0&quot;, заменим на &quot;version&quot;: &quot;2.5.0&quot;,</li>
+</ul>
+<p>в секции &quot;dependencies&quot;</p>
+<ul>
+<li>&quot;pug-walk&quot;: &quot;^1.0.0&quot;, заменим на &quot;pug-walk&quot;: &quot;^2.0.0&quot;,</li>
+</ul>
+<p>в секциях &quot;peerDependencies&quot; и &quot;devDependencies&quot;</p>
+<ul>
+<li>&quot;pug&quot;: &quot;^2.0.0&quot;, заменим на &quot;pug&quot;: &quot;^3.0.2&quot;,</li>
+</ul>
+<p>В результате, должно получиться так:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;pug-loader&quot;,
+  &quot;version&quot;: &quot;2.5.0&quot;,
+  &quot;author&quot;: &quot;Tobias Koppers @sokra&quot;,
+  &quot;description&quot;: &quot;Pug loader module for webpack&quot;,
+  &quot;maintainers&quot;: [&quot;Timothy Gu &lt;timothygu99@gmail.com&gt;&quot;],
+  &quot;dependencies&quot;: {
+    &quot;loader-utils&quot;: &quot;^1.1.0&quot;,
+    &quot;pug-walk&quot;: &quot;^2.0.0&quot;,
+    &quot;resolve&quot;: &quot;^1.1.7&quot;
+  },
+  &quot;peerDependencies&quot;: {
+    &quot;pug&quot;: &quot;^3.0.2&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;mocha&quot;: &quot;*&quot;,
+    &quot;pug&quot;: &quot;^3.0.2&quot;,
+    &quot;should&quot;: &quot;*&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;mocha -R spec&quot;
+  },
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;git://github.com/pugjs/pug-loader.git&quot;
+  },
+  &quot;license&quot;: &quot;MIT&quot;
+}
+</code></pre>
+<p>Сохраним файл и закроем редактор кода. Затем в окне терминала перейдем в каталог загрузчика. Для этого в окне терминала введем следующее:</p>
+<pre><code>cd pug-loader
+</code></pre>
+<p>Установим пакет:</p>
+<pre><code>npm i
+</code></pre>
+<p>Теперь, прогоним тесты:</p>
+<pre><code>npm run test
+</code></pre>
+<p>Если везде зеленые галочки, то двигаемся дальше.</p>
+<p>Создадим глобальную символическую ссылку для pug-loader:</p>
+<pre><code>sudo npm link
+</code></pre>
+<p>Введем пароль администратора</p>
+<p>Проверим существование глобальной символической ссылки для pug-loader:</p>
+<pre><code>npm list -g
+</code></pre>
+<p>Будет показано что-то такое:</p>
+<pre><code>/usr/lib
+├── corepack@0.12.1
+├── md-pug-to-html@2.2.2 -&gt; ./../../home/user/md-pug-to-html
+├── npm@8.15.0
+└── pug-loader@2.5.0 -&gt; ./../../home/user/pug-loader
+</code></pre>
+<p>Последняя строка показывает установленную ссылку. Теперь перейдем в проект, в котором нам нужно установить pug-loader. Если проект находится в той же <code>Домашней папке</code>, то для этого в терминале введем команду:</p>
+<pre><code>cd ../our-project
+</code></pre>
+<p>Подключим pug-loader в качестве зависимости в проекте. Для этого в терминале введем следующее:</p>
+<pre><code>npm link pug-loader
+</code></pre>
+<p>Это практически тоже самое, что установка пакета в проект по команде <code>npm i pug-loader</code>.</p>
+<blockquote>
+<p>Примечание: После каждой установки какого-нибудь npm модуля в проект, у меня нарушалась работа модуля <code>pug-loader</code>, поэтому, приходилось каждый раз переустанавливать ссылку командой <code>npm link pug-loader</code></p>
+</blockquote>
+<p>Чтобы удалить глобальную символическую ссылку на pug-loader из данного проекта, нужно ввести:</p>
+<pre><code>npm unlink pug-loader
+</code></pre>
+
+      </div>
+    </div>
+    <footer class="footer"> 
+      <div class="footer__content content">
+        <div class="footer__contacts" id="contacts"> <a class="footer__email-link" href="mailto:injashkin@gmail.com" title="Написать письмо">
+            <svg class="icon icon__undefined" role="img" width="1em" height="1em">
+              <use href="/sprite.svg#undefined"></use>
+            </svg>
+            <div class="footer__email">injashkin@gmail.com</div></a></div>
+        <div class="footer__developer"> <a href="http://jinv.ru" target="_blank">Разработка сайта jinv.ru</a></div>
+        <div class="footer__copyright-wrap">
+          <div class="footer__copyright">jinv.ru © 2019 - 2022</div>
+        </div>
+      </div>
+    </footer><!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter60672532 = new Ya.Metrika({
+          id: 60672532,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+        });
+      } catch (e) {}
+    });
+
+    var n = d.getElementsByTagName('script')[0],
+      x = 'https://mc.yandex.ru/metrika/watch.js',
+      s = d.createElement('script'),
+      f = function () {
+        n.parentNode.insertBefore(s, n);
+      };
+    for (var i = 0; i < document.scripts.length; i++) {
+      if (document.scripts[i].src === x) {
+        return;
+      }
+    }
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = x;
+
+    if (w.opera == '[object Opera]') {
+      d.addEventListener('DOMContentLoaded', f, false);
+    } else {
+      f();
+    }
+  })(document, window, 'yandex_metrika_callbacks');
+</script>
+<noscript
+  ><div>
+    <img
+      src="https://mc.yandex.ru/watch/60672532"
+      style="position: absolute; left: -9999px"
+      alt=""
+    /></div
+></noscript>
+<!-- /Yandex.Metrika counter -->
+
+  </body>
+</html>
