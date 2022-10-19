@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfgkm2bv.css">
-    <script defer src="/index.1gfgkm2bv.js"></script>
+    <link rel="stylesheet" href="/index.1gfoaogva.css">
+    <script defer src="/index.1gfoaogva.js"></script>
     <meta name="description" content="Установка и настройка сборки из NPM модулей, которая позволит создать статический сайт используя шаблонизатор Pug, препроцессор Sass, язык JavaScript и разметку Markdown">
     <title>Настройка среды разработки из NPM модулей и создание статического сайта | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -287,7 +287,7 @@ block main
 </code></pre>
 <p><code>npm-run-all</code> выполнил сначала скрипт <code>&quot;clean&quot;</code>, потом скрипт <code>&quot;pug'</code>, а после параллельно запустил два скрипта: <code>&quot;watch:pug&quot;</code> и <code>&quot;watch:serve&quot;</code>.</p>
 <h2>Установка и настройка препроцессора node-sass и постпроцессора PostCSS с плагинами PostCSS Preset Env и cssnano</h2>
-<p>Для написания стилей мы будем использовать препроцессор <a href="https://github.com/sass/node-sass#command-line-interface">Sass</a>. Он позволяет нам использовать переменные, вложенности, миксины, наследование, математические операторы и др.</p>
+<p>Для написания стилей мы будем использовать препроцессор <a href="https://github.com/sass/node-sass#command-line-interface">Sass</a>. Он позволяет нам использовать вложенности, миксины, конструкции <code>if/else</code>, операторы сравнения, логические операторы. Такие возможности, как импорты, переменные, наследование, математические операторы используются не только в SCSS, но и в CSS, однако преимущество препроцессоров в том, что эти функции в препроцессорах компилируются один раз на этапе сборки проекта, а в CSS каждый раз выполняются браузером, что в некоторых случаях сказывается на производительности.</p>
 <p>При написании стилей мы не хотим задумываться о префиксах, которые необходимы для корректной работы некоторых браузеров, а также, мы уже сегодня хотим использовать современный CSS не думая о его поддержке всеми браузерами. В этом нам поможет PostCSS с плагином <a href="https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env">PostCSS Preset Env</a>. Этот плагин преобразует современный CSS в тот CSS, который понятен большинству браузеров, а также расставляет префиксы при необходимости.</p>
 <p>Для производственной сборки важно минимизировать и сжать CSS, для более быстрой загрузки стилей. Поэтому, мы будем использовать плагин <a href="http://cssnano.co/">cssnano</a>, который сохраняя семантику удаляет ненужные пробелы и повторяющиеся правила, сжимает идентификаторы, убирает комментарии, удаляет устаревшие вендорные префиксы и выполняет много других оптимизаций.</p>
 <p>Нам еще понадобится <a href="https://github.com/postcss/postcss-cli">postcss-cli</a>, чтобы запускать PostCSS из командной строки. Для начала установим все необходимые пакеты:</p>

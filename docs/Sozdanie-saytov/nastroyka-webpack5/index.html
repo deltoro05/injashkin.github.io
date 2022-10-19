@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.1gfoaogva.css">
+    <script defer src="/index.1gfoaogva.js"></script>
+    <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
+    <title>Настройка Webpack 5 | jinv.ru</title>
+    <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/icon72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/icons/icon76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/icon114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/icons/icon120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icons/icon144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon192.png">
+    <link rel="icon" href="images/icons/icon16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="images/icons/icon32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="images/icons/icon96.png" type="image/png" sizes="96x96">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/icons/icon144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content content">           
+        <div class="header__logo">
+          <div class="logo">        <a href="/" title="jinv.ru"> 
+              <svg class="icon icon__logo" role="img" width="14em" height="5em">
+                <use href="/sprite.svg#logo"></use>
+              </svg></a></div>
+          <div class="logo_mobile"><a href="/" title="jinv.ru"><img src="/images/icon-72x72.png" alt="Логотип сайта jinv.ru"/></a></div>
+        </div>
+        <nav class="menu" aria-label="Главное меню">   
+          <div class="content"> 
+            <input id="menu__toggle" type="checkbox"/>
+            <label class="menu__btn" for="menu__toggle"><span>   </span></label>
+            <ul class="menu__box">
+              <li><a class="menu__item" href="/">Главная</a></li>
+              <li><a class="menu__item" href="/toc.html">Статьи</a></li>
+              <li><a class="menu__item" href="/author.html">Об авторе</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="theme">
+          <select id="theme" name="theme">        
+            <option value="auto">Авто      </option>
+            <option value="light">Светлая      </option>
+            <option value="dark">Темная    </option>
+          </select>
+        </div>
+        <div class="header__contacts">
+          <div class="send-mes">
+            <div class="soc"><a class="mes-em" href="injashkin@gmail.com" title="Email" target="_blank" rel="nofollow">
+                <svg class="icon icon__email" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#email"></use>
+                </svg></a><a class="mes-tg" href="https://t.me/jashkin" title="Telegram" target="_blank" rel="nofollow">
+                <svg class="icon icon__telegram" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#telegram"></use>
+                </svg></a><a class="mes-wa" href="https://api.whatsapp.com/send?phone=79183549497" title="WhatsApp" target="_blank" rel="nofollow">
+                <svg class="icon icon__whatsapp" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#whatsapp"></use>
+                </svg></a>
+            </div>
+          </div>
+          <div class="contacts">         
+            <p> <a href="https://github.com/injashkin/injashkin.github.io">Github</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="article">
+        <h1>Настройка Webpack 5</h1>
+        <div class="creationDate">Создано: 19-10-2022</div><h2>Содержание</h2>
+<ul>
+<li><a href="#%D0%BE-%D1%87%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%82%D1%8C%D1%8F">О чем статья</a></li>
+<li><a href="#%D0%B1%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B9-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-webpack">Быстрый запуск webpack</a></li>
+<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-html-webpack-plugin">Установка и настройка html-webpack-plugin</a></li>
+<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-devserver">Установка и настройка DevServer</a></li>
+<li><a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в Webpack точки входа и выхода</a>
+<ul>
+<li><a href="#%D1%82%D0%BE%D1%87%D0%BA%D0%B0-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0">Точка входа</a></li>
+<li><a href="#%D1%82%D0%BE%D1%87%D0%BA%D0%B0-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Точка выхода</a></li>
+</ul>
+</li>
+<li><a href="#%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Автоматическая очистка каталогов</a></li>
+<li><a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D0%B0-production-%D0%B2-webpack">Настройка режима production в webpack</a></li>
+<li><a href="#babel">Babel</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80%D0%B0-pug">Подключение шаблонизатора Pug</a></li>
+<li><a href="#%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D1%81%D1%82%D0%B8%D0%BB%D0%B5%D0%B9-%D0%B2-webpack">Загрузка стилей</a></li>
+<li><a href="#%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B2-webpack">Загрузка изображений</a></li>
+<li><a href="#%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9">Оптимизация изображений</a></li>
+<li><a href="#%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81%D0%B0-markdown-%D0%B8-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-md-%D0%B2-pug">Включение синтаксиса Markdown и файлов .md в Pug</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D1%80%D0%B8%D1%84%D1%82%D0%BE%D0%B2">Подключение шрифтов</a></li>
+<li><a href="#%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Копирование файлов и каталогов</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8-webpack">Полезные ресурсы для настройки webpack</a></li>
+<li><a href="#%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5">Заключение</a></li>
+</ul>
+<h2>О чем статья</h2>
+<p>Подробно описывается настройка сборщика Webpack 5. Слово &quot;подробно&quot; означает, что здесь будут, по возможности, объясняться все непонятные моменты в настройках - не только &quot;что делать&quot;, но и &quot;зачем это надо&quot;.</p>
+<p>Статья покажет, как создать рабочий шаблон, с помощью которого можно разрабатывать фронтенд сайта и использовать для этого следующие инструменты: Pug, Sass, JavaScript и Markdown.</p>
+<ul>
+<li>Шаблонизатор Pug используется для разметки, которая будет автоматически преобразовываться в разметку HTML.</li>
+<li>Препроцессор Sass применяется для стилей, которые будут автоматически преобразовываться в стили CSS.</li>
+<li>Язык JavaScript необходим для создания интерактивности сайта, при этом, сборка позволит использовать последние достижения языка и не переживать, что новую функцию не распознает старый браузер.</li>
+<li>Разметка Markdown полезна для наполнения содержимого страниц сайта. Разметка Markdown преобразуется в понятный для браузеров HTML.</li>
+</ul>
+<p>Освоив необходимый минимум можно без труда доработать созданный шаблон для работы с React или Vue, а также, интегрировать TypeScript.</p>
+<h2>Быстрый запуск Webpack</h2>
+<p>Чтобы выполнять дальнейшие действия, установите на компьютер <a href="https://nodejs.org/">Node.js</a>.</p>
+<p>Дальнейшие действия выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться Редактор кода) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
+<p>Откроем терминал и создадим каталог будущего проекта:</p>
+<pre><code>mkdir my-project
+</code></pre>
+<p>Сделаем этот каталог рабочим:</p>
+<pre><code>cd my-project
+</code></pre>
+<p>Обратите внимание! С этого момента старайтесь не закрывать окно терминала, так как в нем открыт рабочий каталог проекта <code>my-project</code> и все дальнейшие команды в терминале выполняются в корневом каталоге проекта. Если же терминал был закрыт, то откройте новый терминал и выполните команду: <code>cd my-project</code>.</p>
+<p>Теперь, если нужна <a href="https://git-scm.com/">система контроля версий Git</a>, выполним два шага. Сначала в открытом терминале инициализируем Git:</p>
+<pre><code>git init
+</code></pre>
+<p>В корне проекта создается скрытый каталог <code>.git</code>, в котором хранятся необходимые файлы git-репозитория. Чтобы в файловом браузере увидеть каталог <code>.git</code> нажмем комбинацию клавиш <code>Ctrl+H</code>.</p>
+<p>Затем, в корне проекта создадим скрытый файл <code>.gitignore</code>. Для этого, в открытом терминале введем следующее:</p>
+<pre><code>touch .gitignore
+</code></pre>
+<p>В этом файле будем указывать имена и шаблоны для файлов и каталогов, которые не нужны в репозитории. С помощью редактора кода откроем файл <code>.gitignore</code> и запишем следующее:</p>
+<pre><code>node_modules
+</code></pre>
+<blockquote>
+<p>Не забывайте сохранять в редакторе кода всё, что изменили. Это забывают делать не только новички, но опытные разработчики. Так что, если после очередной правки в редакторе кода, у вас что-то не работает, обязательно убедитесь, что код сохранен. В дальнейшем я не буду напоминать об этом. Запомни правило: сделал правку в редакторе кода, нажми сочетание клавиш <code>Ctrl+S</code>.</p>
+</blockquote>
+<p>Эта запись означает для Git - игнорировать каталог <code>node_modules</code>, не отслеживать и не добавлять каталог в репозиторий.</p>
+<p>С настройками Git в этом проекте закончим. Теперь, не забываем, иногда, а лучше, почаще, делать коммиты.</p>
+<p>Теперь, инициализируем npm, для этого в терминале введем команду:</p>
+<pre><code>npm init -y
+</code></pre>
+<p>В корне проекта создается файл <code>package.json</code> с настройками по умолчанию, на что указывает опция <code>-y</code>. Подробно о файле <code>package.json</code> читайте в <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json">документации по npm</a>.</p>
+<p>Теперь установим <code>webpack</code> и <code>webpack-cli</code>, который используется для запуска webpack в командной строке. Для этого, в открытом терминале введем следующее:</p>
+<pre><code>npm i -D webpack webpack-cli
+</code></pre>
+<p>Опция <code>-D</code> указывает, что установленные пакеты нужны только для режима <code>development</code> и не будут использоваться в производственной сборке. В файле <code>package.json</code> эти пакеты указываются в секции <code>&quot;devDependencies&quot;: {...}</code>.</p>
+<p>В результате выполнения команды, создается каталог <code>node_modules</code> и файл <code>package-lock.json</code>. Каталог <code>node_modules</code> содержит зависимости проекта. Этот каталог не рекомендуется включать в репозиторий, что и указали раньше в файле <code>.gitignore</code>. Файл <code>package-lock.json</code> хранит записи о точных версиях установленных зависимостей.</p>
+<p>С помощью открытого терминала создадим каталог <code>src</code>:</p>
+<pre><code>mkdir src
+</code></pre>
+<p>В корне проекта создается каталог <code>src</code> для исходного кода. В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
+<pre><code>touch src/index.js
+</code></pre>
+<p>Откроем файл <code>src/index.js</code> в редакторе кода и введем следующий код:</p>
+<pre><code class="language-js">function component(text) {
+  const element = document.createElement('h1');
+  element.textContent = text;
+  return element;
+}
+
+document.body.prepend(component('Проект собран на Webpack'));
+</code></pre>
+<p>Затем в редакторе кода откроем <code>package.json</code> и добавим в поле <code>&quot;scripts&quot;</code> следующую строку с <code>dev</code>:</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;dev&quot;: &quot;webpack --mode development&quot;,
+  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+}
+</code></pre>
+<p><code>dev</code> - это произвольное сокращенное имя для команды <code>webpack --mode development</code>. Подобные скрипты в секции <code>&quot;scripts&quot;</code> файла <code>package.json</code> запускаются в с помощью команды <code>npm run</code>. Так, для запуска скрипта выше, введем в терминале следующую команду:</p>
+<pre><code>npm run dev
+</code></pre>
+<p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
+<p>Команда <code>npm run build</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
+<p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
+<pre><code>touch dist/index.html
+</code></pre>
+<p>Затем откроем файл <code>dist/index.html</code> в редакторе кода и запишем следующее:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Быстрый запуск Webpack&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Файл создан вручную&lt;/p&gt;
+    &lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Файловая структура нашего проекта выглядит так:</p>
+<pre><code>my-project
+  |-dist
+    index.html
+    main.js
+  |+node_modules
+  |-src
+    index.js
+  |+.git
+  package-lock.json
+  package.json
+  .gitignore
+</code></pre>
+<p>Файл <code>dist/index.html</code> откроем в браузере и увидим следующее:</p>
+<pre><code>Проект собран на Webpack
+Файл создан вручную
+</code></pre>
+<h2>Установка и настройка html-webpack-plugin</h2>
+<p>В примере выше, файл <code>index.html</code> добавляется вручную. Теперь, настроим webpack, чтобы HTML-файл автоматически создавался в готовой сборке из исходного шаблона. Для этого используем <code>html-webpack-plugin</code>.</p>
+<p>Из терминала установим плагин:</p>
+<pre><code>npm i -D html-webpack-plugin
+</code></pre>
+<p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>. Для этого в терминале выполним:</p>
+<pre><code>touch webpack.config.js
+</code></pre>
+<p>Откроем файл <code>webpack.config.js</code> в редакторе кода и вставим следующий код:</p>
+<pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'template.html'),
+      filename: 'index.html',
+    }),
+  ],
+};
+</code></pre>
+<p>Для файла <code>webpack.config.js</code> разберем содержимое:</p>
+<ul>
+<li>
+<p>Первые две строки импортируют модули <code>html-webpack-plugin</code> и <code>path</code> и определяют эти модули в переменные <code>HtmlWebpackPlugin</code> и <code>path</code> соответственно.</p>
+</li>
+<li>
+<p><code>module.exports = {}</code> - все настройки этого файла помещаются в объект, который экспортируется как модуль по умолчанию.</p>
+</li>
+<li>
+<p>Для плагина <code>html-webpack-plugin</code> создается экземпляр <code>new HtmlWebpackPlugin</code> с двумя заданными свойствами: <code>template</code> - путь к входному файлу и <code>filename</code> - имя выходного файла.</p>
+</li>
+</ul>
+<p>В свойстве <code>template</code> разберем путь, который, на первый взгляд, сложен для понимания.</p>
+<p>В Linux и macOS пути выглядят так: <code>/path/to/template.html</code>. В Windows пути выглядят иначе: <code>C:\path\to\template.html</code>. В Node.js существует модуль <code>path</code>, который учитывает эти различия. Модуль <code>path</code> подключили во второй строке файла <code>webpack.config.js</code>, а затем вызвали в свойстве <code>template</code>. Метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathjoinpaths">path.join</a> объединяет заданные сегменты пути вместе и использует необходимый разделитель для конкретной системы. Сегменты пути для метода <code>path.join</code> задали тремя аргументами <code>__dirname</code>, <code>'src'</code> и <code>'template.html'</code>. Если заранее известно, что этот шаблон будет использоваться в ОС Linux, то можно вместо такого кода <code>template: path.join(__dirname, 'src', 'template.html')</code> указать проще - <code>template: './src/template.html'</code></p>
+<ul>
+<li><code>__dirname</code> - глобальная константа, которая указывает абсолютный путь к каталогу файла, код которого запрашивает эту константу, т. е. в нашем случае, файл, который запрашивает <code>__dirname</code> - это файл <code>webpack.config.js</code>, поэтому <code>__dirname</code> содержит абсолютный путь к корневому каталогу проекта.</li>
+</ul>
+<p>Вместо метода <code>path.join</code> часто применяют метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathresolvepaths">path.resolve</a>.</p>
+<p>Файл настроек <a href="https://webpack.js.org/configuration/#options">webpack.config.js</a> нужен вебпаку, чтобы знать, какие плагины и с какими настройками использовать в том или ином случае. Webpack автоматически определит, если файл настроек лежит в корне проекта и называется <code>webpack.config.js</code>. Если имя или расположение файла настроек другое, укажите это с помощью опции <code>--config</code> в файле <code>package.json</code>, например:</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;serve&quot;: &quot;webpack serve --open --mode development --config dev/serve.config.js&quot;
+}
+</code></pre>
+<p>Однако, это мы вносить в файл не будем.</p>
+<p>Из терминала создадим файл <code>src/template.html</code>:</p>
+<pre><code>touch src/template.html
+</code></pre>
+<p>Откроем в редакторе кода файл <code>src/template.html</code> и скопируем такую разметку:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Быстрый запуск Webpack&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Файл создан плагином html-webpack-plugin&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Теперь, удалим каталог <code>dist</code> с двумя файлами. В открытом терминале запустим команду:</p>
+<pre><code>npm run dev
+</code></pre>
+<p>Каталог <code>dist</code> снова создан, а внутри него созданы файлы <code>index.html</code> и <code>main.js</code>. Если откроем в браузере файл <code>dist/index.html</code>, то увидим:</p>
+<pre><code>Проект собран на Webpack
+Файл создан плагином html-webpack-plugin
+</code></pre>
+<p>Таким образом, плагин html-webpack-plugin сделал две вещи:</p>
+<ul>
+<li>создал файл <code>dist/index.html</code> из файла <code>src/template.html</code></li>
+<li>в файле <code>dist/index.html</code> указал файл скрипта &lt;script defer src=&quot;main.js&quot;&gt;&lt;/script&gt;</li>
+</ul>
+<p>Минимально возможный вариант сборки webpack собран и настроен. С помощью этого шаблона можно начинать разработку проекта по следующему алгоритму:</p>
+<ol>
+<li>Редактируем исходный код в файлах каталога <code>src</code></li>
+<li>Сохраняем результат</li>
+<li>Выполняем сборку проекта следующей командой в терминале:</li>
+</ol>
+<pre><code>npm run dev
+</code></pre>
+<ol start="4">
+<li>Открываем в браузере файл <code>dist/index.html</code>, либо если этот файл открытый, перезагружаем страницу браузера.</li>
+<li>Смотрим на полученный результат в браузере и если надо, повторяем шаги сначала.</li>
+</ol>
+<h2>Установка и настройка DevServer</h2>
+<p>При разработке проекта нужно каждый раз запускать в терминале команду <code>npm run dev</code> и вручную обновлять страницу браузера. Для уменьшения количества рутинных операций, автоматизируем процесс.</p>
+<p>В webpack доступно три способа, которые позволяют при сохранении кода автоматически его компилировать:</p>
+<ol>
+<li><a href="https://webpack.js.org/guides/development/#using-watch-mode">Режим Watch</a></li>
+<li><a href="https://webpack.js.org/guides/development/#using-webpack-dev-server">webpack-dev-server</a></li>
+<li><a href="https://webpack.js.org/guides/development/#using-webpack-dev-middleware">webpack-dev-middleware</a></li>
+</ol>
+<p>Здесь рассмотрим вариант с веб сервером. С помощью терминала установим webpack-dev-server:</p>
+<pre><code>npm i -D webpack-dev-server
+</code></pre>
+<p>В редакторе кода откроем файл <code>webpack.config.js</code> и добавим настройки для веб-сервера (указано знаками <code>+</code>):</p>
+<pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const path = require('path');
+
+  module.exports = {
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, 'src', 'template.html'),
+        filename: 'index.html',
+      }),
+    ],
++   devServer: {
++     watchFiles: path.join(__dirname, 'src'),
++     port: 9000,
++   },
+  };
+</code></pre>
+<p>Для <code>devServer</code> указали два свойства:</p>
+<ul>
+<li><code>watchFiles</code> указывает на каталог <code>src</code>, за которыми будет вестись наблюдение и в случае, если в каталоге произойдут изменения, веб сервер автоматически сделает сборку проекта и перезагрузит страницу браузера.</li>
+<li><code>port</code> указывает порт на котором будет работать веб-сервер, по умолчанию - localhost:8080.</li>
+</ul>
+<p>Чтобы запускать веб сервер короткой командой создадим для CLI скрипт &quot;serve&quot; в файле <code>package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
++   &quot;serve&quot;: &quot;webpack serve --open --mode development&quot;,
+    &quot;dev&quot;: &quot;webpack --mode development&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  }
+}
+</code></pre>
+<p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер по умолчанию. <code>--mode development</code> включает режим разработки.</p>
+<p>Перед тем как запустить веб-сервер удалим каталог <code>dist</code>. Это делать необязательно, а нужно для понимания работы веб-сервера.</p>
+<p>В терминале запустим веб-сервер командой:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
+<pre><code>Проект собран на Webpack
+Файл создан плагином html-webpack-plugin
+</code></pre>
+<p>Если по какой-то причине, страница браузера автоматически не откроется, то откройте браузер вручную и перейдите по адресу http://localhost:9000</p>
+<p>В проекте отсутствует каталог <code>dist</code>. Тогда откуда браузер берет данные? DevServer компилирует исходный код, и записывает файлы в оперативную память.</p>
+<p>Теперь файловая структура нашего проекта будет выглядеть так:</p>
+<pre><code>my-project
+  |-node_modules
+  |-src
+    index.js
+    template.html
+  |+.git
+  package-lock.json
+  package.json
+  webpack.config.js
+  .gitignore
+</code></pre>
+<p>Веб-сервер можно остановить, если в терминале нажать сочетание клавиш Ctrl+C.</p>
+<h2>Настройка в Webpack точки входа и выхода</h2>
+<p>В Webpack'е с четвертой версии не требуется задавать точки входа и выхода, а допускается использовать настройки по умолчанию:</p>
+<ul>
+<li>точка входа - <code>./src/index.js</code></li>
+<li>точка выхода - <code>./dest/main.js</code>.</li>
+</ul>
+<p>Это упрощает настройки, когда проект несложный, но если проект расширяет функциональность, то без настроек точек входа и выхода не обойтись.</p>
+<h3>Точка входа</h3>
+<p><strong>Точка входа</strong> - файл, который Webpack компилирует первым и если в этом файле подключаются зависимости, то эти зависимости тоже обрабатываются.</p>
+<p>С помощью настроек, укажем, использовать точку входа. Для этого в файл <code>webpack.config.js</code> добавим свойство <code>entry</code>:</p>
+<pre><code class="language-js">module.exports = {
+  entry: path.join(__dirname, 'src', 'index.js'),
+};
+</code></pre>
+<p>Теперь, чтобы изменить точку входа изменяем значение свойства <code>entry</code>. Также, можно задать несколько точек входа. Это нужно при <a href="https://webpack.js.org/guides/code-splitting/">разделении кода</a> на части. Подробно о настройках точки входа читайте в статьях <a href="https://webpack.js.org/concepts/entry-points/">Entry Points</a> и <a href="https://webpack.js.org/configuration/entry-context/">Entry and Context</a>.</p>
+<h3>Точка выхода</h3>
+<p><strong>Точка выхода</strong> - каталог, в который Webpack компилирует точки входа.</p>
+<p>Точка выхода настраивается в файле <code>webpack.config.js</code> с помощью свойства <code>output</code>:</p>
+<pre><code class="language-js">module.exports = {
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.[contenthash].js',
+  },
+};
+</code></pre>
+<p>где:</p>
+<ul>
+<li><code>[contenthash]</code> - шаблон, в который подставляется хеш, сгенерированный на основе содержимого файла. Хеширование меняет имя после каждого изменения содержимого файла. Это решает проблему версионирования. Если хеш изменился, то браузер берет не старый файл из кеша, а загружает новый с сервера. 20 знаков хеша сократить до нужного количества символов можно следующим образом: [contenthash:8]. Хеш будет длиной 8 символов. Подробно о шаблоне хешей читайте в статье <a href="https://medium.com/@sahilkkrazy/hash-vs-chunkhash-vs-contenthash-e94d38a32208">Hash vs chunkhash vs ContentHash</a>.</li>
+</ul>
+<p>Подробно о точках выхода описывается в статьях <a href="https://webpack.js.org/concepts/output/">concepts/output</a> и <a href="https://webpack.js.org/configuration/output/">configuration/output</a>.</p>
+<p>Теперь файл <code>webpack.config.js</code> выглядит так:</p>
+<pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
+module.exports = {
+  entry: path.join(__dirname, 'src', 'index.js'),
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.[contenthash].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'template.html'),
+      filename: 'index.html',
+    }),
+  ],
+  devServer: {
+    watchFiles: path.join(__dirname, 'src'),
+    port: 9000,
+  },
+};
+</code></pre>
+<p>В терминале остановим сервер клавишами <code>Ctrl+C</code> и запустим следующую команду:</p>
+<pre><code>npm run dev
+</code></pre>
+<p>В корне проекта появится каталог <code>dist</code>, в котором будут два файла: <code>index.html</code> и <code>index.[hash].js</code>. Второй файл раньше назывался <code>main.js</code>. Код в имени файла - хеш, который будет меняться с изменением содержимого файла.</p>
+<h2>Автоматическая очистка каталогов</h2>
+<p>Перед каждым запуском вебпака полезно очищать каталог dist. Это предотвратит накапливание ненужных файлов. Для этого применим <a href="https://github.com/gregnb/filemanager-webpack-plugin">filemanager-webpack-plugin</a>.</p>
+<p>Для начала, установим filemanager-webpack-plugin:</p>
+<pre><code>npm i -D filemanager-webpack-plugin
+</code></pre>
+<p>Затем, в файле webpack.config.js добавим:</p>
+<pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const path = require('path');
++ const FileManagerPlugin = require('filemanager-webpack-plugin');
+
+  module.exports = {
+    ...
+    plugins: [
+      new HtmlWebpackPlugin({
+        ...
+      }),
++     new FileManagerPlugin({
++       events: {
++         onStart: {
++           delete: ['dist'],
++         },
++       },
++     }),
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<p>Каталог <code>dist</code>, если быть точным, не очищается, а удаляется. Плагин <code>filemanager-webpack-plugin</code> может также копировать, создавать, перемещать, архивировать файлы и каталоги перед началом сборки <code>onStart</code> и по окончании <code>onEnd</code>. В дальнейшем, воспользуемся плагином для копирования файлов.</p>
+<p>Проверим работу пакета <code>filemanager-webpack-plugin</code>, для этого терминале запустим веб-сервер командой:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
+<pre><code>Проект собран на Webpack
+Файл создан плагином html-webpack-plugin
+</code></pre>
+<p>Если же проверим корневой каталог проекта, то не увидим каталога <code>dist</code>, что говорит, о правильной работе пакета <code>filemanager-webpack-plugin</code>.</p>
+<p>Остановим DevServer, для этого в терминале нажмем <code>Ctrl+C</code>.</p>
+<h2>Настройка режима production в webpack</h2>
+<p>До сих пор webpack использовался в режиме разработки. Теперь создадим производственную сборку, чтобы получить готовое приложение, которое размещается на удаленном сервере.</p>
+<p>В файле <code>package.json</code> добавим скрипт <code>&quot;build&quot;</code>:</p>
+<pre><code class="language-json">  &quot;scripts&quot;: {
+    &quot;serve&quot;: &quot;webpack serve --open --mode development&quot;,
+    &quot;dev&quot;: &quot;webpack --mode development&quot;,
++   &quot;build&quot;: &quot;webpack --mode production&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+</code></pre>
+<p>Сначала, в терминале выполним команду:</p>
+<pre><code>npm run dev
+</code></pre>
+<p>Oткроем файл <code>dist/index.[hash].js</code> в редакторе кода и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
+<p>Запустим в терминале webpack в режиме <code>production</code>:</p>
+<pre><code>npm run build
+</code></pre>
+<p>Посмотрим на содержимое файла <code>dist/index.[hash].js</code>, в котором увидим, что отсутствуют комментарии, а код сжатый. Размер файла составляет 139 байт. Этим режим production отличается от режима development - код конечного бандла сжимается. То же относится и к файлу <code>index.html</code>, который в режиме development не сжимается и размер файла составляет 282 байта, а в режиме production убираются пробелы и ненужные символы и размер файла становится равен 259 байт.</p>
+<h2>Babel</h2>
+<p>Большинство новых браузеров поддерживают все новые возможности JavaScript ES6-ES13. Но, многие из этих возможностей не поддерживаются старыми браузерами, которые до сих пор используются в мире. Поэтому, если важно сохранять поддержку этих браузеров, то самый распространенный способ - применить <a href="https://babeljs.io/">Babel</a>. Babel - это компилятор, который адаптирует неподдерживаемые функции JavaScript для устаревших браузеров.</p>
+<blockquote>
+<p>Чтобы посмотреть, какие браузеры поддерживают ту или иную функцию воспользуемся сервисом <a href="https://caniuse.com/">Can I use</a>. Если в строке <code>Can I use______?</code> ввести <code>es13</code>, то будет выведен список функций, которые ожидаются в 13-ом выпуске ECMAScript. При выборе функции, показывается таблица с браузерами, которые поддерживают или не поддерживают эту функцию.</p>
+</blockquote>
+<p>Babel позволяет писать код с использованием новых возможностей JavaScript ES6-ES13. При этом можно не заботится о том, что функция не будет поддерживаться старым браузером. Babel транспилирует JavaScript код в ES5, а браузеры, которые не поддерживают этот стандарт уже никем не используются.</p>
+<p>Для работы Babel требуется два пакета <code>@babel/core</code> и <code>@babel/preset-env</code>, а чтобы Babel работал с Webpack требуется загрузчик <code>babel-loader</code>. Установим эти три пакета одной командой:</p>
+<pre><code>npm i -D @babel/core @babel/preset-env babel-loader
+</code></pre>
+<p>Конфигурацию для Babel зададим в файле <code>.babelrc</code>. Из терминала в корне проекта создадим этот файл:</p>
+<pre><code>touch .babelrc
+</code></pre>
+<p>Откроем <code>.babelrc</code> и внесем следующий код:</p>
+<pre><code class="language-json">{
+  &quot;presets&quot;: [
+    [
+      &quot;@babel/preset-env&quot;,
+      {
+        &quot;modules&quot;: false
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>Теперь, откроем файл <code>webpack.config.js</code> и добавим настройки для Babel:</p>
+<pre><code class="language-js">  module.exports = {
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      ...
+    },
++   module: {
++     rules: [
++       {
++         test: /\.js$/,
++         use: 'babel-loader',
++         exclude: /node_modules/,
++       },
++     ],
++   },
+    plugins: [
+      ...
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<p>Мы создали объект <code>module</code>, для которого задали правило <code>rules</code>. Для вебпака файл - это модуль, будь то скрипт, стили, шрифт или изображение. Здесь, для всех модулей (читай, файлов) с расширением <code>.js</code> webpack будет применять плагин <code>babel-loader</code>. Правило не действует на каталог <code>node_modules</code>, что указывается в свойстве <code>module.rules.exclude</code>.</p>
+<p>Перед тем, как запустить сборку, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
+<pre><code>document.body.append((function(e){constt=document.createElement('h1');return (t.textContent='Проект собран на Webpack'),t;})());
+</code></pre>
+<p>В терминале запустим команду:</p>
+<pre><code>npm run build
+</code></pre>
+<p>Теперь, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
+<pre><code>(()=&gt;{var e;document.body.append((&quot;Проект собран на Webpack&quot;,(e=document.createElement(&quot;h1&quot;)).textContent=&quot;Проект собран на Webpack&quot;,e))})();
+</code></pre>
+<p>Исходный код мы не меняли, но код конечного бандла изменился. Это результат действия компилятора Babel. Второй код поймут все браузеры, которые поддерживают ES5 и выше.</p>
+<h2>Подключение шаблонизатора Pug</h2>
+<p>На чистом HTML верстать можно, но трудно поддерживать большие проекты. Поэтому, умные люди придумали инструменты, которые называются шаблонизаторами.</p>
+<p>Шаблонизаторы позволяют:</p>
+<ul>
+<li>создавать шаблоны, компоненты, блоки</li>
+<li>работать с данными, подставляя эти данные в код. Шаблонизатор может автоматически создать карточки, если подставить данные в компонент из объекта JSON. Также, можно менять классы, если изменять данные, что позволяет управлять интерфейсом компонентов.</li>
+<li>задавать условные выражения и циклы, как в языках программирования.</li>
+</ul>
+<p>В этой статье рассмотрим <a href="https://pugjs.org/">шаблонизатор Pug</a>, который написан на JavaScript и выполняется в среде Node.js. Шаблонизатор Pug использует синтаксис, основанный на отступах и отличается от синтаксиса HTML отсутствием угловых скобок и закрывающихся тегов. После компиляции синтаксис Pug превращается в HTML код.</p>
+<p>Чтобы шаблонизатор Pug работал с Webpack имеется плагин и загрузчик файлов <a href="https://www.npmjs.com/package/pug-loader">pug-loader</a>.</p>
+<blockquote>
+<p>Загрузчик pug-loader не поддерживает Pug 3-ей версии. Кому это нужно, предлагаю два варианта решения:</p>
+<ul>
+<li>Сравнительно недавно появился <a href="https://www.npmjs.com/package/pug-plugin">pug-plugin</a>, который работает с Webpack 5 и Pug 3.</li>
+<li>Самостоятельно настроить pug-loader для третьей версии Pug, и дождаться, пока разработчики плагина сами это сделают. Это способ, которым пользуется автор этой статьи, об этом способе читайте в статье <a href="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">XXXXXX</a></li>
+</ul>
+</blockquote>
+<p>Установим pug и pug-loader</p>
+<pre><code>npm i -D pug pug-loader
+</code></pre>
+<p>Вебпаку укажем, что используем плагин <code>pug-plugin</code> для файлов с расширением <code>.pug</code>. Для этого в файле <code>webpack.config.js</code> добавим:</p>
+<pre><code class="language-js">  module.exports = {
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      ...
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: 'babel-loader',
+          exclude: /node_modules/,
+        },
++       {
++          test: /\.pug$/,
++          loader: 'pug-loader',
++       },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
++       template: path.join(__dirname, 'src', 'template.pug'),
+        filename: 'index.html',
+      }),
+      new FileManagerPlugin({
+        ...
+      }),
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<p>Теперь, благодаря <code>pug-loader</code> модуль <code>HtmlWebpackPlugin</code> может работать с файлами <code>.pug</code>.</p>
+<p>Из терминала создадим файл <code>src/template.pug</code>:</p>
+<pre><code>touch src/template.pug
+</code></pre>
+<p>и напишем в нем следующее:</p>
+<pre><code class="language-pug">doctype html
+html(lang= 'ru')
+  head
+    meta(charset='utf-8')
+    title= 'Быстрый запуск Webpack'
+  body
+    p Файл откомпилирован шаблонизатором Pug
+</code></pre>
+<p>Файл <code>src/template.html</code> теперь удалим.</p>
+<p>В терминале запустим команду:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>Откроется страница браузера по адресу http://localhost:9000/, на которой увидим:</p>
+<pre><code>Проект собран на Webpack
+Файл откомпилирован шаблонизатором Pug
+</code></pre>
+<p>Остановим DevServer, для этого в терминале нажмем <code>Ctrl+C</code>.</p>
+<h2>Загрузка стилей в webpack</h2>
+<p>Для написания стилей будем использовать препроцессор <a href="https://sass-lang.com/dart-sass">Sass</a>, который расширяет возможности CSS и упрощает создание CSS-кода, а также преобразует SCSS в CSS. Затем, будем прогонять этот CSS через постпроцессор PostCSS, чтобы большинство браузеров понимало эти стили.</p>
+<p>Установим необходимые пакеты:</p>
+<pre><code>npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader sass
+</code></pre>
+<p>где:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/sass-loader">sass-loader</a> - загрузчик файлов Sass/SCSS</li>
+<li><a href="https://www.npmjs.com/package/sass">sass</a> компилятор файлов <code>.scss</code> в <code>.css</code>.</li>
+<li><a href="https://www.npmjs.com/package/postcss-loader">postcss-loader</a> - загрузчик CSS файлов для пост-обработки. Должен работать с каким нибудь плагином.</li>
+<li><a href="https://www.npmjs.com/package/postcss-preset-env">postcss-preset-env</a> - плагин для PostCSS, который конвертирует современный CSS в код, понятный большинству браузеров, включением необходимых полифилов.</li>
+<li><a href="https://www.npmjs.com/package/css-loader">css-loader</a> загрузчик CSS-файлов</li>
+<li><a href="https://webpack.js.org/loaders/style-loader/">style-loader</a> загрузчик стилей в DOM</li>
+</ul>
+<blockquote>
+<p>Если требуется использовать только CSS и не пользоваться преимуществами SCSS и PostCSS, то установите только <code>css-loader</code> и <code>style-loader</code>.</p>
+</blockquote>
+<p>Создадим файл <code>src/main.scss</code>:</p>
+<pre><code>touch src/main.scss
+</code></pre>
+<p>и внесем в него следующее:</p>
+<pre><code class="language-scss">$font-size: 1rem;
+$font-color: lch(28 99 35);
+
+html {
+  font-size: $font-size;
+  color: $font-color;
+}
+</code></pre>
+<p>В файле используются переменные Sass и <a href="https://habr.com/ru/company/ruvds/blog/496966/">LCH цвета</a>, которые поддерживаются не всеми браузерами, но PostCSS транспилирует эти цвета в понятные любому браузеру.</p>
+<p>В файле <code>src/index.js</code> сделаем импорт файла main.scss:</p>
+<pre><code class="language-js">import './main.scss';
+</code></pre>
+<p>Такой импорт стилей в скрипте не поддерживается языком JavaScript, а возможен благодаря webpack.</p>
+<p>В <code>webpack.config.js</code> настроим пакеты:</p>
+<pre><code class="language-js">...
+  module.exports = {
+    entry: ... ,
+    output: {
+      ...
+    },
+    module: {
+      rules: [
+        {
+          ...
+        },
+        {
+          test: /\.pug$/,
+          loader: 'pug-loader',
+        },
++       {
++         test: /\.(scss|css)$/,
++         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
++       },
+      ],
+    },
+    plugins: [
+      ...
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<p>Указываем вебпаку, какие загрузчики стилей применять. Причем, порядок их перечисления в массиве важен, так как загрузчики используются вебпаком от последнего к первому:</p>
+<ul>
+<li>
+<p>Так что последним в списке должен быть sass-loader, который загружает файлы SCSS и компилирует его в CSS.</p>
+</li>
+<li>
+<p>Затем идет postcss-loader, который с помощью <a href="https://postcss.org/">PostCSS</a> транспилирует самые современные фичи CSS (переменные, миксины и многое другое) в то, что понятно большинству браузеров. Также, PostCSS применяет автопрефиксер и линтер к CSS.</p>
+</li>
+<li>
+<p>Следующим идет css-loader, который интерпретирует @import и url() внутри CSS.</p>
+</li>
+<li>
+<p>Последним будет style-loader, который внедряет CSS в DOM</p>
+</li>
+</ul>
+<p>Настройки для PostCSS задаются как в файле <code>webpack.config.js</code> так и в собственном файле настроек <code>postcss.config.js</code>. Воспользуемся вторым способом.</p>
+<p>Создадим в корне проекта файл <code>postcss.config.js</code></p>
+<pre><code>touch postcss.config.js
+</code></pre>
+<p>и запишем в файле следующий код:</p>
+<pre><code class="language-js">module.exports = {
+  plugins: {
+    'postcss-preset-env': {
+      browsers: 'last 2 versions',
+    },
+  },
+};
+</code></pre>
+<p>В терминале запустим команду:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>Откроется браузер и появится цветной текст.</p>
+<pre><code>Проект собран на Webpack
+Файл откомпилирован шаблонизатором Pug
+</code></pre>
+<p>Теперь остановим сервер сочетанием клавиш Ctrl+C и введем в терминале команду:</p>
+<pre><code>npm run build
+</code></pre>
+<p>Если заглянем в каталог <code>dist</code>, то не обнаружим файла с расширением <code>.css</code>. Это связано с тем, что стили находятся в бандле <code>dist/index.[hash].js</code>.</p>
+<p>Можем извлечь стили в отдельный файл, что позволит раздельно кэшировать JS и CSS, для этого применим плагин <a href="https://github.com/webpack-contrib/mini-css-extract-plugin">mini-css-extract-plugin</a>. Плагин создает CSS-файл из каждого JS-файла, в котором содержится CSS. Сначала установим <code>mini-css-extract-plugin</code>:</p>
+<pre><code>npm i -D mini-css-extract-plugin
+</code></pre>
+<p>Затем настроим его в файле <code>webpack.config.js</code>:</p>
+<pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const path = require('path');
+  const FileManagerPlugin = require('filemanager-webpack-plugin');
++ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+  module.exports = {
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      ...
+    },
+    module: {
+      rules: [
+        ... ,
+        {
+          test: /\.(scss|css)$/,
+          use: [
++           MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        ...
+      }),
+      new FileManagerPlugin({
+        ...
+      }),
++     new MiniCssExtractPlugin({
++       filename: '[name].[contenthash].css',
++     }),
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<p>Вместо <code>'style-loader'</code> используем <code>MiniCssExtractPlugin.loader</code>.</p>
+<p>Проверим работу плагина, для этого в терминале запустим:</p>
+<pre><code>npm run build
+</code></pre>
+<p>В каталоге <code>dist</code> появится файл <code>main.[hash].css</code>.</p>
+<h2>Загрузка изображений в webpack</h2>
+<p>Здесь настроим webpack для работы с изображениями в формате PNG, JPG, GIF и SVG.
+Начиная с webpack 5, вместо загрузчиков изображений, значков, шрифтов и т. д. используется встроенный <a href="https://webpack.js.org/guides/asset-modules/">Asset Modules</a>. До webpack 5 использовались <a href="https://v4.webpack.js.org/loaders/raw-loader/">raw-loader</a>, <a href="https://v4.webpack.js.org/loaders/url-loader/">url-loader</a> и <a href="https://v4.webpack.js.org/loaders/file-loader/">file-loader</a>.</p>
+<p>Для поддержки изображений устанавливать ничего не нужно, требуется только настроить <code>webpack.config.js</code>:</p>
+<pre><code class="language-js">  module.exports = {
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: 'index.[contenthash].js',
++     assetModuleFilename: path.join('images', '[name].[contenthash][ext]'),
+    },
+    module: {
+      rules: [
+        ...
+        {
+          test: /\.(scss|css)$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+        },
++       {
++         test: /\.(png|jpg|jpeg|gif)$/i,
++         type: 'asset/resource',
++       },
++       {
++         test: /\.svg$/,
++         type: 'asset/resource',
++         generator: {
++           filename: path.join('icons', '[name].[contenthash][ext]'),
++         },
++       },
+      ],
+    },
+    plugins: [
+      ...
+    ],
+    devServer: {
+      ...
+    },
+  };
+</code></pre>
+<ul>
+<li>
+<p><code>assetModuleFilename</code> - указывает выходной каталог и шаблон имен файлов, для модулей, которые соответствуют правилу <code>type: 'asset/resource'</code>. Если <code>assetModuleFilename</code> не указан, то, по умолчанию, каталогом будет <code>dist</code>, а имя файла будет <code>[contenthash][ext]</code>.</p>
+</li>
+<li>
+<p><code>[ext]</code> - шаблон расширения файла, также, включает точку.</p>
+</li>
+<li>
+<p><code>generator.filename</code> - переопределяет <code>assetModuleFilename</code> для конкретного asset-правила. Здесь, svg-файлы будут выводиться в каталог <code>dist/icons</code></p>
+</li>
+<li>
+<p><code>type</code> имеет четыре типа asset:</p>
+<ul>
+<li>
+<p><code>asset/resource</code> - работает так же, как и загрузчик <a href="https://github.com/webpack-contrib/file-loader">file-loader</a>. Модули, которые соответствуют правилу <code>type: 'asset/resource'</code> будут выводится в указанный с помощью <code>assetModuleFilename</code> каталог.</p>
+</li>
+<li>
+<p><code>asset/inline</code> работает как загрузчик <a href="https://v4.webpack.js.org/loaders/url-loader/">url-loader</a>. Модули, соответствующие правилу <code>type: 'asset/inline'</code>, встраиваются в код бандла как <a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/Data_URLs">Data URL</a>.</p>
+</li>
+<li>
+<p><code>asset/source</code> похож на работу загрузчика <a href="https://github.com/webpack-contrib/raw-loader">raw-loader</a>. Модули, соответствующие правилу <code>type: 'asset/source'</code>, встраиваются без преобразований (как есть).</p>
+</li>
+<li>
+<p><code>asset</code> объединяет <code>asset/resource</code> и <code>asset/inline</code>. Он работает следующим образом: если размер модуля больше 8 КБ, то он работает как <code>asset/resource</code>, в противном случае - как <code>asset/inline</code>. Размер 8 КБ задан по умолчанию, но его можно изменить с помощью свойства <a href="https://webpack.js.org/guides/asset-modules/#general-asset-type">parser.dataUrlCondition.maxSize</a>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Создадим каталог <code>src/images</code> и поместим в него растровое изображения с именем <code>image.png</code> и векторное - <code>logo.svg</code>.</p>
+<blockquote>
+<p>Могу предложить свои рисунки. Перейдем по <a href="https://github.com/injashkin/webpack-template/raw/master/src/images/image.png">этой ссылке</a>, наведем курсор на рисунок, нажмем правую кнопку мыши, выберем из контекстного меню &quot;Сохранить изображение как...&quot;, выберем каталог <code>src/images</code> нашего проекта, нажмем кнопку сохранить. Тоже самое проделаем для <a href="https://github.com/injashkin/webpack-template/blob/master/src/images/logo.svg">векторного изображения</a>.</p>
+</blockquote>
+<p>Откроем файл <code>src/template.pug</code> и допишем в него классы <code>.logo-png</code>, .<code>logo-svg</code> и теги <code>img</code>:</p>
+<pre><code class="language-pug">doctype html
+html(lang= 'ru')
+  head
+    meta(charset='utf-8')
+    title= 'Быстрый запуск Webpack'
+  body
+    p Файл откомпилирован шаблонизатором Pug
+    .logo-png
+      img.logo1(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
+    .logo-svg
+      img.logo2(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
+</code></pre>
+<p>В атрибуте <code>src</code> используется <code>require</code>, т. е. изображение запрашивается как модуль.</p>
+<p>В терминале запустим команду:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>В окне браузера появилось два рисунка:</p>
+<p><img src="add-image.png" alt="Загрузка изображений с помощью Webpack"></p>
+<p>Размер изображения изменим через стили. Для этого откроем файл <code>src/main.scss</code> и зададим размеры для обоих изображений, для этого добавим в конец файла следующее:</p>
+<pre><code class="language-scss">.logo1 {
+  width: 10em;
+}
+
+.logo2 {
+  width: 10em;
+}
+</code></pre>
+<p>Сохраним изменения и увидим, что размер изображений стал одинаковым. При этом, мы изменили только ширину, а высота изменилась пропорционально.</p>
+<p><img src="resize-images.png" alt="Изменение размера изображений"></p>
+<h2>Оптимизация изображений</h2>
+<p>Многие изображения сжимаются без ухудшения визуального качества. Сжатие дает выигрыш в скорости загрузки. Для этого существуют инструменты оптимизации изображений.</p>
+<p>Векторные изображения, к которым относится формат SVG, можно неограниченно масштабировать без потери качества. SVG - текстовый язык разметки, а SVG-файлы редактируются при помощи текстовых или векторных графических редакторов. Если в SVG изображении не сильно много мелких деталей, то SVG-файлы получаются меньше по размеру, чем сравнимые по качеству изображения в форматах JPEG или GIF. SVG-файлы хорошо сжимаются. SVG применяется во фронтенде и для него придумано много инструментов. Одним из таких инструментов является минификатор <a href="https://github.com/svg/svgo">svgo</a>, который удаляет лишний код в разметке SVG и тем самым уменьшает размер файла.</p>
+<p>Установим svgo:</p>
+<pre><code>npm i -D svgo
+</code></pre>
+<p>Теперь, чтобы заработало сжатие для SVG файлов, настроим совместную работу svgo и imagemin с помощью плагина <a href="https://github.com/imagemin/imagemin-svgo">imagemin-svgo</a>.</p>
+<p>Для оптимизации растровых изображений применяется минификатор <a href="https://github.com/imagemin/imagemin">imagemin</a>. Для webpack существует <a href="https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin">image-minimizer-webpack-plugin</a> - это загрузчик и плагин для оптимизации изображений с помощью imagemin.</p>
+<p>Сначала, установим плагин <code>image-minimizer-webpack-plugin</code> и минификатор <code>imagemin</code>:</p>
+<pre><code>npm i -D image-minimizer-webpack-plugin imagemin
+</code></pre>
+<p>Затем, для оптимизации изображений без потерь качества, установим следующие плагины:</p>
+<pre><code>npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
+</code></pre>
+<p>В файл <code>webpack.config.js</code> добавим настройки:</p>
+<pre><code class="language-js">  ...
++ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
+  module.exports = {
+    entry: path.join(__dirname, 'src', 'index.js'),
+    output: {
+      ...
+    },
+    module: {
+      rules: [
+        ...
+      ],
+    },
+    plugins: [
+      ...
+    ],
+    devServer: {
+      ...
+    },
++   optimization: {
++     minimizer: [
++       new ImageMinimizerPlugin({
++         minimizer: {
++           implementation: ImageMinimizerPlugin.imageminMinify,
++           options: {
++             plugins: [
++               ['gifsicle', { interlaced: true }],
++               ['jpegtran', { progressive: true }],
++               ['optipng', { optimizationLevel: 5 }],
++               ['svgo', { name: 'preset-default' }],
++             ],
++           },
++         },
++       }),
++     ],
++   },
+  };
+</code></pre>
+<p>Для <code>svgo</code> параметры оптимизации установлены по умолчанию <code>{ name: 'preset-default' }</code>. Подробно о настройках оптимизации <code>svgo</code> читайте <a href="https://github.com/svg/svgo">здесь</a>.</p>
+<p>В терминале запустим команду:</p>
+<pre><code>npm run build
+</code></pre>
+<p>Сравним размеры файлов изображений в каталоге <code>src</code> и <code>dist</code>. Файл <code>image.png</code> был 4,9 КБ, а стал 2,3 КБ, файл <code>logo.svg</code> был 11,4 КБ, а стал 2,5 КБ. Мы видим, заметное сжатие изображений.</p>
+<h2>Включение синтаксиса Markdown и файлов .md в Pug</h2>
+<p>Чтобы использовать Markdown в шаблонизаторе Pug, можно применить фильтр <code>:markdown-it</code> модуля <a href="https://github.com/jstransformers/jstransformer-markdown-it">jstransformer-markdown-it</a>.</p>
+<p><a href="https://pugjs.org/language/filters.html">Фильтры</a> позволяют использовать в шаблонизаторе Pug другие языки. Для начала установим модуль <code>jstransformer-markdown-it</code>:</p>
+<pre><code>npm i -D jstransformer-markdown-it
+</code></pre>
+<p>Теперь можем в Pug файле использовать синтаксис Markdown. Изменим файл <code>src/template.pug</code>, добавим в конец файла три строки кода:</p>
+<pre><code class="language-pug">doctype html
+html(lang= 'ru')
+  head
+    meta(charset='utf-8')
+    title= 'Быстрый запуск Webpack'
+  body
+    p Файл откомпилирован шаблонизатором Pug
+    .logo-png
+      img.logo1(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
+    .logo-svg
+      img.logo2(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
+
+    :markdown-it(linkify langPrefix='highlight-')
+      ## Markdown документ
+
+      - Написано на **Markdown**
+</code></pre>
+<p>Из терминала выполним команду:</p>
+<pre><code>npm run serve
+</code></pre>
+<p><img src="add-markdown.png" alt="Использование markdown в pug"></p>
+<p>Можно также поместить markdown разметку в файл с расширением <code>.md</code> и включить этот файл в шаблон, используя <code>include:markdown-it</code>, например:</p>
+<pre><code class="language-pug">doctype html
+html(lang= 'ru')
+  head
+    meta(charset='utf-8')
+    title= 'Быстрый запуск Webpack'
+  body
+    p Файл откомпилирован шаблонизатором Pug
+    .logo-png
+      img.logo1(src=require('./images/image.png') alt='Загрузка PNG изображений с помощью Webpack')
+    .logo-svg
+      img.logo2(src=require('./images/logo.svg'), alt='Загрузка SVG изображений с помощью Webpack')
+
+    include:markdown-it article.md
+</code></pre>
+<h2>Подключение шрифтов</h2>
+<p>Шрифты нашего проекта разместим в каталоге <code>src/fonts</code>, Создадим этот каталог:</p>
+<pre><code>mkdir src/fonts
+</code></pre>
+<p>Затем, создадим в этом каталоге файл <code>fonts.scss</code></p>
+<pre><code>touch src/fonts/fonts.scss
+</code></pre>
+<p>в котором будем хранить CSS стили для шрифтов. Пропишем файл <code>fonts.scss</code> в <code>src/index.js</code>:</p>
+<pre><code class="language-js">  import './main.scss';
++ import './fonts/fonts.scss';
+
+  function component(text) {
+    const element = document.createElement('h1');
+    element.textContent = text;
+    return element;
+  }
+
+  document.body.prepend(component('Проект собран на Webpack'));
+</code></pre>
+<p>Теперь, скачаем нужные шрифты и код CSS для них.</p>
+<ol>
+<li>На странице <a href="https://google-webfonts-helper.herokuapp.com/fonts">google-webfonts-helper</a> в списке слева нужно выбрать необходимый шрифт.
+<ul>
+<li>Справа от списка появится страница для шрифта. На этой странице можно дополнительно указать нужные кодировки и стили, которые планируется использовать для шрифта.</li>
+<li>В секции <code>Select charsets</code> выберем <code>cyrillic</code> и <code>latin</code>.</li>
+<li>В секции <code>Select styles</code> выберем <code>regular</code>, <code>italic</code>, <code>700</code> и <code>700italic</code></li>
+<li>В секции <code>Copy CSS:</code> в поле <code>Customize folder prefix (optional):</code> укажите префикс пути <code>./</code> и скопируйте из серого поля CSS-код в файл <code>src/fonts/fonts.scss</code>.</li>
+</ul>
+</li>
+<li>Нажмите на синюю кнопку в секции <code>Download files</code> и скачайте файл с расширением <code>.zip</code>.</li>
+<li>Распакуйте из zip-архива файлы шрифтов в каталог <code>src/fonts/</code>.</li>
+</ol>
+<p>Рекомендуется оптимизировать шрифты на таких сервисах как <a href="https://www.font2web.com/">Font2web</a> или <a href="https://transfonter.org/">Transfonter</a>, но шрифты Google уже оптимизированы, поэтому этот шаг можно пропустить.</p>
+<p>Для обработки шрифтов вебпаком добавим следующие правила в файл <code>webpack.config.js</code>:</p>
+<pre><code class="language-js">  module: {
+    rules: [
++     {
++       test: /\.(woff2?|eot|ttf|otf)$/i,
++       type: 'asset/resource',
++     },
+    ],
+  },
+</code></pre>
+<p>В файле <code>main.scss</code> укажем на используемый шрифт. Так, если это будет шрифт <code>Roboto</code> и мы хотим его использовать по всему нашему проекту, то запишем:</p>
+<pre><code class="language-scss">html {
+  font-family: 'Roboto';
+}
+</code></pre>
+<p>В терминале выполним команду:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>Откроется браузер и мы увидим, что шрифт без засечек.</p>
+<p><img src="change_fonts.png" alt="Использование markdown в pug"></p>
+<p>Проверить применяемый шрифт для элемента можно с помощью инструментов разработчика. Чтобы быстро открыть инструменты разработчика, нажмем <code>Ctrl+Shift+I</code>, и включим режим выбора элементов сочетанием клавиш <code>Ctrl+Shift+C</code>. Если у вас браузер Chrome или Yandex, то наведите курсором на любой текст на странице. В контекстной подсказке будет показан применяемый шрифт:</p>
+<p><img src="def-fonts.png" alt="Контекстная подсказка инструментов разработчика"></p>
+<p>Если у вас браузер Firefox, то на применяемые шрифты нужно смотреть в секции для CSS-кода Инспектора.</p>
+<h2>Копирование файлов и каталогов</h2>
+<p>Часто возникает необходимость скопировать в готовую сборку некоторые файлы или каталоги без преобразований. Это могут быть файлы PDF, либо файл <code>robots.txt</code>, который используется для ограничения доступа поисковым роботам к ресурсам сайта, файлы <code>favicon.ico</code>, <code>sitemap.xml</code> и т.п. В исходном коде такие ресурсы, обычно, помещают в каталог <code>static</code>, а из нее эти ресурсы копируют в корень каталога <code>dist</code>.</p>
+<p>Создадим каталог <code>src/static</code>:</p>
+<pre><code>mkdir src/static
+</code></pre>
+<p>Создадим файл <code>src/static/robots.txt</code>:</p>
+<pre><code>touch src/static/robots.txt
+</code></pre>
+<p>Оставим файл пустым.</p>
+<p>В параграфе <a href="#%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Автоматическая очистка каталогов</a> применялся плагин <code>filemanager-webpack-plugin</code>, который может удалять, копировать, создавать, перемещать и архивировать файлы и каталоги. Применим этот плагин для копирования ресурсов. Так как плагин в проекте уже установлен, то остается его настроить для копирования. Добавим в файл <code>webpack.config.js</code> следующий код:</p>
+<pre><code class="language-js">* const FileManagerPlugin = require('filemanager-webpack-plugin');
+
+  module.exports = {
+    plugins: [
+      ... ,
+*     new FileManagerPlugin({
+*       events: {
+*         onStart: {
+*           delete: ['dist'],
+*         },
++         onEnd: {
++           copy: [
++             {
++               source: path.join('src', 'static', 'robots.txt'),
++               destination: path.join('dist', 'robots.txt'),
++             },
++           ],
+*         },
+*       },
+*     }),
+      ... ,
+    ],
+  };
+</code></pre>
+<p>Звездочками отмечены строки, которые относятся к данному плагину и настроены в прошлом, а знаком <code>+</code> строки, которые добавляются сейчас.</p>
+<p>В терминале выполним команду:</p>
+<pre><code>npm run build
+</code></pre>
+<p>В каталоге <code>dist</code> появился файл <code>robots.txt</code>.</p>
+<h2>Полезные ресурсы для настройки webpack</h2>
+<p>Настройка Webpack заставляет постоянно редактировать файл <code>webpack.config.js</code>. Поэтому, полезно держать под рукой справочник. Официальный сайт Webpack'а предлагает такой справочник, который представляет файл конфигурации с <a href="https://webpack.js.org/configuration/#options">интерактивными опциями</a>, если нажать на название непонятной опции, откроется страница с подробной документацией.</p>
+<p>Рекомендую посетить сервис <a href="https://createapp.dev/">createapp.dev</a>, который поможет создать готовый шаблон проекта с необходимыми настройками. Этот сервис настраивает проект под Webpack, Parcel и Snowpack и полезен для опытных пользователей.</p>
+<h2>Заключение</h2>
+<p>В этой статье показано, как настроить webpack для создания фронтенда сайта с использованием шаблонизатора Pug, препроцессора SCSS, языка разметки Markdown и языка JavaScript. Показываются методы оптимизации изображений, подключения шрифтов, настройки локального сервера.</p>
+<p>Весь код из этой статьи находится <a href="https://github.com/injashkin/webpack-template">здесь</a>.</p>
+<p>За рамками этой статьи остались настройка вебпака для работы с библиотекой React или фреймворком Vue, а также <a href="https://webpack.js.org/guides/typescript/">интеграция с TypeScript</a>. Не рассмотрена такая тема, как <a href="https://webpack.js.org/guides/code-splitting/">разделение кода</a> на чанки. Если после очередной сборки бандла вы замечаете, что загрузка сайта начинает ощутимо возрастать, то стоит рассмотреть такие методы, как <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>, <a href="https://webpack.js.org/guides/lazy-loading/">Lazy Loading</a> и <a href="https://webpack.js.org/guides/tree-shaking/">Tree Shaking</a>.</p>
+
+      </div>
+    </div>
+    <footer class="footer"> 
+      <div class="footer__content content">
+        <div class="footer__contacts" id="contacts"> <a class="footer__email-link" href="mailto:injashkin@gmail.com" title="Написать письмо">
+            <svg class="icon icon__undefined" role="img" width="1em" height="1em">
+              <use href="/sprite.svg#undefined"></use>
+            </svg>
+            <div class="footer__email">injashkin@gmail.com</div></a></div>
+        <div class="footer__developer"> <a href="http://jinv.ru" target="_blank">Разработка сайта jinv.ru</a></div>
+        <div class="footer__copyright-wrap">
+          <div class="footer__copyright">jinv.ru © 2019 - 2022</div>
+        </div>
+      </div>
+    </footer><!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter60672532 = new Ya.Metrika({
+          id: 60672532,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+        });
+      } catch (e) {}
+    });
+
+    var n = d.getElementsByTagName('script')[0],
+      x = 'https://mc.yandex.ru/metrika/watch.js',
+      s = d.createElement('script'),
+      f = function () {
+        n.parentNode.insertBefore(s, n);
+      };
+    for (var i = 0; i < document.scripts.length; i++) {
+      if (document.scripts[i].src === x) {
+        return;
+      }
+    }
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = x;
+
+    if (w.opera == '[object Opera]') {
+      d.addEventListener('DOMContentLoaded', f, false);
+    } else {
+      f();
+    }
+  })(document, window, 'yandex_metrika_callbacks');
+</script>
+<noscript
+  ><div>
+    <img
+      src="https://mc.yandex.ru/watch/60672532"
+      style="position: absolute; left: -9999px"
+      alt=""
+    /></div
+></noscript>
+<!-- /Yandex.Metrika counter -->
+
+  </body>
+</html>
