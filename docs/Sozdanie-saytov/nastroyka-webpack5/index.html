@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfoaogva.css">
-    <script defer src="/index.1gfoaogva.js"></script>
+    <link rel="stylesheet" href="/index.1gfodp0mt.css">
+    <script defer src="/index.1gfodp0mt.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -77,32 +77,7 @@
     <div class="content">
       <div class="article">
         <h1>Настройка Webpack 5</h1>
-        <div class="creationDate">Создано: 19-10-2022</div><h2>Содержание</h2>
-<ul>
-<li><a href="#%D0%BE-%D1%87%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%82%D1%8C%D1%8F">О чем статья</a></li>
-<li><a href="#%D0%B1%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B9-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-webpack">Быстрый запуск webpack</a></li>
-<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-html-webpack-plugin">Установка и настройка html-webpack-plugin</a></li>
-<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-devserver">Установка и настройка DevServer</a></li>
-<li><a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в Webpack точки входа и выхода</a>
-<ul>
-<li><a href="#%D1%82%D0%BE%D1%87%D0%BA%D0%B0-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0">Точка входа</a></li>
-<li><a href="#%D1%82%D0%BE%D1%87%D0%BA%D0%B0-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Точка выхода</a></li>
-</ul>
-</li>
-<li><a href="#%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Автоматическая очистка каталогов</a></li>
-<li><a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D0%B0-production-%D0%B2-webpack">Настройка режима production в webpack</a></li>
-<li><a href="#babel">Babel</a></li>
-<li><a href="#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80%D0%B0-pug">Подключение шаблонизатора Pug</a></li>
-<li><a href="#%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D1%81%D1%82%D0%B8%D0%BB%D0%B5%D0%B9-%D0%B2-webpack">Загрузка стилей</a></li>
-<li><a href="#%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B2-webpack">Загрузка изображений</a></li>
-<li><a href="#%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9">Оптимизация изображений</a></li>
-<li><a href="#%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81%D0%B0-markdown-%D0%B8-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-md-%D0%B2-pug">Включение синтаксиса Markdown и файлов .md в Pug</a></li>
-<li><a href="#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D1%80%D0%B8%D1%84%D1%82%D0%BE%D0%B2">Подключение шрифтов</a></li>
-<li><a href="#%D0%BA%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-%D0%B8-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Копирование файлов и каталогов</a></li>
-<li><a href="#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8-webpack">Полезные ресурсы для настройки webpack</a></li>
-<li><a href="#%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5">Заключение</a></li>
-</ul>
-<h2>О чем статья</h2>
+        <div class="creationDate">Создано: 19-10-2022</div><h2>О чем статья</h2>
 <p>Подробно описывается настройка сборщика Webpack 5. Слово &quot;подробно&quot; означает, что здесь будут, по возможности, объясняться все непонятные моменты в настройках - не только &quot;что делать&quot;, но и &quot;зачем это надо&quot;.</p>
 <p>Статья покажет, как создать рабочий шаблон, с помощью которого можно разрабатывать фронтенд сайта и использовать для этого следующие инструменты: Pug, Sass, JavaScript и Markdown.</p>
 <ul>
