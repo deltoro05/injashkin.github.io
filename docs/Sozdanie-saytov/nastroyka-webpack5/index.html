@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfodp0mt.css">
-    <script defer src="/index.1gfodp0mt.js"></script>
+    <link rel="stylesheet" href="/index.1gfofv00p.css">
+    <script defer src="/index.1gfofv00p.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -89,7 +89,7 @@
 <p>Освоив необходимый минимум можно без труда доработать созданный шаблон для работы с React или Vue, а также, интегрировать TypeScript.</p>
 <h2>Быстрый запуск Webpack</h2>
 <p>Чтобы выполнять дальнейшие действия, установите на компьютер <a href="https://nodejs.org/">Node.js</a>.</p>
-<p>Дальнейшие действия выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться Редактор кода) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
+<p>Дальнейшие действия выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться редактор) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
 <p>Откроем терминал и создадим каталог будущего проекта:</p>
 <pre><code>mkdir my-project
 </code></pre>
@@ -100,15 +100,15 @@
 <p>Теперь, если нужна <a href="https://git-scm.com/">система контроля версий Git</a>, выполним два шага. Сначала в открытом терминале инициализируем Git:</p>
 <pre><code>git init
 </code></pre>
-<p>В корне проекта создается скрытый каталог <code>.git</code>, в котором хранятся необходимые файлы git-репозитория. Чтобы в файловом браузере увидеть каталог <code>.git</code> нажмем комбинацию клавиш <code>Ctrl+H</code>.</p>
+<p>В корне проекта создается скрытый каталог <code>.git</code>, в котором хранятся необходимые файлы git-репозитория. Чтобы в файловом менеджере увидеть каталог <code>.git</code> нажмем комбинацию клавиш <code>Ctrl+H</code>.</p>
 <p>Затем, в корне проекта создадим скрытый файл <code>.gitignore</code>. Для этого, в открытом терминале введем следующее:</p>
 <pre><code>touch .gitignore
 </code></pre>
-<p>В этом файле будем указывать имена и шаблоны для файлов и каталогов, которые не нужны в репозитории. С помощью редактора кода откроем файл <code>.gitignore</code> и запишем следующее:</p>
+<p>В этом файле будем указывать имена и шаблоны для файлов и каталогов, которые не нужны в репозитории. С помощью редактора откроем файл <code>.gitignore</code> и запишем следующее:</p>
 <pre><code>node_modules
 </code></pre>
 <blockquote>
-<p>Не забывайте сохранять в редакторе кода всё, что изменили. Это забывают делать не только новички, но опытные разработчики. Так что, если после очередной правки в редакторе кода, у вас что-то не работает, обязательно убедитесь, что код сохранен. В дальнейшем я не буду напоминать об этом. Запомни правило: сделал правку в редакторе кода, нажми сочетание клавиш <code>Ctrl+S</code>.</p>
+<p>Не забывайте сохранять в редакторе всё, что изменили. Это забывают делать не только новички, но и опытные разработчики. Так что, если после очередной правки в редакторе, у вас что-то не работает, обязательно убедитесь, что код сохранен. В дальнейшем я не буду напоминать об этом. Запомни правило: сделал правку в редакторе, нажми сочетание клавиш <code>Ctrl+S</code>.</p>
 </blockquote>
 <p>Эта запись означает для Git - игнорировать каталог <code>node_modules</code>, не отслеживать и не добавлять каталог в репозиторий.</p>
 <p>С настройками Git в этом проекте закончим. Теперь, не забываем, иногда, а лучше, почаще, делать коммиты.</p>
@@ -127,7 +127,7 @@
 <p>В корне проекта создается каталог <code>src</code> для исходного кода. В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
 <pre><code>touch src/index.js
 </code></pre>
-<p>Откроем файл <code>src/index.js</code> в редакторе кода и введем следующий код:</p>
+<p>Откроем файл <code>src/index.js</code> в редакторе и введем следующий код:</p>
 <pre><code class="language-js">function component(text) {
   const element = document.createElement('h1');
   element.textContent = text;
@@ -136,7 +136,7 @@
 
 document.body.prepend(component('Проект собран на Webpack'));
 </code></pre>
-<p>Затем в редакторе кода откроем <code>package.json</code> и добавим в поле <code>&quot;scripts&quot;</code> следующую строку с <code>dev</code>:</p>
+<p>Затем в редакторе откроем <code>package.json</code> и добавим в поле <code>&quot;scripts&quot;</code> следующую строку с <code>dev</code>:</p>
 <pre><code class="language-json">&quot;scripts&quot;: {
   &quot;dev&quot;: &quot;webpack --mode development&quot;,
   &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
@@ -146,11 +146,11 @@ document.body.prepend(component('Проект собран на Webpack'));
 <pre><code>npm run dev
 </code></pre>
 <p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
-<p>Команда <code>npm run build</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
+<p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
 <p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
 <pre><code>touch dist/index.html
 </code></pre>
-<p>Затем откроем файл <code>dist/index.html</code> в редакторе кода и запишем следующее:</p>
+<p>Затем откроем файл <code>dist/index.html</code> в редакторе и запишем следующее:</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -188,7 +188,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>. Для этого в терминале выполним:</p>
 <pre><code>touch webpack.config.js
 </code></pre>
-<p>Откроем файл <code>webpack.config.js</code> в редакторе кода и вставим следующий код:</p>
+<p>Откроем файл <code>webpack.config.js</code> в редакторе и вставим следующий код:</p>
 <pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -228,7 +228,7 @@ module.exports = {
 <p>Из терминала создадим файл <code>src/template.html</code>:</p>
 <pre><code>touch src/template.html
 </code></pre>
-<p>Откроем в редакторе кода файл <code>src/template.html</code> и скопируем такую разметку:</p>
+<p>Откроем в редакторе файл <code>src/template.html</code> и скопируем такую разметку:</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -275,7 +275,7 @@ module.exports = {
 <p>Здесь рассмотрим вариант с веб сервером. С помощью терминала установим webpack-dev-server:</p>
 <pre><code>npm i -D webpack-dev-server
 </code></pre>
-<p>В редакторе кода откроем файл <code>webpack.config.js</code> и добавим настройки для веб-сервера (указано знаками <code>+</code>):</p>
+<p>В редакторе откроем файл <code>webpack.config.js</code> и добавим настройки для веб-сервера (указано знаками <code>+</code>):</p>
 <pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
   const path = require('path');
 
@@ -438,7 +438,7 @@ module.exports = {
 <p>Сначала, в терминале выполним команду:</p>
 <pre><code>npm run dev
 </code></pre>
-<p>Oткроем файл <code>dist/index.[hash].js</code> в редакторе кода и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
+<p>Oткроем файл <code>dist/index.[hash].js</code> в редакторе и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
 <p>Запустим в терминале webpack в режиме <code>production</code>:</p>
 <pre><code>npm run build
 </code></pre>
