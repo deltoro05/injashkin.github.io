@@ -102,20 +102,34 @@ p {
   margin-bottom: 1em;
 }
 
+blockquote {
+  border-left: 4px solid var(--footer-background-color);
+  padding: 0.5em;
+  margin-top: 1em;
+
+  & .article,
+  p {
+    margin-top: 0;
+  }
+}
+
 pre code {
   display: block;
   margin: 1em 0;
   padding: 1em;
   background-color: var(--code-background-color);
+  border-radius: 0.3em;
 }
 
 code[class*='language-'] {
   overflow: auto;
 }
 
-p code {
+p code,
+ul code {
   background-color: var(--code-background-color);
-  padding: 0 0.3rem;
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
 }
 
 ol,
@@ -146,11 +160,16 @@ ul {
     color: var(--dark-a-text-color);
   }
 
+  blockquote {
+    border-left: 4px solid var(--dark-code-background-color);
+  }
+
   & pre code {
     background-color: var(--dark-code-background-color);
   }
 
-  p code {
+  p code,
+  ul code {
     background-color: var(--dark-code-background-color);
   }
 }
@@ -184,11 +203,16 @@ ul {
       color: var(--dark-a-text-color);
     }
 
+    blockquote {
+      border-left: 4px solid var(--dark-code-background-color);
+    }
+
     pre code {
       background-color: var(--dark-code-background-color);
     }
 
-    p code {
+    p code,
+    ul code {
       background-color: var(--dark-code-background-color);
     }
   }
