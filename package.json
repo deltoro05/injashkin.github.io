@@ -59,9 +59,10 @@
     "watch:serve": "browser-sync dev -w",
     "watch:rollup": "rollup -w -c rollup.config.dev.js",
     "rollup": "rollup -c rollup.config.js",
+    "dev:copy": "fse copy static dev",
     "copy": "fse copy static docs",
     "scripts": "node scripts.js",
-    "dev": "npm-run-all dev:clean sass scripts dev:md-pug-to-html dev:pug dev:img1 dev:img2 -p watch:*",
+    "dev": "npm-run-all dev:clean sass scripts dev:md-pug-to-html dev:pug dev:img1 dev:img2 dev:copy -p watch:*",
     "build": "npm-run-all clean sass scripts md-pug-to-html pug  svg post img1 img2 rollup copy"
   }
 }
