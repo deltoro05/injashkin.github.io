@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfqn1702.css">
-    <script defer src="/index.1gfqn1702.js"></script>
+    <link rel="stylesheet" href="/index.1gfr4honc.css">
+    <script defer src="/index.1gfr4honc.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -22,6 +22,10 @@
     <link rel="icon" href="images/icons/icon32.png" type="image/png" sizes="32x32">
     <link rel="icon" href="images/icons/icon96.png" type="image/png" sizes="96x96">
     <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/highlight/vs2015.min.css">
+    <script src="/highlight/highlight.min.js">   </script>
+    <script>hljs.configure({noHighlightRe: language-perl})</script>
+    <script>hljs.highlightAll()</script>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="images/icons/icon144.png">
     <meta name="theme-color" content="#ffffff">
@@ -91,21 +95,21 @@
 <p>Чтобы выполнять дальнейшие действия, установите на компьютер <a href="https://nodejs.org/">Node.js</a>.</p>
 <p>Дальнейшие действия выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться редактор) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
 <p>Откроем терминал и создадим каталог будущего проекта:</p>
-<pre><code>mkdir my-project
+<pre><code class="language-bash">mkdir my-project
 </code></pre>
 <p>Сделаем этот каталог рабочим:</p>
-<pre><code>cd my-project
+<pre><code class="language-bash">cd my-project
 </code></pre>
 <p>Обратите внимание! С этого момента старайтесь не закрывать окно терминала, так как в нем открыт рабочий каталог проекта <code>my-project</code> и все дальнейшие команды в терминале выполняются в корневом каталоге проекта. Если же терминал был закрыт, то откройте новый терминал и выполните команду: <code>cd my-project</code>.</p>
 <p>Теперь, если нужна <a href="https://git-scm.com/">система контроля версий Git</a>, выполним два шага. Сначала в открытом терминале инициализируем Git:</p>
-<pre><code>git init
+<pre><code class="language-bash">git init
 </code></pre>
 <p>В корне проекта создается скрытый каталог <code>.git</code>, в котором хранятся необходимые файлы git-репозитория. Чтобы в файловом менеджере увидеть каталог <code>.git</code> нажмем комбинацию клавиш <code>Ctrl+H</code>.</p>
 <p>Затем, в корне проекта создадим скрытый файл <code>.gitignore</code>. Для этого, в открытом терминале введем следующее:</p>
-<pre><code>touch .gitignore
+<pre><code class="language-bash">touch .gitignore
 </code></pre>
 <p>В этом файле будем указывать имена и шаблоны для файлов и каталогов, которые не нужны в репозитории. С помощью редактора откроем файл <code>.gitignore</code> и запишем следующее:</p>
-<pre><code>node_modules
+<pre><code class="language-bash">node_modules
 </code></pre>
 <p>Эта запись указывает системе Git - игнорировать каталог <code>node_modules</code>, не отслеживать и не добавлять каталог в репозиторий.</p>
 <blockquote>
@@ -113,19 +117,19 @@
 </blockquote>
 <p>С настройками Git в этом проекте закончим. Теперь, не забываем, иногда, а лучше, почаще, делать коммиты.</p>
 <p>Теперь, инициализируем npm, для этого в терминале введем команду:</p>
-<pre><code>npm init -y
+<pre><code class="language-bash">npm init -y
 </code></pre>
 <p>В корне проекта создается файл <code>package.json</code> с настройками по умолчанию, на что указывает опция <code>-y</code>. Подробно о файле <code>package.json</code> читайте в <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json">документации по npm</a>.</p>
 <p>Теперь установим <code>webpack</code> и <code>webpack-cli</code>, который используется для запуска webpack в командной строке. Для этого, в открытом терминале введем следующее:</p>
-<pre><code>npm i -D webpack webpack-cli
+<pre><code class="language-bash">npm i -D webpack webpack-cli
 </code></pre>
 <p>Опция <code>-D</code> указывает, что установленные пакеты нужны только для режима <code>development</code> и не будут использоваться в производственной сборке. В файле <code>package.json</code> эти пакеты указываются в секции <code>&quot;devDependencies&quot;: {...}</code>.</p>
 <p>В результате выполнения команды, создается каталог <code>node_modules</code> и файл <code>package-lock.json</code>. Каталог <code>node_modules</code> содержит зависимости проекта. Этот каталог не рекомендуется включать в репозиторий, что и указали раньше в файле <code>.gitignore</code>. Файл <code>package-lock.json</code> хранит записи о точных версиях установленных зависимостей.</p>
 <p>С помощью открытого терминала создадим каталог <code>src</code>:</p>
-<pre><code>mkdir src
+<pre><code class="language-bash">mkdir src
 </code></pre>
 <p>В корне проекта создается каталог <code>src</code> для исходного кода. В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
-<pre><code>touch src/index.js
+<pre><code class="language-bash">touch src/index.js
 </code></pre>
 <p>Откроем файл <code>src/index.js</code> в редакторе и введем следующий код:</p>
 <pre><code class="language-js">function component(text) {
@@ -143,12 +147,12 @@ document.body.prepend(component('Проект собран на Webpack'));
 }
 </code></pre>
 <p><code>dev</code> - это произвольное сокращенное имя для команды <code>webpack --mode development</code>. Подобные скрипты в секции <code>&quot;scripts&quot;</code> файла <code>package.json</code> запускаются в с помощью команды <code>npm run</code>. Так, для запуска скрипта выше, введем в терминале следующую команду:</p>
-<pre><code>npm run dev
+<pre><code class="language-bash">npm run dev
 </code></pre>
 <p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
 <p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри в этой статье <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
 <p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
-<pre><code>touch dist/index.html
+<pre><code class="language-bash">touch dist/index.html
 </code></pre>
 <p>Затем откроем файл <code>dist/index.html</code> в редакторе и запишем следующее:</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
@@ -164,7 +168,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 &lt;/html&gt;
 </code></pre>
 <p>Файловая структура нашего проекта выглядит так:</p>
-<pre><code>my-project
+<pre><code class="language-Plain">my-project
   |-dist
     index.html
     main.js
@@ -177,16 +181,16 @@ document.body.prepend(component('Проект собран на Webpack'));
   .gitignore
 </code></pre>
 <p>Файл <code>dist/index.html</code> откроем в браузере и увидим следующее:</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл создан вручную
 </code></pre>
 <h2>Установка и настройка html-webpack-plugin</h2>
 <p>В примере выше, файл <code>index.html</code> добавляется вручную. Теперь, настроим webpack, чтобы HTML-файл автоматически создавался в готовой сборке из исходного шаблона. Для этого используем <code>html-webpack-plugin</code>.</p>
 <p>Из терминала установим плагин:</p>
-<pre><code>npm i -D html-webpack-plugin
+<pre><code class="language-bash">npm i -D html-webpack-plugin
 </code></pre>
 <p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>, выполнив в терминале следующую команду:</p>
-<pre><code>touch webpack.config.js
+<pre><code class="language-bash">touch webpack.config.js
 </code></pre>
 <p>Откроем файл <code>webpack.config.js</code> в редакторе и вставим следующий код:</p>
 <pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -226,7 +230,7 @@ module.exports = {
 </code></pre>
 <p>Однако, это мы вносить в файл не будем.</p>
 <p>Из терминала создадим файл <code>src/template.html</code>:</p>
-<pre><code>touch src/template.html
+<pre><code class="language-bash">touch src/template.html
 </code></pre>
 <p>Откроем в редакторе файл <code>src/template.html</code> и скопируем такую разметку:</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
@@ -241,10 +245,10 @@ module.exports = {
 &lt;/html&gt;
 </code></pre>
 <p>Перед тем, как запустить следующую команду, удалим каталог <code>dist</code> с двумя файлами. После этого, в терминале выполним следующее:</p>
-<pre><code>npm run dev
+<pre><code class="language-bash">npm run dev
 </code></pre>
 <p>Каталог <code>dist</code> снова создан, а внутри него созданы файлы <code>index.html</code> и <code>main.js</code>. Если откроем с помощью браузера файл <code>dist/index.html</code>, то увидим:</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл создан плагином html-webpack-plugin
 </code></pre>
 <p>Таким образом, плагин html-webpack-plugin сделал две вещи:</p>
@@ -258,7 +262,7 @@ module.exports = {
 <li>Сохраняем результат</li>
 <li>Выполняем сборку проекта следующей командой в терминале:</li>
 </ol>
-<pre><code>npm run dev
+<pre><code class="language-bash">npm run dev
 </code></pre>
 <ol start="4">
 <li>Открываем в браузере файл <code>dist/index.html</code>, либо если этот файл открытый, перезагружаем страницу браузера.</li>
@@ -273,7 +277,7 @@ module.exports = {
 <li><a href="https://webpack.js.org/guides/development/#using-webpack-dev-middleware">webpack-dev-middleware</a></li>
 </ol>
 <p>Здесь рассмотрим вариант с веб сервером. С помощью терминала установим webpack-dev-server:</p>
-<pre><code>npm i -D webpack-dev-server
+<pre><code class="language-bash">npm i -D webpack-dev-server
 </code></pre>
 <p>В редакторе откроем файл <code>webpack.config.js</code> и добавим настройки для веб-сервера (указано знаками <code>+</code>):</p>
 <pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -309,16 +313,16 @@ module.exports = {
 <p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер. <code>--mode development</code> включает режим разработки.</p>
 <p>Перед тем как запустить веб-сервер удалим каталог <code>dist</code>. Это делать необязательно, а нужно для понимания работы веб-сервера.</p>
 <p>В терминале запустим веб-сервер командой:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл создан плагином html-webpack-plugin
 </code></pre>
 <p>Если по какой-то причине, страница браузера автоматически не откроется, то откройте браузер вручную и перейдите по адресу http://localhost:9000</p>
 <p>В проекте отсутствует каталог <code>dist</code>. Тогда откуда браузер берет данные? DevServer компилирует исходный код, и записывает файлы в оперативную память.</p>
 <p>Теперь файловая структура нашего проекта будет выглядеть так:</p>
-<pre><code>my-project
+<pre><code class="language-Plain">my-project
   |-node_modules
   |-src
     index.js
@@ -383,13 +387,13 @@ module.exports = {
 };
 </code></pre>
 <p>В терминале остановим сервер клавишами <code>Ctrl+C</code> и запустим следующую команду:</p>
-<pre><code>npm run dev
+<pre><code class="language-bash">npm run dev
 </code></pre>
 <p>В корне проекта появится каталог <code>dist</code>, в котором будут два файла: <code>index.html</code> и <code>index.[hash].js</code>. Второй файл раньше назывался <code>main.js</code>. Код в имени файла - хеш, который будет меняться с изменением содержимого файла.</p>
 <h2>Автоматическая очистка каталогов</h2>
 <p>Перед каждым запуском вебпака полезно очищать каталог dist. Это предотвратит накапливание ненужных файлов. Для этого применим <a href="https://github.com/gregnb/filemanager-webpack-plugin">filemanager-webpack-plugin</a>.</p>
 <p>Для начала, установим filemanager-webpack-plugin:</p>
-<pre><code>npm i -D filemanager-webpack-plugin
+<pre><code class="language-bash">npm i -D filemanager-webpack-plugin
 </code></pre>
 <p>Затем, в файле webpack.config.js добавим:</p>
 <pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -417,10 +421,10 @@ module.exports = {
 </code></pre>
 <p>Каталог <code>dist</code>, если быть точным, не очищается, а удаляется. Плагин <code>filemanager-webpack-plugin</code> может также копировать, создавать, перемещать, архивировать файлы и каталоги перед началом сборки <code>onStart</code> и по окончании <code>onEnd</code>. В дальнейшем, воспользуемся плагином для копирования файлов.</p>
 <p>Проверим работу пакета <code>filemanager-webpack-plugin</code>, для этого в терминале запустим веб-сервер командой:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл создан плагином html-webpack-plugin
 </code></pre>
 <p>Если же проверим корневой каталог проекта, то не увидим каталога <code>dist</code>, что говорит, о правильной работе пакета <code>filemanager-webpack-plugin</code>.</p>
@@ -436,11 +440,11 @@ module.exports = {
   },
 </code></pre>
 <p>Сначала, в терминале выполним команду:</p>
-<pre><code>npm run dev
+<pre><code class="language-bash">npm run dev
 </code></pre>
 <p>Oткроем файл <code>dist/index.[hash].js</code> в редакторе и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
 <p>Запустим в терминале webpack в режиме <code>production</code>:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>Посмотрим на содержимое файла <code>dist/index.[hash].js</code>, в котором увидим, что отсутствуют комментарии, а код сжатый. Размер файла составляет 139 байт. Этим режим production отличается от режима development - код конечного бандла сжимается. То же относится и к файлу <code>index.html</code>, который в режиме development не сжимается и размер файла составляет 282 байта, а в режиме production убираются пробелы и ненужные символы и размер файла становится равен 259 байт.</p>
 <h2>Babel</h2>
@@ -450,10 +454,10 @@ module.exports = {
 </blockquote>
 <p>Babel позволяет писать код с использованием новых возможностей JavaScript ES6-ES13. При этом можно не заботится о том, что функция не будет поддерживаться старым браузером. Babel транспилирует JavaScript код в ES5, а браузеры, которые не поддерживают этот стандарт уже никем не используются.</p>
 <p>Для работы Babel требуется два пакета <code>@babel/core</code> и <code>@babel/preset-env</code>, а чтобы Babel работал с Webpack требуется загрузчик <code>babel-loader</code>. Установим эти три пакета одной командой:</p>
-<pre><code>npm i -D @babel/core @babel/preset-env babel-loader
+<pre><code class="language-bash">npm i -D @babel/core @babel/preset-env babel-loader
 </code></pre>
 <p>Конфигурацию для Babel зададим в файле <code>.babelrc</code>. Из терминала в корне проекта создадим этот файл:</p>
-<pre><code>touch .babelrc
+<pre><code class="language-bash">touch .babelrc
 </code></pre>
 <p>Откроем <code>.babelrc</code> и внесем следующий код:</p>
 <pre><code class="language-json">{
@@ -492,13 +496,13 @@ module.exports = {
 </code></pre>
 <p>Мы создали объект <code>module</code>, для которого задали правило <code>rules</code>. Для вебпака файл - это модуль, будь то скрипт, стили, шрифт или изображение. Здесь, для всех модулей (читай, файлов) с расширением <code>.js</code> webpack будет применять плагин <code>babel-loader</code>. Правило не действует на каталог <code>node_modules</code>, что указывается в свойстве <code>module.rules.exclude</code>.</p>
 <p>Перед тем, как запустить сборку, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
-<pre><code>document.body.append((function(e){constt=document.createElement('h1');return(t.textContent='Проект собран на Webpack'),t;})());
+<pre><code class="language-Plain">document.body.append((function(e){constt=document.createElement('h1');return(t.textContent='Проект собран на Webpack'),t;})());
 </code></pre>
 <p>В терминале запустим команду:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>Теперь, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
-<pre><code>(()=&gt;{var e;document.body.append((&quot;Проект собран на Webpack&quot;,(e=document.createElement(&quot;h1&quot;)).textContent=&quot;Проект собран на Webpack&quot;,e))})();
+<pre><code class="language-Plain">(()=&gt;{var e;document.body.append((&quot;Проект собран на Webpack&quot;,(e=document.createElement(&quot;h1&quot;)).textContent=&quot;Проект собран на Webpack&quot;,e))})();
 </code></pre>
 <p>Исходный код мы не меняли, но код конечного бандла изменился. Это результат действия компилятора Babel. Второй код поймут все браузеры, которые поддерживают ES5 и выше.</p>
 <h2>Подключение шаблонизатора Pug</h2>
@@ -519,7 +523,7 @@ module.exports = {
 </ul>
 </blockquote>
 <p>Установим pug и pug-loader</p>
-<pre><code>npm i -D pug pug-loader
+<pre><code class="language-bash">npm i -D pug pug-loader
 </code></pre>
 <p>Вебпаку укажем, что используем плагин <code>pug-plugin</code> для файлов с расширением <code>.pug</code>. Для этого в файле <code>webpack.config.js</code> добавим:</p>
 <pre><code class="language-js">  module.exports = {
@@ -556,7 +560,7 @@ module.exports = {
 </code></pre>
 <p>Теперь, благодаря <code>pug-loader</code> модуль <code>HtmlWebpackPlugin</code> может работать с файлами <code>.pug</code>.</p>
 <p>Из терминала создадим файл <code>src/template.pug</code>:</p>
-<pre><code>touch src/template.pug
+<pre><code class="language-bash">touch src/template.pug
 </code></pre>
 <p>и напишем в нем следующее:</p>
 <pre><code class="language-pug">doctype html
@@ -570,10 +574,10 @@ html(lang= 'ru')
 <p>Для шаблонизатора Pug очень важны отступы в коде, поэтому обращайте на них внимание</p>
 <p>Файл <code>src/template.html</code> теперь удалим.</p>
 <p>В терминале запустим команду:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>Откроется страница браузера по адресу http://localhost:9000/, на которой увидим:</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл откомпилирован шаблонизатором Pug
 </code></pre>
 <p>Из этого следует, что шаблонизатор Pug работает правильно.
@@ -581,7 +585,7 @@ html(lang= 'ru')
 <h2>Загрузка стилей в webpack</h2>
 <p>Для написания стилей будем использовать препроцессор <a href="https://sass-lang.com/dart-sass">Sass</a>, который расширяет возможности CSS и упрощает создание CSS-кода, а также преобразует SCSS в CSS. Затем, будем прогонять этот CSS через постпроцессор PostCSS, чтобы большинство браузеров понимало эти стили.</p>
 <p>Установим необходимые пакеты:</p>
-<pre><code>npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader sass
+<pre><code class="language-bash">npm i -D sass-loader postcss-loader postcss-preset-env css-loader style-loader sass
 </code></pre>
 <p>где:</p>
 <ul>
@@ -596,7 +600,7 @@ html(lang= 'ru')
 <p>Если требуется использовать только CSS и не пользоваться преимуществами SCSS и PostCSS, то установите только <code>css-loader</code> и <code>style-loader</code>.</p>
 </blockquote>
 <p>Создадим файл <code>src/main.scss</code>:</p>
-<pre><code>touch src/main.scss
+<pre><code class="language-bash">touch src/main.scss
 </code></pre>
 <p>и внесем в него следующее:</p>
 <pre><code class="language-scss">$font-size: 1rem;
@@ -659,7 +663,7 @@ html {
 </ul>
 <p>Настройки для PostCSS можно задавать как в файле <code>webpack.config.js</code> так и в собственном файле настроек <code>postcss.config.js</code>. Воспользуемся вторым способом.</p>
 <p>Создадим в корне проекта файл <code>postcss.config.js</code></p>
-<pre><code>touch postcss.config.js
+<pre><code class="language-bash">touch postcss.config.js
 </code></pre>
 <p>и запишем в файле следующий код:</p>
 <pre><code class="language-js">module.exports = {
@@ -671,18 +675,18 @@ html {
 };
 </code></pre>
 <p>В терминале запустим команду:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>Откроется браузер и появится цветной текст.</p>
-<pre><code>Проект собран на Webpack
+<pre><code class="language-Plain">Проект собран на Webpack
 Файл откомпилирован шаблонизатором Pug
 </code></pre>
 <p>Теперь остановим сервер сочетанием клавиш Ctrl+C и введем в терминале команду:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>Если заглянем в каталог <code>dist</code>, то не обнаружим файла с расширением <code>.css</code>. Это связано с тем, что стили находятся в бандле <code>dist/index.[hash].js</code>.</p>
 <p>Можем извлечь стили в отдельный файл, что позволит раздельно кэшировать JS и CSS, для этого применим плагин <a href="https://github.com/webpack-contrib/mini-css-extract-plugin">mini-css-extract-plugin</a>. Плагин создает CSS-файл из каждого JS-файла, в котором содержится CSS. Сначала установим <code>mini-css-extract-plugin</code>:</p>
-<pre><code>npm i -D mini-css-extract-plugin
+<pre><code class="language-bash">npm i -D mini-css-extract-plugin
 </code></pre>
 <p>Затем настроим его в файле <code>webpack.config.js</code>:</p>
 <pre><code class="language-js">  const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -727,7 +731,7 @@ html {
 </code></pre>
 <p>Вместо <code>'style-loader'</code> используем <code>MiniCssExtractPlugin.loader</code>.</p>
 <p>Проверим работу плагина, для этого в терминале запустим:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>В каталоге <code>dist</code> появится файл <code>main.[hash].css</code>.</p>
 <h2>Загрузка изображений в webpack</h2>
@@ -815,7 +819,7 @@ html(lang= 'ru')
 </code></pre>
 <p>В атрибуте <code>src</code> используется <code>require</code>, т. е. изображение запрашивается как модуль.</p>
 <p>В терминале запустим команду:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В окне браузера появилось два рисунка:</p>
 <p><img src="add-image.png" alt="Загрузка изображений с помощью Webpack"></p>
@@ -834,15 +838,15 @@ html(lang= 'ru')
 <p>Многие изображения сжимаются без ухудшения визуального качества. Сжатие дает выигрыш в скорости загрузки изображений с сервера сайта в браузер пользователя. Для сжатия существуют инструменты оптимизации изображений.</p>
 <p>Векторные изображения, к которым относится формат SVG, можно неограниченно масштабировать без потери качества. SVG - текстовый язык разметки, а SVG-файлы редактируются при помощи текстовых или векторных графических редакторов. Если в SVG-изображении не сильно много мелких деталей, то SVG-файлы получаются меньше по размеру, чем сравнимые по качеству изображения в форматах JPEG или GIF. SVG-файлы хорошо сжимаются. SVG применяется во фронтенде и для него придумано много инструментов. Одним из таких инструментов является минификатор <a href="https://github.com/svg/svgo">svgo</a>, который удаляет лишний код в разметке SVG и тем самым уменьшает размер файла.</p>
 <p>Установим svgo:</p>
-<pre><code>npm i -D svgo
+<pre><code class="language-bash">npm i -D svgo
 </code></pre>
 <p>Теперь, чтобы заработало сжатие для SVG файлов, настроим совместную работу svgo и imagemin с помощью плагина <a href="https://github.com/imagemin/imagemin-svgo">imagemin-svgo</a>.</p>
 <p>Для оптимизации растровых изображений применяется минификатор <a href="https://github.com/imagemin/imagemin">imagemin</a>. Для webpack существует <a href="https://webpack.js.org/plugins/image-minimizer-webpack-plugin/#optimize-with-imagemin">image-minimizer-webpack-plugin</a> - это загрузчик и плагин для оптимизации изображений с помощью imagemin.</p>
 <p>Сначала, установим плагин <code>image-minimizer-webpack-plugin</code> и минификатор <code>imagemin</code>:</p>
-<pre><code>npm i -D image-minimizer-webpack-plugin imagemin
+<pre><code class="language-bash">npm i -D image-minimizer-webpack-plugin imagemin
 </code></pre>
 <p>Затем, для оптимизации изображений без потерь качества, установим следующие плагины:</p>
-<pre><code>npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
+<pre><code class="language-bash">npm i -D imagemin-gifsicle imagemin-jpegtran imagemin-optipng imagemin-svgo
 </code></pre>
 <p>В файл <code>webpack.config.js</code> добавим настройки:</p>
 <pre><code class="language-js">  ...
@@ -885,7 +889,7 @@ html(lang= 'ru')
 </code></pre>
 <p>Для <code>svgo</code> параметры оптимизации установлены по умолчанию <code>{ name: 'preset-default' }</code>. Подробно о настройках оптимизации <code>svgo</code> читайте <a href="https://github.com/svg/svgo">здесь</a>.</p>
 <p>В терминале запустим команду:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>Сравним размеры файлов изображений в каталоге <code>src</code> и <code>dist</code>. Файл <code>image.png</code> был 4,9 КБ, а стал 2,3 КБ, файл <code>logo.svg</code> был 11,4 КБ, а стал 2,5 КБ. Мы видим, заметное сжатие изображений.</p>
 <h2>Включение синтаксиса Markdown и файлов .md в Pug</h2>
@@ -912,7 +916,7 @@ ul
 <p>По умолчанию шаблонизатор Pug понимает только свою разметку и разметку HTML. Чтобы в шаблонизаторе Pug использовать Markdown, применим фильтр <code>:markdown-it</code> модуля <a href="https://github.com/jstransformers/jstransformer-markdown-it">jstransformer-markdown-it</a>.</p>
 <p><a href="https://pugjs.org/language/filters.html">Фильтры</a> позволяют использовать в шаблонизаторе Pug другие языки.</p>
 <p>Для начала установим модуль <code>jstransformer-markdown-it</code>:</p>
-<pre><code>npm i -D jstransformer-markdown-it
+<pre><code class="language-bash">npm i -D jstransformer-markdown-it
 </code></pre>
 <p>Теперь можем в Pug-файле использовать синтаксис Markdown. Откроем файл <code>src/template.pug</code> и добавим в конец файла три строки кода:</p>
 <pre><code class="language-pug">doctype html
@@ -933,7 +937,7 @@ html(lang= 'ru')
       - Написано на **Markdown**
 </code></pre>
 <p>Сохраним файл и из терминала выполним команду:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В браузере мы видим после изображений две строки текста, написанные с помощью Markdown. Это заголовок второго уровня и строка немаркированного списка со словом, которое выделено жирным шрифтом .</p>
 <p><img src="add-markdown.png" alt="Использование markdown в pug"></p>
@@ -955,10 +959,10 @@ html(lang= 'ru')
 <h2>Подключение шрифтов</h2>
 <p>Если мы хотим, чтобы во всех браузерах и на всех устройствах наш сайт отображал именно те шрифты, которые указаны, нужно эти шрифты поместить на сервер сайта и указать браузерам использовать эти шрифты. Тогда все браузеры будут скачивать эти шрифты и применять для отображения страниц вашего сайта. Если этого не сделать, то каждый браузер будет использовать подходящие шрифты, если не найдет указанных. Это может сказаться на дизайне всего сайта.</p>
 <p>Шрифты нашего проекта поместим в каталоге <code>src/fonts</code>. Создадим этот каталог:</p>
-<pre><code>mkdir src/fonts
+<pre><code class="language-bash">mkdir src/fonts
 </code></pre>
 <p>Затем, создадим в этом каталоге файл <code>fonts.scss</code></p>
-<pre><code>touch src/fonts/fonts.scss
+<pre><code class="language-bash">touch src/fonts/fonts.scss
 </code></pre>
 <p>в котором будем хранить CSS стили для шрифтов. Пропишем файл <code>fonts.scss</code> в <code>src/index.js</code>:</p>
 <pre><code class="language-js">  import './main.scss';
@@ -1002,7 +1006,7 @@ html(lang= 'ru')
 }
 </code></pre>
 <p>В терминале выполним команду:</p>
-<pre><code>npm run serve
+<pre><code class="language-bash">npm run serve
 </code></pre>
 <p>Откроется браузер и мы увидим, что весь шрифт теперь без засечек.</p>
 <p><img src="change_fonts.png" alt="Использование markdown в pug"></p>
@@ -1012,10 +1016,10 @@ html(lang= 'ru')
 <h2>Копирование файлов и каталогов</h2>
 <p>Часто возникает необходимость скопировать в готовую сборку некоторые файлы или каталоги без преобразований. Это могут быть файлы PDF, либо файл <code>robots.txt</code>, который используется для ограничения доступа поисковым роботам к ресурсам сайта, файлы <code>favicon.ico</code>, <code>sitemap.xml</code> и т.п. В исходном коде такие ресурсы, обычно, помещают в каталог <code>static</code>, а из него эти ресурсы при сборке копируются в корень каталога <code>dist</code>.</p>
 <p>Создадим каталог <code>src/static</code>:</p>
-<pre><code>mkdir src/static
+<pre><code class="language-bash">mkdir src/static
 </code></pre>
 <p>Создадим файл <code>src/static/robots.txt</code>:</p>
-<pre><code>touch src/static/robots.txt
+<pre><code class="language-bash">touch src/static/robots.txt
 </code></pre>
 <p>Как заполнять файл <code>robots.txt</code> можно узнать в статье <a href="https://yandex.ru/support/webmaster/controlling-robot/robots-txt.html">Использование файла robots.txt</a>, а пока оставим его пустым.</p>
 <p>В параграфе <a href="#%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Автоматическая очистка каталогов</a> применялся плагин <code>filemanager-webpack-plugin</code>, который может удалять, копировать, создавать, перемещать и архивировать файлы и каталоги. Применим этот плагин для копирования ресурсов. Так как плагин в проекте уже установлен, то остается его настроить для копирования. Добавим в файл <code>webpack.config.js</code> следующий код, отмеченный знаками <code>+</code>:</p>
@@ -1045,7 +1049,7 @@ html(lang= 'ru')
 </code></pre>
 <p>Звездочками <code>*</code> отмечены строки, которые для этого плагина были настроены раньше в параграфе <a href="#%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2">Автоматическая очистка каталогов</a>, а знаком <code>+</code> отмечены строки, которые добавлены сейчас.</p>
 <p>В терминале выполним команду:</p>
-<pre><code>npm run build
+<pre><code class="language-bash">npm run build
 </code></pre>
 <p>В каталоге <code>dist</code> появился файл <code>robots.txt</code>.</p>
 <h2>Полезные ресурсы для настройки webpack</h2>
