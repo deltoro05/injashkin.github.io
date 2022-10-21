@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfr4honc.css">
-    <script defer src="/index.1gfr4honc.js"></script>
+    <link rel="stylesheet" href="/index.1gfsrs7c0.css">
+    <script defer src="/index.1gfsrs7c0.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -131,7 +131,7 @@
 <p>В корне проекта создается каталог <code>src</code> для исходного кода. В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
 <pre><code class="language-bash">touch src/index.js
 </code></pre>
-<p>Откроем файл <code>src/index.js</code> в редакторе и введем следующий код:</p>
+<p>В редакторе откроем файл <code>src/index.js</code> и введем следующий код:</p>
 <pre><code class="language-js">function component(text) {
   const element = document.createElement('h1');
   element.textContent = text;
@@ -150,7 +150,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <pre><code class="language-bash">npm run dev
 </code></pre>
 <p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
-<p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл не создали, то применяются настройки по умолчанию. Webpack определит точку входа в каталоге <code>src</code>, это файл <code>index.js</code>, и выведет откомпилированный код в файл <code>dist/main.js</code> (точка выхода). Подробно об изменении настроек по умолчанию смотри в этой статье <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
+<p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл мы еще не создали, то webpack применяет настройки по умолчанию. Webpack определит точку входа <code>src/index.js</code> и выведет откомпилированный код в файл <code>dist/main.js</code>. Подробно об изменении настроек смотри в статье <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
 <p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
 <pre><code class="language-bash">touch dist/index.html
 </code></pre>
@@ -192,7 +192,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>, выполнив в терминале следующую команду:</p>
 <pre><code class="language-bash">touch webpack.config.js
 </code></pre>
-<p>Откроем файл <code>webpack.config.js</code> в редакторе и вставим следующий код:</p>
+<p>В редакторе откроем файл <code>webpack.config.js</code> и вставим следующий код:</p>
 <pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -211,7 +211,7 @@ module.exports = {
 <p>Первые две строки импортируют модули <code>html-webpack-plugin</code> и <code>path</code> и определяют эти модули в переменные <code>HtmlWebpackPlugin</code> и <code>path</code> соответственно.</p>
 </li>
 <li>
-<p><code>module.exports = {}</code> - все настройки этого файла помещаются в объект, который экспортируется как модуль по умолчанию.</p>
+<p><code>module.exports = {}</code> - все настройки файла <code>webpack.config.js</code> помещаются в объект, который экспортируется как модуль по умолчанию.</p>
 </li>
 <li>
 <p>Для плагина <code>html-webpack-plugin</code> создается экземпляр <code>new HtmlWebpackPlugin</code> с двумя заданными свойствами: <code>template</code> - путь к входному файлу и <code>filename</code> - имя выходного файла.</p>
@@ -220,10 +220,10 @@ module.exports = {
 <p>В свойстве <code>template</code> разберем путь, который, на первый взгляд, сложен для понимания.</p>
 <p>В Linux и macOS пути выглядят так: <code>/path/to/template.html</code>. В Windows пути выглядят иначе: <code>C:\path\to\template.html</code>. В Node.js существует модуль <code>path</code>, который учитывает эти различия. Модуль <code>path</code> подключили во второй строке файла <code>webpack.config.js</code>, а затем вызвали в свойстве <code>template</code>. Метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathjoinpaths">path.join</a> объединяет заданные сегменты пути вместе и использует необходимый разделитель для конкретной системы. Сегменты пути для метода <code>path.join</code> задали тремя аргументами <code>__dirname</code>, <code>'src'</code> и <code>'template.html'</code>. Если заранее известно, что этот шаблон будет использоваться в ОС Linux, то можно вместо такого кода <code>template: path.join(__dirname, 'src', 'template.html')</code> указать проще - <code>template: './src/template.html'</code></p>
 <ul>
-<li><code>__dirname</code> - глобальная константа, которая указывает абсолютный путь к каталогу файла, код которого запрашивает эту константу, т. е. в нашем случае, файл, который запрашивает <code>__dirname</code> - это файл <code>webpack.config.js</code>, поэтому <code>__dirname</code> содержит абсолютный путь к корневому каталогу проекта.</li>
+<li><code>__dirname</code> - глобальная константа, указывающая абсолютный путь к каталогу файла, в котором эта константа используется. В нашем случае, константа <code>__dirname</code> используется в файле <code>webpack.config.js</code>, который находится в корневом каталоге проекта, поэтому <code>__dirname</code> содержит абсолютный путь к корневому каталогу проекта.</li>
 </ul>
 <p>Вместо метода <code>path.join</code> часто применяют метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathresolvepaths">path.resolve</a>.</p>
-<p>Файл настроек <a href="https://webpack.js.org/configuration/#options">webpack.config.js</a> нужен вебпаку, чтобы знать, какие плагины и с какими настройками использовать в том или ином случае. Webpack автоматически определит, если файл настроек лежит в корне проекта и называется <code>webpack.config.js</code>. Если имя или расположение файла настроек другое, укажите это с помощью опции <code>--config</code> в файле <code>package.json</code>, например:</p>
+<p>Файл настроек <a href="https://webpack.js.org/configuration/#options">webpack.config.js</a> нужен вебпаку, чтобы знать, какие плагины и с какими настройками использовать в том или ином случае. Если файл настроек лежит в корне проекта и называется <code>webpack.config.js</code>, то webpack автоматически его определит. Если же имя или расположение файла настроек иное, то нужно в файле <code>package.json</code> указать это с помощью опции <code>--config</code>, например:</p>
 <pre><code class="language-json">&quot;scripts&quot;: {
   &quot;serve&quot;: &quot;webpack serve --open --mode development --config dev/serve.config.js&quot;
 }
@@ -260,7 +260,7 @@ module.exports = {
 <ol>
 <li>Редактируем исходный код в файлах каталога <code>src</code></li>
 <li>Сохраняем результат</li>
-<li>Выполняем сборку проекта следующей командой в терминале:</li>
+<li>Из терминала запускаем сборку проекта следующей командой:</li>
 </ol>
 <pre><code class="language-bash">npm run dev
 </code></pre>
@@ -298,7 +298,7 @@ module.exports = {
 </code></pre>
 <p>Для <code>devServer</code> указали два свойства:</p>
 <ul>
-<li><code>watchFiles</code> указывает на каталог <code>src</code>, за которыми будет вестись наблюдение и в случае, если в каталоге произойдут изменения, веб сервер автоматически сделает сборку проекта и перезагрузит страницу браузера.</li>
+<li><code>watchFiles</code> указывает на каталог <code>src</code>, за которыми будет вестись наблюдение и в случае, если в каталоге произойдут изменения, веб сервер автоматически перезапустит сборку проекта и перезагрузит страницу браузера.</li>
 <li><code>port</code> указывает порт на котором будет работать веб-сервер, по умолчанию - localhost:8080.</li>
 </ul>
 <p>Чтобы запускать веб сервер короткой командой создадим для CLI скрипт &quot;serve&quot; в файле <code>package.json</code>:</p>
@@ -312,7 +312,7 @@ module.exports = {
 </code></pre>
 <p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер. <code>--mode development</code> включает режим разработки.</p>
 <p>Перед тем как запустить веб-сервер удалим каталог <code>dist</code>. Это делать необязательно, а нужно для понимания работы веб-сервера.</p>
-<p>В терминале запустим веб-сервер командой:</p>
+<p>Из терминала запустим веб-сервер командой:</p>
 <pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
@@ -386,7 +386,7 @@ module.exports = {
   },
 };
 </code></pre>
-<p>В терминале остановим сервер клавишами <code>Ctrl+C</code> и запустим следующую команду:</p>
+<p>В терминале нажмем <code>Ctrl+C</code> и остановим сервер, а затем запустим следующую команду:</p>
 <pre><code class="language-bash">npm run dev
 </code></pre>
 <p>В корне проекта появится каталог <code>dist</code>, в котором будут два файла: <code>index.html</code> и <code>index.[hash].js</code>. Второй файл раньше назывался <code>main.js</code>. Код в имени файла - хеш, который будет меняться с изменением содержимого файла.</p>
@@ -442,8 +442,8 @@ module.exports = {
 <p>Сначала, в терминале выполним команду:</p>
 <pre><code class="language-bash">npm run dev
 </code></pre>
-<p>Oткроем файл <code>dist/index.[hash].js</code> в редакторе и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
-<p>Запустим в терминале webpack в режиме <code>production</code>:</p>
+<p>В редакторе откроем файл <code>dist/index.[hash].js</code> и посмотрим на него. Видим кучу комментариев, а код представлен в не сжатом виде. Размер файла составляет 1418 байт.</p>
+<p>Из терминала запустим webpack в режиме <code>production</code>:</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
 <p>Посмотрим на содержимое файла <code>dist/index.[hash].js</code>, в котором увидим, что отсутствуют комментарии, а код сжатый. Размер файла составляет 139 байт. Этим режим production отличается от режима development - код конечного бандла сжимается. То же относится и к файлу <code>index.html</code>, который в режиме development не сжимается и размер файла составляет 282 байта, а в режиме production убираются пробелы и ненужные символы и размер файла становится равен 259 байт.</p>
@@ -498,7 +498,7 @@ module.exports = {
 <p>Перед тем, как запустить сборку, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
 <pre><code class="language-Plain">document.body.append((function(e){constt=document.createElement('h1');return(t.textContent='Проект собран на Webpack'),t;})());
 </code></pre>
-<p>В терминале запустим команду:</p>
+<p>Из терминала запустим команду:</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
 <p>Теперь, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
@@ -887,7 +887,7 @@ html(lang= 'ru')
 +   },
   };
 </code></pre>
-<p>Для <code>svgo</code> параметры оптимизации установлены по умолчанию <code>{ name: 'preset-default' }</code>. Подробно о настройках оптимизации <code>svgo</code> читайте <a href="https://github.com/svg/svgo">здесь</a>.</p>
+<p>Для <code>svgo</code> параметры оптимизации установлены по умолчанию <code>{ name: 'preset-default' }</code>. Подробно о настройках оптимизации <code>svgo</code> <a href="https://github.com/svg/svgo">читайте здесь</a>.</p>
 <p>В терминале запустим команду:</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
@@ -936,7 +936,7 @@ html(lang= 'ru')
 
       - Написано на **Markdown**
 </code></pre>
-<p>Сохраним файл и из терминала выполним команду:</p>
+<p>Сохраним файл и в терминале выполним команду:</p>
 <pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В браузере мы видим после изображений две строки текста, написанные с помощью Markdown. Это заголовок второго уровня и строка немаркированного списка со словом, которое выделено жирным шрифтом .</p>
@@ -1057,7 +1057,7 @@ html(lang= 'ru')
 <p>Рекомендую посетить сервис <a href="https://createapp.dev/">createapp.dev</a>, который поможет создать готовый шаблон проекта с необходимыми настройками. Этот сервис настраивает проект под Webpack, Parcel и Snowpack и полезен для опытных пользователей.</p>
 <h2>Заключение</h2>
 <p>В этой статье показано, как настроить webpack для создания фронтенда сайта с использованием шаблонизатора Pug, препроцессора SCSS, языка разметки Markdown и языка JavaScript. Показываются методы оптимизации изображений, подключения шрифтов, настройки локального сервера.</p>
-<p>Весь код из этой статьи находится <a href="https://github.com/injashkin/webpack-template">здесь</a>.</p>
+<p>Весь код из этой статьи <a href="https://github.com/injashkin/webpack-template">находится здесь</a>.</p>
 <p>За рамками этой статьи остались настройка вебпака для работы с библиотекой React или фреймворком Vue, а также <a href="https://webpack.js.org/guides/typescript/">интеграция с TypeScript</a>. Не рассмотрена такая тема, как <a href="https://webpack.js.org/guides/code-splitting/">разделение кода</a> на чанки. Если после очередной сборки бандла вы замечаете, что загрузка сайта начинает ощутимо возрастать, то стоит рассмотреть такие методы, как <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>, <a href="https://webpack.js.org/guides/lazy-loading/">Lazy Loading</a> и <a href="https://webpack.js.org/guides/tree-shaking/">Tree Shaking</a>.</p>
 
       </div>
