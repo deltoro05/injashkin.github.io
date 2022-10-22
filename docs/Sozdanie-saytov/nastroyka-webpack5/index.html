@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gfsskr41.css">
-    <script defer src="/index.1gfsskr41.js"></script>
+    <link rel="stylesheet" href="/index.1gg0mv130.css">
+    <script defer src="/index.1gg0mv130.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -81,6 +81,7 @@
         <div class="creationDate">Создано: 19-10-2022 - Обновлено: 20-10-2022</div><h2>О чем статья</h2>
 <p>Подробно описывается настройка сборщика Webpack 5. Слово &quot;подробно&quot; означает, что здесь будут, по возможности, объясняться все непонятные моменты в настройках - не только &quot;что делать&quot;, но и &quot;зачем это надо&quot;.</p>
 <p>Статья покажет, как создать рабочий шаблон, с помощью которого можно разрабатывать фронтенд сайта и использовать для этого следующие инструменты: Pug, Sass, JavaScript и Markdown.</p>
+<p><img src="kdpv.jpg" alt="kdpv"></p>
 <ul>
 <li>Шаблонизатор Pug используется для разметки, которая будет автоматически преобразовываться в разметку HTML.</li>
 <li>Препроцессор Sass применяется для стилей, которые будут автоматически преобразовываться в стили CSS.</li>
@@ -491,14 +492,14 @@ module.exports = {
     },
   };
 </code></pre>
-<p>Мы создали объект <code>module</code>, для которого задали правило <code>rules</code>. Для вебпака файл - это модуль, будь то скрипт, стили, шрифт или изображение. Здесь, для всех модулей (читай, файлов) с расширением <code>.js</code> webpack будет применять плагин <code>babel-loader</code>. Правило не действует на каталог <code>node_modules</code>, что указывается в свойстве <code>module.rules.exclude</code>.</p>
+<p>Мы создали объект <code>module</code>, для которого задали правило <code>rules</code>. Для вебпака модулем является любой файл. Здесь, для всех модулей (читай, файлов) с расширением <code>.js</code> webpack будет применять плагин <code>babel-loader</code>. Правило не действует на каталог <code>node_modules</code>, что указывается в свойстве <code>module.rules.exclude</code>.</p>
 <p>Перед тем, как запустить сборку, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
 <pre><code class="language-Plain">document.body.append((function(e){constt=document.createElement('h1');return(t.textContent='Проект собран на Webpack'),t;})());
 </code></pre>
 <p>Из терминала запустим команду:</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
-<p>Теперь, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который выглядит так:</p>
+<p>Теперь, откроем файл <code>dist/index.[hash].js</code> и посмотрим на код, который немного иначе:</p>
 <pre><code class="language-Plain">(()=&gt;{var e;document.body.append((&quot;Проект собран на Webpack&quot;,(e=document.createElement(&quot;h1&quot;)).textContent=&quot;Проект собран на Webpack&quot;,e))})();
 </code></pre>
 <p>Исходный код мы не меняли, но код конечного бандла изменился. Это результат действия компилятора Babel. Второй код поймут все браузеры, которые поддерживают ES5 и выше.</p>
@@ -507,11 +508,11 @@ module.exports = {
 <p>Шаблонизаторы позволяют:</p>
 <ul>
 <li>создавать шаблоны, компоненты, блоки</li>
-<li>работать с данными, подставляя эти данные в код. Шаблонизатор может автоматически создать карточки, если подставить данные в компонент из объекта JSON. Также, можно менять классы, если изменять данные, что позволяет управлять интерфейсом компонентов.</li>
+<li>работать с данными, подставляя эти данные в код. Например, шаблонизатор может автоматически создать любое количество карточек, если подставить данные в компонент из объекта JSON. Также, можно менять классы, если изменять данные, что позволяет управлять интерфейсом компонентов.</li>
 <li>задавать условные выражения и циклы, как в языках программирования.</li>
 </ul>
 <p>В этой статье рассмотрим <a href="https://pugjs.org/">шаблонизатор Pug</a>, который написан на JavaScript и выполняется в среде Node.js. Шаблонизатор Pug использует синтаксис, основанный на отступах и отличается от синтаксиса HTML отсутствием угловых скобок и закрывающихся тегов. После компиляции синтаксис Pug превращается в HTML код.</p>
-<p>Чтобы шаблонизатор Pug работал с Webpack имеется плагин и загрузчик файлов <a href="https://www.npmjs.com/package/pug-loader">pug-loader</a>.</p>
+<p>Чтобы шаблонизатор Pug мог работать с Webpack, имеется плагин и загрузчик файлов <a href="https://www.npmjs.com/package/pug-loader">pug-loader</a>.</p>
 <blockquote>
 <p>Загрузчик pug-loader не поддерживает Pug 3-ей версии, поэтому придется довольствоваться второй версией. Кому очень нужен Pug 3, предлагаю два варианта решения:</p>
 <ul>
@@ -559,7 +560,7 @@ module.exports = {
 <p>Из терминала создадим файл <code>src/template.pug</code>:</p>
 <pre><code class="language-bash">touch src/template.pug
 </code></pre>
-<p>и напишем в нем следующее:</p>
+<p>откроем в редакторе и напишем в нем следующее:</p>
 <pre><code class="language-pug">doctype html
 html(lang= 'ru')
   head
@@ -573,7 +574,7 @@ html(lang= 'ru')
 <p>В терминале запустим команду:</p>
 <pre><code class="language-bash">npm run serve
 </code></pre>
-<p>Откроется страница браузера по адресу http://localhost:9000/, на которой увидим:</p>
+<p>Откроется страница браузера по адресу http://localhost:9000/, где увидим:</p>
 <pre><code class="language-Plain">Проект собран на Webpack
 Файл откомпилирован шаблонизатором Pug
 </code></pre>
@@ -594,9 +595,9 @@ html(lang= 'ru')
 <li><a href="https://webpack.js.org/loaders/style-loader/">style-loader</a> загрузчик стилей в DOM</li>
 </ul>
 <blockquote>
-<p>Если требуется использовать только CSS и не пользоваться преимуществами SCSS и PostCSS, то установите только <code>css-loader</code> и <code>style-loader</code>.</p>
+<p>Если требуется использовать только CSS и не пользоваться преимуществами SCSS и PostCSS, то можно установить только <code>css-loader</code> и <code>style-loader</code>.</p>
 </blockquote>
-<p>Создадим файл <code>src/main.scss</code>:</p>
+<p>Из терминала создадим файл <code>src/main.scss</code>:</p>
 <pre><code class="language-bash">touch src/main.scss
 </code></pre>
 <p>и внесем в него следующее:</p>
@@ -613,7 +614,7 @@ html {
 <pre><code class="language-js">import './main.scss';
 </code></pre>
 <p>Такой импорт стилей в скрипте не поддерживается языком JavaScript, а возможен благодаря webpack.</p>
-<p>В <code>webpack.config.js</code> настроим пакеты:</p>
+<p>В <code>webpack.config.js</code> напишем правило для файлов с расширением <code>.scss</code> и <code>.css</code>:</p>
 <pre><code class="language-js">...
   module.exports = {
     entry: ... ,
@@ -732,7 +733,7 @@ html {
 </code></pre>
 <p>В каталоге <code>dist</code> появится файл <code>main.[hash].css</code>.</p>
 <h2>Загрузка изображений в webpack</h2>
-<p>Здесь настроим webpack для работы с изображениями в формате PNG, JPG, GIF и SVG. До webpack 5 для работы с изображениями использовались загрузчики <a href="https://v4.webpack.js.org/loaders/raw-loader/">raw-loader</a>, <a href="https://v4.webpack.js.org/loaders/url-loader/">url-loader</a> и <a href="https://v4.webpack.js.org/loaders/file-loader/">file-loader</a>. Начиная с webpack 5, вместо загрузчиков изображений, значков, шрифтов и т. д. используется встроенный <a href="https://webpack.js.org/guides/asset-modules/">Asset Modules</a>.</p>
+<p>Теперь настроим webpack для работы с изображениями в формате PNG, JPG, GIF и SVG. До webpack 5 для работы с изображениями использовались загрузчики <a href="https://v4.webpack.js.org/loaders/raw-loader/">raw-loader</a>, <a href="https://v4.webpack.js.org/loaders/url-loader/">url-loader</a> и <a href="https://v4.webpack.js.org/loaders/file-loader/">file-loader</a>. Начиная с webpack 5, вместо загрузчиков изображений, значков, шрифтов и т. д. используется встроенный <a href="https://webpack.js.org/guides/asset-modules/">Asset Modules</a>.</p>
 <p>Для поддержки изображений устанавливать ничего не нужно, требуется только настроить <code>webpack.config.js</code>:</p>
 <pre><code class="language-js">  module.exports = {
     entry: path.join(__dirname, 'src', 'index.js'),
@@ -820,7 +821,7 @@ html(lang= 'ru')
 </code></pre>
 <p>В окне браузера появилось два рисунка:</p>
 <p><img src="add-image.png" alt="Загрузка изображений с помощью Webpack"></p>
-<p>Размер изображения изменим через стили. Для этого откроем файл <code>src/main.scss</code> и зададим размеры для обоих изображений, для этого добавим в конец файла следующее:</p>
+<p>Изменим размеры изображений через стили, для этого добавим в конец файла <code>src/main.scss</code> следующее:</p>
 <pre><code class="language-scss">.logo1 {
   width: 10em;
 }
@@ -829,7 +830,7 @@ html(lang= 'ru')
   width: 10em;
 }
 </code></pre>
-<p>Сохраним изменения и увидим, что размер изображений стал одинаковым. При этом, мы изменили только ширину, а высота изменилась пропорционально.</p>
+<p>Сохраним изменения и увидим, что размеры изображений стали одинаковыми. При этом, мы изменили только ширину, а высота изменилась пропорционально.</p>
 <p><img src="resize-images.png" alt="Изменение размера изображений"></p>
 <h2>Оптимизация изображений</h2>
 <p>Многие изображения сжимаются без ухудшения визуального качества. Сжатие дает выигрыш в скорости загрузки изображений с сервера сайта в браузер пользователя. Для сжатия существуют инструменты оптимизации изображений.</p>
