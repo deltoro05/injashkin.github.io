@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.1gg5pvr4d.css">
     <script defer src="/index.1gg5pvr4d.js"></script>
-    <meta name="description" content="Приведены некоторые микросервисы, которые могут быть полезны для использования.">
-    <title>Микросервисы, написанные на JavaScript для NodeJS | jinv.ru</title>
+    <meta name="description" content="Приведены команды и запросы для работы с базой данных MySQL, которые наиболее часто применяются автором статьи.">
+    <title>Краткий справочник по командам и запросам к MySQL | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
     <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
@@ -77,30 +77,143 @@
     </header>
     <div class="content">
       <div class="article">
-        <h1>Микросервисы, написанные на JavaScript для NodeJS</h1>
-        <div class="creationDate">Создано: 03-02-2020 - Обновлено: 23-09-2022</div><p>Данные микросервисы написаны мною при изучении веб разработки. В статье приведены краткие описания микросервисов, а также ссылки на демо и исходные коды.</p>
-<h2>Парсер заголовков запросов, написанный на JavaScript</h2>
-<p>Микросервис анализирует заголовки запросов и возвращает в JSON формате:</p>
+        <h1>Краткий справочник по командам и запросам к MySQL</h1>
+        <div class="creationDate">Создано: 24-10-2022</div><h2>Команды терминала для работы с MySQL</h2>
 <ul>
-<li>IP-адрес клиента, т. е. ваш ip,</li>
-<li>предпочитаемые клиентом языки (из заголовка Accept-Language),</li>
-<li>информацию о системе устройства клиента (из заголовка User-Agent).</li>
-</ul>
-<p>Чтобы увидеть работу парсера, введите в адресной строке браузера следующий адрес:</p>
-<pre><code>https://request-header-parser-m.glitch.me/whoami/
-</code></pre>
-<p>В окне браузера вы должны увидеть примерно следующее:</p>
-<pre><code>{&quot;ip&quot;:&quot;95.153.170.248,::ffff:10.10.11.161,::ffff:10.10.94.162&quot;,&quot;ipaddress&quot;:&quot;::ffff:127.0.0.1&quot;,&quot;language&quot;:&quot;ru,en;q=0.9&quot;,&quot;software&quot;:&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.114 YaBrowser/22.9.1.1110 (beta) Yowser/2.5 Safari/537.36&quot;}
-</code></pre>
-<p>где</p>
+<li>
+<p>mysql --version</p>
 <ul>
-<li><code>ip</code> представляет собой список IP-адресов, первый - это ip-адрес клиента, а все последующие - это ip-адреса прокси, которые передают по цепочке запрос клиента. В этом примере запрос клиента прошел через proxy1 и proxy2.</li>
-<li><code>ipaddress</code> - это ip-адрес клиента, но если между клиентом и сервером, на котором находится данный микросервис, расположены прокси сервера, то ip-адрес будет 127.0.0.1</li>
+<li>Узнать версию сервера MySQL</li>
 </ul>
-<p>Как реализован данный микросервис, можно посмотреть <a href="https://glitch.com/edit/#!/request-header-parser-m">здесь</a>.</p>
-<h2>Генерация коротких URL адресов</h2>
-<p>Микросервис сокращает URL адреса, а при вводе коротких URL преобразует обратно в исходные. Написано на JavaScript. Демонстрация данного микросервиса приведена в <a href="https://url-shortener-injashkin.glitch.me">этом приложении</a>, а здесь приведен его <a href="https://github.com/injashkin/url-shortener.git">исходный код</a>.</p>
-<p>Чтобы глубже понять, для чего нужен этот микросервис прочтите статью <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D0%BA%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_URL">Сокращение URL</a> на Википедии, а также прочтите <a href="https://www.internet-technologies.ru/articles/rukovodstvo-po-sokrascheniyu-url-adresov-i-otslezhivaniyu-socsetey.html">эту статью</a>.</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>service mysql status</p>
+<p>или</p>
+</li>
+<li>
+<p>sudo systemctl status mysql</p>
+<ul>
+<li>Проверить состояние службы MySQL. <a href="https://losst.pro/upravlenie-sluzhbami-linux#%D0%A3%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D0%B0_systemctl">УПРАВЛЕНИЕ СЛУЖБАМИ LINUX</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>sudo systemctl start mysql</p>
+<ul>
+<li>Запустить сервер</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>sudo systemctl stop mysql</p>
+<ul>
+<li>Остановить сервер</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>sudo mysql -u root -p</p>
+<ul>
+<li>Войти в MySQL как root-пользователь</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Запросы к MySQL</h2>
+<hr>
+<ul>
+<li>
+<p>SHOW DATABASES;</p>
+<ul>
+<li>Показать список всех баз данных на сервере MySQL</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>CREATE DATABASE wp2;</p>
+<ul>
+<li>Создать новую базу данных MySQL с именем wp2</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>DROP DATABASE wp2;
+<ul>
+<li>Удалить базу данных MySQL с именем wp2</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>USE wp2;</p>
+<ul>
+<li>Выбрать базу данных wp2 для дальнейших операций над ней</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>SELECT User,Host FROM mysql.user;</p>
+<ul>
+<li>Получить список всех учетных записей пользователей. Выводит таблицу с двумя столбцами User и Host</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';</p>
+<ul>
+<li>Создать новую учетную запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Чтобы пользователь мог подключаться с любого хоста, используйте вместо 'localhost' подстановочный знак '%'</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>SHOW GRANTS FOR 'username'@'localhost';
+<ul>
+<li>Показать привилегии пользователя username, которыми он обладает на локальном хосте.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>GRANT ALL PRIVILEGES ON <em>.</em> TO 'username'@'localhost';
+<ul>
+<li>Предоставить все привилегии пользователю username во всех базах данных на локальном хосте.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>GRANT SELECT, INSERT, DELETE ON wp2.articles TO 'username'@'localhost';
+<ul>
+<li>Предоставить пользователю username привилегии на чтение, вставку и удаление строк в таблице articles базы данных wp2 на локальном хосте</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>DROP USER 'username'@'localhost';
+<ul>
+<li>Удалить пользователя username, который имеет доступ к базе данных с локального хоста.</li>
+</ul>
+</li>
+</ul>
 
       </div>
     </div>

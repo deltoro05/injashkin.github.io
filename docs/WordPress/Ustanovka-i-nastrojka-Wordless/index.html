@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.1gg5pvr4d.css">
+    <script defer src="/index.1gg5pvr4d.js"></script>
+    <meta name="description" content="&lt;a href=&quot;https://wordless.readthedocs.io/en/latest/index.html&quot;&gt;Wordless&lt;/a&gt; - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress со стартовой темой. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:">
+    <title>Установка и настройка Wordless | jinv.ru</title>
+    <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/icons/icon60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/icon72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/icons/icon76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/icon114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/icons/icon120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icons/icon144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon192.png">
+    <link rel="icon" href="images/icons/icon16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="images/icons/icon32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="images/icons/icon96.png" type="image/png" sizes="96x96">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/highlight/vs2015.min.css">
+    <script src="/highlight/highlight.min.js">   </script>
+    <script>hljs.configure({noHighlightRe: language-perl})</script>
+    <script>hljs.highlightAll()</script>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/icons/icon144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content content">           
+        <div class="header__logo">
+          <div class="logo">        <a href="/" title="jinv.ru"> 
+              <svg class="icon icon__logo" role="img" width="14em" height="5em">
+                <use href="/sprite.svg#logo"></use>
+              </svg></a></div>
+          <div class="logo_mobile"><a href="/" title="jinv.ru"><img src="/images/icon-72x72.png" alt="Логотип сайта jinv.ru"/></a></div>
+        </div>
+        <nav class="menu" aria-label="Главное меню">   
+          <div class="content"> 
+            <input id="menu__toggle" type="checkbox"/>
+            <label class="menu__btn" for="menu__toggle"><span>   </span></label>
+            <ul class="menu__box">
+              <li><a class="menu__item" href="/">Главная</a></li>
+              <li><a class="menu__item" href="/toc.html">Статьи</a></li>
+              <li><a class="menu__item" href="/author.html">Об авторе</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="theme">
+          <select id="theme" name="theme">        
+            <option value="auto">Авто      </option>
+            <option value="light">Светлая      </option>
+            <option value="dark">Темная    </option>
+          </select>
+        </div>
+        <div class="header__contacts">
+          <div class="send-mes">
+            <div class="soc"><a class="mes-tg" href="https://t.me/jashkin" title="Telegram" target="_blank" rel="nofollow">
+                <svg class="icon icon__telegram" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#telegram"></use>
+                </svg></a><a class="mes-wa" href="https://api.whatsapp.com/send?phone=79183549497" title="WhatsApp" target="_blank" rel="nofollow">
+                <svg class="icon icon__whatsapp" role="img" width="1em" height="1em">
+                  <use href="/sprite.svg#whatsapp"></use>
+                </svg></a>
+            </div>
+          </div>
+          <div class="contacts">         
+            <p> <a href="https://github.com/injashkin/injashkin.github.io">Github</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="article">
+        <h1>Установка и настройка Wordless</h1>
+        <div class="creationDate">Создано: 24-10-2022</div><p><a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress со стартовой темой. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:</p>
+<ul>
+<li>Создание новых тем непосредственно в wp-cli</li>
+<li>Написание шаблонов PHP с помощью языка шаблонов PUG</li>
+<li>Написание таблиц стилей CSS, используя синтаксис SCSS</li>
+<li>Написание логики Javascript в ES2015</li>
+<li>Предварительно настроенная поддержка перехватчика сообщений MailHog.</li>
+<li>Поддержка WebPack, BrowserSync (с живой перезагрузкой), WP-CLI, Yarn.</li>
+</ul>
+<p>Скомпилированная тема будет работать на любой стандартной установке Wordpress.</p>
+<p>Wordless не изменяет никаких основных функциональных возможностей, поэтому он совместим практически с любым плагином.</p>
+<p>Первым делом установим WP-CLI</p>
+<h2>WP-CLI</h2>
+<p><a href="https://wp-cli.org/">WP-CLI</a> - это интерфейс командной строки для WordPress. С помощью WP-CLI можно обновлять плагины, настраивать многосайтовые установки и многое другое, не используя веб-браузер.</p>
+<p>Из терминала загрузим файл wp-cli.phar с помощью curl:</p>
+<pre><code>curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+</code></pre>
+<p>Файл загрузится в Домашнюю папку.</p>
+<p>Затем проверим работоспособность файла wp-cli.phar:</p>
+<pre><code>php wp-cli.phar --info
+</code></pre>
+<p>Чтобы использовать WP-CLI из командной строки, набирая команду wp, сделаем файл исполняемым и переместим его куда-нибудь из домашней папки. Например:</p>
+<pre><code>chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+</code></pre>
+<p>Теперь проверим, как работает WP-CLI:</p>
+<pre><code>wp --info
+</code></pre>
+<p>Будет выведена информация, похожая на эту:</p>
+<pre><code>OS:	Linux 5.15.0-52-generic #58~20.04.1-Ubuntu SMP Thu Oct 13 13:09:46 UTC 2022 x86_64
+Shell:	/bin/bash
+PHP binary:	/usr/bin/php7.4
+PHP version:	7.4.3
+php.ini used:	/etc/php/7.4/cli/php.ini
+MySQL binary:	/usr/bin/mysql
+MySQL version:	mysql  Ver 8.0.30-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))
+SQL modes:
+WP-CLI root dir:	phar://wp-cli.phar/vendor/wp-cli/wp-cli
+WP-CLI vendor dir:	phar://wp-cli.phar/vendor
+WP_CLI phar path:	/home/user
+WP-CLI packages dir:
+WP-CLI cache dir:	/home/user/.wp-cli/cache
+WP-CLI global config:
+WP-CLI project config:
+WP-CLI version:	2.7.1
+</code></pre>
+<h2>Wordless</h2>
+<p>Теперь установим <a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a>. Для установки требуется язык Ruby. Проверим наличие этого языка в системе:</p>
+<pre><code>ruby -v
+</code></pre>
+<p>Если язык установлен, то будет выведена запись, похожая на эту:</p>
+<pre><code>ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
+</code></pre>
+<p>Если язык не установлен, то установим его. В Ubuntu это делается так:</p>
+<pre><code>sudo apt-get install ruby-full
+</code></pre>
+<p>Установка для других систем приведена на <a href="https://www.ruby-lang.org/ru/documentation/installation/">этой странице</a>.</p>
+<p>Теперь установим из репозитория Ruby пакет wordless:</p>
+<pre><code>gem install wordless
+</code></pre>
+<p>Затем, установим WordPress:</p>
+<pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
+</code></pre>
+<p>где:</p>
+<p>'username' - имя пользователя, под которым вы входите в операционную систему.
+'your_password' - пароль к учетной записи на сервере MySQL. Если вы не изменяли пароль к учётной записи на сервере MySQL, то введите скобки без пробелов внутри ''.</p>
+<p>Будет создан каталог wp2 и в него установлен WordPress с настроенным плагином Wordless.</p>
+<p>Возможно, при установке у вас появится такая ошибка:</p>
+<pre><code>Check for necessary global NPM packages
+Global NPM packages needed by Wordless already installed. Good job!
+Starting...
+Creating database 'wp2'...
+Cannot login to MySQL. Wrong credentials?
+</code></pre>
+<p>Система сообщает, что при попытке создать базу данных с именем wp2, не удалось войти в MySQL, так как неверные учетные данные. Это произошло потому, что, либо вы когда-то изменили пароль к вашей учетной записи на сервере MySQL и нужно ввести этот пароль, либо в базе данных MySQL не зарегистрирован пользователь с именем, под которым вы входите в свою операционную систему.</p>
+<p>Если вы не меняли пароль, то скоре всего, ваше имя не зарегистрировано в БД MySQL, либо пользователь с таким именем существует и имеет другой пароль. Чтобы это проверить выполним некоторые действия.</p>
+<p>Войдем в MySQL как root-пользователь</p>
+<pre><code>sudo mysql -u root -p
+</code></pre>
+<p>Если вы до этого не меняли пароль root-пользователя MySQL, то можно не указывать ключ -p. При выполении вышеприведенной команды система попросит ввести только пароль администратора операционной системы. Если же вы изменяли пароль root-пользователя MySQL, то добавьте ключ -p и в процессе выполнения команды введите пароль администратора системы, а затем пароль root-пользователя MySQL. В результате, вы войдете в базу данных и увидите строку с приглашением:</p>
+<pre><code>musql&gt;
+</code></pre>
+<p>Получим список всех учетных записей пользователей:</p>
+<pre><code>SELECT User,Host FROM mysql.user;
+</code></pre>
+<p>Увидим таблицу с двумя столбцами User и Host, которая выглядит примерно так:</p>
+<pre><code>+------------------+-----------+
+| User             | Host      |
++------------------+-----------+
+| debian-sys-maint | localhost |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| phpmyadmin       | localhost |
+| root             | localhost |
++------------------+-----------+
+6 rows in set (0,00 sec)
+</code></pre>
+<p>Если мы не увидели своего имени, то создадим учетную запись. Для этого в строке с приглашением <code>musql&gt;</code> добавим следующий запрос:</p>
+<pre><code>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';
+</code></pre>
+<p>Будет создана новая учетная запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Если вы не хотите устанавливать пароль, то вместо пароля 'userpassword' укажите кавычки ''.</p>
+<p>Проверим список всех учетных записей пользователей.</p>
+<pre><code>SELECT User,Host FROM mysql.user;
+</code></pre>
+<p>В таблице мы должны увидеть имя созданного пользователя.</p>
+<p>Выйдем из базы данных:</p>
+<pre><code>exit
+</code></pre>
+<p>Снова пробуем установить wordless:</p>
+<pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
+</code></pre>
+<p>WP-CLI already installed [/usr/local/bin/wp]. Do you want to overwite it? [y]es, [N]o</p>
+<p>n</p>
+<p>Ждем, пока загрузится и установится WordPress</p>
+<p>Запускаем сервер:</p>
+<p>wp server</p>
+<p>Открываем браузер и переходим по адресу <code>http://localhost:8080</code>.</p>
+
+      </div>
+    </div>
+    <footer class="footer"> 
+      <div class="footer__content content">
+        <div class="footer__contacts" id="contacts"> <a class="footer__email-link" href="mailto:injashkin@gmail.com" title="Написать письмо">
+            <svg class="icon icon__undefined" role="img" width="1em" height="1em">
+              <use href="/sprite.svg#undefined"></use>
+            </svg>
+            <div class="footer__email">injashkin@gmail.com</div></a></div>
+        <div class="footer__developer"> <a href="http://jinv.ru" target="_blank">Разработка сайта jinv.ru</a></div>
+        <div class="footer__copyright-wrap">
+          <div class="footer__copyright">jinv.ru © 2019 - 2022</div>
+        </div>
+      </div>
+    </footer><!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter60672532 = new Ya.Metrika({
+          id: 60672532,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+        });
+      } catch (e) {}
+    });
+
+    var n = d.getElementsByTagName('script')[0],
+      x = 'https://mc.yandex.ru/metrika/watch.js',
+      s = d.createElement('script'),
+      f = function () {
+        n.parentNode.insertBefore(s, n);
+      };
+    for (var i = 0; i < document.scripts.length; i++) {
+      if (document.scripts[i].src === x) {
+        return;
+      }
+    }
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = x;
+
+    if (w.opera == '[object Opera]') {
+      d.addEventListener('DOMContentLoaded', f, false);
+    } else {
+      f();
+    }
+  })(document, window, 'yandex_metrika_callbacks');
+</script>
+<noscript
+  ><div>
+    <img
+      src="https://mc.yandex.ru/watch/60672532"
+      style="position: absolute; left: -9999px"
+      alt=""
+    /></div
+></noscript>
+<!-- /Yandex.Metrika counter -->
+
+  </body>
+</html>
