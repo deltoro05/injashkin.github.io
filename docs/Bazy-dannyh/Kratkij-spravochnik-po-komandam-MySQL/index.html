@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gg5pvr4d.css">
-    <script defer src="/index.1gg5pvr4d.js"></script>
+    <link rel="stylesheet" href="/index.1gg8e8391.css">
+    <script defer src="/index.1gg8e8391.js"></script>
     <meta name="description" content="Приведены команды и запросы для работы с базой данных MySQL, которые наиболее часто применяются автором статьи.">
     <title>Краткий справочник по командам и запросам к MySQL | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -83,7 +83,7 @@
 <li>
 <p>mysql --version</p>
 <ul>
-<li>Узнать версию сервера MySQL</li>
+<li>Узнать версию используемой MySQL</li>
 </ul>
 </li>
 </ul>
@@ -105,7 +105,7 @@
 <li>
 <p>sudo systemctl start mysql</p>
 <ul>
-<li>Запустить сервер</li>
+<li>Запустить сервер MySQL</li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,15 @@
 <li>
 <p>sudo systemctl stop mysql</p>
 <ul>
-<li>Остановить сервер</li>
+<li>Остановить сервер MySQL</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>sudo mysql -u root -p -e 'SHOW DATABASES;'
+<ul>
+<li>Подключится к серверу MySQL как root-пользователь и выполнить запрос <code>SHOW DATABASES;</code>.</li>
 </ul>
 </li>
 </ul>
@@ -123,13 +131,11 @@
 <li>
 <p>sudo mysql -u root -p</p>
 <ul>
-<li>Войти в MySQL как root-пользователь</li>
+<li>Войти в консоль MySQL как root-пользователь. Потребуется ввести два пароля: пароль администратора ОС и пароль пользователя MySQL. После этого появится строка с приглашением <code>mysql&gt;</code>, в которую можно вводить запросы.</li>
 </ul>
 </li>
 </ul>
-<hr>
 <h2>Запросы к MySQL</h2>
-<hr>
 <ul>
 <li>
 <p>SHOW DATABASES;</p>
@@ -158,18 +164,9 @@
 <hr>
 <ul>
 <li>
-<p>USE wp2;</p>
-<ul>
-<li>Выбрать базу данных wp2 для дальнейших операций над ней</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>
 <p>SELECT User,Host FROM mysql.user;</p>
 <ul>
-<li>Получить список всех учетных записей пользователей. Выводит таблицу с двумя столбцами User и Host</li>
+<li>Получить все учетные записи пользователей из таблицы user базы данных mysql. Выводит из таблицы две колонки User и Host. Если нужно получить все колонки из таблицы user, то вместо <code>User,Host</code> используем оператор <code>*</code>.</li>
 </ul>
 </li>
 </ul>
@@ -178,7 +175,7 @@
 <li>
 <p>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';</p>
 <ul>
-<li>Создать новую учетную запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Чтобы пользователь мог подключаться с любого хоста, используйте вместо 'localhost' подстановочный знак '%'</li>
+<li>Создать новую учетную запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Чтобы пользователь мог подключаться с любого хоста, используй вместо 'localhost' подстановочный знак '%'</li>
 </ul>
 </li>
 </ul>
@@ -192,17 +189,17 @@
 </ul>
 <hr>
 <ul>
-<li>GRANT ALL PRIVILEGES ON <em>.</em> TO 'username'@'localhost';
+<li>GRANT SELECT, INSERT, DELETE ON wp2.articles TO 'username'@'localhost';
 <ul>
-<li>Предоставить все привилегии пользователю username во всех базах данных на локальном хосте.</li>
+<li>Предоставить пользователю username привилегии на чтение, вставку и удаление строк в таблице articles базы данных wp2 на локальном хосте</li>
 </ul>
 </li>
 </ul>
 <hr>
 <ul>
-<li>GRANT SELECT, INSERT, DELETE ON wp2.articles TO 'username'@'localhost';
+<li>GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';
 <ul>
-<li>Предоставить пользователю username привилегии на чтение, вставку и удаление строк в таблице articles базы данных wp2 на локальном хосте</li>
+<li>Предоставить все привилегии пользователю username во всех базах данных на локальном хосте.</li>
 </ul>
 </li>
 </ul>
@@ -213,6 +210,59 @@
 <li>Удалить пользователя username, который имеет доступ к базе данных с локального хоста.</li>
 </ul>
 </li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>USE wp2;</p>
+<ul>
+<li>Сделать базу данных wp2 текущей, т.е., выбрать базу данных wp2 для дальнейших операций над ней.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>SHOW TABLES;
+<ul>
+<li>Показать имена таблиц в текущей базе данных. Чтобы сделать БД текущей используй запрос USE.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>SHOW TABLES FROM users;
+<ul>
+<li>Показать список таблиц в базе данных users.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>SHOW TABLES LIKE 'wp%';
+<ul>
+<li>Показать имена таблиц, у которых названия начинаются на wp, в текущей БД.</li>
+</ul>
+</li>
+</ul>
+<h2>Флаги и операторы</h2>
+<ul>
+<li><code>*</code>
+<ul>
+<li>Означает всё. Например: <code>SELECT * FROM user;</code> - выводит все колонки из таблицы user.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>\G</code>
+<ul>
+<li>Выводит данные в виде списка. Например: <code>SELECT * FROM user \G;</code>. Без флага <code>\G</code> данные выводятся в виде таблицы.</li>
+</ul>
+</li>
+</ul>
+<h2>Полезные ссылки по MySQL</h2>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/">Официальная документация по MySQL</a>.</li>
 </ul>
 
       </div>

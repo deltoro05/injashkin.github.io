@@ -181,6 +181,8 @@ SELECT User,Host FROM mysql.user;
 exit
 ```
 
+nvm install 14.15.3
+
 Снова пробуем установить wordless:
 
 ```
