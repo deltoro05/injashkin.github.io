@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gg9iopo3.css">
-    <script defer src="/index.1gg9iopo3.js"></script>
-    <meta name="description" content="&lt;a href=&quot;https://wordless.readthedocs.io/en/latest/index.html&quot;&gt;Wordless&lt;/a&gt; - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress со стартовой темой. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:">
+    <link rel="stylesheet" href="/index.1ggal1le2.css">
+    <script defer src="/index.1ggal1le2.js"></script>
+    <meta name="description" content="Установка и настройка микрофреймворка Wordless, который применяется для разработки пользовательских тем для WordPress.">
     <title>Установка и настройка Wordless | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
     <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
@@ -78,16 +78,16 @@
     <div class="content">
       <div class="article">
         <h1>Установка и настройка Wordless</h1>
-        <div class="creationDate">Создано: 24-10-2022</div><p><a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress со стартовой темой. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:</p>
+        <div class="creationDate">Создано: 24-10-2022 - Обновлено: 26-10-2022</div><p><a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress и содержит стартовую тему. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:</p>
 <ul>
-<li>Создание новых тем непосредственно в wp-cli</li>
+<li>Создание новых тем с помощью wp-cli</li>
 <li>Написание шаблонов PHP с помощью языка шаблонов PUG</li>
 <li>Написание таблиц стилей CSS, используя синтаксис SCSS</li>
-<li>Написание логики Javascript в ES2015</li>
+<li>Написание логики Javascript, используя синтаксис ES2015</li>
 <li>Предварительно настроенная поддержка перехватчика сообщений MailHog.</li>
 <li>Поддержка WebPack, BrowserSync (с живой перезагрузкой), WP-CLI, Yarn.</li>
 </ul>
-<p>Скомпилированная тема будет работать на любой стандартной установке Wordpress.</p>
+<p>Скомпилированная тема будет работать на любой стандартной инсталяции Wordpress.</p>
 <p>Wordless не изменяет никаких основных функциональных возможностей, поэтому он совместим практически с любым плагином.</p>
 <p>Первым делом установим WP-CLI</p>
 <h2>WP-CLI</h2>
@@ -95,7 +95,7 @@
 <p>Из терминала загрузим файл wp-cli.phar с помощью curl:</p>
 <pre><code>curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 </code></pre>
-<p>Файл загрузится в Домашнюю папку.</p>
+<p>Файл загрузится в 'Домашнюю папку'.</p>
 <p>Затем проверим работоспособность файла wp-cli.phar:</p>
 <pre><code>php wp-cli.phar --info
 </code></pre>
@@ -125,20 +125,38 @@ WP-CLI project config:
 WP-CLI version:	2.7.1
 </code></pre>
 <h2>Wordless</h2>
-<p>Теперь установим <a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a>. Для установки требуется язык Ruby. Проверим наличие этого языка в системе:</p>
+<p>Каждая версия <a href="https://github.com/welaika/wordless_gem">Wordless</a> соглашается работать с определенной версией Node. Последний Wordless версии 2.2.0 требует для своей работы Node v14.15.3.</p>
+<p>В вашей системе, скорее всего, установлен Node другой версии. Чтобы убедиться в этом, введём в терминале следующую команду:</p>
+<pre><code class="language-Bach">node -v
+</code></pre>
+<p>будет выведена версия Node, установленная в вашей системе.</p>
+<p>Чтобы легко устанавливать и переключаться между различными версиями Node, воспользуемся менеджером NVM. Проверим, установлен ли NVM в вашей системе:</p>
+<pre><code class="language-Bash">nvm -v
+</code></pre>
+<p>Если NVM установлен, то будет показан номер версии, либо будет выдано сообщение, что команда не найдена. Тогда <a href="https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating">установим NVM</a> с помощью утилиты curl:</p>
+<pre><code class="language-Bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+</code></pre>
+<p>Теперь, с помощью NVM установим Node v14.15.3:</p>
+<pre><code class="language-Bash">nvm install 14.15.3
+</code></pre>
+<p>Указанная версия Node была установлена и сделана рабочей. Более подробно читайте <a href="https://habr.com/ru/company/timeweb/blog/541452/">Управление версиями Node.js и NPM с помощью NVM</a>.</p>
+<p>Рекомендуется, также, установить Yarn. Это легко сделать командой NPM:</p>
+<pre><code class="language-Bash">npm i -g yarn
+</code></pre>
+<p>Для того, чтобы установить <a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> требуется язык Ruby. Проверим наличие этого языка в системе:</p>
 <pre><code>ruby -v
 </code></pre>
 <p>Если язык установлен, то будет выведена запись, похожая на эту:</p>
 <pre><code>ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
 </code></pre>
-<p>Если язык не установлен, то установим его. В Ubuntu это делается так:</p>
+<p>Если язык не установлен, то будет выведено сообщение, что команда не найдена. Тогда установим Ruby. В Ubuntu это делается так:</p>
 <pre><code>sudo apt-get install ruby-full
 </code></pre>
 <p>Установка для других систем приведена на <a href="https://www.ruby-lang.org/ru/documentation/installation/">этой странице</a>.</p>
 <p>Теперь установим из репозитория Ruby пакет wordless:</p>
-<pre><code>gem install wordless
+<pre><code>sudo gem install wordless
 </code></pre>
-<p>Затем, установим WordPress:</p>
+<p>Затем, с помощью wordless установим WordPress:</p>
 <pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
 </code></pre>
 <p>где:</p>
@@ -187,13 +205,10 @@ Cannot login to MySQL. Wrong credentials?
 <p>Выйдем из базы данных:</p>
 <pre><code>exit
 </code></pre>
-<p>nvm install 14.15.3</p>
 <p>Снова пробуем установить wordless:</p>
 <pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
 </code></pre>
-<p>WP-CLI already installed [/usr/local/bin/wp]. Do you want to overwite it? [y]es, [N]o</p>
-<p>n</p>
-<p>Ждем, пока загрузится и установится WordPress</p>
+<p>Ждем, пока установится и настроится среда разработки. Будет создана база данных wp2, установлен WP-CLI, загрузится WordPress в каталог с именем wp2, будут удалены все темы и плагины, установленные по умолчанию в WordPress, установится репозиторий git, создан файл wp-config.php. Будет установлен и активирован плагин wordless, активирована тема по умолчанию.</p>
 <p>Запускаем сервер:</p>
 <p>wp server</p>
 <p>Открываем браузер и переходим по адресу <code>http://localhost:8080</code>.</p>

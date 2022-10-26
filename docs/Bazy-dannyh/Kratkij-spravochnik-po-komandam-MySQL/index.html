@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gg9iopo3.css">
-    <script defer src="/index.1gg9iopo3.js"></script>
+    <link rel="stylesheet" href="/index.1ggal1le2.css">
+    <script defer src="/index.1ggal1le2.js"></script>
     <meta name="description" content="Приведены команды и запросы для работы с базой данных MySQL, которые наиболее часто применяются автором статьи.">
     <title>Краткий справочник по командам и запросам к MySQL | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -78,10 +78,10 @@
     <div class="content">
       <div class="article">
         <h1>Краткий справочник по командам и запросам к MySQL</h1>
-        <div class="creationDate">Создано: 24-10-2022</div><h2>Команды терминала для работы с MySQL</h2>
+        <div class="creationDate">Создано: 24-10-2022 - Обновлено: 26-10-2022</div><h2>Команды терминала для работы с MySQL</h2>
 <ul>
 <li>
-<p>mysql --version</p>
+<p><code>mysql --version</code></p>
 <ul>
 <li>Узнать версию используемой MySQL</li>
 </ul>
@@ -90,11 +90,11 @@
 <hr>
 <ul>
 <li>
-<p>service mysql status</p>
+<p><code>service mysql status</code></p>
 <p>или</p>
 </li>
 <li>
-<p>sudo systemctl status mysql</p>
+<p><code>sudo systemctl status mysql</code></p>
 <ul>
 <li>Проверить состояние службы MySQL. <a href="https://losst.pro/upravlenie-sluzhbami-linux#%D0%A3%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D0%B0_systemctl">УПРАВЛЕНИЕ СЛУЖБАМИ LINUX</a></li>
 </ul>
@@ -103,7 +103,7 @@
 <hr>
 <ul>
 <li>
-<p>sudo systemctl start mysql</p>
+<p><code>sudo systemctl start mysql</code></p>
 <ul>
 <li>Запустить сервер MySQL</li>
 </ul>
@@ -112,7 +112,7 @@
 <hr>
 <ul>
 <li>
-<p>sudo systemctl stop mysql</p>
+<p><code>sudo systemctl stop mysql</code></p>
 <ul>
 <li>Остановить сервер MySQL</li>
 </ul>
@@ -120,7 +120,7 @@
 </ul>
 <hr>
 <ul>
-<li>sudo mysql -u root -p -e 'SHOW DATABASES;'
+<li><code>sudo mysql -u root -p -e 'SHOW DATABASES;'</code>
 <ul>
 <li>Подключится к серверу MySQL как root-пользователь и выполнить запрос <code>SHOW DATABASES;</code>.</li>
 </ul>
@@ -129,16 +129,16 @@
 <hr>
 <ul>
 <li>
-<p>sudo mysql -u root -p</p>
+<p><code>sudo mysql -u root -p</code></p>
 <ul>
-<li>Войти в консоль MySQL как root-пользователь. Потребуется ввести два пароля: пароль администратора ОС и пароль пользователя MySQL. После этого появится строка с приглашением <code>mysql&gt;</code>, в которую можно вводить запросы.</li>
+<li>Войти в консоль MySQL как root-пользователь. Потребуется ввести два пароля: пароль администратора ОС и пароль root-пользователя MySQL. После этого появится строка с приглашением <code>mysql&gt;</code>, в которую можно вводить запросы.</li>
 </ul>
 </li>
 </ul>
 <h2>Запросы к MySQL</h2>
 <ul>
 <li>
-<p>SHOW DATABASES;</p>
+<p><code>SHOW DATABASES;</code></p>
 <ul>
 <li>Показать список всех баз данных на сервере MySQL</li>
 </ul>
@@ -147,7 +147,7 @@
 <hr>
 <ul>
 <li>
-<p>CREATE DATABASE wp2;</p>
+<p><code>CREATE DATABASE wp2;</code></p>
 <ul>
 <li>Создать новую базу данных MySQL с именем wp2</li>
 </ul>
@@ -155,7 +155,7 @@
 </ul>
 <hr>
 <ul>
-<li>DROP DATABASE wp2;
+<li><code>DROP DATABASE wp2;</code>
 <ul>
 <li>Удалить базу данных MySQL с именем wp2</li>
 </ul>
@@ -163,8 +163,7 @@
 </ul>
 <hr>
 <ul>
-<li>
-<p>SELECT User,Host FROM mysql.user;</p>
+<li><code>SELECT User,Host FROM mysql.user;</code>
 <ul>
 <li>Получить все учетные записи пользователей из таблицы user базы данных mysql. Выводит из таблицы две колонки User и Host. Если нужно получить все колонки из таблицы user, то вместо <code>User,Host</code> используем оператор <code>*</code>.</li>
 </ul>
@@ -173,7 +172,7 @@
 <hr>
 <ul>
 <li>
-<p>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';</p>
+<p><code>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';</code></p>
 <ul>
 <li>Создать новую учетную запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Чтобы пользователь мог подключаться с любого хоста, используй вместо 'localhost' подстановочный знак '%'</li>
 </ul>
@@ -181,7 +180,7 @@
 </ul>
 <hr>
 <ul>
-<li>SHOW GRANTS FOR 'username'@'localhost';
+<li><code>SHOW GRANTS FOR 'username'@'localhost';</code>
 <ul>
 <li>Показать привилегии пользователя username, которыми он обладает на локальном хосте.</li>
 </ul>
@@ -189,7 +188,7 @@
 </ul>
 <hr>
 <ul>
-<li>GRANT SELECT, INSERT, DELETE ON wp2.articles TO 'username'@'localhost';
+<li><code>GRANT SELECT, INSERT, DELETE ON wp2.articles TO 'username'@'localhost';</code>
 <ul>
 <li>Предоставить пользователю username привилегии на чтение, вставку и удаление строк в таблице articles базы данных wp2 на локальном хосте</li>
 </ul>
@@ -197,7 +196,7 @@
 </ul>
 <hr>
 <ul>
-<li>GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';
+<li><code>GRANT ALL PRIVILEGES ON \*.\* TO 'username'@'localhost';</code>
 <ul>
 <li>Предоставить все привилегии пользователю username во всех базах данных на локальном хосте.</li>
 </ul>
@@ -205,7 +204,7 @@
 </ul>
 <hr>
 <ul>
-<li>DROP USER 'username'@'localhost';
+<li><code>DROP USER 'username'@'localhost';</code>
 <ul>
 <li>Удалить пользователя username, который имеет доступ к базе данных с локального хоста.</li>
 </ul>
@@ -214,7 +213,7 @@
 <hr>
 <ul>
 <li>
-<p>USE wp2;</p>
+<p><code>USE wp2;</code></p>
 <ul>
 <li>Сделать базу данных wp2 текущей, т.е., выбрать базу данных wp2 для дальнейших операций над ней.</li>
 </ul>
@@ -222,15 +221,15 @@
 </ul>
 <hr>
 <ul>
-<li>SHOW TABLES;
+<li><code>SHOW TABLES;</code>
 <ul>
-<li>Показать имена таблиц в текущей базе данных. Чтобы сделать БД текущей используй запрос USE.</li>
+<li>Показать имена таблиц в текущей базе данных. Чтобы сделать БД текущей используй запрос <code>USE</code>.</li>
 </ul>
 </li>
 </ul>
 <hr>
 <ul>
-<li>SHOW TABLES FROM users;
+<li><code>SHOW TABLES FROM users;</code>
 <ul>
 <li>Показать список таблиц в базе данных users.</li>
 </ul>
@@ -238,7 +237,7 @@
 </ul>
 <hr>
 <ul>
-<li>SHOW TABLES LIKE 'wp%';
+<li><code>SHOW TABLES LIKE 'wp%';</code>
 <ul>
 <li>Показать имена таблиц, у которых названия начинаются на wp, в текущей БД.</li>
 </ul>

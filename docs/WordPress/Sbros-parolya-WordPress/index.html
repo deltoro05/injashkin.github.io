@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gg9iopo3.css">
-    <script defer src="/index.1gg9iopo3.js"></script>
+    <link rel="stylesheet" href="/index.1ggal1le2.css">
+    <script defer src="/index.1ggal1le2.js"></script>
     <meta name="description" content="Показан пример, как сбросить пароль администратора WordPress на локальном хосте через командную строку с помощью запросов к серверу базы данных MySQL.">
     <title>Сброс пароля в WordPress через командную строку MySQL | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -122,7 +122,7 @@
 +-----------------------+
 12 rows in set (0,00 sec)
 </code></pre>
-<p>В таблице с именем wp_users содержатся все учетные записи пользователей WordPress. Для упрощения работы с базой данных можно выбрать базу данных wp2 и сделать её текущей с помощью запроса USE и в последующих запросах указывать только названия таблиц, но мы будем работать извне и будем указывать в запросах базу данных и через точку имя таблицы. Выведем данные из таблицы wp_users:</p>
+<p>В таблице с именем wp_users содержатся все учетные записи пользователей WordPress. Для упрощения работы с базой данных можно выбрать базу данных wp2 и сделать её текущей с помощью запроса USE и в последующих запросах указывать только названия таблиц, но мы будем работать извне и будем указывать в запросах базу данных и, через точку, имя таблицы. Выведем данные из таблицы wp_users:</p>
 <pre><code class="language-SQL">SELECT * FROM wp2.wp_users \G;
 </code></pre>
 <p>Будут выведены все <code>*</code> данные из таблицы wp_users базы данных wp2. Данные будут выведены в виде списка, на что указывает флаг <code>\G</code>.</p>
