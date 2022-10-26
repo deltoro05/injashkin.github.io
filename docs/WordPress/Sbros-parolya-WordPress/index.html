@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gg8e8391.css">
-    <script defer src="/index.1gg8e8391.js"></script>
-    <meta name="description" content="Рассмотрим как сбросить пароль администратора сайта на локалхосте. Из терминала войдем в консоль MySQL как root-пользователь:">
+    <link rel="stylesheet" href="/index.1gg9iopo3.css">
+    <script defer src="/index.1gg9iopo3.js"></script>
+    <meta name="description" content="Показан пример, как сбросить пароль администратора WordPress на локальном хосте через командную строку с помощью запросов к серверу базы данных MySQL.">
     <title>Сброс пароля в WordPress через командную строку MySQL | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
     <link rel="apple-touch-icon" sizes="57x57" href="images/icons/icon57.png">
@@ -78,15 +78,15 @@
     <div class="content">
       <div class="article">
         <h1>Сброс пароля в WordPress через командную строку MySQL</h1>
-        <div class="creationDate">Создано: 25-10-2022</div><p>Рассмотрим как сбросить пароль администратора сайта на локалхосте. Из терминала войдем в консоль MySQL как root-пользователь:</p>
-<pre><code>sudo mysql -u root -p
+        <div class="creationDate">Создано: 25-10-2022 - Обновлено: 26-10-2022</div><p>Рассмотрим как сбросить пароль администратора WordPress-сайта на локальном хосте. Войдем в консоль MySQL как root-пользователь. Для этого откроем терминал и введем следующую команду:</p>
+<pre><code class="language-Bash">sudo mysql -u root -p
 </code></pre>
-<p>Потребуется ввести два пароля: пароль администратора ОС и пароль root-пользователя MySQL. Если пароль root-пользователя MySQL вы не меняли, то в вышеприведенной команде можно не указывать <code>-p</code> и не нужно вводить второй пароль. После выполнения команды появится строка с приглашением <code>mysql&gt;</code>. В эту строку будем вводить запросы.</p>
-<p>Найдем базу данных нашего сайта на WordPress, для этого введем следующий запрос:</p>
-<pre><code>SHOW DATABASES;
+<p>Потребуется ввести два пароля: пароль администратора ОС и пароль root-пользователя MySQL. Если пароль root-пользователя MySQL вы не меняли, то в вышеприведенной команде можно не указывать <code>-p</code> и не нужно будет вводить второй пароль. После выполнения команды появится строка с приглашением <code>mysql&gt;</code>. В эту строку будем вводить запросы.</p>
+<p>Найдем базу данных нашего WordPress-сайта, для этого в строку с приглашением <code>mysql&gt;</code> введем следующий запрос:</p>
+<pre><code class="language-SQL">SHOW DATABASES;
 </code></pre>
-<p>Будут показаны имена всех баз данных на сервере MySQL.</p>
-<pre><code>mysql&gt; SHOW DATABASES;
+<p>Будут показаны имена всех баз данных на сервере MySQL. На моем сервере были следующие БД:</p>
+<pre><code class="language-SQL">mysql&gt; SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -99,11 +99,11 @@
 +--------------------+
 6 rows in set (0,00 sec)
 </code></pre>
-<p>После того, как мы нашли нужную базу данных, например <code>wp2</code>, можно просмотреть, какие таблицы имеются в этой базе:</p>
-<pre><code>SHOW TABLES FROM wp2;
+<p>После того, как мы нашли нужную базу данных, у меня этой базой является <code>wp2</code>, можно просмотреть, какие таблицы имеются в этой базе:</p>
+<pre><code class="language-SQL">SHOW TABLES FROM wp2;
 </code></pre>
-<p>Покажет имена таблиц в базе данных wp2.</p>
-<pre><code>mysql&gt; SHOW TABLES FROM wp2;
+<p>Запрос покажет имена таблиц в базе данных wp2.</p>
+<pre><code class="language-SQL">mysql&gt; SHOW TABLES FROM wp2;
 +-----------------------+
 | Tables_in_wp2         |
 +-----------------------+
@@ -122,11 +122,11 @@
 +-----------------------+
 12 rows in set (0,00 sec)
 </code></pre>
-<p>В таблице с именем wp_users содержатся все учетные записи пользователей WordPress. Выведем данные из этой таблицы. Мы не будем выбирать базу данных wp2 и делать её текущей с помощью запроса USE, а укажем в запросе базу данных и через точку имя таблицы:</p>
-<pre><code>SELECT * FROM wp2.wp_users \G;
+<p>В таблице с именем wp_users содержатся все учетные записи пользователей WordPress. Для упрощения работы с базой данных можно выбрать базу данных wp2 и сделать её текущей с помощью запроса USE и в последующих запросах указывать только названия таблиц, но мы будем работать извне и будем указывать в запросах базу данных и через точку имя таблицы. Выведем данные из таблицы wp_users:</p>
+<pre><code class="language-SQL">SELECT * FROM wp2.wp_users \G;
 </code></pre>
-<p>Будут выведены все данные из таблицы wp_users базы данных wp2. Данные будут выведены в виде списка, на что указывает флаг <code>\G</code>.</p>
-<pre><code>mysql&gt; SELECT * FROM wp2.wp_users \G;
+<p>Будут выведены все <code>*</code> данные из таблицы wp_users базы данных wp2. Данные будут выведены в виде списка, на что указывает флаг <code>\G</code>.</p>
+<pre><code class="language-SQL">mysql&gt; SELECT * FROM wp2.wp_users \G;
 *************************** 1. row ***************************
                  ID: 1
          user_login: admin
@@ -141,9 +141,13 @@ user_activation_key:
 1 row in set (0,00 sec)
 </code></pre>
 <p>Здесь показаны данные для администратора сайта, где в поле user_pass указан пароль в зашифрованном виде. Его мы изменим:</p>
-<pre><code>UPDATE wp2.wp_users SET user_pass = MD5('admin') WHERE user_login = 'admin';
+<pre><code class="language-SQL">UPDATE wp2.wp_users SET user_pass = MD5('admin') WHERE user_login = 'admin';
 </code></pre>
-<p>Используем функцию MD5 при вводе нового пароля. Здесь для пользователя с логином <code>admin</code> установлен пароль <code>admin</code>.</p>
+<p>Чтобы зашифровать пароль, используем функцию MD5 при вводе нового пароля. Здесь для пользователя с логином <code>admin</code> мы установили пароль <code>admin</code>.</p>
+<p><strong>Рекомендую по теме:</strong></p>
+<ul>
+<li><a href="https://jinv.ru/Bazy-dannyh/Kratkij-spravochnik-po-komandam-MySQL/">Краткий справочник по командам и запросам к MySQL</a>.</li>
+</ul>
 
       </div>
     </div>
