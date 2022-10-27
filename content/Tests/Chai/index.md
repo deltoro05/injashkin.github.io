@@ -22,13 +22,17 @@ npm install chai
 
 ## Изучение работы assert'ов JavaScript
 
-`assert.isNull(value, [message])` утверждает, что `value` является `null`; если это так, возвращает `message`. Пример:
+- `assert.isNull(value, [message])`
+  - утверждает, что `value` является `null`; если это так, возвращает `message`. Пример:
 
 ```js
 assert.isNull(err, 'никакой ошибки не было');
 ```
 
-`assert.isNotNull(value, [message])` утверждает, что `value` не является `null`; если это так, возвращает `message`. Пример:
+---
+
+- `assert.isNotNull(value, [message])`
+  - утверждает, что `value` не является `null`; если это так, возвращает `message`. Пример:
 
 ```js
 var tea = 'вкусный чай';
@@ -44,14 +48,18 @@ assert.isNotNull(tea, 'отлично, пора пить чай!', 'что-то 
 
 ## Проверка определения переменной или функции
 
-`assert.isDefined(value, [message])` утверждает, что `value` не является `undefined`.
+- `assert.isDefined(value, [message])`
+  - утверждает, что `value` не является `undefined`.
 
 ```js
 var tea = 'чашка чая';
 assert.isDefined(tea, 'чай уже был определен');
 ```
 
-`assert.isUndefined(value, [message])` утверждает, что `value` не определено.
+---
+
+- `assert.isUndefined(value, [message])`
+  - утверждает, что `value` не определено.
 
 ```js
 var tea;
@@ -60,14 +68,18 @@ assert.isUndefined(tea, 'tea не определен');
 
 ## Использование assert.isOK и assert.isNotOK
 
-`assert.isOk(object, [message])` будет проверять `object` на [истиное значение](https://developer.mozilla.org/ru/docs/Словарь/Truthy)
+- `assert.isOk(object, [message])`
+  - будет проверять `object` на [истиное значение](https://developer.mozilla.org/ru/docs/Словарь/Truthy)
 
 ```js
 assert.isOk('everything', 'все в порядке');
 assert.isOk(false, 'это не сработает');
 ```
 
-`assert.isNotOk(object, [message])` будет проверять на [ложное значение](https://developer.mozilla.org/ru/docs/Словарь/Falsy).
+---
+
+- `assert.isNotOk(object, [message])`
+  - будет проверять на [ложное значение](https://developer.mozilla.org/ru/docs/Словарь/Falsy).
 
 ```js
 assert.isNotOk('everything', 'это не сработает');
@@ -76,7 +88,8 @@ assert.isNotOk(false, 'это прокатит');
 
 ## Тест на истиность
 
-`assert.isTrue(value, [message])` будет тестировать на логическое значение true
+- `assert.isTrue(value, [message])`
+  - будет тестировать на логическое значение true
 
 ```js
 var teaServed = true;
@@ -91,7 +104,10 @@ assert.isTrue('true', 'тест не пройдет со строковым зн
 assert.isTrue(1, 'тест не пройдет с числовым значением 1');
 ```
 
-`assert.isNotTrue(value, [message])` тест пройдет, если задано что угодно, кроме логического значения true.
+---
+
+- `assert.isNotTrue(value, [message])`
+- тест пройдет, если задано что угодно, кроме логического значения true.
 
 ```js
 var tea = 'вкусный чай';
@@ -100,13 +116,17 @@ assert.isNotTrue(tea, 'отлично, пора пить чай!');
 
 ## Использование нестрогого равенства и неравенства
 
-`assert.equal(actual, expected, [message])` утверждает, что объекты actual и expected нестрого равны (`==`).
+- `assert.equal(actual, expected, [message])`
+  - утверждает, что объекты actual и expected нестрого равны (`==`).
 
 ```js
 assert.equal(3, '3', '== преобразует значения в строки');
 ```
 
-`assert.notEqual(actual, expected, [message])` утверждает, что объекты actual и expected нестрого неравны (`!=`).
+---
+
+- `assert.notEqual(actual, expected, [message])`
+  - утверждает, что объекты `actual` и `expected` нестрого неравны (`!=`).
 
 ```js
 assert.notEqual(3, 4, 'эти числа не равны');
@@ -114,13 +134,17 @@ assert.notEqual(3, 4, 'эти числа не равны');
 
 ## Использование строгого равенства и неравенства
 
-`assert.strictEqual(actual, expected, [message])` утверждает, что объекты actual и expected строго равны `===`.
+- `assert.strictEqual(actual, expected, [message])`
+  - утверждает, что объекты `actual` и `expected` строго равны `===`.
 
 ```js
 assert.strictEqual(true, true, 'эти логические значения строго равны');
 ```
 
-`assert.notStrictEqual(actual, expected, [message])` утверждает, что объекты actual и expected строго неравны `!==`.
+---
+
+- `assert.notStrictEqual(actual, expected, [message])`
+  - утверждает, что объекты `actual` и `expected` строго неравны `!==`.
 
 ```js
 assert.notStrictEqual(3, '3', 'не является строгим равенством');
@@ -128,13 +152,17 @@ assert.notStrictEqual(3, '3', 'не является строгим равенс
 
 ## Глубокое сравнение с помощью .deepEqual и .notDeepEqual
 
-`assert.deepEqual(actual, expected, [message])` утверждает, что объекты actual и expected полностью равны.
+- `assert.deepEqual(actual, expected, [message])`
+  - утверждает, что объекты `actual` и `expected` полностью равны.
 
 ```js
 assert.deepEqual({ tea: 'green' }, { tea: 'green' });
 ```
 
-`assert.notDeepEqual(actual, expected, [message])` утверждает, что объекты actual и expected полностью неравны.
+---
+
+- `assert.notDeepEqual(actual, expected, [message])`
+  - утверждает, что объекты `actual` и `expected` полностью неравны.
 
 ```js
 assert.notDeepEqual({ tea: 'green' }, { tea: 'jasmine' });
@@ -155,20 +183,27 @@ assert.notDeepEqual(
 
 ## Сравнение свойств двух элементов
 
-`assert.isAbove(valueToCheck, valueToBeAbove, [message])` утверждает, что `valueToCheck` больше (`>`), чем `valueToBeAbove`.
+- `assert.isAbove(valueToCheck, valueToBeAbove, [message])`
+  - утверждает, что `valueToCheck` больше (`>`), чем `valueToBeAbove`.
 
 ```js
 assert.isAbove(5, 2, '5 строго больше чем 2');
 assert.isAbove(Math.PI, 3, число ПИ больше чем 3);
 ```
 
-`assert.isBelow(valueToCheck, valueToBeBelow, [message])` утверждает, что `valueToCheck` меньше (`<`), чем `valueToBeBelow`.
+---
+
+- `assert.isBelow(valueToCheck, valueToBeBelow, [message])`
+  - утверждает, что `valueToCheck` меньше (`<`), чем `valueToBeBelow`.
 
 ```js
 assert.isBelow(3, 6, '3 меньше, чем 6');
 ```
 
-`assert.isAtMost(valueToCheck, valueToBeAtMost, [message])` утверждает, что `valueToCheck` меньше или равен (`<=`) `valueToBeAtMost`.
+---
+
+- `assert.isAtMost(valueToCheck, valueToBeAtMost, [message])`
+  - утверждает, что `valueToCheck` меньше или равен (`<=`) `valueToBeAtMost`.
 
 ```js
 assert.isAtMost(3, 6, '3 меньше или равно 6');
@@ -177,7 +212,10 @@ assert.isAtMost('hello'.length, 5);
 assert.isAtMost(1 - Math.random(), 1);
 ```
 
-`assert.isAtLeast(valueToCheck, valueToBeAtLeast, [message])` утверждает, что `valueToCheck` больше или равен (`>=`) `valueToBeAtLeast`.
+---
+
+- `assert.isAtLeast(valueToCheck, valueToBeAtLeast, [message])`
+  - утверждает, что `valueToCheck` больше или равен (`>=`) `valueToBeAtLeast`.
 
 ```js
 assert.isAtLeast(5, 2, '5 больше или равно 2');
@@ -186,7 +224,8 @@ assert.isAtLeast(3, 3, '3 больше или равно 3');
 
 ## Проверка на попадание значения в определенный диапазон
 
-`assert.approximately(actual, expected, delta, [message])` утверждает, что `actual` равен `expected`, в пределах диапазона +/- `delta`.
+- `assert.approximately(actual, expected, delta, [message])`
+  - утверждает, что `actual` равен `expected`, в пределах диапазона +/- `delta`.
 
 ```js
 assert.approximately(1.5, 1, 0.5, 'числа в диапазоне');
@@ -203,7 +242,8 @@ assert.approximately(weirdNumbers(0.2), 1, 0.8);
 
 ## Проверка значения на массив
 
-`assert.isArray(value, [message])` утверждает, что value является массивом.
+- `assert.isArray(value, [message])`
+  - утверждает, что value является массивом.
 
 ```js
 var menu = ['зеленый', 'чай', 'длинный'];
@@ -215,7 +255,10 @@ assert.isArray(
 );
 ```
 
-`assert.isNotArray(value, [message])` утверждает, что value не является массивом.
+---
+
+- `assert.isNotArray(value, [message])`
+  - утверждает, что value не является массивом.
 
 ```js
 var menu = 'зеленый|чай|длинный';
@@ -226,7 +269,8 @@ assert.isNotArray([1, 2, 3].indexOf(2), 'indexOf возвращает число
 
 ## Нахождение значения в массиве, строке или объекте
 
-`assert.include(haystack, needle, [message])` утверждает, что `haystack` включает в себя `needle`. Может использоваться для утверждения, что значение содержится в массиве, подстрока содержится в строке или подмножество свойств содержится в объекте.
+- `assert.include(haystack, needle, [message])`
+  - утверждает, что `haystack` включает в себя `needle`. Может использоваться для утверждения, что значение содержится в массиве, подстрока содержится в строке или подмножество свойств содержится в объекте.
 
 ```js
 assert.include([1, 2, 3], 2, 'массив содержит значение');
@@ -238,6 +282,8 @@ assert.include(
 );
 ```
 
+---
+
 Используется строгое равенство (`===`). Если утверждается, что значение включено в массив, выполняется поиск элемента, строго равного данному значению. Если утверждается подмножество свойств в объекте производится поиск объекта по заданным ключам свойств, проверяя, что каждый из них присутствует и строго равен заданному значению свойства. Например:
 
 ```js
@@ -248,7 +294,8 @@ assert.include({ foo: obj1, bar: obj2 }, { foo: obj1 });
 assert.include({ foo: obj1, bar: obj2 }, { foo: obj1, bar: obj2 });
 ```
 
-`assert.notInclude(haystack, needle, [message])` утверждает, что `haystack` не включает в себя `needle`. Может использоваться для утверждения отсутствия значения в массиве, подстроки в строке или подмножества свойств в объекте.
+- `assert.notInclude(haystack, needle, [message])`
+  - утверждает, что `haystack` не включает в себя `needle`. Может использоваться для утверждения отсутствия значения в массиве, подстроки в строке или подмножества свойств в объекте.
 
 ```js
 assert.notInclude([1, 2, 3], 4, 'массив не содержит значение');
@@ -262,14 +309,18 @@ assert.notInclude(
 
 ## Проверка значения на строку
 
-`assert.isString(value, [message])` утверждает, что `value` является строкой.
+- `assert.isString(value, [message])`
+  - утверждает, что `value` является строкой.
 
 ```js
 var teaOrder = 'чай';
 assert.isString(teaOrder, 'размещенный заказ');
 ```
 
-`assert.isNotString(value, [message])` утверждает, что `value` не является строкой.
+---
+
+- `assert.isNotString(value, [message])`
+  - утверждает, что `value` не является строкой.
 
 ```js
 var teaOrder = 4;
@@ -278,13 +329,17 @@ assert.isNotString(teaOrder, 'размещенный заказ');
 
 ## Использование регулярных выражений для проверки строк
 
-`assert.match(value, regexp, [message])` утверждает, что `value` соответствует регулярному выражению `regexp`.
+- `assert.match(value, regexp, [message])`
+  - утверждает, что `value` соответствует регулярному выражению `regexp`.
 
 ```js
 assert.match('foobar', /^foo/, 'регулярное выражение совпадает');
 ```
 
-`assert.notMatch(value, regexp, [message])` утверждает, что `value` не соответствует регулярному выражению `regexp`.
+---
+
+- `assert.notMatch(value, regexp, [message])`
+  - утверждает, что `value` не соответствует регулярному выражению `regexp`.
 
 ```js
 assert.notMatch('foobar', /^foo/, 'регулярное выражение не совпадает');
@@ -302,14 +357,16 @@ assert.notMatch(formatPeople('Paul Smith III', 'twenty-four'), regex);
 
 ## Проверка наличия свойств у объекта
 
-`assert.property(object, property, [message])` утверждает, что `object` имеет прямое или наследуемое свойство `property`.
+- `assert.property(object, property, [message])`
+  - утверждает, что `object` имеет прямое или наследуемое свойство `property`.
 
 ```js
 assert.property({ tea: { green: 'matcha' } }, 'tea');
 assert.property({ tea: { green: 'matcha' } }, 'toString');
 ```
 
-`assert.notProperty(object, property, [message])` утверждает, что `object` не имеет прямого или наследуемого свойства `property`.
+- `assert.notProperty(object, property, [message])`
+  - утверждает, что `object` не имеет прямого или наследуемого свойства `property`.
 
 ```js
 assert.notProperty({ tea: { green: 'matcha' } }, 'coffee');
@@ -317,9 +374,11 @@ assert.notProperty({ tea: { green: 'matcha' } }, 'coffee');
 
 ## Проверка значения на соответствие определенному типу структуры данных
 
-`assert.typeOf(value, name, [message])` утверждает, что тип `value` - это `name`, как определено `Object.prototype.toString`.
+- `assert.typeOf(value, name, [message])`
 
-#typeOf утверждает, что тип значения - это заданная строка, определяемая `Object.prototype.toString`.
+  - утверждает, что тип `value` - это `name`, как определено `Object.prototype.toString`.
+
+  - #typeOf утверждает, что тип значения - это заданная строка, определяемая `Object.prototype.toString`.
 
 ```js
 assert.typeOf({ tea: 'chai' }, 'object', 'мы имеем объект');
@@ -330,7 +389,10 @@ assert.typeOf(null, 'null', 'мы имеем нуль');
 assert.typeOf(undefined, 'undefined', 'мы имеем undefined');
 ```
 
-`assert.notTypeOf(value, name, [message])` утверждает, что тип `value` - это не `name`, как определено `Object.prototype.toString`.
+---
+
+- `assert.notTypeOf(value, name, [message])`
+  - утверждает, что тип `value` - это не `name`, как определено `Object.prototype.toString`.
 
 ```js
 assert.notTypeOf('tea', 'number', 'строки не являются числами');
@@ -338,7 +400,8 @@ assert.notTypeOf('tea', 'number', 'строки не являются числа
 
 ## Проверка, является ли объект экземпляром конструктора
 
-`assert.instanceOf(object, constructor, [message])` утверждает, что `object` является экземпляром `constructor`.
+- `assert.instanceOf(object, constructor, [message])`
+  - утверждает, что `object` является экземпляром `constructor`.
 
 ```js
 var Tea = function (name) {
@@ -349,7 +412,10 @@ var Tea = function (name) {
 assert.instanceOf(chai, Tea, 'chai является экземпляром tea');
 ```
 
-`assert.notInstanceOf(object, constructor, [message])` утверждает, что `object` не является экземпляром `constructor`.
+---
+
+- `assert.notInstanceOf(object, constructor, [message])`
+  - утверждает, что `object` не является экземпляром `constructor`.
 
 ```js
 var Tea = function (name) {
