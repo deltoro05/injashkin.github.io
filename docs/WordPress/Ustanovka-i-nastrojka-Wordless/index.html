@@ -17,8 +17,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1ggd8i4lm.css">
-    <script defer src="/index.1ggd8i4lm.js"></script>
+    <link rel="stylesheet" href="/index.1gggaam3o.css">
+    <script defer src="/index.1gggaam3o.js"></script>
     <meta name="description" content="Установка и настройка микрофреймворка Wordless, который применяется для разработки пользовательских тем для WordPress.">
     <title>Установка и настройка Wordless | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -92,21 +92,24 @@
     <div class="content">
       <div class="article">
         <h1>Установка и настройка Wordless</h1>
-        <div class="creationDate">Создано: 24-10-2022 - Обновлено: 26-10-2022</div><p><a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress и содержит стартовую тему. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:</p>
+        <div class="creationDate">Создано: 24-10-2022 - Обновлено: 29-10-2022</div><p><a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> - это микро-фреймворк для разработки пользовательских тем, который представляет из себя плагин для WordPress и содержит стартовую тему. Wordless значительно ускоряет и улучшает создание пользовательских тем. Перечислим особенности Wordless:</p>
 <ul>
-<li>Создание новых тем с помощью wp-cli</li>
+<li>Создание новых тем с помощью WP-CLI</li>
 <li>Написание шаблонов PHP с помощью языка шаблонов PUG</li>
 <li>Написание таблиц стилей CSS, используя синтаксис SCSS</li>
 <li>Написание логики Javascript, используя синтаксис ES2015</li>
 <li>Предварительно настроенная поддержка перехватчика сообщений MailHog.</li>
 <li>Поддержка WebPack, BrowserSync (с живой перезагрузкой), WP-CLI, Yarn.</li>
 </ul>
-<p>Скомпилированная тема будет работать на любой стандартной инсталяции Wordpress.</p>
+<p>Скомпилированная тема будет работать на любой стандартной инсталляции Wordpress.</p>
 <p>Wordless не изменяет никаких основных функциональных возможностей, поэтому он совместим практически с любым плагином.</p>
+<p>Дальше мы будем исходить из того, что у вас не установлена WordPress.</p>
+<p>Вы можете установить Wordless и WordPress одним махом. Для этого, вам нужно установить Wordless, а он автоматически установит все необходимое, в том числе и WordPress. <a href="https://wordless.readthedocs.io/en/latest/_pages/install/prerequisites.html">Есть официальное руководство</a>, как выполнить такую установку. Однако, мне не удалось пройти этот квест до конца, так как постоянно возникали какие-либо ошибки. Это и послужило поводом написать эту статью.</p>
+<p>Другой вариант, который рассматривается в этой статье, сначала устанавливается и настраивается WordPress, а затем добавляется и настраивается Wordless.</p>
 <p>Первым делом установим WP-CLI</p>
 <h2>WP-CLI</h2>
-<p><a href="https://wp-cli.org/">WP-CLI</a> - это интерфейс командной строки для WordPress. С помощью WP-CLI можно обновлять плагины, настраивать многосайтовые установки и многое другое, не используя веб-браузер.</p>
-<p>Из терминала загрузим файл wp-cli.phar с помощью curl:</p>
+<p><a href="https://wp-cli.org/">WP-CLI</a> - это интерфейс командной строки для WordPress. С помощью WP-CLI можно обновлять плагины, настраивать многосайтовые установки и многое другое, не используя веб-браузер. На странице <a href="https://developer.wordpress.org/cli/commands/">WP-CLI Commands</a> приведен список всех доступных в настоящее время команд WP-CLI со ссылками на документацию по использованию и подкомандам. На странице <a href="https://make.wordpress.org/cli/handbook/">WP-CLI Handbook</a> находится список полезных руководств и ресурсов по использованию WP-CLI.</p>
+<p>С помощью утилиты curl загрузим файл wp-cli.phar, для этого в терминале введем следующее:</p>
 <pre><code>curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 </code></pre>
 <p>Файл загрузится в 'Домашнюю папку'.</p>
@@ -138,19 +141,85 @@ WP-CLI global config:
 WP-CLI project config:
 WP-CLI version:	2.7.1
 </code></pre>
-<h2>Wordless</h2>
+<h2>Установка WordPress на localhost</h2>
+<p>Загрузите последнюю версию WordPress с <a href="https://wordpress.org/latest.zip">официального сайта</a>, либо его <a href="https://ru.wordpress.org/latest-ru_RU.zip">русифицированную версию</a>.</p>
+<p>Распакуйте скачанный архив в <code>Домашнюю папку</code>. В результате появится каталог <code>wordpress</code>, который переименуйте в <code>wp2</code> (просто wp2 короче, чем wordpress).</p>
+<p>Для WordPress требуется база данных MySQL. Вы можете проверить, установлена ли MySQL в вашей системе, а также увидеть дополнительную информацию:</p>
+<pre><code>sudo service mysql status
+</code></pre>
+<p>Руководство по установке MySQL находится <a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html">здесь</a>.</p>
+<p>После установки MySQL нужно создать базу данных для будущего локального сайта wp2. Войдите в консоль сервер MySQL как root-пользователь:</p>
+<pre><code>sudo mysql -u root
+</code></pre>
+<p>В строке с приглашением <code>mysql&gt;</code> введите следующее:</p>
+<pre><code class="language-SQL">CREATE DATABASE wp2;
+</code></pre>
+<p>На сервере MySQL будет создана база данных <code>wp2</code>.</p>
+<p>Также, на сервере MySQL создайте пользователя с именем, под которым вы зарегистрированы в вашей операционной системе. Для дальнейших примеров пусть это будет пользователь с именем user:</p>
+<pre><code class="language-SQL">CREATE USER user@localhost IDENTIFIED BY '';
+</code></pre>
+<p>Предоставьте пользователю user привилегии на чтение, вставку, обновление, удаление, создание и изменение во всех таблицах базы данных wp2 с локального хоста:</p>
+<pre><code class="language-SQL">GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wp2.* TO user@localhost;
+</code></pre>
+<p>и рекомендуется еще перечитать привилегии:</p>
+<pre><code class="language-SQL">FLUSH PRIVILEGES;
+</code></pre>
+<p>Выйдите из консоли MySQL:</p>
+<pre><code>exit
+</code></pre>
+<p>Запустите на, всякий случай, сервер MySQL:</p>
+<pre><code>sudo service mysql start
+</code></pre>
+<p>Сделаем каталог <code>wp2</code> рабочим:</p>
+<pre><code>cd wp2
+</code></pre>
+<p>Обычно, для установки WordPress на локальный сервер используют LAMPP, XAMPP или что-то еще. Однако, благодаря WP-CLI у нас есть возможность запускать встроенный сервер командой wp server, что мы и сделаем:</p>
+<pre><code>wp server
+</code></pre>
+<p>Должна появиться строка примерно такого вида:</p>
+<pre><code>[Fri Oct 28 20:24:07 2022] PHP 7.4.3 Development Server (http://localhost:8080) started
+</code></pre>
+<ol>
+<li>Теперь, откройте браузер и перейдите по ссылке http://localhost:8080. Откроется следующее окно:</li>
+</ol>
+<p><img src="install-wp-1.png" alt="Установка WordPress. Шаг 1"></p>
+<ol start="2">
+<li>Нажмите кнопку Вперед! Появится следующее окно, в котором заполним поля согласно скриншоту:</li>
+</ol>
+<p><img src="install-wp-2.png" alt="Установка WordPress. Шаг 2"></p>
+<ol start="3">
+<li>Нажмите кнопку Отправить, появится следующее окно:</li>
+</ol>
+<p><img src="install-wp-3.png" alt="Установка WordPress. Шаг 3"></p>
+<ol start="4">
+<li>Нажмите кнопку Запустить установку, появится следующее окно, в котором заполните поля согласно скриншоту:</li>
+</ol>
+<p><img src="install-wp-4.png" alt="Установка WordPress. Шаг 4"></p>
+<ol start="5">
+<li>Нажмите кнопку Установить WordPress, появится следующее окно:</li>
+</ol>
+<p><img src="install-wp-5.png" alt="Установка WordPress. Шаг 5"></p>
+<ol start="6">
+<li>Нажмите кнопку Войти! Появится форма ввода пароля, в которую введите данные согласно скриншоту:</li>
+</ol>
+<p><img src="install-wp-6.png" alt="Установка WordPress. Шаг 6"></p>
+<ol start="7">
+<li>Нажмите кнопку Войти. Вы войдете в Консоль административной панели WordPress.</li>
+</ol>
+<p>Можно считать, что WordPress установлен и настроен. Теперь остановите сервер в терминале клавишами <code>Ctrl+C</code> и закройте окно терминала.</p>
+<h2>Установка Node, NVM, Yarn, Ruby</h2>
 <p>Каждая версия <a href="https://github.com/welaika/wordless_gem">Wordless</a> соглашается работать с определенной версией Node. Последний Wordless версии 2.2.0 требует для своей работы Node v14.15.3.</p>
-<p>В вашей системе, скорее всего, установлен Node другой версии. Чтобы убедиться в этом, введём в терминале следующую команду:</p>
+<p>В вашей системе, скорее всего, установлен Node другой версии. Чтобы убедиться в этом, откройте новое окно терминала и введите следующую команду:</p>
 <pre><code class="language-Bach">node -v
 </code></pre>
 <p>будет выведена версия Node, установленная в вашей системе.</p>
-<p>Чтобы легко устанавливать и переключаться между различными версиями Node, воспользуемся менеджером NVM. Проверим, установлен ли NVM в вашей системе:</p>
+<p>Чтобы легко устанавливать и переключаться между различными версиями Node, воспользуйтесь менеджером NVM. Проверьте, установлен ли NVM в вашей системе:</p>
 <pre><code class="language-Bash">nvm -v
 </code></pre>
-<p>Если NVM установлен, то будет показан номер версии, либо будет выдано сообщение, что команда не найдена. Тогда <a href="https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating">установим NVM</a> с помощью утилиты curl:</p>
+<p>Если NVM установлен, то будет показан номер версии, либо будет выдано сообщение, что команда не найдена. Тогда <a href="https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating">установите NVM</a> с помощью утилиты curl:</p>
 <pre><code class="language-Bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 </code></pre>
-<p>Теперь, с помощью NVM установим Node v14.15.3:</p>
+<p>Теперь, с помощью NVM установите Node v14.15.3:</p>
 <pre><code class="language-Bash">nvm install 14.15.3
 </code></pre>
 <p>Указанная версия Node была установлена и сделана рабочей. Более подробно читайте <a href="https://habr.com/ru/company/timeweb/blog/541452/">Управление версиями Node.js и NPM с помощью NVM</a>.</p>
@@ -167,65 +236,31 @@ WP-CLI version:	2.7.1
 <pre><code>sudo apt-get install ruby-full
 </code></pre>
 <p>Установка для других систем приведена на <a href="https://www.ruby-lang.org/ru/documentation/installation/">этой странице</a>.</p>
-<p>Теперь установим из репозитория Ruby пакет wordless:</p>
+<h2>Установка Wordless</h2>
+<p>Теперь установите из репозитория Ruby пакет wordless:</p>
 <pre><code>sudo gem install wordless
 </code></pre>
-<p>Затем, с помощью wordless установим WordPress:</p>
-<pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
+<p>Сделайте каталог <code>wp2</code> рабочим:</p>
+<pre><code>cd wp2
 </code></pre>
-<p>где:</p>
-<p>'username' - имя пользователя, под которым вы входите в операционную систему.
-'your_password' - пароль к учетной записи на сервере MySQL. Если вы не изменяли пароль к учётной записи на сервере MySQL, то введите скобки без пробелов внутри ''.</p>
-<p>Будет создан каталог wp2 и в него установлен WordPress с настроенным плагином Wordless.</p>
-<p>Возможно, при установке у вас появится такая ошибка:</p>
-<pre><code>Check for necessary global NPM packages
-Global NPM packages needed by Wordless already installed. Good job!
-Starting...
-Creating database 'wp2'...
-Cannot login to MySQL. Wrong credentials?
+<p>Установите и активируйте плагин Wordless:</p>
+<pre><code>wp plugin install --activate wordless
 </code></pre>
-<p>Система сообщает, что при попытке создать базу данных с именем wp2, не удалось войти в MySQL, так как неверные учетные данные. Это произошло потому, что, либо вы когда-то изменили пароль к вашей учетной записи на сервере MySQL и нужно ввести этот пароль, либо в базе данных MySQL не зарегистрирован пользователь с именем, под которым вы входите в свою операционную систему.</p>
-<p>Если вы не меняли пароль, то скоре всего, ваше имя не зарегистрировано в БД MySQL, либо пользователь с таким именем существует и имеет другой пароль. Чтобы это проверить выполним некоторые действия.</p>
-<p>Войдем в MySQL как root-пользователь</p>
-<pre><code>sudo mysql -u root -p
+<p>Создайте новую тему c именем mytheme:</p>
+<pre><code>wp wordless theme create mytheme
 </code></pre>
-<p>Если вы до этого не меняли пароль root-пользователя MySQL, то можно не указывать ключ -p. При выполении вышеприведенной команды система попросит ввести только пароль администратора операционной системы. Если же вы изменяли пароль root-пользователя MySQL, то добавьте ключ -p и в процессе выполнения команды введите пароль администратора системы, а затем пароль root-пользователя MySQL. В результате, вы войдете в базу данных и увидите строку с приглашением:</p>
-<pre><code>musql&gt;
+<p>В каталоге <code>/wp2/wp-content/themes</code> будет создан каталог <code>mytheme</code> с только что созданной темой. Сделаем этот каталог рабочим:</p>
+<pre><code>cd wp-content/themes/mytheme
 </code></pre>
-<p>Получим список всех учетных записей пользователей:</p>
-<pre><code>SELECT User,Host FROM mysql.user;
+<p>Настройте остальные необходимые инструменты:</p>
+<pre><code>yarn install
 </code></pre>
-<p>Увидим таблицу с двумя столбцами User и Host, которая выглядит примерно так:</p>
-<pre><code>+------------------+-----------+
-| User             | Host      |
-+------------------+-----------+
-| debian-sys-maint | localhost |
-| mysql.infoschema | localhost |
-| mysql.session    | localhost |
-| mysql.sys        | localhost |
-| phpmyadmin       | localhost |
-| root             | localhost |
-+------------------+-----------+
-6 rows in set (0,00 sec)
+<p>Затем, запустите сервер:</p>
+<pre><code>yarn run server
 </code></pre>
-<p>Если мы не увидели своего имени, то создадим учетную запись. Для этого в строке с приглашением <code>musql&gt;</code> добавим следующий запрос:</p>
-<pre><code>CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'userpassword';
-</code></pre>
-<p>Будет создана новая учетная запись пользователя MySQL с именем newuser и с паролем userpassword, который может подключаться к серверу MySQL только с локального хоста. Если вы не хотите устанавливать пароль, то вместо пароля 'userpassword' укажите кавычки ''.</p>
-<p>Проверим список всех учетных записей пользователей.</p>
-<pre><code>SELECT User,Host FROM mysql.user;
-</code></pre>
-<p>В таблице мы должны увидеть имя созданного пользователя.</p>
-<p>Выйдем из базы данных:</p>
-<pre><code>exit
-</code></pre>
-<p>Снова пробуем установить wordless:</p>
-<pre><code>wordless new wp2 --db-user='username' --db-password='your_password'
-</code></pre>
-<p>Ждем, пока установится и настроится среда разработки. Будет создана база данных wp2, установлен WP-CLI, загрузится WordPress в каталог с именем wp2, будут удалены все темы и плагины, установленные по умолчанию в WordPress, установится репозиторий git, создан файл wp-config.php. Будет установлен и активирован плагин wordless, активирована тема по умолчанию.</p>
-<p>Запускаем сервер:</p>
-<p>wp server</p>
-<p>Открываем браузер и переходим по адресу <code>http://localhost:8080</code>.</p>
+<p>Откроется окно браузера по адресу <code>http://localhost:3000/</code>. Если же открыть сайт по адресу <code>http://localhost:8080/</code>, то данная страница будет стилизована.</p>
+<p>Перейти в панель администратора можно по адресу <code>http://localhost:8080/wp-admin/</code> и <code>http://localhost:3000/wp-admin/</code></p>
+<p>Пользовательский интерфейс Browsersync: http://localhost:3001</p>
 
       </div>
     </div>
