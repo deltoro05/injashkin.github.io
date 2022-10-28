@@ -18,60 +18,6 @@ update: 26-10-2022
 
 Wordless не изменяет никаких основных функциональных возможностей, поэтому он совместим практически с любым плагином.
 
-Первым делом установим WP-CLI
-
-## WP-CLI
-
-[WP-CLI](https://wp-cli.org/) - это интерфейс командной строки для WordPress. С помощью WP-CLI можно обновлять плагины, настраивать многосайтовые установки и многое другое, не используя веб-браузер. На странице [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) приведен список всех доступных в настоящее время команд WP-CLI со ссылками на документацию по использованию и подкомандам. На странице [WP-CLI Handbook](https://make.wordpress.org/cli/handbook/) находится список полезных руководств и ресурсов по использованию WP-CLI.
-
-Из терминала загрузим файл wp-cli.phar с помощью curl:
-
-```
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-```
-
-Файл загрузится в 'Домашнюю папку'.
-
-Затем проверим работоспособность файла wp-cli.phar:
-
-```
-php wp-cli.phar --info
-```
-
-Чтобы использовать WP-CLI из командной строки, набирая команду wp, сделаем файл исполняемым и переместим его куда-нибудь из домашней папки. Например:
-
-```
-chmod +x wp-cli.phar
-sudo mv wp-cli.phar /usr/local/bin/wp
-```
-
-Теперь проверим, как работает WP-CLI:
-
-```
-wp --info
-```
-
-Будет выведена информация, похожая на эту:
-
-```
-OS:	Linux 5.15.0-52-generic #58~20.04.1-Ubuntu SMP Thu Oct 13 13:09:46 UTC 2022 x86_64
-Shell:	/bin/bash
-PHP binary:	/usr/bin/php7.4
-PHP version:	7.4.3
-php.ini used:	/etc/php/7.4/cli/php.ini
-MySQL binary:	/usr/bin/mysql
-MySQL version:	mysql  Ver 8.0.30-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))
-SQL modes:
-WP-CLI root dir:	phar://wp-cli.phar/vendor/wp-cli/wp-cli
-WP-CLI vendor dir:	phar://wp-cli.phar/vendor
-WP_CLI phar path:	/home/user
-WP-CLI packages dir:
-WP-CLI cache dir:	/home/user/.wp-cli/cache
-WP-CLI global config:
-WP-CLI project config:
-WP-CLI version:	2.7.1
-```
-
 ## Wordless
 
 Каждая версия [Wordless](https://github.com/welaika/wordless_gem) соглашается работать с определенной версией Node. Последний Wordless версии 2.2.0 требует для своей работы Node v14.15.3.
@@ -232,3 +178,59 @@ wordless new wp2 --db-user='username' --db-password='your_password'
 wp server
 
 Открываем браузер и переходим по адресу `http://localhost:8080`.
+
+---
+
+Первым делом установим WP-CLI
+
+## WP-CLI
+
+[WP-CLI](https://wp-cli.org/) - это интерфейс командной строки для WordPress. С помощью WP-CLI можно обновлять плагины, настраивать многосайтовые установки и многое другое, не используя веб-браузер. На странице [WP-CLI Commands](https://developer.wordpress.org/cli/commands/) приведен список всех доступных в настоящее время команд WP-CLI со ссылками на документацию по использованию и подкомандам. На странице [WP-CLI Handbook](https://make.wordpress.org/cli/handbook/) находится список полезных руководств и ресурсов по использованию WP-CLI.
+
+Из терминала загрузим файл wp-cli.phar с помощью curl:
+
+```
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+```
+
+Файл загрузится в 'Домашнюю папку'.
+
+Затем проверим работоспособность файла wp-cli.phar:
+
+```
+php wp-cli.phar --info
+```
+
+Чтобы использовать WP-CLI из командной строки, набирая команду wp, сделаем файл исполняемым и переместим его куда-нибудь из домашней папки. Например:
+
+```
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+```
+
+Теперь проверим, как работает WP-CLI:
+
+```
+wp --info
+```
+
+Будет выведена информация, похожая на эту:
+
+```
+OS:	Linux 5.15.0-52-generic #58~20.04.1-Ubuntu SMP Thu Oct 13 13:09:46 UTC 2022 x86_64
+Shell:	/bin/bash
+PHP binary:	/usr/bin/php7.4
+PHP version:	7.4.3
+php.ini used:	/etc/php/7.4/cli/php.ini
+MySQL binary:	/usr/bin/mysql
+MySQL version:	mysql  Ver 8.0.30-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))
+SQL modes:
+WP-CLI root dir:	phar://wp-cli.phar/vendor/wp-cli/wp-cli
+WP-CLI vendor dir:	phar://wp-cli.phar/vendor
+WP_CLI phar path:	/home/user
+WP-CLI packages dir:
+WP-CLI cache dir:	/home/user/.wp-cli/cache
+WP-CLI global config:
+WP-CLI project config:
+WP-CLI version:	2.7.1
+```
