@@ -141,6 +141,11 @@ ul {
   }
 }
 
+img {
+  height: auto;
+  width: 100%;
+}
+
 .theme-dark {
   --text-color: var(--dark-text-color);
   --background-color: var(--dark-background-color);
