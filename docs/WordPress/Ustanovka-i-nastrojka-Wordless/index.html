@@ -17,8 +17,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gggaam3o.css">
-    <script defer src="/index.1gggaam3o.js"></script>
+    <link rel="stylesheet" href="/index.1gghpfds3.css">
+    <script defer src="/index.1gghpfds3.js"></script>
     <meta name="description" content="Установка и настройка микрофреймворка Wordless, который применяется для разработки пользовательских тем для WordPress.">
     <title>Установка и настройка Wordless | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -170,7 +170,7 @@ WP-CLI version:	2.7.1
 <p>Запустите на, всякий случай, сервер MySQL:</p>
 <pre><code>sudo service mysql start
 </code></pre>
-<p>Сделаем каталог <code>wp2</code> рабочим:</p>
+<p>Сделайте каталог <code>wp2</code> рабочим:</p>
 <pre><code>cd wp2
 </code></pre>
 <p>Обычно, для установки WordPress на локальный сервер используют LAMPP, XAMPP или что-то еще. Однако, благодаря WP-CLI у нас есть возможность запускать встроенный сервер командой wp server, что мы и сделаем:</p>
@@ -184,31 +184,31 @@ WP-CLI version:	2.7.1
 </ol>
 <p><img src="install-wp-1.png" alt="Установка WordPress. Шаг 1"></p>
 <ol start="2">
-<li>Нажмите кнопку Вперед! Появится следующее окно, в котором заполним поля согласно скриншоту:</li>
+<li>Нажмите кнопку <code>Вперед!</code> Появится следующее окно, в котором заполните поля согласно скриншоту:</li>
 </ol>
 <p><img src="install-wp-2.png" alt="Установка WordPress. Шаг 2"></p>
 <ol start="3">
-<li>Нажмите кнопку Отправить, появится следующее окно:</li>
+<li>Нажмите кнопку <code>Отправить</code>, появится следующее окно:</li>
 </ol>
 <p><img src="install-wp-3.png" alt="Установка WordPress. Шаг 3"></p>
 <ol start="4">
-<li>Нажмите кнопку Запустить установку, появится следующее окно, в котором заполните поля согласно скриншоту:</li>
+<li>Нажмите кнопку <code>Запустить установку</code>, появится форма, в которой введите название сайта и данные администратора согласно скриншоту:</li>
 </ol>
 <p><img src="install-wp-4.png" alt="Установка WordPress. Шаг 4"></p>
 <ol start="5">
-<li>Нажмите кнопку Установить WordPress, появится следующее окно:</li>
+<li>Нажмите кнопку <code>Установить WordPress</code>, появится следующее окно:</li>
 </ol>
 <p><img src="install-wp-5.png" alt="Установка WordPress. Шаг 5"></p>
 <ol start="6">
-<li>Нажмите кнопку Войти! Появится форма ввода пароля, в которую введите данные согласно скриншоту:</li>
+<li>Нажмите кнопку <code>Войти!</code>. Появится форма ввода пароля, в которую введите данные согласно скриншоту:</li>
 </ol>
 <p><img src="install-wp-6.png" alt="Установка WordPress. Шаг 6"></p>
 <ol start="7">
-<li>Нажмите кнопку Войти. Вы войдете в Консоль административной панели WordPress.</li>
+<li>Нажмите кнопку <code>Войти</code>. Вы войдете в Консоль административной панели WordPress.</li>
 </ol>
 <p>Можно считать, что WordPress установлен и настроен. Теперь остановите сервер в терминале клавишами <code>Ctrl+C</code> и закройте окно терминала.</p>
 <h2>Установка Node, NVM, Yarn, Ruby</h2>
-<p>Каждая версия <a href="https://github.com/welaika/wordless_gem">Wordless</a> соглашается работать с определенной версией Node. Последний Wordless версии 2.2.0 требует для своей работы Node v14.15.3.</p>
+<p>Каждая версия <a href="https://github.com/welaika/wordless_gem">Wordless</a> работает с определенной версией Node. Последний Wordless версии 2.2.0 требует для своей работы Node v14.15.3.</p>
 <p>В вашей системе, скорее всего, установлен Node другой версии. Чтобы убедиться в этом, откройте новое окно терминала и введите следующую команду:</p>
 <pre><code class="language-Bach">node -v
 </code></pre>
@@ -226,13 +226,13 @@ WP-CLI version:	2.7.1
 <p>Рекомендуется, также, установить Yarn. Это легко сделать командой NPM:</p>
 <pre><code class="language-Bash">npm i -g yarn
 </code></pre>
-<p>Для того, чтобы установить <a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> требуется язык Ruby. Проверим наличие этого языка в системе:</p>
+<p>Для того, чтобы установить <a href="https://wordless.readthedocs.io/en/latest/index.html">Wordless</a> требуется язык Ruby. Проверьте наличие этого языка в системе:</p>
 <pre><code>ruby -v
 </code></pre>
 <p>Если язык установлен, то будет выведена запись, похожая на эту:</p>
 <pre><code>ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
 </code></pre>
-<p>Если язык не установлен, то будет выведено сообщение, что команда не найдена. Тогда установим Ruby. В Ubuntu это делается так:</p>
+<p>Если язык не установлен, то будет выведено сообщение, что команда не найдена. Тогда установите Ruby. В Ubuntu это делается так:</p>
 <pre><code>sudo apt-get install ruby-full
 </code></pre>
 <p>Установка для других систем приведена на <a href="https://www.ruby-lang.org/ru/documentation/installation/">этой странице</a>.</p>
@@ -249,7 +249,7 @@ WP-CLI version:	2.7.1
 <p>Создайте новую тему c именем mytheme:</p>
 <pre><code>wp wordless theme create mytheme
 </code></pre>
-<p>В каталоге <code>/wp2/wp-content/themes</code> будет создан каталог <code>mytheme</code> с только что созданной темой. Сделаем этот каталог рабочим:</p>
+<p>В каталоге <code>/wp2/wp-content/themes</code> будет создан каталог <code>mytheme</code> с только что созданной темой. Сделайте этот каталог рабочим:</p>
 <pre><code>cd wp-content/themes/mytheme
 </code></pre>
 <p>Настройте остальные необходимые инструменты:</p>
@@ -260,7 +260,7 @@ WP-CLI version:	2.7.1
 </code></pre>
 <p>Откроется окно браузера по адресу <code>http://localhost:3000/</code>. Если же открыть сайт по адресу <code>http://localhost:8080/</code>, то данная страница будет стилизована.</p>
 <p>Перейти в панель администратора можно по адресу <code>http://localhost:8080/wp-admin/</code> и <code>http://localhost:3000/wp-admin/</code></p>
-<p>Пользовательский интерфейс Browsersync: http://localhost:3001</p>
+<p>Пользовательский интерфейс Browsersync: <code>http://localhost:3001</code></p>
 
       </div>
     </div>
