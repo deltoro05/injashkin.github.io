@@ -7,7 +7,7 @@ export default {
   },
 
   output: {
-    file: 'docs/index.1ggi3iufs.js', //- эта строка обрабатывается регулярным выражением в scripts.js
+    file: 'docs/index.1gh9mp6nv.js', //- эта строка обрабатывается регулярным выражением в scripts.js
     format: 'iife',
   },
 };

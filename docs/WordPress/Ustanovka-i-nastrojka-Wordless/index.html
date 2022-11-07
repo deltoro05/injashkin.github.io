@@ -17,8 +17,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1ggi3iufs.css">
-    <script defer src="/index.1ggi3iufs.js"></script>
+    <link rel="stylesheet" href="/index.1gh9mp6nv.css">
+    <script defer src="/index.1gh9mp6nv.js"></script>
     <meta name="description" content="Установка и настройка микрофреймворка Wordless, который применяется для разработки пользовательских тем для WordPress.">
     <title>Установка и настройка Wordless | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -143,15 +143,15 @@ WP-CLI version:	2.7.1
 </code></pre>
 <h2>Установка WordPress на localhost</h2>
 <p>Загрузите последнюю версию WordPress с <a href="https://wordpress.org/latest.zip">официального сайта</a>, либо его <a href="https://ru.wordpress.org/latest-ru_RU.zip">русифицированную версию</a>.</p>
-<p>Распакуйте скачанный архив в <code>Домашнюю папку</code>. В результате появится каталог <code>wordpress</code>, который переименуйте в <code>wp2</code> (просто wp2 короче, чем wordpress).</p>
+<p>Распакуйте скачанный архив в <code>Домашнюю папку</code>. В результате появится каталог <code>wordpress</code>, который переименуйте в <code>wp2</code> (имя wp2 короче, чем wordpress).</p>
 <p>Для WordPress требуется база данных MySQL. Вы можете проверить, установлена ли MySQL в вашей системе, а также увидеть дополнительную информацию:</p>
 <pre><code>sudo service mysql status
 </code></pre>
 <p>Руководство по установке MySQL находится <a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html">здесь</a>.</p>
-<p>После установки MySQL нужно создать базу данных для будущего локального сайта wp2. Войдите в консоль сервер MySQL как root-пользователь:</p>
+<p>После установки MySQL нужно создать базу данных для будущего локального сайта wp2. Войдите в консоль сервера MySQL как root-пользователь:</p>
 <pre><code>sudo mysql -u root
 </code></pre>
-<p>В строке с приглашением <code>mysql&gt;</code> введите следующее:</p>
+<p>Появится строка с приглашением <code>mysql&gt;</code>, в эту строку введите следующее:</p>
 <pre><code class="language-SQL">CREATE DATABASE wp2;
 </code></pre>
 <p>На сервере MySQL будет создана база данных <code>wp2</code>.</p>
