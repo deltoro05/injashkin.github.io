@@ -17,8 +17,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1ghhqocle.css">
-    <script defer src="/index.1ghhqocle.js"></script>
+    <link rel="stylesheet" href="/index.1gitnu0hn.css">
+    <script defer src="/index.1gitnu0hn.js"></script>
     <meta name="description" content="Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown">
     <title>Настройка Webpack 5 | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -93,19 +93,30 @@
       <div class="article">
         <h1>Настройка Webpack 5</h1>
         <div class="creationDate">Создано: 19-10-2022 - Обновлено: 20-10-2022</div><h2>О чем статья</h2>
-<p>Подробно описывается настройка сборщика Webpack 5. Слово &quot;подробно&quot; означает, что здесь будут, по возможности, объясняться все непонятные моменты в настройках - не только &quot;что делать&quot;, но и &quot;зачем это надо&quot;.</p>
-<p>Статья покажет, как создать рабочий шаблон, с помощью которого можно разрабатывать фронтенд сайта и использовать для этого следующие инструменты: Pug, Sass, JavaScript и Markdown.</p>
+<p>Эта статья является подробной инструкцией по настройке сборщика Webpack 5 с нуля. Здесь будут, по возможности, объясняться все непонятные моменты в настройках - не только &quot;что делать&quot;, но и &quot;зачем это надо&quot;.</p>
+<p>После выполнения всех шагов в этом руководстве у вас будет рабочий шаблон, с помощью которого можно разрабатывать фронтенд сайта и использовать для этого следующие инструменты: Pug, Sass, JavaScript, React и Markdown.</p>
 <p><img src="kdpv.jpg" alt="kdpv"></p>
 <ul>
-<li>Шаблонизатор Pug используется для разметки, которая будет автоматически преобразовываться в разметку HTML.</li>
-<li>Препроцессор Sass применяется для стилей, которые будут автоматически преобразовываться в стили CSS.</li>
-<li>Язык JavaScript необходим для создания интерактивности сайта, при этом, сборка позволит использовать последние достижения языка и не переживать, что новую функцию не распознает старый браузер.</li>
-<li>Разметка Markdown полезна для наполнения текстовой информацией страниц сайта. Разметка Markdown преобразуется в понятный для браузеров HTML.</li>
+<li>
+<p>Шаблонизатор Pug используется для разметки, которая будет автоматически преобразовываться в разметку HTML.</p>
+</li>
+<li>
+<p>Препроцессор Sass применяется для стилей, которые будут автоматически преобразовываться в стили CSS.</p>
+</li>
+<li>
+<p>Язык JavaScript необходим для создания интерактивности сайта, при этом, сборка позволит использовать последние достижения языка и не переживать, что новую функцию не распознает старый браузер.</p>
+</li>
+<li>
+<p>React - JavaScript-библиотека для создания пользовательских интерфейсов</p>
+</li>
+<li>
+<p>Разметка Markdown позволяет более легко наполнять текстовой информацией страницы сайта. Разметка Markdown преобразуется в понятный для браузеров HTML.</p>
+</li>
 </ul>
-<p>Освоив необходимый минимум можно без труда доработать созданный шаблон для работы с React или Vue, а также, интегрировать TypeScript.</p>
+<p>Освоив необходимый минимум можно без труда доработать созданный шаблон для чего угодно, например, интегрировать TypeScript.</p>
 <h2>Быстрый запуск Webpack</h2>
 <p>Чтобы выполнять дальнейшие действия, установите на компьютер <a href="https://nodejs.org/">Node.js</a>.</p>
-<p>Дальнейшие действия выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться редактор) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
+<p>Дальнейшие действия автором статьи выполнялись в операционной системе Ubuntu 20.04, в которой установлена среда NodeJS v16.17.1 и менеджер пакетов NPM v8.15.0, использовался стандартный Терминал, стандартный Текстовый редактор (далее по тексту будет называться редактор кода или редактор) и браузер FireFox v105.0. Здесь показано, какие инструменты использовал автор, у вас инструменты могут отличаться.</p>
 <p>Откроем терминал и создадим каталог будущего проекта:</p>
 <pre><code class="language-bash">mkdir my-project
 </code></pre>
@@ -135,12 +146,12 @@
 <p>Теперь установим <code>webpack</code> и <code>webpack-cli</code>, который используется для запуска webpack в командной строке. Для этого, в открытом терминале введем следующее:</p>
 <pre><code class="language-bash">npm i -D webpack webpack-cli
 </code></pre>
-<p>Опция <code>-D</code> указывает, что установленные пакеты нужны только для режима <code>development</code> и не будут использоваться в производственной сборке. В файле <code>package.json</code> эти пакеты указываются в секции <code>&quot;devDependencies&quot;: {...}</code>.</p>
+<p><code>i</code> - это сокращение от <code>install</code>. Опция <code>-D</code> указывает, что установленные пакеты нужны только для режима <code>development</code> и не будут использоваться в производственной сборке. В файле <code>package.json</code> эти пакеты указываются в секции <code>&quot;devDependencies&quot;: {...}</code>.</p>
 <p>В результате выполнения команды, создается каталог <code>node_modules</code> и файл <code>package-lock.json</code>. Каталог <code>node_modules</code> содержит зависимости проекта. Этот каталог не рекомендуется включать в репозиторий, что и указали раньше в файле <code>.gitignore</code>. Файл <code>package-lock.json</code> хранит записи о точных версиях установленных зависимостей.</p>
-<p>С помощью открытого терминала создадим каталог <code>src</code>:</p>
+<p>Теперь в корне проекта создадим каталог, в котором будет хранится исходный код. Для этого с помощью открытого терминала создадим каталог <code>src</code>:</p>
 <pre><code class="language-bash">mkdir src
 </code></pre>
-<p>В корне проекта создается каталог <code>src</code> для исходного кода. В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
+<p>В каталоге <code>src</code> создадим файл <code>index.js</code>:</p>
 <pre><code class="language-bash">touch src/index.js
 </code></pre>
 <p>В редакторе откроем файл <code>src/index.js</code> и введем следующий код:</p>
@@ -161,7 +172,7 @@ document.body.prepend(component('Проект собран на Webpack'));
 <p><code>dev</code> - это произвольное сокращенное имя для команды <code>webpack --mode development</code>. Подобные скрипты в секции <code>&quot;scripts&quot;</code> файла <code>package.json</code> запускаются в с помощью команды <code>npm run</code>. Так, для запуска скрипта выше, введем в терминале следующую команду:</p>
 <pre><code class="language-bash">npm run dev
 </code></pre>
-<p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же.</p>
+<p>В результате, в корне проекта появится каталог <code>dist</code>, в который скомпилируется файл <code>main.js</code>. Если сравнить содержимое файла <code>main.js</code> с исходным <code>src/index.js</code>, то увидим отличия, хотя они выполняют одно и то же. Итак, мы запустили webpack в режиме разработки и выполнили сборку проекта. Пока только сборка состояла в простой компиляции файла <code>src/index.js</code> в файл <code>dist/main.js</code>.</p>
 <p>Команда <code>npm run dev</code> запустит webpack в режиме <code>development</code>. Перед началом выполнения, webpack будет искать в корне проекта файл настроек <code>webpack.config.js</code>. Так как, файл мы еще не создали, то webpack применяет настройки по умолчанию. Webpack определит точку входа <code>src/index.js</code> и выведет откомпилированный код в файл <code>dist/main.js</code>. Подробно об изменении настроек смотри в статье <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2-webpack-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4%D0%B0-%D0%B8-%D0%B2%D1%8B%D1%85%D0%BE%D0%B4%D0%B0">Настройка в webpack точки входа и выхода</a>.</p>
 <p>Теперь создадим HTML файл, который будет загружать скрипт <code>main.js</code>. Для этого, в терминале выполним:</p>
 <pre><code class="language-bash">touch dist/index.html
@@ -197,14 +208,14 @@ document.body.prepend(component('Проект собран на Webpack'));
 Файл создан вручную
 </code></pre>
 <h2>Установка и настройка html-webpack-plugin</h2>
-<p>В примере выше, файл <code>index.html</code> добавляется вручную. Теперь, настроим webpack, чтобы HTML-файл автоматически создавался в готовой сборке из исходного шаблона. Для этого используем <code>html-webpack-plugin</code>.</p>
+<p>В примере выше, файл <code>index.html</code> добавляется вручную. Теперь, настроим webpack, чтобы HTML-файл автоматически создавался в готовой сборке из исходного шаблона. Для этого используем плагин <code>html-webpack-plugin</code>.</p>
 <p>Из терминала установим плагин:</p>
 <pre><code class="language-bash">npm i -D html-webpack-plugin
 </code></pre>
-<p>Теперь настроим html-webpack-plugin. Для этого создадим в корне проекта файл <code>webpack.config.js</code>, выполнив в терминале следующую команду:</p>
+<p>Теперь настроим html-webpack-plugin в файле <code>webpack.config.js</code>. Но сначала создадим этот файл в корне проекта. Для этого в терминале выполним:</p>
 <pre><code class="language-bash">touch webpack.config.js
 </code></pre>
-<p>В редакторе откроем файл <code>webpack.config.js</code> и вставим следующий код:</p>
+<p>Затем откроем файл webpack.config.js в редакторе и вставим следующий код:</p>
 <pre><code class="language-js">const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -223,16 +234,16 @@ module.exports = {
 <p>Первые две строки импортируют модули <code>html-webpack-plugin</code> и <code>path</code> и определяют эти модули в переменные <code>HtmlWebpackPlugin</code> и <code>path</code> соответственно.</p>
 </li>
 <li>
-<p><code>module.exports = {}</code> - все настройки файла <code>webpack.config.js</code> помещаются в объект, который экспортируется как модуль по умолчанию.</p>
+<p><code>module.exports = {}</code> - эта запись означает, что все настройки файла <code>webpack.config.js</code> помещаются в объект, который экспортируется как модуль по умолчанию.</p>
 </li>
 <li>
 <p>Для плагина <code>html-webpack-plugin</code> создается экземпляр <code>new HtmlWebpackPlugin</code> с двумя заданными свойствами: <code>template</code> - путь к входному файлу и <code>filename</code> - имя выходного файла.</p>
 </li>
 </ul>
 <p>В свойстве <code>template</code> разберем путь, который, на первый взгляд, сложен для понимания.</p>
-<p>В Linux и macOS пути выглядят так: <code>/path/to/template.html</code>. В Windows пути выглядят иначе: <code>C:\path\to\template.html</code>. В Node.js существует модуль <code>path</code>, который учитывает эти различия. Модуль <code>path</code> подключили во второй строке файла <code>webpack.config.js</code>, а затем вызвали в свойстве <code>template</code>. Метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathjoinpaths">path.join</a> объединяет заданные сегменты пути вместе и использует необходимый разделитель для конкретной системы. Сегменты пути для метода <code>path.join</code> задали тремя аргументами <code>__dirname</code>, <code>'src'</code> и <code>'template.html'</code>. Если заранее известно, что этот шаблон будет использоваться в ОС Linux, то можно вместо такого кода <code>template: path.join(__dirname, 'src', 'template.html')</code> указать проще - <code>template: './src/template.html'</code></p>
+<p>В Linux и macOS пути выглядят так: <code>/path/to/template.html</code>. В Windows пути выглядят иначе: <code>C:\path\to\template.html</code>. В Node.js существует модуль <code>path</code>, который учитывает эти различия. Модуль <code>path</code> мы подключили во второй строке файла <code>webpack.config.js</code>, а затем вызвали в свойстве <code>template</code>. Метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathjoinpaths">path.join</a> объединяет заданные сегменты пути вместе и использует необходимый разделитель для конкретной системы. Сегменты пути для метода <code>path.join</code> мы задали тремя аргументами <code>__dirname</code>, <code>'src'</code> и <code>'template.html'</code>. Если заранее известно, что этот шаблон будет использоваться в ОС Linux, то можно вместо такого кода <code>template: path.join(__dirname, 'src', 'template.html')</code> указать проще - <code>template: './src/template.html'</code></p>
 <ul>
-<li><code>__dirname</code> - глобальная константа, указывающая абсолютный путь к каталогу файла, в котором эта константа используется. В нашем случае, константа <code>__dirname</code> используется в файле <code>webpack.config.js</code>, который находится в корневом каталоге проекта, поэтому <code>__dirname</code> содержит абсолютный путь к корневому каталогу проекта.</li>
+<li><code>__dirname</code> - глобальная константа, которая указывает абсолютный путь к каталогу файла, код которого запрашивает эту константу, т. е. в нашем случае, файл, который запрашивает <code>__dirname</code> - это файл webpack.config.js, поэтому <code>__dirname</code> содержит абсолютный путь к корневому каталогу проекта.</li>
 </ul>
 <p>Вместо метода <code>path.join</code> часто применяют метод <a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html#pathresolvepaths">path.resolve</a>.</p>
 <p>Файл настроек <a href="https://webpack.js.org/configuration/#options">webpack.config.js</a> нужен вебпаку, чтобы знать, какие плагины и с какими настройками использовать в том или ином случае. Если файл настроек лежит в корне проекта и называется <code>webpack.config.js</code>, то webpack автоматически его определит. Если же имя или расположение файла настроек иное, то нужно в файле <code>package.json</code> указать это с помощью опции <code>--config</code>, например:</p>
@@ -256,7 +267,7 @@ module.exports = {
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Перед тем, как запустить следующую команду, удалим каталог <code>dist</code> с двумя файлами. После этого, в терминале выполним следующее:</p>
+<p>Теперь, удалим каталог <code>dist</code> с двумя файлами, а после в терминале запустим команду:</p>
 <pre><code class="language-bash">npm run dev
 </code></pre>
 <p>Каталог <code>dist</code> снова создан, а внутри него созданы файлы <code>index.html</code> и <code>main.js</code>. Если откроем с помощью браузера файл <code>dist/index.html</code>, то увидим:</p>
@@ -266,13 +277,13 @@ module.exports = {
 <p>Таким образом, плагин html-webpack-plugin сделал две вещи:</p>
 <ul>
 <li>создал файл <code>dist/index.html</code> из файла <code>src/template.html</code></li>
-<li>в файле <code>dist/index.html</code> указал файл скрипта &lt;script defer src=&quot;main.js&quot;&gt;&lt;/script&gt;</li>
+<li>в файле <code>dist/index.html</code> автоматически прописал путь к файлу скрипта main.js.</li>
 </ul>
 <p>Минимально возможный вариант сборки webpack собран и настроен. С помощью этого шаблона можно начинать разработку проекта по следующему алгоритму:</p>
 <ol>
 <li>Редактируем исходный код в файлах каталога <code>src</code></li>
 <li>Сохраняем результат</li>
-<li>Из терминала запускаем сборку проекта следующей командой:</li>
+<li>Выполняем сборку проекта с помощью команды:</li>
 </ol>
 <pre><code class="language-bash">npm run dev
 </code></pre>
@@ -322,9 +333,13 @@ module.exports = {
   }
 }
 </code></pre>
-<p><code>serve</code> означает запустить веб сервер. <a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер. <code>--mode development</code> включает режим разработки.</p>
+<ul>
+<li><code>serve</code> означает запустить веб сервер.</li>
+<li><a href="https://webpack.js.org/configuration/dev-server/#devserveropen"><code>--open</code></a> автоматически запускает браузер.</li>
+<li><code>--mode development</code> включает режим разработки.</li>
+</ul>
 <p>Перед тем как запустить веб-сервер удалим каталог <code>dist</code>. Это делать необязательно, а нужно для понимания работы веб-сервера.</p>
-<p>Из терминала запустим веб-сервер командой:</p>
+<p>В терминале запустим веб-сервер командой:</p>
 <pre><code class="language-bash">npm run serve
 </code></pre>
 <p>В результате, автоматически откроется страница браузера по адресу http://localhost:9000/ и мы увидим тоже, что и в прошлый раз:</p>
@@ -1064,13 +1079,84 @@ html(lang= 'ru')
 <pre><code class="language-bash">npm run build
 </code></pre>
 <p>В каталоге <code>dist</code> появился файл <code>robots.txt</code>.</p>
+<h2>Установка и настройка React</h2>
+<p>Установим react и react-dom в проект. Причем, они должны быть установлены как библиотеки. Для этого запустим установку без опции <code>-D</code>:</p>
+<pre><code>npm i react react-dom
+</code></pre>
+<p>В файле package.json эти зависимости должны появиться в секции &quot;dependencies&quot;.</p>
+<p>Так как в реакте мы будем писать код на JSX, то установим пресет <code>@babel/eset-react</code>:</p>
+<pre><code>npm i -D @babel/preset-react
+</code></pre>
+<ul>
+<li><code>babel-preset-react</code>: модуль, преобразующий JSX в JavaScript.</li>
+</ul>
+<p>Откроем файл .babelrc и добавим строку <code>@babel/preset-react</code> таким образом:</p>
+<pre><code>{
+  &quot;presets&quot;: [
+    [
+      &quot;@babel/preset-env&quot;,
+      {
+        &quot;modules&quot;: false
+      }
+    ],
+    &quot;@babel/preset-react&quot;
+  ]
+}
+</code></pre>
+<p>В каталоге src создадим каталог components, а в нём файл app.js:</p>
+<pre><code>mkdir src/components
+touch src/components/app.js
+</code></pre>
+<p>Запишем в файл app.js следующий код:</p>
+<pre><code class="language-jsx">import React, { Component } from 'react';
+
+class App extends Component {
+  render() {
+    return (
+      &lt;&gt;
+        &lt;h1 className=&quot;h1&quot;&gt;Приложение на React&lt;/h1&gt;
+      &lt;/&gt;
+    );
+  }
+}
+
+export default App;
+</code></pre>
+<p>Чтобы показать, что SCSS работает в react, откроем файл main.scss и добавим в конец следующий код:</p>
+<pre><code class="language-scss">.h1 {
+  color: red;
+}
+</code></pre>
+<p>Добавим в файл index.js строки, отмеченные знаком <code>+</code>, а строки, отмеченные знаком <code>-</code> можно удалить, но пока оставим.</p>
+<pre><code class="language-js">+ import React from 'react';
++ import ReactDOM from 'react-dom';
++ import App from './components/app';
+
+  import './main.scss';
+  import './fonts/fonts.scss';
+
+- function component(text) {
+-   const element = document.createElement('h1');
+-   element.textContent = text;
+-   return element;
+- }
+
+- document.body.prepend(component('Проект собран на Webpack'));
+
++ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+</code></pre>
+<p>Теперь запустим сборку:</p>
+<pre><code>npm run serve
+</code></pre>
+<p>Откроется окно браузера и мы увидим следующее:</p>
+<p><img src="app-react.png" alt="Приложение React"></p>
 <h2>Полезные ресурсы для настройки webpack</h2>
 <p>Настройка Webpack заставляет постоянно редактировать файл <code>webpack.config.js</code>. Поэтому, полезно держать под рукой справочник. Официальный сайт Webpack'а предлагает такой справочник, который представляет файл конфигурации с <a href="https://webpack.js.org/configuration/#options">интерактивными опциями</a>, если нажать на название непонятной опции, откроется страница с подробной документацией.</p>
 <p>Рекомендую посетить сервис <a href="https://createapp.dev/">createapp.dev</a>, который поможет создать готовый шаблон проекта с необходимыми настройками. Этот сервис настраивает проект под Webpack, Parcel и Snowpack и полезен для опытных пользователей.</p>
 <h2>Заключение</h2>
-<p>В этой статье показано, как настроить webpack для создания фронтенда сайта с использованием шаблонизатора Pug, препроцессора SCSS, языка разметки Markdown и языка JavaScript. Показываются методы оптимизации изображений, подключения шрифтов, настройки локального сервера.</p>
+<p>В этой статье показано, как настроить сборку webpack для создания фронтенда сайта с использованием шаблонизатора Pug, препроцессора SCSS, языка разметки Markdown и языка JavaScript. Также, добавлены настройки для React. Показаны методы оптимизации изображений, подключения шрифтов, настройки локального сервера. В целом сборка рабочая и полностью справляется с задачами, описанными в этой статье.</p>
+<p>Не рассмотрена такая тема, как <a href="https://webpack.js.org/guides/code-splitting/">разделение кода</a> на чанки. Это отдельная тема, касающаяся производительности. Если после очередной сборки бандла вы замечаете, что загрузка сайта начинает ощутимо возрастать, то стоит рассмотреть такие методы, как <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>, <a href="https://webpack.js.org/guides/lazy-loading/">Lazy Loading</a> и <a href="https://webpack.js.org/guides/tree-shaking/">Tree Shaking</a>.</p>
 <p>Весь код из этой статьи <a href="https://github.com/injashkin/webpack-template">находится здесь</a>.</p>
-<p>За рамками этой статьи остались настройка вебпака для работы с библиотекой React или фреймворком Vue, а также <a href="https://webpack.js.org/guides/typescript/">интеграция с TypeScript</a>. Не рассмотрена такая тема, как <a href="https://webpack.js.org/guides/code-splitting/">разделение кода</a> на чанки. Если после очередной сборки бандла вы замечаете, что загрузка сайта начинает ощутимо возрастать, то стоит рассмотреть такие методы, как <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>, <a href="https://webpack.js.org/guides/lazy-loading/">Lazy Loading</a> и <a href="https://webpack.js.org/guides/tree-shaking/">Tree Shaking</a>.</p>
 
       </div>
     </div>
