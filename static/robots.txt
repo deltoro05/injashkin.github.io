@@ -2,6 +2,7 @@ User-agent: *
 Disallow:
 Disallow: /404.html
 Disallow: /hotel
+Disallow: /calc
 Disallow: /page?
 Allow: /
 Sitemap: https://jinv.ru/sitemap.xml
