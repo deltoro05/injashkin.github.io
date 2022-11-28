@@ -2,7 +2,7 @@
 title: Настройка Webpack 5
 description: Подробное руководство о настройке сборщика Webpack 5 и о создании шаблона, который позволит разрабатывать фронтенд сайтов с использованием Pug, Sass, JavaScript и Markdown
 create: 19-10-2022
-update: 20-10-2022
+update: 28-11-2022
 ---
 
 ## О чем статья
@@ -1345,7 +1345,7 @@ npm i react react-dom
 
 В файле package.json эти зависимости должны появиться в секции "dependencies".
 
-Так как в реакте мы будем писать код на JSX, то установим пресет `@babel/eset-react`:
+Так как в реакте мы будем писать код на JSX, то установим пресет `@babel/preset-react`:
 
 ```
 npm i -D @babel/preset-react

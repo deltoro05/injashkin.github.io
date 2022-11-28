@@ -1,6 +1,8 @@
 User-agent: *
 Disallow:
 Disallow: /404.html
+Disallow: /hotel
+Disallow: /page?
 Allow: /
 Sitemap: https://jinv.ru/sitemap.xml
 Host: https://jinv.ru
