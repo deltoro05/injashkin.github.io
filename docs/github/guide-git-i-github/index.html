@@ -17,8 +17,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.1gj1hs667.css">
-    <script defer src="/index.1gj1hs667.js"></script>
+    <link rel="stylesheet" href="/index.1gjhpaa2l.css">
+    <script defer src="/index.1gjhpaa2l.js"></script>
     <meta name="description" content="Полезные команды по работе с Git и Github. Данный справочник является кратким конспектом из источника git-scm.com">
     <title>Краткий справочник по командам Git | jinv.ru</title>
     <link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
@@ -93,22 +93,22 @@
     <div class="content">
       <div class="article">
         <h1>Краткий справочник по командам Git</h1>
-        <div class="creationDate">Создано: 20-05-2019 - Обновлено: 11-11-2022</div><h2>Полезные команды по работе с Git и Github</h2>
+        <div class="creationDate">Создано: 20-05-2019 - Обновлено: 05-12-2022</div><h2>Полезные команды по работе с Git и Github</h2>
 <p>Данный справочник является кратким конспектом из <a href="https://git-scm.com/book/ru/v2">источника git-scm.com</a> и некоторых других ресурсов</p>
 <p>Открываем командную строку. С помощью команды cd переходим в нужную нам директорию проекта</p>
-<hr>
-<ul>
-<li><code>git status</code>
-<ul>
-<li>показывает состояние файлов</li>
-</ul>
-</li>
-</ul>
 <hr>
 <ul>
 <li><code>git init</code>
 <ul>
 <li>инициализирует Git-репозиторий (создается поддиректория .git)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git status</code>
+<ul>
+<li>показывает состояние файлов</li>
 </ul>
 </li>
 </ul>
@@ -133,6 +133,46 @@
 <li><code>git add -u</code>
 <ul>
 <li>добавляет в индекс все измененные файлы.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git reset -- path/file.cpp</code>
+<ul>
+<li>удаляет из индекса файл path/file.cpp.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git rm --cached as.js</code>
+<ul>
+<li>удаляет файл as.js из индекса, не удаляя его в рабочей директории</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git rm -r --cached qsf</code>
+<ul>
+<li>удаляет каталог qsf (рекурсивно) из индекса, не удаляя его в рабочей директории</li>
+</ul>
+</li>
+</ul>
+<h2>Коммиты</h2>
+<ul>
+<li><code>git checkout</code>
+<ul>
+<li>переключает на самый свежий коммит</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>git checkout 946e23a</code>
+<ul>
+<li>переключает на коммит 946e23a</li>
 </ul>
 </li>
 </ul>
@@ -167,27 +207,6 @@
 <li>откроется редактор с последним коммитом, в котором можно исправить комментарий к коммиту. Если после последнего коммита был сделан push, то нужно выполнить еще одну команду: <code>git push &lt;remote&gt; &lt;branch&gt; --force</code></li>
 </ul>
 </li>
-</ul>
-<hr>
-<ul>
-<li><code>git reset -- path/file.cpp</code>
-<ul>
-<li>удаляет из индекса файл path/file.cpp.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li><code>git rm --cached as.js</code>
-<ul>
-<li>удаляет файл as.js из индекса, не удаляя его в рабочей директории</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li><code>git rm -r --cached qsf</code>
--удаляет каталог qsf (рекурсивно) из индекса, не удаляя его в рабочей директории</li>
 </ul>
 <h2>Ветвление</h2>
 <ul>
@@ -373,7 +392,7 @@
 </ul>
 <hr>
 <ul>
-<li>git stash show -u
+<li><code>git stash show -u</code>
 <ul>
 <li>показывает, какие изменения и неотслеживаемые файлы сохранены в последнем тайнике (<code>stash@{0}</code>).</li>
 </ul>
