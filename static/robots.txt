@@ -3,6 +3,7 @@ Disallow:
 Disallow: /404.html
 Disallow: /hotel
 Disallow: /calc
+Disallow: /gwp
 Disallow: /page?
 Allow: /
 Sitemap: https://jinv.ru/sitemap.xml
