@@ -2,13 +2,16 @@
 title: Создание базы данных в облачном сервисе MongoDB Atlas
 description: Руководство по созданию бесплатного экземпляра базы данных MongoDB в сервисе MongoDB Atlas
 create: 07-01-2020
+update: 20-01-2023
 ---
 
-Эта статья переведена с ресурса https://www.freecodecamp.org/learn/apis-and-microservices/mongodb-and-mongoose/.
+**В связи с санкциями облачный сервис MongoDB Atlas не позволяет создавать аккаунты пользователям из России и Белоруссии**
 
-MongoDB Atlas--глобальный облачный сервис баз данных для приложений. С помощью MongoDB Atlas можно развернуть управляемую базу данных MongoDB на таких облачных сервисах, как [AWS](https://aws.amazon.com/ru/), [Azure](https://azure.microsoft.com/ru-ru/) или [GCP](https://cloud.google.com/). С MongoDB Atlas базы данных создаются быстрее, и меньше тратится времени на их управление.
+Эта статья переведена с ресурса [freecodecamp.org](https://www.freecodecamp.org/learn/apis-and-microservices/mongodb-and-mongoose/).
 
-MongoDB Atlas--платформа MongoDB Database-as-a-Service, это означает, что сервис автоматически настраивает и размещает базу данных, а единственное, что требуется сделать пользователю--это заполнить базу данных содержимым. MongoDB Atlas снимает с плеч клиентов нагрузку по управлению базами NoSQL и дает сфокусироваться на приложениях. Это руководство покажет, как настроить MongoDB в MongoDB Atlas:
+MongoDB Atlas - глобальный облачный сервис баз данных для приложений. С помощью MongoDB Atlas можно развернуть управляемую базу данных MongoDB на таких облачных сервисах, как [AWS](https://aws.amazon.com/ru/), [Azure](https://azure.microsoft.com/ru-ru/) или [GCP](https://cloud.google.com/). С MongoDB Atlas базы данных создаются быстрее, и меньше тратится времени на их управление.
+
+MongoDB Atlas - платформа MongoDB Database-as-a-Service, это означает, что сервис автоматически настраивает и размещает базу данных, а единственное, что требуется сделать пользователю - это заполнить базу данных содержимым. MongoDB Atlas снимает с плеч клиентов нагрузку по управлению базами NoSQL и дает сфокусироваться на приложениях. Это руководство покажет, как настроить MongoDB в MongoDB Atlas:
 
 - Создание учетной записи в MongoDB Atlas.
 - Создание нового кластера.
@@ -18,7 +21,7 @@ MongoDB Atlas--платформа MongoDB Database-as-a-Service, это озна
 
 ## Создание учетной записи в MongoDB Atlas.
 
-Для получения учетной записи перейдите на страницу [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+Для получения учетной записи перейдите на страницу [MongoDB Atlas](https://www.mongodb.com/atlas/database).
 
 - На странице сайта найдите и нажмите кнопку [Start free](https://www.mongodb.com/cloud/atlas/register), чтобы открыть страницу регистрации.
 - В регистрационной форме заполните поля информацией и нажмите кнопку `Get started free`. Откроется страница с тарифами.
