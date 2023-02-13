@@ -60,6 +60,6 @@
     "scripts": "node scripts.js",
     "git": "git add . && git commit -m 'Update site' && git push",
     "dev": "npm-run-all dev:clean sass scripts dev:md-pug-to-html dev:pug dev:copy -p watch:*",
-    "build": "npm-run-all clean sass scripts md-pug-to-html pug svg post rollup copy git"
+    "build": "npm-run-all clean sass scripts md-pug-to-html pug svg post rollup copy"
   }
 }
