@@ -98,7 +98,7 @@ scripts.js
 
 Файлы значков `.svg` взяты на [Material Symbols and Icons - Google Fonts](https://fonts.google.com/icons?icon.set=Material+Icons).
 
-В проекте также возможно использовать [значки Юникода](https://unicode-table.com/ru/).
+В проекте также возможно использовать [значки Юникода](https://symbl.cc/ru/).
 
 ### Цвета
 
